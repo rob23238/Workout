@@ -156,6 +156,20 @@ details.guide[open] summary::after{content:" ▾";}
 .dock .ctl{display:flex;gap:6px}
 .dock button{border:1px solid rgba(255,255,255,.3);background:transparent;color:inherit;border-radius:9px;padding:7px 10px;font:700 14px var(--body);cursor:pointer}
 body.docked .wrap{padding-bottom:130px}
+.skill{background:var(--surface);border:1px solid var(--line);border-radius:14px;margin-top:14px;overflow:hidden}
+.skill .hd{padding:12px 12px 8px}
+.skill .hd b{font:800 22px var(--display);letter-spacing:.03em;text-transform:uppercase}
+.skill .hd .why{color:var(--muted);font-size:14.5px;margin-top:2px}
+.skill .on{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.skill .on span{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:var(--accent-soft);color:var(--accent);border-radius:6px;padding:2px 7px}
+.skill .progress{margin:10px 0 0}
+.step{display:grid;grid-template-columns:34px 1fr;gap:10px;padding:10px 12px;border-top:1px solid var(--line)}
+.step input{width:24px;height:24px;margin:2px 0 0;accent-color:var(--accent);cursor:pointer}
+.step .n{font-weight:700}.step .g{color:var(--muted);font-size:14px}
+.step.done .n{color:var(--done);text-decoration:line-through}
+.step.next{background:var(--warm-soft)}
+.step .tag{display:inline-block;font:800 12px var(--display);letter-spacing:.05em;text-transform:uppercase;background:var(--warm);color:#fff;border-radius:5px;padding:1px 6px;margin-left:6px;vertical-align:2px}
+.skill .field{margin:0;border:0;border-top:1px solid var(--line);border-radius:0}
 pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;font:14px/1.5 ui-monospace,Menlo,monospace;overflow-x:auto}
 </style>
 </head>
@@ -504,7 +518,7 @@ function renderDay(day){
   let h = `<div class="dayhead"><div class="kicker">${esc(day.kicker)} · Week 1</div><h2>${esc(day.title)}</h2><p>${esc(day.time)}</p>`;
   if(rowCount) h += `<button class="btn startw" id="startw" type="button">${W.day===day.id&&W.start?"Workout running · tap to stop":"▶ Start workout · "+mins(day.time)+" min target"}</button>`;
   if(rowCount) h += `<div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${rowCount}</b></div>`;
-  h += `<div class="after">` + (plan?`<div class="pill"><strong>After</strong><span>${esc(PLANS[plan].h)} · <a href="#stair" data-go="stair" style="color:var(--warm);font-weight:700">open timer</a></span></div>`:"") + `<div class="pill"><strong>Tonight</strong><span>Hip mobility ${night.toUpperCase()}${PUSH_BY_DAY[day.id]?" + 100 push-ups":""} · <a href="#night" data-go="night" style="color:var(--warm);font-weight:700">open</a></span></div></div></div>`;
+  h += `<div class="after">` + (plan?`<div class="pill"><strong>After</strong><span>${esc(PLANS[plan].h)} · <a href="#stair" data-go="stair" style="color:var(--warm);font-weight:700">open timer</a></span></div>`:"") + `${(SKILLS_BY_DAY[day.id]||[]).length?`<div class="pill" style="background:var(--accent-soft)"><strong style="color:var(--accent)">Builds</strong><span>${esc(SKILLS_BY_DAY[day.id].join(" · "))} · <a href="#cali" data-go="cali" style="color:var(--accent);font-weight:700">see progress</a></span></div>`:""}<div class="pill"><strong>Tonight</strong><span>Hip mobility ${night.toUpperCase()}${PUSH_BY_DAY[day.id]?" + 100 push-ups":""} · <a href="#night" data-go="night" style="color:var(--warm);font-weight:700">open</a></span></div></div></div>`;
   day.blocks.forEach((b,bi)=>{
     const rs = restFor(b), bm = mins(b.m);
     h += `<section class="block"><h3>${esc(b.h)}${b.m?` <small>${esc(b.m)}</small>`:""}</h3>`;
@@ -604,6 +618,80 @@ function dockTick(){
 }
 document.addEventListener("visibilitychange",()=>{ if(!document.hidden && W.start){ keepAwake(); dockTick(); } });
 
+/* ---------- Calisthenics: skill ladders. Check off a step when you hit its target. ---------- */
+const SKILLS = [
+ {id:"pull", name:"Pull-ups → 50", why:"Your foundation. Every skill on the bar (muscle-up, front lever) is built on strict pulling strength.", on:["Mon: vest + slow sets","Fri: volume + explosive"], steps:[
+  ["20 strict pull-ups","Where you started",true],
+  ["Vest sets 1–3 hit 7 / 6 / 6","Then add 10 lb to the vest (LW rule)"],
+  ["25 strict pull-ups","Unlocks front lever work"],
+  ["30 strict","Retest every 4 weeks"],
+  ["40 strict",""],
+  ["50 in one set","Elite. Expect 6–12+ months of steady work"]]},
+ {id:"mu", name:"Muscle-up", why:"Pull high enough to get your chest over the bar, then press out like a dip. Explosive pull-ups + dips are the two halves.", on:["Fri: explosive chest-to-bar","Thu: straight-bar dips"], steps:[
+  ["20 strict pull-ups","Strength base: done",true],
+  ["Explosive chest-to-bar 3 × 5 + bar dips 3 × 12","Bar touches your chest every rep"],
+  ["False-grip hang 30 sec + false-grip pull-ups 3 × 5","Wrist over the bar, not under"],
+  ["Slow negative muscle-ups 3 × 3","Jump to the top, lower in 5 sec"],
+  ["First muscle-up",""],
+  ["3 × 3 clean muscle-ups","No kicking"]]},
+ {id:"hspu", name:"Handstand push-up", why:"Your feet-on-bench push-ups are step 1: they put more weight on your shoulders. Each step tips more of your body over your hands until you're upside down.", on:["Mon + Thu: 100 feet-on-bench push-ups","Thu: pike push-ups + wall hold"], steps:[
+  ["Feet-on-bench push-ups 4 × 25","Your daily 100. Foundation",true],
+  ["Pike push-ups 3 × 6 + wall hold 30 sec","Hips high, head in front of your hands"],
+  ["Wall handstand hold 60 sec","Chest to wall, body straight"],
+  ["Feet-elevated pike push-ups 3 × 5","Feet on the bench, hips over hands"],
+  ["Deficit pike push-ups 3 × 3","Hands on plates, head goes below them"],
+  ["Wall handstand push-up negatives 3 × 3","Lower in 3–5 sec"],
+  ["First wall handstand push-up","Then build to 3 × 5"],
+  ["Freestanding handstand 10 sec","Kick up, hold, no wall"]]},
+ {id:"oap", name:"One-arm push-up", why:"Same push-up, half the arms. You shift more weight to one side a step at a time.", on:["Mon + Thu: push-ups","Add archers once pike step 2 is done"], steps:[
+  ["100 push-ups a day in 4 × 25","Volume base",true],
+  ["4 × 25 feet-on-bench with the vest","More load, same reps"],
+  ["Archer push-ups 3 × 6 each side","One arm bends, the other stays straight"],
+  ["One-arm push-up, hand on bench 3 × 5","Feet wide, hips square"],
+  ["One-arm push-up, lower incline 3 × 5","Hand on a lower step"],
+  ["One-arm push-up on the floor","Then 3 × 3 each arm"]]},
+ {id:"pistol", name:"Pistol squat", why:"Squat on one leg. Also fixes your leg imbalance: each leg has to do its own work.", on:["Tue: assisted pistols","Wed: single-leg bench squats"], steps:[
+  ["Assisted pistol holding the cable 2 × 5","Sit down slowly on one leg"],
+  ["Pistol to a bench 3 × 5 each","Sit to the bench, stand without rocking"],
+  ["Pistol with heel on a plate 3 × 5 each","Easier on stiff ankles"],
+  ["Full pistol each leg","Weak leg first"],
+  ["3 × 5 pistols each leg",""]]},
+ {id:"fl", name:"Front lever", why:"Hang flat like a table under the bar. Pure lat and core strength: the back-pull from your pull-up guide, held still.", on:["Starts on Mon once you hit 25 pull-ups"], steps:[
+  ["25 strict pull-ups","Unlock"],
+  ["Tuck front lever 3 × 10 sec","Knees to chest, back flat"],
+  ["Advanced tuck 3 × 10 sec","Hips open, back flat"],
+  ["One leg out 3 × 8 sec",""],
+  ["Straddle front lever 3 × 5 sec",""],
+  ["Full front lever 5 sec",""]]},
+ {id:"core", name:"Lower abs → dragon flag", why:"Hanging leg raises build the lower abs; the dragon flag path builds the strength to hold your whole body straight.", on:["Mon + Wed: hanging leg raises","Wed + Thu: candlestick + negatives","Sat: hollow hold"], steps:[
+  ["5 clean hanging leg raises","Where you started",true],
+  ["Hollow hold 30 sec + candlestick lifts 3 × 5","Low back pressed down"],
+  ["Hanging leg raises 3 × 10 clean","No swing, 3 sec down"],
+  ["Tucked dragon flag negatives 3 × 3","Lower in 5 sec"],
+  ["Full dragon flag negatives 3 × 3","Body straight like a board"],
+  ["Toes-to-bar 3 × 5",""],
+  ["Full dragon flag 3 × 3",""]]}
+];
+const skKey = (sk,i) => sk.id+"-"+i;
+const skDone = (d,sk,i) => { const v=(d.done||{})[skKey(sk,i)]; return v===undefined ? !!sk.steps[i][2] : v; };
+function renderCali(){
+  const d = docOf("cali"); d.done=d.done||{}; d.best=d.best||{};
+  const tot = SKILLS.reduce((a,sk)=>a+sk.steps.length,0), got = SKILLS.reduce((a,sk)=>a+sk.steps.filter((_,i)=>skDone(d,sk,i)).length,0);
+  let h = `<div class="dayhead"><div class="kicker">Calisthenics</div><h2>Road to mastery</h2><p>Each skill is a staircase. Your weekly workouts are the steps. Check one off when you hit its target with clean form, and the next one lights up.</p>
+  <div class="progress"><div class="bar"><i style="width:${got/tot*100}%"></i></div><b>${got} / ${tot}</b></div></div>`;
+  SKILLS.forEach(sk=>{
+    const n = sk.steps.filter((_,i)=>skDone(d,sk,i)).length, next = sk.steps.findIndex((_,i)=>!skDone(d,sk,i));
+    h += `<section class="skill"><div class="hd"><b>${esc(sk.name)}</b><div class="why">${esc(sk.why)}</div><div class="on">${sk.on.map(o=>`<span>${esc(o)}</span>`).join("")}</div>
+    <div class="progress"><div class="bar"><i style="width:${n/sk.steps.length*100}%"></i></div><b>${n} / ${sk.steps.length}</b></div></div>` +
+    sk.steps.map((st,i)=>{ const done=skDone(d,sk,i), id="sk-"+skKey(sk,i); return `<div class="step${done?" done":""}${i===next?" next":""}"><input type="checkbox" id="${id}" data-sk="${skKey(sk,i)}"${done?" checked":""}><label for="${id}" style="cursor:pointer"><div class="n">${esc(st[0])}${i===next?`<span class="tag">Next up</span>`:""}</div>${st[1]?`<div class="g">${esc(st[1])}</div>`:""}</label></div>`; }).join("") +
+    `<div class="field"><label for="best-${sk.id}">Best</label><input id="best-${sk.id}" data-best="${sk.id}" autocomplete="off" placeholder="latest test, e.g. 22 reps · Oct 7" value="${esc(d.best[sk.id]||"")}"></div></section>`;
+  });
+  app.innerHTML = h;
+  app.querySelectorAll("[data-sk]").forEach(cb=>cb.addEventListener("change",()=>{ d.done[cb.dataset.sk]=cb.checked; save("cali"); const y=scrollY; renderCali(); scrollTo(0,y); }));
+  app.querySelectorAll("[data-best]").forEach(inp=>inp.addEventListener("input",()=>{ d.best[inp.dataset.best]=inp.value; saveSoon("cali"); }));
+}
+const SKILLS_BY_DAY = {mon:["Pull-ups → 50","Handstand push-up","One-arm push-up","Lower abs"],tue:["Pistol squat"],wed:["Pistol squat","Dragon flag"],thu:["Handstand push-up","Muscle-up (dips)","Dragon flag"],fri:["Muscle-up","Pull-ups → 50"],sat:["Dragon flag"],sun:[]};
+
 /* ---------- Ideas: things you see (TikTok, IG, the gym) to add next week ---------- */
 const WHERE = ["Any day","Mon","Tue","Wed","Thu","Fri","Sat","Sun","Night","StairMaster"];
 function renderIdeas(){
@@ -667,6 +755,7 @@ function summaryText(){
   out += `\nHip mobility nights done: ` + ["mon","tue","wed","thu","fri","sat","sun"].map(w=>{const d=docOf("night-"+w);const n=Object.values(d.checks||{}).filter(Boolean).length+(d.legacyNight||0);return w+" "+n+"/"+NIGHT[NIGHT_BY_DAY[w]].rows.length+(PUSH_BY_DAY[w]?(d.push?" +100":" (no push-ups)"):"")}).join(", ") + "\n";
   const am = docOf("am").days || {}; const wk = weekDates(0);
   out += `\nMorning StairMaster this week: ` + wk.map(x=>x.toLocaleDateString(undefined,{weekday:"short"})+" "+(am[ymd(x)]==="went"?"went":am[ymd(x)]==="skip"?"skipped":"-")).join(", ") + "\n";
+  const cd = docOf("cali"); out += `\nCALISTHENICS\n` + SKILLS.map(sk=>{ const nx=sk.steps.findIndex((_,i)=>!skDone(cd,sk,i)); return `  ${sk.name}: ${sk.steps.filter((_,i)=>skDone(cd,sk,i)).length}/${sk.steps.length}` + (nx>=0?` · next: ${sk.steps[nx][0]}`:" · DONE") + ((cd.best||{})[sk.id]?` · best: ${cd.best[sk.id]}`:""); }).join("\n") + "\n";
   const ideas = docOf("ideas").items || [];
   if(ideas.length) out += `\nIDEAS TO ADD (my feedback)\n` + ideas.map(i=>`  - [${i.where}] ${i.what}${i.swap?` (replace: ${i.swap})`:""}${i.link?` ${i.link}`:""}`).join("\n") + "\n";
   return out;
@@ -684,14 +773,14 @@ function renderLog(){
 }
 
 /* ---------- tabs ---------- */
-const TABS = [...DAYS.map(d=>({id:d.id, chip:d.chip})), {id:"stair",chip:"Stair"}, {id:"am",chip:"AM Stair"}, {id:"night",chip:"Night"}, {id:"ideas",chip:"Ideas"}, {id:"log",chip:"Log"}];
+const TABS = [...DAYS.map(d=>({id:d.id, chip:d.chip})), {id:"stair",chip:"Stair"}, {id:"cali",chip:"Calisthenics"}, {id:"am",chip:"AM Stair"}, {id:"night",chip:"Night"}, {id:"ideas",chip:"Ideas"}, {id:"log",chip:"Log"}];
 function todayId(){ return ["sun","mon","tue","wed","thu","fri","sat"][new Date().getDay()]; }
 function render(id){
   current = id;
   [...tabsEl.children].forEach(c=>c.setAttribute("aria-selected", c.dataset.id===id ? "true":"false"));
   if(id!=="stair" && tState.running){ /* keep timer running in background state */ }
   const day = DAYS.find(x=>x.id===id);
-  if(day) renderDay(day); else if(id==="stair") renderStair(); else if(id==="night") renderNight(); else if(id==="am") renderAM(); else if(id==="ideas") renderIdeas(); else renderLog();
+  if(day) renderDay(day); else if(id==="stair") renderStair(); else if(id==="night") renderNight(); else if(id==="am") renderAM(); else if(id==="cali") renderCali(); else if(id==="ideas") renderIdeas(); else renderLog();
   app.querySelectorAll("[data-go]").forEach(a=>a.addEventListener("click",e=>{ e.preventDefault(); go(a.dataset.go); }));
 }
 function go(id){ render(id); window.scrollTo({top:0}); const el=tabsEl.querySelector(`[data-id="${id}"]`); el?.scrollIntoView({inline:"center",block:"nearest"}); }
@@ -710,7 +799,7 @@ dockTick();
       let changed=false;
       snap.docs.forEach(ds=>{ if(ds.metadata.hasPendingWrites || writing[ds.id] || pending[ds.id]) return; const body=ds.data(); if(body){ cache[ds.id]=migrate(ds.id, JSON.parse(JSON.stringify(body))); local.set("hy1-"+ds.id, cache[ds.id]); changed=true; } });
       setSync("Synced to your account");
-      const typing = document.activeElement && document.activeElement.matches("input[data-log], #cal, #gaps, #i-what, #i-link, #i-why, #i-where");
+      const typing = document.activeElement && document.activeElement.matches("input[data-log], #cal, #gaps, #i-what, #i-link, #i-why, #i-where, [data-best]");
       if(changed && !typing && !tState.running) render(current);
     }, ()=>setSync("Saved on this phone"));
   }catch(e){ setSync("Saved on this phone"); }
