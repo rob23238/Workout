@@ -130,6 +130,32 @@ section.block{margin-top:22px}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
 .stat b{display:block;font-family:var(--display);font-size:30px;line-height:1.1;font-variant-numeric:tabular-nums}
 .stat span{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.tbar{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px}
+.tbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--accent);background:var(--accent-soft);color:var(--accent);border-radius:9px;padding:6px 11px;font:700 14px var(--body);cursor:pointer}
+.tbtn.rest{border-color:var(--warm);background:var(--warm-soft);color:var(--warm)}
+.tbtn[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.restwhy{font-size:13px;color:var(--muted);margin:-4px 0 10px}
+.startw{margin-top:12px;width:100%}
+details.guide{background:var(--surface);border:2px solid var(--accent);border-radius:14px;padding:0 14px;margin:0 0 12px}
+details.guide summary{cursor:pointer;padding:12px 0;font:800 19px var(--display);letter-spacing:.03em;text-transform:uppercase;color:var(--accent);list-style:none}
+details.guide summary::-webkit-details-marker{display:none}
+details.guide summary::after{content:" ▸";}
+details.guide[open] summary::after{content:" ▾";}
+.guide h4{font:800 16px var(--display);letter-spacing:.04em;text-transform:uppercase;margin:14px 0 4px}
+.guide p,.guide li{font-size:15px;margin:0 0 6px}
+.guide ol,.guide ul{padding-left:20px;margin:0 0 8px}
+.guide .big{background:var(--accent-soft);border-radius:10px;padding:10px 12px;font-weight:700;margin:8px 0}
+.guide .bad{background:var(--warm-soft);border-radius:10px;padding:10px 12px;margin:8px 0 14px}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--ink);color:var(--bg);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));box-shadow:0 -4px 18px rgba(0,0,0,.18)}
+.dock .in{max-width:640px;margin:0 auto;display:grid;gap:6px}
+.dock .l1{display:flex;justify-content:space-between;gap:10px;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;opacity:.85}
+.dock .l2{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.dock .main{font:800 30px var(--display);font-variant-numeric:tabular-nums;line-height:1}
+.dock .main small{font:700 13px var(--body);letter-spacing:.04em;text-transform:uppercase;opacity:.8;margin-left:6px}
+.dock .main.rest{color:#F0A26B}.dock .main.over{color:#FF7A6B}
+.dock .ctl{display:flex;gap:6px}
+.dock button{border:1px solid rgba(255,255,255,.3);background:transparent;color:inherit;border-radius:9px;padding:7px 10px;font:700 14px var(--body);cursor:pointer}
+body.docked .wrap{padding-bottom:130px}
 pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;font:14px/1.5 ui-monospace,Menlo,monospace;overflow-x:auto}
 </style>
 </head>
@@ -143,6 +169,33 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 <script>
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
+const PULL_GUIDE = `
+<h4>The big idea</h4>
+<p>Your hands and arms are just <b>hooks</b>. Your back is the <b>engine</b>. Think of a tow truck: the hook grabs the car, but the winch does the pulling. If your biceps are doing the work, you're pulling the car with the hook.</p>
+<div class="big">Don't pull yourself up. Pull the bar down to your chest.</div>
+<h4>One rep, step by step</h4>
+<ol>
+<li><b>Grip.</b> Hands a little wider than your shoulders, thumbs wrapped. Squeeze the bar like you're trying to crush it. A hard grip turns on your whole back.</li>
+<li><b>Get tight.</b> Legs together, squeeze your glutes, ribs down, toes slightly in front of you. No banana back, no swinging. A stiff body = all the power goes up.</li>
+<li><b>Dead hang.</b> Arms fully straight. Feel the stretch in your armpits. That's your lats loaded like a slingshot.</li>
+<li><b>Shoulders down first (arms stay straight).</b> Pull your shoulders away from your ears, like putting your shoulder blades in your back pockets. You rise about an inch. This is the rep starting from your back. Skip this and your arms take over.</li>
+<li><b>Elbows to your back pockets.</b> Now bend. Drive your elbows down and back toward your hips, like you're trying to elbow someone standing behind you. Elbows go down, not forward. Elbows forward = it turns into a curl.</li>
+<li><b>Chest to the bar.</b> Lead with your chest, not your chin. Chin clears the bar, pause 1 sec, shoulders still down (not shrugged up by your ears).</li>
+<li><b>Lower in 3 sec.</b> Control it all the way back to a full dead hang. The way down builds as much strength as the way up.</li>
+<li><b>Reset.</b> Every rep starts over at step 4. No bouncing out of the bottom.</li>
+</ol>
+<h4>Where you should feel it</h4>
+<p>The side of your back under your armpits and the middle of your back. Forearms and biceps will work some, but they should not be the first thing to burn.</p>
+<div class="bad"><b>Stop the set if:</b> your shoulders shrug to your ears, your neck tightens, you kick or swing, your biceps burn before your back, or you can't get back to a full dead hang. That rep doesn't count. Ugly reps teach your body ugly pull-ups.</div>
+<h4>Why this breaks the plateau</h4>
+<ul>
+<li><b>Weighted sets (vest)</b> make your body weight feel lighter later, like running in boots then switching to sneakers.</li>
+<li><b>Slow sets</b> build control in the hardest spots, the bottom and the top.</li>
+<li><b>Only perfect reps</b> means every rep trains the back, not the momentum. 15 clean reps beat 20 messy ones.</li>
+<li><b>Full rest (2 min)</b> so every set is quality. You're practicing a skill, not just getting tired.</li>
+</ul>
+<h4>Quick self-check</h4>
+<p>Do 1 scapular pull-up (step 4 only) before each set. If you can't feel your back doing that, you won't feel it in the full rep.</p>`;
 const SS = "Superset: do the 1 then the 2 back to back, rest, repeat for all rounds.";
 const DAYS = [
  {id:"mon", chip:"Mon", kicker:"Day 1 · Monday", title:"Pull + bench + arms + lower abs", time:"~55 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility A (no push-ups tonight, you did 100 with bench)",
@@ -152,8 +205,9 @@ const DAYS = [
     ["Band pass-throughs","1 × 10","Wide grip, arms straight, over your head and behind you","",S("band pass through shoulder dislocates")],
     ["Band pull-aparts","1 × 12","Squeeze your shoulder blades together",HAM,S("band pull aparts form")],
     ["Quadruped upper-back rotation","1 × 6 each side","On hands and knees, hand behind head, open the elbow to the ceiling",HAM,S("quadruped thoracic rotation")],
-    ["Scapular pull-ups, 2-sec hold","2 × 6","Hang with straight arms, pull your shoulders down away from your ears",LW,S("scapular pull ups form")]]},
-   {h:"Pull-ups to break the plateau", m:"14 min", note:"Every rep: dead hang → pull shoulders down first → drive elbows to your back pockets → chin over the bar → lower under control to a dead hang. A sloppy rep doesn't count; end the set. Rest about 2 min between sets.", rows:[
+    ["Scapular pull-ups, 2-sec hold","2 × 6","Hang with straight arms, pull your shoulders down away from your ears",LW,S("scapular pull ups form")],
+    ["Straight-arm cable pulldown","1 × 12, light","Rope or bar on the high cable. Arms stay straight, push it down to your thighs. That squeeze under your armpits is your lats: the exact feeling you want in every pull-up","",S("straight arm cable pulldown lats")]]},
+   {h:"Pull-ups to break the plateau", m:"14 min", guide:true, note:"Open the guide above before set 1. A sloppy rep doesn't count: end the set there. Rest timer is set to 2 min.", rows:[
     ["Set 1 · Weighted pull-ups","5 reps, 30 lb vest","Controlled, about 2 sec down",LW,S("weighted pull up form")],
     ["Set 2 · Weighted pull-ups","5 reps, vest","Same",LW,S("weighted pull up form")],
     ["Set 3 · Weighted pull-ups","5 reps, vest","Same",LW,S("weighted pull up form")],
@@ -303,7 +357,7 @@ const DAYS = [
     ["Kneeling dump trucks","3 × 6 each side","Outer hip + rotation",AH,"https://youtu.be/FOfbDPBlgaQ","B2"],
     ["Smith hip thrust","3 × 10 @ 135","Upper back on the bench, 2-sec squeeze","",S("smith machine hip thrust form"),"C1"],
     ["Bear-hug carry","3 × 30 yards","Hug a 45 lb plate or your heaviest dumbbell tight to your chest","",S("bear hug carry"),"C2"]]},
-   {h:"Pull-up volume", m:"12 min", note:"Grip opposite to Monday, no vest. Superset D: each bodyweight set, then 15 push-ups.", rows:[
+   {h:"Pull-up volume", m:"12 min", guide:true, note:"Same rules as Monday: every rep from your back. Grip opposite to Monday, no vest. Superset D: each bodyweight set, then 15 push-ups.", rows:[
     ["Explosive chest-to-bar pull-ups","3 × 5","Pull as high and fast as you can, rest 90 sec. Muscle-up prep",LW,S("explosive chest to bar pull ups muscle up")],
     ["Bodyweight pull-ups","4 × 10","Perfect form, rest 60–90 sec after the push-ups",LW,S("strict pull up form"),"D1"],
     ["Feet-on-bench push-ups","4 × 15","Right after each pull-up set","",S("decline push up feet elevated form"),"D2"]]},
@@ -369,6 +423,19 @@ const PLANS = {
 const PLAN_BY_DAY = {mon:"p30",tue:"p35",wed:"p40",thu:"p30",fri:"p35",sat:"p40",sun:null};
 const LOGGABLE = /pull-ups|Smith|bent-over row|curl|Romanian|Hanging leg raise, full|Cable crunch|straight-bar dip|shoulder press|skull crusher|^Set \d/i;
 
+
+/* ---------- Timers: rest standards by block type ----------
+   Based on NSCA guidance: heavy compound lifts 2–3 min, accessory lifts 1–2 min,
+   core/arms ~60 sec, explosive drills short, warm-ups and mobility move straight through. */
+const REST_RULES = [
+ [/warm-up|cool-down|hip finisher|hip session/i, 0, "Move straight through, no rest"],
+ [/pull-ups to break|bench|^strength/i, 120, "Heavy lifts: 2 min so you hit the same weight every set"],
+ [/calisthenics|pull-up volume/i, 90, "Skill + volume: 90 sec keeps every rep clean"],
+ [/functional/i, 45, "Explosive drills: short rest, stay sharp"],
+ [/hip strength/i, 30, "Holds + mobility: brief reset"],
+ [/.*/, 60, "Accessories, arms + core: 60 sec keeps it moving"]];
+const restFor = b => { const r = REST_RULES.find(x=>x[0].test(b.h)); return {sec: b.rest ?? r[1], why: r[2]}; };
+const mins = t => { const m = String(t||"").match(/(\d+)/); return m ? +m[1] : 0; };
 /* ---------- storage: db when available, this phone otherwise ---------- */
 const cache = {};
 const local = { get(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}, set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}} };
@@ -435,10 +502,15 @@ function renderDay(day){
   const plan = PLAN_BY_DAY[day.id], night = NIGHT_BY_DAY[day.id], K = keysFor(day.blocks);
   const valid = new Set(K.flat()); Object.keys(d.checks||{}).forEach(k=>{ if(!valid.has(k)) delete d.checks[k]; });
   let h = `<div class="dayhead"><div class="kicker">${esc(day.kicker)} · Week 1</div><h2>${esc(day.title)}</h2><p>${esc(day.time)}</p>`;
+  if(rowCount) h += `<button class="btn startw" id="startw" type="button">${W.day===day.id&&W.start?"Workout running · tap to stop":"▶ Start workout · "+mins(day.time)+" min target"}</button>`;
   if(rowCount) h += `<div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${rowCount}</b></div>`;
   h += `<div class="after">` + (plan?`<div class="pill"><strong>After</strong><span>${esc(PLANS[plan].h)} · <a href="#stair" data-go="stair" style="color:var(--warm);font-weight:700">open timer</a></span></div>`:"") + `<div class="pill"><strong>Tonight</strong><span>Hip mobility ${night.toUpperCase()}${PUSH_BY_DAY[day.id]?" + 100 push-ups":""} · <a href="#night" data-go="night" style="color:var(--warm);font-weight:700">open</a></span></div></div></div>`;
   day.blocks.forEach((b,bi)=>{
-    h += `<section class="block"><h3>${esc(b.h)}${b.m?` <small>${esc(b.m)}</small>`:""}</h3>${b.note?`<p class="note">${esc(b.note)}</p>`:""}`;
+    const rs = restFor(b), bm = mins(b.m);
+    h += `<section class="block"><h3>${esc(b.h)}${b.m?` <small>${esc(b.m)}</small>`:""}</h3>`;
+    if(bm) h += `<div class="tbar"><button class="tbtn" type="button" data-block="${bi}">▶ ${bm}:00 block</button>${rs.sec?`<button class="tbtn rest" type="button" data-rest="${rs.sec}">⏱ Rest ${fmt(rs.sec)}</button>`:""}</div><p class="restwhy">${esc(rs.why)}</p>`;
+    if(b.guide) h += `<details class="guide"><summary>How to pull with your back</summary>${PULL_GUIDE}</details>`;
+    h += b.note?`<p class="note">${esc(b.note)}</p>`:"";
     if(b.rows.length) h += `<div class="list">` + b.rows.map((r,ri)=>rowHTML(day.id, K[bi][ri], r, d, LOGGABLE.test(r[0]))).join("") + `</div>`;
     h += `</section>`;
   });
@@ -446,6 +518,9 @@ function renderDay(day){
   if(rowCount) h += `<button class="reset" id="reset" type="button">Clear today's checkmarks</button>`;
   h += `<p class="foot">"Watch video" opens the exact video from your programs. "Find video" opens YouTube results for that exercise.</p>`;
   app.innerHTML = h; wire(day.id, rowCount);
+  const sw=document.getElementById("startw"); if(sw) sw.addEventListener("click",()=>{ unlockAudio(); if(W.day===day.id&&W.start){ if(confirm("Stop this workout timer?")) stopWorkout(); } else startWorkout(day); renderDay(day); });
+  app.querySelectorAll("[data-block]").forEach(btn=>btn.addEventListener("click",()=>{ unlockAudio(); const b=day.blocks[+btn.dataset.block]; if(!W.start) startWorkout(day); W.block={name:b.h, end:Date.now()+mins(b.m)*60000, len:mins(b.m)*60, warned:false}; W.rest=null; saveW(); dockTick(); }));
+  app.querySelectorAll("[data-rest]").forEach(btn=>btn.addEventListener("click",()=>startRest(+btn.dataset.rest)));
 }
 
 let nightSel = null;
@@ -501,6 +576,33 @@ function renderStair(){
   document.getElementById("treset").addEventListener("click",resetTimer);
   syncTimerBtns(); tick();
 }
+
+/* ---------- Workout timer dock: total time, current block, rest ---------- */
+const W = Object.assign({day:null, start:0, target:0, block:null, rest:null, lastRest:0}, local.get("hy1-timer")||{});
+const saveW = () => local.set("hy1-timer", W);
+let actx=null, dockRaf=0, wlock=null;
+function unlockAudio(){ try{ actx = actx || new (window.AudioContext||window.webkitAudioContext)(); if(actx.state==="suspended") actx.resume(); }catch(e){} }
+function beep(n){ try{ unlockAudio(); for(let i=0;i<n;i++){ const o=actx.createOscillator(), g=actx.createGain(); o.frequency.value=880; o.connect(g); g.connect(actx.destination); const t=actx.currentTime+i*0.28; g.gain.setValueAtTime(0.25,t); g.gain.exponentialRampToValueAtTime(0.001,t+0.22); o.start(t); o.stop(t+0.24); } }catch(e){} try{ navigator.vibrate?.([200,100,200]); }catch(e){} }
+async function keepAwake(){ try{ if(!wlock) wlock = await navigator.wakeLock?.request("screen"); }catch(e){} }
+function startWorkout(day){ W.day=day.id; W.start=Date.now(); W.target=mins(day.time)*60; W.block=null; W.rest=null; saveW(); keepAwake(); dockTick(); }
+function stopWorkout(){ W.day=null; W.start=0; W.block=null; W.rest=null; saveW(); try{ wlock?.release(); }catch(e){} wlock=null; dockTick(); }
+function startRest(sec){ unlockAudio(); if(!W.start){ const d=DAYS.find(x=>x.id===current)||DAYS[0]; startWorkout(d); } W.rest={end:Date.now()+sec*1000, len:sec, warned:false}; W.lastRest=sec; saveW(); dockTick(); }
+function dockTick(){
+  clearTimeout(dockRaf);
+  let el=document.getElementById("dock");
+  if(!W.start){ if(el) el.remove(); document.body.classList.remove("docked"); return; }
+  if(!el){ el=document.createElement("div"); el.id="dock"; el.className="dock"; el.setAttribute("role","timer"); document.body.appendChild(el); document.body.classList.add("docked");
+    el.addEventListener("click",e=>{ const a=e.target.dataset.act; if(!a) return; if(a==="rest") startRest(W.lastRest||60); if(a==="skip"){ W.rest=null; saveW(); dockTick(); } if(a==="stop"){ if(confirm("Stop the workout timer?")){ stopWorkout(); if(DAYS.some(d=>d.id===current)) render(current); } } }); }
+  const now=Date.now(), el2=(now-W.start)/1000, day=DAYS.find(d=>d.id===W.day);
+  let main, cls="", label;
+  if(W.rest){ const left=(W.rest.end-now)/1000; if(left<=0){ if(!W.rest.warned){ W.rest.warned=true; beep(3); } W.rest=null; saveW(); } else { main=fmt(left); cls="rest"; label="Rest · go at 0"; } }
+  if(!main && W.block){ const left=(W.block.end-now)/1000; if(left<=0 && !W.block.warned){ W.block.warned=true; saveW(); beep(2); } main=left>0?fmt(left):"+"+fmt(-left); cls=left>0?"":"over"; label=W.block.name+(left>0?"":" · over, move on"); }
+  if(!main){ main=fmt(el2); label="Workout time"; }
+  const over = el2>W.target;
+  el.innerHTML=`<div class="in"><div class="l1"><span>${esc(day?day.chip:"")} · ${fmt(el2)} / ${fmt(W.target)}${over?" · over":""}</span><span>${esc(label)}</span></div><div class="l2"><div class="main ${cls}">${main}</div><div class="ctl">${W.rest?`<button type="button" data-act="skip">Skip</button>`:`<button type="button" data-act="rest">Rest ${fmt(W.lastRest||60)}</button>`}<button type="button" data-act="stop">End</button></div></div></div>`;
+  dockRaf = setTimeout(()=>requestAnimationFrame(dockTick), 250);
+}
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden && W.start){ keepAwake(); dockTick(); } });
 
 /* ---------- Ideas: things you see (TikTok, IG, the gym) to add next week ---------- */
 const WHERE = ["Any day","Mon","Tue","Wed","Thu","Fri","Sat","Sun","Night","StairMaster"];
@@ -596,6 +698,7 @@ function go(id){ render(id); window.scrollTo({top:0}); const el=tabsEl.querySele
 TABS.forEach(t=>{ const b=document.createElement("button"); b.className="chip"; b.type="button"; b.setAttribute("role","tab"); b.dataset.id=t.id; b.textContent=t.chip; b.addEventListener("click",()=>go(t.id)); tabsEl.appendChild(b); });
 let start = todayId(); try{ const h=location.hash.replace("#",""); if(TABS.some(t=>t.id===h)) start=h; }catch(e){}
 go(start);
+dockTick();
 
 /* ---------- light up account sync when available ---------- */
 (async()=>{
