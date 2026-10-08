@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -618,7 +619,7 @@ function unlockAudio(){ try{ actx = actx || new (window.AudioContext||window.web
 /* Loud alarm: repeating two-tone pattern. "playback" lets it ring even with the silent switch on. */
 function alarm(sec){ try{ if(navigator.audioSession) navigator.audioSession.type="playback"; }catch(e){} try{ unlockAudio(); const n=Math.round(sec/0.5); for(let i=0;i<n;i++){ const o=actx.createOscillator(), g=actx.createGain(); o.type="square"; o.frequency.value = i%2 ? 988 : 1319; o.connect(g); g.connect(actx.destination); const t=actx.currentTime+i*0.5; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.35,t+0.02); g.gain.exponentialRampToValueAtTime(0.0001,t+0.4); o.start(t); o.stop(t+0.42); } }catch(e){} try{ navigator.vibrate?.([400,150,400,150,400]); }catch(e){} }
 async function keepAwake(){ try{ if(!wlock) wlock = await navigator.wakeLock?.request("screen"); }catch(e){} }
-/* iPhone Clock timer through a one-time Shortcut called "Workout Timer". The Clock rings over any app. */
+/* iPhone Clock timer through your Shortcut (default name "Start Timer"). The Clock rings over any app. */
 let shortcutName = local.get("hy1-shortcut") || "Start Timer";
 function phoneTimer(sec){ location.href = "shortcuts://run-shortcut?name=" + encodeURIComponent(shortcutName) + "&input=text&text=" + Math.round(sec); }
 function startBlock(name, sec){ unlockAudio(); W.block={name, end:Date.now()+sec*1000, len:sec, warned:false}; W.rest=null; saveW(); keepAwake(); dockTick(); if(alarmMode==="clock") setTimeout(()=>phoneTimer(sec), 150); }
@@ -830,6 +831,18 @@ TABS.forEach(t=>{ const b=document.createElement("button"); b.className="chip"; 
 let start = todayId(); try{ const h=location.hash.replace("#",""); if(TABS.some(t=>t.id===h)) start=h; }catch(e){}
 go(start);
 dockTick();
+
+/* ---------- Auto-update: if GitHub has a newer version, reload into it ---------- */
+const APP_VERSION = "2026-10-07c";
+async function checkUpdate(){
+  try{
+    const r = await fetch("index.html?check=" + Date.now(), {cache:"no-store"});
+    const m = (await r.text()).match(/APP_VERSION = "([^"]+)"/);
+    if(m && m[1] !== APP_VERSION && !W.block && !W.rest){ location.reload(); }
+  }catch(e){}
+}
+checkUpdate();
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden) checkUpdate(); });
 
 /* ---------- light up account sync when available ---------- */
 (async()=>{
