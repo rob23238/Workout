@@ -206,7 +206,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-08h";
+const APP_VERSION = "2026-10-08i";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -471,9 +471,36 @@ const REST_RULES = [
  [/warm-up|cool-down|hip finisher|hip session/i, 0, "Move straight through, no rest"],
  [/pull-ups to break|bench|^strength/i, 120, "Heavy lifts: 2 min so you hit the same weight every set"],
  [/calisthenics|pull-up volume/i, 90, "Skill + volume: 90 sec keeps every rep clean"],
- [/functional/i, 45, "Explosive drills: short rest, stay sharp"],
+ [/functional/i, 30, "Explosive drills: short rest, stay sharp"],
  [/hip strength/i, 30, "Holds + mobility: brief reset"],
  [/.*/, 60, "Accessories, arms + core: 60 sec keeps it moving"]];
+/* Rest per exercise. Superset: only the last exercise of the pair gets the rest (go straight from 1 to 2).
+   Heavy compound 2 min · calisthenics 90 sec · accessories 60 sec · core 45 sec · drills 30 sec · warm-ups/mobility none.
+   An explicit "rest N sec" in the how-to text wins. */
+function exRest(b, r){
+  const base = REST_RULES.find(x=>x[0].test(b.h))[1];
+  if(base===0) return 0;
+  const m = String(r[2]||"").match(/rest (\d+) sec/i); if(m) return +m[1];
+  if(/functional/i.test(b.h)) return 30;
+  if(/hip strength/i.test(b.h)) return 30;
+  const n = r[0];
+  if(/jump|bound|hop/i.test(n)) return 60;
+  if(/bench press|back squat|zercher|weighted pull|^set \d|hip thrust|slow pull/i.test(n)) return 120;
+  if(/pull-up|dip|pike|handstand|muscle/i.test(n)) return 90;
+  if(/leg raise|crunch|dragon|v-ups|jack knife|hollow|pallof|stir|wipers|knee tuck|6-inch|copenhagen|candlestick|plank/i.test(n)) return 45;
+  return 60;
+}
+function restPlan(b){
+  const groups = {};
+  b.rows.forEach((r,i)=>{ const t=r[5]; if(t){ const g=t[0]; (groups[g]=groups[g]||[]).push(i); } });
+  return b.rows.map((r,i)=>{
+    const t=r[5];
+    if(!t) return {sec:exRest(b,r)};
+    const idx=groups[t[0]], last=idx.reduce((a,j)=>(+b.rows[j][5].slice(1)>=+b.rows[a][5].slice(1)?j:a), idx[0]);
+    if(b.rows[i][5]!==b.rows[last][5]) return {sec:0, next:t[0]+(+t.slice(1)+1)};
+    return {sec:Math.max(...idx.map(j=>exRest(b,b.rows[j])))};
+  });
+}
 const restFor = b => { const r = REST_RULES.find(x=>x[0].test(b.h)); return {sec: b.rest ?? r[1], why: r[2]}; };
 const mins = t => { const m = String(t||"").match(/(\d+)/); return m ? +m[1] : 0; };
 /* ---------- storage: db when available, this phone otherwise ---------- */
@@ -520,10 +547,10 @@ const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 const tabsEl = document.getElementById("days"), app = document.getElementById("app");
 const dot = l => `<span class="dot" style="background:${COLOR[l]||'#0D7A63'}">L${l}</span>`;
 
-function rowHTML(prefix, key, r, d, loggable){
+function rowHTML(prefix, key, r, d, loggable, rp){
   const on = !!(d.checks||{})[key], cid = `c-${prefix}-${key}`;
   const logv = (d.logs||{})[key] || "";
-  return `<div class="row${on?" is-done":""}"><input type="checkbox" id="${cid}" data-k="${key}"${on?" checked":""} aria-label="Done: ${esc(r[0])}"><div class="t"><label for="${cid}" style="cursor:pointer;display:block"><div class="name">${r[5]?`<span class="ss">${esc(r[5])}</span>`:""}${esc(r[0])}</div><div class="dose">${esc(r[1])}</div>${r[2]?`<div class="how">${esc(r[2])}</div>`:""}</label>${loggable?`<div class="logbox"><label for="l-${prefix}-${key}">Did</label><input id="l-${prefix}-${key}" data-log="${key}" inputmode="text" autocomplete="off" placeholder="weight × reps" value="${esc(logv)}"></div>`:""}${(r[3]||r[4])?`<div class="meta">${r[3]?`<span class="src">${esc(r[3])}</span>`:""}${r[4]?`<a class="vid" href="${esc(r[4])}" target="_blank" rel="noopener">${r[4].includes("results?search")?"Find video":"Watch video"} ↗</a>`:""}</div>`:""}</div></div>`;
+  return `<div class="row${on?" is-done":""}"><input type="checkbox" id="${cid}" data-k="${key}"${on?" checked":""} aria-label="Done: ${esc(r[0])}"><div class="t"><label for="${cid}" style="cursor:pointer;display:block"><div class="name">${r[5]?`<span class="ss">${esc(r[5])}</span>`:""}${esc(r[0])}</div><div class="dose">${esc(r[1])}</div>${r[2]?`<div class="how">${esc(r[2])}</div>`:""}</label>${loggable?`<div class="logbox"><label for="l-${prefix}-${key}">Did</label><input id="l-${prefix}-${key}" data-log="${key}" inputmode="text" autocomplete="off" placeholder="weight × reps" value="${esc(logv)}"></div>`:""}${(r[3]||r[4])?`<div class="meta">${r[3]?`<span class="src">${esc(r[3])}</span>`:""}${r[4]?`<a class="vid" href="${esc(r[4])}" target="_blank" rel="noopener">${r[4].includes("results?search")?"Find video":"Watch video"} ↗</a>`:""}</div>`:""}${rp&&rp.sec?`<div class="meta"><button class="tbtn rest" type="button" data-rest="${rp.sec}">⏱ Rest ${fmt(rp.sec)}</button></div>`:rp&&rp.next?`<div class="meta"><span class="src" style="color:var(--warm)">No rest → straight to ${esc(rp.next)}</span></div>`:""}</div></div>`;
 }
 function wire(id, total){
   const d = docOf(id);
@@ -544,16 +571,15 @@ function renderDay(day){
   const plan = PLAN_BY_DAY[day.id], night = NIGHT_BY_DAY[day.id], K = keysFor(day.blocks);
   const valid = new Set(K.flat()); Object.keys(d.checks||{}).forEach(k=>{ if(!valid.has(k)) delete d.checks[k]; });
   let h = `<div class="dayhead"><div class="kicker">${esc(day.kicker)} · Week 1</div><h2>${esc(day.title)}</h2><p>${esc(day.time)}</p>`;
-  if(rowCount) h += alarmSetHTML();
+  if(rowCount){ const on = W.finish && W.dayId===day.id; h += `<button class="btn startw" id="startw" type="button" style="margin-top:12px;width:100%">${on?`Workout running · finish by ${clock(new Date(W.finish))} · tap to end`:`▶ Start workout · finish by ${clock(new Date(Date.now()+mins(day.time)*60000))}`}</button>` + alarmSetHTML(); }
   if(rowCount) h += `<div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${rowCount}</b></div>`;
   h += `<div class="after"><div class="pill" style="background:var(--accent-soft)"><strong style="color:var(--accent)">Morning</strong><span>Open up + breathe · <a href="#morning" data-go="morning" style="color:var(--accent);font-weight:700">open</a></span></div><div class="pill"><strong>Tonight</strong><span>Hip mobility ${night.toUpperCase()}${PUSH_BY_DAY[day.id]?" + 100 push-ups":""} + breathing · <a href="#night" data-go="night" style="color:var(--warm);font-weight:700">open</a></span></div></div></div>`;
   day.blocks.forEach((b,bi)=>{
-    const rs = restFor(b), bm = mins(b.m);
+    const rpl = restPlan(b);
     h += `<section class="block"><h3>${esc(b.h)}${b.m?` <small>${esc(b.m)}</small>`:""}</h3>`;
-    if(bm) h += `<div class="tbar"><button class="tbtn" type="button" data-block="${bi}">▶ ${bm}:00 block</button>${rs.sec?`<button class="tbtn rest" type="button" data-rest="${rs.sec}">⏱ Rest ${fmt(rs.sec)}</button>`:""}</div><p class="restwhy">${esc(rs.why)}</p>`;
     if(b.guide) h += `<details class="guide"><summary>How to pull with your back</summary>${PULL_GUIDE}</details>`;
     h += b.note?`<p class="note">${esc(b.note)}</p>`:"";
-    if(b.rows.length) h += `<div class="list">` + b.rows.map((r,ri)=>rowHTML(day.id, K[bi][ri], r, d, LOGGABLE.test(r[0]))).join("") + `</div>`;
+    if(b.rows.length) h += `<div class="list">` + b.rows.map((r,ri)=>rowHTML(day.id, K[bi][ri], r, d, LOGGABLE.test(r[0]), rpl[ri])).join("") + `</div>`;
     h += `</section>`;
   });
   if(plan) h += `<section class="block"><h3>StairMaster</h3><div class="field"><label for="cal">Calories</label><input id="cal" inputmode="numeric" placeholder="from the machine" value="${esc(d.cal||"")}"></div></section>`;
@@ -561,7 +587,7 @@ function renderDay(day){
   h += `<p class="foot">"Watch video" opens the exact video from your programs. "Find video" opens YouTube results for that exercise.</p>`;
   app.innerHTML = h; wire(day.id, rowCount);
   wireAlarmSet(()=>renderDay(day));
-  app.querySelectorAll("[data-block]").forEach(btn=>btn.addEventListener("click",()=>{ const b=day.blocks[+btn.dataset.block]; startBlock(b.h, mins(b.m)*60); }));
+  document.getElementById("startw")?.addEventListener("click",()=>{ if(W.finish && W.dayId===day.id){ if(confirm("End this workout?")) stopAll(); } else startWorkout(day); renderDay(day); });
   app.querySelectorAll("[data-rest]").forEach(btn=>btn.addEventListener("click",()=>startRest(+btn.dataset.rest)));
 }
 
@@ -610,7 +636,7 @@ function tick(){
 async function startTimer(){ if(tState.running) return; unlockAudio(); tState.running=true; tState.startAt=Date.now(); tState.alarms=false; if(!tState.elapsed) tState.lastSeg=-1; saveStair(); try{ wakeLock = await navigator.wakeLock?.request("screen"); }catch(e){} tick(); syncTimerBtns(); }
 function stopTimer(done){ if(tState.running){ tState.elapsed += Math.max(0,(Date.now()-tState.startAt)/1000); } tState.running=false; clearTimeout(tState.raf); try{ wakeLock?.release(); }catch(e){} wakeLock=null; saveStair(); syncTimerBtns(); }
 function resetTimer(){ stopTimer(); tState.elapsed=0; tState.lastSeg=-1; tState.alarms=false; saveStair(); tick(); }
-function syncTimerBtns(){ const b=document.getElementById("tgo"); if(b) b.textContent=tState.running?"Pause":(tState.elapsed?"Resume":(alarmMode==="clock"?"Start + iPhone alerts":"Start")); }
+function syncTimerBtns(){ const b=document.getElementById("tgo"); if(b) b.textContent=tState.running?"Pause":(tState.elapsed?"Resume":"Start"); }
 /* One tap: start at the next full minute and send every level change to the iPhone as Clock alarms. */
 async function startWithAlarms(){
   unlockAudio(); resetTimer();
@@ -632,29 +658,13 @@ function renderStair(){
   <div class="seg">${Object.entries(PLANS).map(([k,p])=>`<button type="button" data-p="${k}" aria-pressed="${tState.plan===k}">${p.h.split(" ")[0]}</button>`).join("")}</div></div>
   <div class="timer"><div class="kicker" style="font:700 13px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">${esc(PLANS[tState.plan].h)} · ${esc(PLANS[tState.plan].when)}</div><div class="big" id="tbig">Level ${PLANS[tState.plan].segs[0][1]}</div><div class="clock" id="tclock"></div><div class="next" id="tnext"></div>
   <div class="ctl"><button class="btn" id="tgo" type="button">Start</button><button class="btn ghost" id="treset" type="button">Reset</button></div>
-  <div class="alarmset" style="justify-content:center"><span>Alerts</span><div class="seg"><button type="button" data-alarm="sound" aria-pressed="${alarmMode==="sound"}">🔔 App sound</button><button type="button" data-alarm="clock" aria-pressed="${alarmMode==="clock"}">⏰ iPhone alerts</button></div></div>
-  <p class="restwhy" style="margin:8px 0 0">${alarmMode==="clock"?`Start sends ${lc.changes.length+1} level alerts to your iPhone. Each one pops up with a sound over Crunchyroll and clears itself: no tapping. It begins at the next full minute so the app and alerts match. Don't pause: the alerts keep their times.`:"Tone plays at each level change while this app is open. Switch to iPhone alarms to get alerted inside other apps."}</p></div>
-  <details class="setup"><summary>Set up "${esc(stairShortcut)}" (one time, 3 min)</summary>
-  <div class="field"><label for="stname">Shortcut name</label><input id="stname" autocomplete="off" value="${esc(stairShortcut)}"></div>
-  <p style="margin-top:10px">Uses Reminders, not alarms: each level pops up as a banner with a sound and goes away on its own. First, in the <b>Reminders</b> app make a list called <b>StairMaster</b>.</p>
-  <ol><li>Open your <b>Stair Timer</b> shortcut.</li>
-  <li>At the very top add <b>Find Reminders</b> → tap "Add Filter" → <b>List is StairMaster</b>. Then add <b>Remove Reminders</b> (removes last session's alerts).</li>
-  <li>Then <b>Split Text</b>: Shortcut Input, split by <b>New Lines</b>.</li>
-  <li><b>Repeat with Each</b> item in Split Text.</li>
-  <li>Inside the repeat: <b>Get Dates from Input</b> → Repeat Item.</li>
-  <li>Inside the repeat: <b>Add New Reminder</b>. Title = <b>Repeat Item</b>, List = <b>StairMaster</b>, tap the arrow, turn on <b>Alert</b> → <b>At Time</b> → <b>Dates</b>.</li>
-  <li>Delete the old <b>Create Alarm</b> action. Tap <b>Done</b>, then <b>Test</b> below.</li></ol>
-  <p>Make sure Reminders notifications are on with sound: Settings → Notifications → Reminders.</p>
-  <button class="btn" type="button" id="sttest">Test (2 alerts)</button></details>
+  <p class="restwhy" style="margin:8px 0 0">The tone plays at each level change while this app is open.</p></div>
   <section class="block"><h3>Plan</h3><div class="stairs">` + (()=>{let t=0;return PLANS[tState.plan].segs.map(s=>{const a=t;t+=s[0];return `<div class="lvl"><span class="min">min ${a}–${t}</span><span class="lv">${dot(s[1])} ${s[0]} min</span></div>`}).join("")})() + `</div></section>
   <section class="block"><h3>Your levels</h3><div class="list">` + ZONES.map(z=>`<div class="zone"><span class="lv">${dot(z[0])}</span><div><b>${esc(z[1])}</b><div style="color:var(--muted);font-size:14.5px">${esc(z[2])}</div></div></div>`).join("") + `</div></section>`;
   app.innerHTML = h;
   app.querySelectorAll("[data-p]").forEach(b=>b.addEventListener("click",()=>{ resetTimer(); tState.plan=b.dataset.p; saveStair(); renderStair(); }));
-  document.getElementById("tgo").addEventListener("click",()=>{ if(tState.running) stopTimer(); else if(!tState.elapsed && alarmMode==="clock") startWithAlarms(); else startTimer(); });
-  app.querySelectorAll("[data-alarm]").forEach(b=>b.addEventListener("click",()=>{ alarmMode=b.dataset.alarm; local.set("hy1-alarm",alarmMode); unlockAudio(); if(alarmMode==="sound") alarm(1); renderStair(); }));
+  document.getElementById("tgo").addEventListener("click",()=>{ if(tState.running) stopTimer(); else startTimer(); });
   document.getElementById("treset").addEventListener("click",resetTimer);
-  document.getElementById("stname").addEventListener("input",e=>{ stairShortcut=e.target.value.trim()||"Stair Timer"; local.set("hy1-stair-shortcut",stairShortcut); });
-  document.getElementById("sttest").addEventListener("click",()=>{ const n=Date.now(), a=new Date(n+120000), b=new Date(n+180000); location.href="shortcuts://run-shortcut?name="+encodeURIComponent(stairShortcut)+"&input=text&text="+encodeURIComponent(`${clock(a)} · Test Level 7\n${clock(b)} · Test Level 8`); });
   syncTimerBtns(); clearTimeout(tState.raf); tick();
 }
 
@@ -691,11 +701,14 @@ async function keepAwake(){ try{ if(!wlock) wlock = await navigator.wakeLock?.re
 let shortcutName = local.get("hy1-shortcut") || "Start Timer";
 function phoneTimer(sec){ location.href = "shortcuts://run-shortcut?name=" + encodeURIComponent(shortcutName) + "&input=text&text=" + Math.round(sec); }
 function startBlock(name, sec){ unlockAudio(); W.block={name, end:Date.now()+sec*1000, len:sec, warned:false}; W.rest=null; saveW(); keepAwake(); dockTick(); if(alarmMode==="clock") setTimeout(()=>phoneTimer(sec), 150); }
-function stopAll(){ W.block=null; W.rest=null; saveW(); try{ wlock?.release(); }catch(e){} wlock=null; dockTick(); }
-function startRest(sec){ unlockAudio(); W.rest={end:Date.now()+sec*1000, len:sec, warned:false}; W.lastRest=sec; saveW(); keepAwake(); dockTick(); }
-function alarmSetHTML(){ return `<div class="alarmset"><span>Block alarm</span><div class="seg"><button type="button" data-alarm="sound" aria-pressed="${alarmMode==="sound"}">🔔 App sound</button><button type="button" data-alarm="clock" aria-pressed="${alarmMode==="clock"}">⏰ iPhone timer</button></div></div>
-  ${alarmMode==="clock"?`<details class="setup"${local.get("hy1-alarm-ok")?"":" open"}><summary>Set up the iPhone timer (one time, 1 min)</summary>
-  <p>Your iPhone doesn't let websites set alarms directly, so your Shortcut does it. When you start a block, the app hands the time to it, it starts your Clock timer, and the Clock rings over anything: Crunchyroll, YouTube, a locked screen.</p>
+function stopAll(){ W.block=null; W.rest=null; W.finish=0; W.dayId=null; saveW(); try{ wlock?.release(); }catch(e){} wlock=null; dockTick(); }
+function startRest(sec){ unlockAudio(); W.rest={end:Date.now()+sec*1000, len:sec, warned:false}; W.lastRest=sec; saveW(); keepAwake(); dockTick(); if(alarmMode==="clock") setTimeout(()=>phoneTimer(sec), 150); }
+let finishShortcut = local.get("hy1-finish-shortcut") || "Stair Timer";
+function startWorkout(day){ unlockAudio(); W.finish=Date.now()+mins(day.time)*60000; W.dayId=day.id; W.finishWarned=false; saveW(); keepAwake(); dockTick();
+  if(alarmMode==="clock") setTimeout(()=>{ location.href="shortcuts://run-shortcut?name="+encodeURIComponent(finishShortcut)+"&input=text&text="+encodeURIComponent(`${clock(new Date(W.finish))} · ${day.chip} workout done`); },150); }
+function alarmSetHTML(){ return `<div class="alarmset"><span>Rest alarm</span><div class="seg"><button type="button" data-alarm="sound" aria-pressed="${alarmMode==="sound"}">🔔 App sound</button><button type="button" data-alarm="clock" aria-pressed="${alarmMode==="clock"}">⏰ iPhone timer</button></div></div>
+  ${alarmMode==="clock"?`<details class="setup"${local.get("hy1-alarm-ok")?"":" open"}><summary>iPhone setup (one time)</summary>
+  <p>Your iPhone doesn't let websites set alarms directly, so your Shortcuts do it. When you tap a rest, the app hands the time to Start Timer, it starts your Clock timer, and the Clock rings over anything: Crunchyroll, YouTube, a locked screen.</p>
   <div class="field"><label for="scname">Shortcut name</label><input id="scname" autocomplete="off" value="${esc(shortcutName)}"></div>
   <p class="restwhy" style="margin:4px 0 8px">Must match the name in your Shortcuts app exactly, capitals and spaces included.</p>
   <ol><li>Open the <b>Shortcuts</b> app and tap your shortcut to edit it.</li>
@@ -704,11 +717,14 @@ function alarmSetHTML(){ return `<div class="alarmset"><span>Block alarm</span><
   <li>Tap the word <b>minutes</b> → change it to <b>seconds</b>.</li>
   <li>Tap <b>Done</b>, come back here and tap <b>Test</b>. A 10-second timer should start in your Clock app.</li></ol>
   <p><b>If Test fails:</b> "Shortcut not found" = the name above doesn't match. Timer starts at 30 minutes = step 3 is missing. Timer is 10 minutes = step 4 is missing.</p>
-  <p>After a block starts, tap <b>◀</b> at the top-left of your screen to jump back here.</p>
+  <p>After a rest starts, tap <b>◀</b> at the top-left of your screen to jump back here.</p>
+  <div class="field"><label for="fsname">Finish alarm</label><input id="fsname" autocomplete="off" value="${esc(finishShortcut)}"></div>
+  <p class="restwhy" style="margin:4px 0 8px">Start workout sets one Clock <b>alarm</b> at your finish time through this shortcut (your Stair Timer one already does it: Split Text → Repeat → Get Dates → Create Alarm). It's an alarm, not a timer, so your rest timers don't cancel it.</p>
   <p class="restwhy" style="margin:0 0 8px">App version ${APP_VERSION} · will run the shortcut named "${esc(shortcutName)}"</p><button class="btn" type="button" id="alarmtest">Test (10 sec)</button> <button class="btn ghost" type="button" id="alarmok">It worked</button></details>`:`<p class="restwhy" style="margin:6px 0 0">Soft chime while this app is open, even with the silent switch on. To get alerted inside other apps, switch to iPhone timer.</p>`}`; }
 function wireAlarmSet(rerender){
   app.querySelectorAll("[data-alarm]").forEach(b=>b.addEventListener("click",()=>{ alarmMode=b.dataset.alarm; local.set("hy1-alarm",alarmMode); unlockAudio(); if(alarmMode==="sound") alarm(1); rerender(); }));
   document.getElementById("alarmtest")?.addEventListener("click",()=>phoneTimer(10));
+  document.getElementById("fsname")?.addEventListener("input",e=>{ finishShortcut=e.target.value.trim()||"Stair Timer"; local.set("hy1-finish-shortcut",finishShortcut); });
   document.getElementById("scname")?.addEventListener("input",e=>{ shortcutName=e.target.value.trim()||"Start Timer"; local.set("hy1-shortcut",shortcutName); });
   document.getElementById("alarmok")?.addEventListener("click",()=>{ local.set("hy1-alarm-ok",true); rerender(); });
 }
@@ -717,16 +733,19 @@ function dockTick(){
   let el=document.getElementById("dock");
   const now=Date.now();
   if(W.rest && W.rest.end<=now){ if(!W.rest.warned){ W.rest.warned=true; alarm(2); } W.rest=null; saveW(); }
-  if(!W.block && !W.rest){ if(el) el.remove(); document.body.classList.remove("docked"); return; }
+  if(W.finish && W.finish<=now && !W.finishWarned){ W.finishWarned=true; saveW(); alarm(4); }
+  if(!W.block && !W.rest && !W.finish){ if(el) el.remove(); document.body.classList.remove("docked"); return; }
   if(!el){ el=document.createElement("div"); el.id="dock"; el.className="dock"; el.setAttribute("role","timer"); document.body.appendChild(el); document.body.classList.add("docked");
-    el.addEventListener("click",e=>{ const a=e.target.dataset.act; if(!a) return; if(a==="rest") startRest(W.lastRest||60); if(a==="skip"){ W.rest=null; saveW(); dockTick(); } if(a==="stop") stopAll(); }); }
+    el.addEventListener("click",e=>{ const a=e.target.dataset.act; if(!a) return; if(a==="rest") startRest(W.lastRest||60); if(a==="skip"){ W.rest=null; saveW(); dockTick(); } if(a==="stop"){ if(!W.finish || confirm("End this workout?")){ stopAll(); if(DAYS.some(d=>d.id===current)) render(current); } } }); }
   let main, cls="", label;
+  const fin = W.finish ? (W.finish>now ? `Finish by ${clock(new Date(W.finish))} · ${fmt((W.finish-now)/1000)} left` : `Past finish time · +${fmt((now-W.finish)/1000)}`) : (alarmMode==="clock"?"⏰ iPhone timer":"🔔 Sound on");
   if(W.rest){ main=fmt((W.rest.end-now)/1000); cls="rest"; label="Rest · go at 0"; }
-  else { const left=(W.block.end-now)/1000; if(left<=0 && !W.block.warned){ W.block.warned=true; saveW(); alarm(4); } main=left>0?fmt(left):"+"+fmt(-left); cls=left>0?"":"over"; label=left>0?W.block.name:"Time's up · next block"; }
-  el.innerHTML=`<div class="in"><div class="l1"><span>${esc(label)}</span><span>${alarmMode==="clock"?"⏰ iPhone timer":"🔔 Sound on"}</span></div><div class="l2"><div class="main ${cls}">${main}</div><div class="ctl">${W.rest?`<button type="button" data-act="skip">Skip</button>`:`<button type="button" data-act="rest">Rest ${fmt(W.lastRest||60)}</button>`}<button type="button" data-act="stop">Done</button></div></div></div>`;
+  else if(W.block){ const left=(W.block.end-now)/1000; if(left<=0 && !W.block.warned){ W.block.warned=true; saveW(); alarm(4); } main=left>0?fmt(left):"+"+fmt(-left); cls=left>0?"":"over"; label=left>0?W.block.name:"Time's up"; }
+  else { const left=(W.finish-now)/1000; main=left>0?fmt(left):"+"+fmt(-left); cls=left>0?"":"over"; label="Workout time left"; }
+  el.innerHTML=`<div class="in"><div class="l1"><span>${esc(label)}</span><span>${esc(fin)}</span></div><div class="l2"><div class="main ${cls}">${main}</div><div class="ctl">${W.rest?`<button type="button" data-act="skip">Skip</button>`:`<button type="button" data-act="rest">Rest ${fmt(W.lastRest||60)}</button>`}<button type="button" data-act="stop">${W.finish?"End":"Done"}</button></div></div></div>`;
   dockRaf = setTimeout(()=>requestAnimationFrame(dockTick), 250);
 }
-document.addEventListener("visibilitychange",()=>{ if(!document.hidden && (W.block||W.rest)){ keepAwake(); dockTick(); } });
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden && (W.block||W.rest||W.finish)){ keepAwake(); dockTick(); } });
 document.addEventListener("visibilitychange",()=>{ if(!document.hidden && tState.running){ clearTimeout(tState.raf); tick(); } });
 
 /* ---------- Calisthenics: skill ladders. Check off a step when you hit its target. ---------- */
