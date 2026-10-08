@@ -206,7 +206,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-08b";
+const APP_VERSION = "2026-10-08c";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -772,7 +772,8 @@ const BREATHS = {
  belly:{name:"Belly breathing", purpose:"Relaxes your body. One hand on your chest, one on your stomach. Only the stomach hand should move.", say:"With every breath, my body relaxes. I am safe. I can calm down.", phases:[["In through your nose · belly rises",4],["Out through your mouth · let your body soften",6]], rounds:6},
  skull:{name:"Skull shining breath", purpose:"Wakes up your mind and clears fog. Sit tall, take a normal breath in, then short sharp exhales through your nose by snapping your belly in. Let each inhale happen on its own.", say:"I am clearing my mind and strengthening my focus.", phases:[["Sharp exhale · belly snaps in",1]], rounds:20, caution:"Stop and switch to belly breathing if you feel dizzy or lightheaded. Skip it if you're already anxious: it speeds you up."}
 };
-const BELIEF = "I can trust myself. I do not have to be perfect. I can slow down, breathe, and move forward.";
+const BELIEF = "For God has not given us a spirit of fear, but of power and of love and of a sound mind.";
+const BELIEF_REF = "2 Timothy 1:7";
 const GROUNDING = "I am present. My body can relax. My thoughts are not facts. I can choose my next action.";
 const SENSES = [["5","Things you can see","Your phone, a wall, your shoes, a light, a chair"],["4","Things you can feel","Shirt on your skin, feet on the floor, air on your face, your hands"],["3","Things you can hear","AC humming, cars, voices, your own breathing"],["2","Things you can smell","Soap, air, food. Even \"nothing\" counts: just notice it"],["1","Thing you can taste","What's in your mouth right now, or take a sip of water"]];
 let pacer = null;
@@ -814,7 +815,7 @@ function renderMorning(){
   <div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${checks.length}</b></div></div>`;
   h += `<section class="block"><h3>Open up <small>3 min</small></h3><div class="list">` + MORNING_MOB.map(r=>rowHTML("morning","m-"+slug(r[0]),r,d,false)).join("") + `</div></section>`;
   h += `<section class="block"><h3>Breathe <small>${weekend?"5":"4"} min</small></h3>` + breaths.map(b=>breathHTML(b,"m"+b)).join("") + `</section>`;
-  h += `<section class="block"><h3>Mindset <small>1 min</small></h3><div class="callout"><b>My belief:</b> "${esc(BELIEF)}"</div>${sensesHTML()}</section>`;
+  h += `<section class="block"><h3>Mindset <small>1 min</small></h3><div class="callout"><b>My belief:</b> "${esc(BELIEF)}"<div style="font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-top:4px">${esc(BELIEF_REF)}</div><div style="font:800 22px var(--display);letter-spacing:.03em;text-transform:uppercase;margin-top:10px">Keep going 👑</div></div>${sensesHTML()}</section>`;
   h += `<section class="block"><h3>Check off</h3><div class="list">` + checks.slice(MORNING_MOB.length).map(([k,r])=>rowHTML("morning",k,r,d,false)).join("") + `</div></section>`;
   h += journalHTML("am","One thing I'll focus on today","e.g. Stay patient in meetings. Hit every block on time.");
   app.innerHTML = h; wire("morning-"+wk, checks.length); wirePacers(); wireJournal();
