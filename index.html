@@ -206,7 +206,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-08a";
+const APP_VERSION = "2026-10-08b";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -630,8 +630,26 @@ const saveW = () => local.set("hy1-timer", W);
 let alarmMode = local.get("hy1-alarm") || "sound";
 let actx=null, dockRaf=0, wlock=null;
 function unlockAudio(){ try{ actx = actx || new (window.AudioContext||window.webkitAudioContext)(); if(actx.state==="suspended") actx.resume(); }catch(e){} }
-/* Loud alarm: repeating two-tone pattern. "playback" lets it ring even with the silent switch on. */
-function alarm(sec){ try{ if(navigator.audioSession) navigator.audioSession.type="playback"; }catch(e){} try{ unlockAudio(); const n=Math.round(sec/0.5); for(let i=0;i<n;i++){ const o=actx.createOscillator(), g=actx.createGain(); o.type="square"; o.frequency.value = i%2 ? 988 : 1319; o.connect(g); g.connect(actx.destination); const t=actx.currentTime+i*0.5; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.35,t+0.02); g.gain.exponentialRampToValueAtTime(0.0001,t+0.4); o.start(t); o.stop(t+0.42); } }catch(e){} try{ navigator.vibrate?.([400,150,400,150,400]); }catch(e){} }
+/* Soothing alarm: soft marimba-style chime (rising four-note arpeggio), repeated.
+   "playback" lets it ring even with the silent switch on. */
+function alarm(sec){
+  try{ if(navigator.audioSession) navigator.audioSession.type="playback"; }catch(e){}
+  try{
+    unlockAudio();
+    const notes=[523.25,659.25,783.99,1046.5], reps=Math.max(1,Math.round(sec/1.6)), t0=actx.currentTime+0.05;
+    const out=actx.createGain(); out.gain.value=0.5; out.connect(actx.destination);
+    for(let r=0;r<reps;r++) notes.forEach((f,i)=>{
+      const t=t0+r*1.6+i*0.16;
+      [[1,0.32],[4,0.06],[2,0.04]].forEach(([mult,vol])=>{ // fundamental + soft overtones = warm wooden tone
+        const o=actx.createOscillator(), g=actx.createGain(); o.type="sine"; o.frequency.value=f*mult;
+        o.connect(g); g.connect(out);
+        g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(vol,t+0.012); g.gain.exponentialRampToValueAtTime(0.0001,t+(mult===1?1.1:0.35));
+        o.start(t); o.stop(t+1.15);
+      });
+    });
+  }catch(e){}
+  try{ navigator.vibrate?.([300,200,300]); }catch(e){}
+}
 async function keepAwake(){ try{ if(!wlock) wlock = await navigator.wakeLock?.request("screen"); }catch(e){} }
 /* iPhone Clock timer through your Shortcut (default name "Start Timer"). The Clock rings over any app. */
 let shortcutName = local.get("hy1-shortcut") || "Start Timer";
@@ -651,7 +669,7 @@ function alarmSetHTML(){ return `<div class="alarmset"><span>Block alarm</span><
   <li>Tap <b>Done</b>, come back here and tap <b>Test</b>. A 10-second timer should start in your Clock app.</li></ol>
   <p><b>If Test fails:</b> "Shortcut not found" = the name above doesn't match. Timer starts at 30 minutes = step 3 is missing. Timer is 10 minutes = step 4 is missing.</p>
   <p>After a block starts, tap <b>◀</b> at the top-left of your screen to jump back here.</p>
-  <p class="restwhy" style="margin:0 0 8px">App version ${APP_VERSION} · will run the shortcut named "${esc(shortcutName)}"</p><button class="btn" type="button" id="alarmtest">Test (10 sec)</button> <button class="btn ghost" type="button" id="alarmok">It worked</button></details>`:`<p class="restwhy" style="margin:6px 0 0">Rings while this app is open, even with the silent switch on. To get alerted inside other apps, switch to iPhone timer.</p>`}`; }
+  <p class="restwhy" style="margin:0 0 8px">App version ${APP_VERSION} · will run the shortcut named "${esc(shortcutName)}"</p><button class="btn" type="button" id="alarmtest">Test (10 sec)</button> <button class="btn ghost" type="button" id="alarmok">It worked</button></details>`:`<p class="restwhy" style="margin:6px 0 0">Soft chime while this app is open, even with the silent switch on. To get alerted inside other apps, switch to iPhone timer.</p>`}`; }
 function wireAlarmSet(rerender){
   app.querySelectorAll("[data-alarm]").forEach(b=>b.addEventListener("click",()=>{ alarmMode=b.dataset.alarm; local.set("hy1-alarm",alarmMode); unlockAudio(); if(alarmMode==="sound") alarm(1); rerender(); }));
   document.getElementById("alarmtest")?.addEventListener("click",()=>phoneTimer(10));
