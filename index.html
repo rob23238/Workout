@@ -206,7 +206,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-08g";
+const APP_VERSION = "2026-10-08h";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -600,7 +600,7 @@ function tick(){
   const p=tState.plan; if(!p) return;
   const sec = tState.elapsed + (tState.running ? (Date.now()-tState.startAt)/1000 : 0);
   const big=document.getElementById("tbig"), clk=document.getElementById("tclock"), nx=document.getElementById("tnext");
-  if(sec<0){ if(big){ big.textContent="Get ready"; big.style.color="var(--muted)"; clk.textContent="Starts in "+fmt(-sec); nx.textContent="First: level "+PLANS[p].segs[0][1]+" for "+PLANS[p].segs[0][0]+" min"+(tState.alarms?" · iPhone alarms set":""); } if(tState.running) tState.raf=setTimeout(()=>requestAnimationFrame(tick),250); return; }
+  if(sec<0){ if(big){ big.textContent="Get ready"; big.style.color="var(--muted)"; clk.textContent="Starts in "+fmt(-sec); nx.textContent="First: level "+PLANS[p].segs[0][1]+" for "+PLANS[p].segs[0][0]+" min"+(tState.alarms?" · iPhone alerts set":""); } if(tState.running) tState.raf=setTimeout(()=>requestAnimationFrame(tick),250); return; }
   const total = planTotal(p), seg = segAt(p, sec);
   if(tState.running && seg && seg.i!==tState.lastSeg){ if(tState.lastSeg!==-1 || sec<3) alarm(1); tState.lastSeg=seg.i; saveStair(); }
   if(!seg){ if(tState.running){ alarm(3); stopTimer(true); } if(big){ big.textContent="Done"; big.style.color="var(--accent)"; clk.textContent=fmt(0); nx.textContent="Write down your calories on today's tab."; } return; }
@@ -610,7 +610,7 @@ function tick(){
 async function startTimer(){ if(tState.running) return; unlockAudio(); tState.running=true; tState.startAt=Date.now(); tState.alarms=false; if(!tState.elapsed) tState.lastSeg=-1; saveStair(); try{ wakeLock = await navigator.wakeLock?.request("screen"); }catch(e){} tick(); syncTimerBtns(); }
 function stopTimer(done){ if(tState.running){ tState.elapsed += Math.max(0,(Date.now()-tState.startAt)/1000); } tState.running=false; clearTimeout(tState.raf); try{ wakeLock?.release(); }catch(e){} wakeLock=null; saveStair(); syncTimerBtns(); }
 function resetTimer(){ stopTimer(); tState.elapsed=0; tState.lastSeg=-1; tState.alarms=false; saveStair(); tick(); }
-function syncTimerBtns(){ const b=document.getElementById("tgo"); if(b) b.textContent=tState.running?"Pause":(tState.elapsed?"Resume":(alarmMode==="clock"?"Start + iPhone alarms":"Start")); }
+function syncTimerBtns(){ const b=document.getElementById("tgo"); if(b) b.textContent=tState.running?"Pause":(tState.elapsed?"Resume":(alarmMode==="clock"?"Start + iPhone alerts":"Start")); }
 /* One tap: start at the next full minute and send every level change to the iPhone as Clock alarms. */
 async function startWithAlarms(){
   unlockAudio(); resetTimer();
@@ -632,18 +632,20 @@ function renderStair(){
   <div class="seg">${Object.entries(PLANS).map(([k,p])=>`<button type="button" data-p="${k}" aria-pressed="${tState.plan===k}">${p.h.split(" ")[0]}</button>`).join("")}</div></div>
   <div class="timer"><div class="kicker" style="font:700 13px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">${esc(PLANS[tState.plan].h)} · ${esc(PLANS[tState.plan].when)}</div><div class="big" id="tbig">Level ${PLANS[tState.plan].segs[0][1]}</div><div class="clock" id="tclock"></div><div class="next" id="tnext"></div>
   <div class="ctl"><button class="btn" id="tgo" type="button">Start</button><button class="btn ghost" id="treset" type="button">Reset</button></div>
-  <div class="alarmset" style="justify-content:center"><span>Alerts</span><div class="seg"><button type="button" data-alarm="sound" aria-pressed="${alarmMode==="sound"}">🔔 App sound</button><button type="button" data-alarm="clock" aria-pressed="${alarmMode==="clock"}">⏰ iPhone alarms</button></div></div>
-  <p class="restwhy" style="margin:8px 0 0">${alarmMode==="clock"?`Start sets ${lc.changes.length+1} alarms automatically, one per level change, so your iPhone tells you even inside Crunchyroll. It begins at the next full minute so the app and alarms match. Don't pause: the alarms keep their times.`:"Tone plays at each level change while this app is open. Switch to iPhone alarms to get alerted inside other apps."}</p></div>
-  <details class="setup"><summary>Set up "${esc(stairShortcut)}" (one time, 2 min)</summary>
+  <div class="alarmset" style="justify-content:center"><span>Alerts</span><div class="seg"><button type="button" data-alarm="sound" aria-pressed="${alarmMode==="sound"}">🔔 App sound</button><button type="button" data-alarm="clock" aria-pressed="${alarmMode==="clock"}">⏰ iPhone alerts</button></div></div>
+  <p class="restwhy" style="margin:8px 0 0">${alarmMode==="clock"?`Start sends ${lc.changes.length+1} level alerts to your iPhone. Each one pops up with a sound over Crunchyroll and clears itself: no tapping. It begins at the next full minute so the app and alerts match. Don't pause: the alerts keep their times.`:"Tone plays at each level change while this app is open. Switch to iPhone alarms to get alerted inside other apps."}</p></div>
+  <details class="setup"><summary>Set up "${esc(stairShortcut)}" (one time, 3 min)</summary>
   <div class="field"><label for="stname">Shortcut name</label><input id="stname" autocomplete="off" value="${esc(stairShortcut)}"></div>
-  <ol style="margin-top:10px"><li>Shortcuts app → <b>+</b> → name it <b>Stair Timer</b>.</li>
-  <li>Add <b>Split Text</b>. Tap "Text" → choose <b>Shortcut Input</b>. Set it to split by <b>New Lines</b>.</li>
-  <li>Add <b>Repeat with Each</b>. It should say "Repeat with each item in <b>Split Text</b>."</li>
-  <li>Inside the repeat, add <b>Get Dates from Input</b> → tap Input → choose <b>Repeat Item</b>.</li>
-  <li>Still inside, add <b>Create Alarm</b>. Set the time to <b>Dates</b>. Tap the arrow to show more and set Label to <b>Repeat Item</b>.</li>
-  <li>Tap <b>Done</b>, come back and tap <b>Test</b> (sets 2 alarms, 2 and 3 min from now).</li></ol>
-  <p>Each alarm shows like "12:37 AM · Level 8". After they ring they switch off and sit in your Clock alarm list; swipe left on them to delete.</p>
-  <button class="btn" type="button" id="sttest">Test (2 alarms)</button></details>
+  <p style="margin-top:10px">Uses Reminders, not alarms: each level pops up as a banner with a sound and goes away on its own. First, in the <b>Reminders</b> app make a list called <b>StairMaster</b>.</p>
+  <ol><li>Open your <b>Stair Timer</b> shortcut.</li>
+  <li>At the very top add <b>Find Reminders</b> → tap "Add Filter" → <b>List is StairMaster</b>. Then add <b>Remove Reminders</b> (removes last session's alerts).</li>
+  <li>Then <b>Split Text</b>: Shortcut Input, split by <b>New Lines</b>.</li>
+  <li><b>Repeat with Each</b> item in Split Text.</li>
+  <li>Inside the repeat: <b>Get Dates from Input</b> → Repeat Item.</li>
+  <li>Inside the repeat: <b>Add New Reminder</b>. Title = <b>Repeat Item</b>, List = <b>StairMaster</b>, tap the arrow, turn on <b>Alert</b> → <b>At Time</b> → <b>Dates</b>.</li>
+  <li>Delete the old <b>Create Alarm</b> action. Tap <b>Done</b>, then <b>Test</b> below.</li></ol>
+  <p>Make sure Reminders notifications are on with sound: Settings → Notifications → Reminders.</p>
+  <button class="btn" type="button" id="sttest">Test (2 alerts)</button></details>
   <section class="block"><h3>Plan</h3><div class="stairs">` + (()=>{let t=0;return PLANS[tState.plan].segs.map(s=>{const a=t;t+=s[0];return `<div class="lvl"><span class="min">min ${a}–${t}</span><span class="lv">${dot(s[1])} ${s[0]} min</span></div>`}).join("")})() + `</div></section>
   <section class="block"><h3>Your levels</h3><div class="list">` + ZONES.map(z=>`<div class="zone"><span class="lv">${dot(z[0])}</span><div><b>${esc(z[1])}</b><div style="color:var(--muted);font-size:14.5px">${esc(z[2])}</div></div></div>`).join("") + `</div></section>`;
   app.innerHTML = h;
