@@ -143,13 +143,12 @@ section.block{margin-top:22px}
 .stat b{display:block;font-family:var(--display);font-size:30px;line-height:1.1;font-variant-numeric:tabular-nums}
 .stat span{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
 .tbar{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px}
-.tpair{display:inline-flex;gap:0;border-radius:9px;overflow:hidden;vertical-align:middle}
-.tpair .tbtn{border-radius:0;padding:5px 10px;font-size:13.5px}
-.tpair .tbtn+.tbtn{border-left:0;padding:5px 9px}
-.tpair .tbtn:first-child{border-radius:9px 0 0 9px}.tpair .tbtn:last-child{border-radius:0 9px 9px 0}
-.startpair{display:flex;gap:0;margin-top:12px}
-.startpair .btn{border-radius:10px 0 0 10px;flex:1}
-.startpair .btn+.btn{border-radius:0 10px 10px 0;flex:0 0 auto;border-left:1px solid rgba(255,255,255,.35)}
+.tpair{display:inline-flex;gap:16px;align-items:center;vertical-align:middle}
+.tpair .tbtn{min-height:40px;padding:7px 12px;font-size:14px;border-radius:10px}
+.tpair .ios{min-width:48px;justify-content:center;background:var(--surface);border-color:var(--line);color:var(--ink);font-size:17px}
+.startpair{display:flex;gap:16px;margin-top:12px}
+.startpair .btn{flex:1}
+.startpair .btn+.btn{flex:0 0 auto;min-width:56px;background:var(--surface);color:var(--ink);border:1px solid var(--line);font-size:18px}
 .tbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--accent);background:var(--accent-soft);color:var(--accent);border-radius:9px;padding:6px 11px;font:700 14px var(--body);cursor:pointer}
 .tbtn.rest{border-color:var(--warm);background:var(--warm-soft);color:var(--warm)}
 .tbtn[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
@@ -213,7 +212,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-08j";
+const APP_VERSION = "2026-10-08k";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -578,7 +577,7 @@ function renderDay(day){
   const plan = PLAN_BY_DAY[day.id], night = NIGHT_BY_DAY[day.id], K = keysFor(day.blocks);
   const valid = new Set(K.flat()); Object.keys(d.checks||{}).forEach(k=>{ if(!valid.has(k)) delete d.checks[k]; });
   let h = `<div class="dayhead"><div class="kicker">${esc(day.kicker)} · Week 1</div><h2>${esc(day.title)}</h2><p>${esc(day.time)}</p>`;
-  if(rowCount){ const on = W.finish && W.dayId===day.id; h += on ? `<button class="btn startw" id="startw" type="button" style="margin-top:12px;width:100%">Workout running · finish by ${clock(new Date(W.finish))} · tap to end</button>` : `<div class="startpair"><button class="btn" id="startw" type="button">▶ Start · finish by ${clock(new Date(Date.now()+mins(day.time)*60000))}</button><button class="btn" id="startios" type="button" aria-label="Start and set iPhone finish alarm">⏰</button></div>`; }
+  if(rowCount){ const on = W.finish && W.dayId===day.id; h += on ? `<button class="btn startw" id="startw" type="button" style="margin-top:12px;width:100%">Workout running · finish by ${clock(new Date(W.finish))} · tap to end</button>` : `<div class="startpair"><button class="btn" id="startw" type="button">▶ Start · finish by ${clock(new Date(Date.now()+mins(day.time)*60000))}</button><button class="btn" id="startios" type="button" aria-label="iPhone finish alarm only">⏰</button></div>`; }
   if(rowCount) h += `<div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${rowCount}</b></div>`;
   h += `<div class="after"><div class="pill" style="background:var(--accent-soft)"><strong style="color:var(--accent)">Morning</strong><span>Open up + breathe · <a href="#morning" data-go="morning" style="color:var(--accent);font-weight:700">open</a></span></div><div class="pill"><strong>Tonight</strong><span>Hip mobility ${night.toUpperCase()}${PUSH_BY_DAY[day.id]?" + 100 push-ups":""} + breathing · <a href="#night" data-go="night" style="color:var(--warm);font-weight:700">open</a></span></div></div></div>`;
   day.blocks.forEach((b,bi)=>{
@@ -595,7 +594,7 @@ function renderDay(day){
   h += `<p class="foot">"Watch video" opens the exact video from your programs. "Find video" opens YouTube results for that exercise.</p>`;
   app.innerHTML = h; wire(day.id, rowCount);
   document.getElementById("startw")?.addEventListener("click",()=>{ if(W.finish && W.dayId===day.id){ if(confirm("End this workout?")) stopAll(); } else startWorkout(day, false); renderDay(day); });
-  document.getElementById("startios")?.addEventListener("click",()=>{ startWorkout(day, true); renderDay(day); });
+  document.getElementById("startios")?.addEventListener("click",()=>{ const fin=new Date(Date.now()+mins(day.time)*60000); location.href="shortcuts://run-shortcut?name="+encodeURIComponent(finishShortcut)+"&input=text&text="+encodeURIComponent(`${clock(fin)} · ${day.chip} workout done`); });
   wireTimers();
 }
 
@@ -713,8 +712,8 @@ let finishShortcut = local.get("hy1-finish-shortcut") || "Stair Timer";
 function startWorkout(day, ios){ unlockAudio(); W.finish=Date.now()+mins(day.time)*60000; W.dayId=day.id; W.finishWarned=false; saveW(); keepAwake(); dockTick();
   if(ios) setTimeout(()=>{ location.href="shortcuts://run-shortcut?name="+encodeURIComponent(finishShortcut)+"&input=text&text="+encodeURIComponent(`${clock(new Date(W.finish))} · ${day.chip} workout done`); },150); }
 /* Two buttons per timer: 🔔 runs in the app, ⏰ also starts your iPhone Clock timer through the Start Timer shortcut. */
-function tpair(kind, sec, label, name){ const n=name?` data-name="${esc(name)}"`:""; return `<span class="tpair"><button class="tbtn${kind==="rest"?" rest":""}" type="button" data-t="${kind}" data-sec="${sec}"${n} aria-label="${esc(label)} in app">🔔 ${esc(label)}</button><button class="tbtn${kind==="rest"?" rest":""}" type="button" data-t="${kind}" data-sec="${sec}"${n} data-ios="1" aria-label="${esc(label)} on iPhone timer">⏰</button></span>`; }
-function wireTimers(){ app.querySelectorAll("[data-t]").forEach(b=>b.addEventListener("click",()=>{ const ios=!!b.dataset.ios, sec=+b.dataset.sec; if(b.dataset.t==="rest") startRest(sec, ios); else startBlock(b.dataset.name||"Block", sec, ios); })); }
+function tpair(kind, sec, label, name){ const n=name?` data-name="${esc(name)}"`:""; return `<span class="tpair"><button class="tbtn${kind==="rest"?" rest":""}" type="button" data-t="${kind}" data-sec="${sec}"${n} aria-label="${esc(label)} in app">🔔 ${esc(label)}</button><button class="tbtn ios" type="button" data-t="${kind}" data-sec="${sec}"${n} data-ios="1" aria-label="${esc(label)}: iPhone timer only">⏰</button></span>`; }
+function wireTimers(){ app.querySelectorAll("[data-t]").forEach(b=>b.addEventListener("click",()=>{ const sec=+b.dataset.sec; if(b.dataset.ios){ phoneTimer(sec); return; } if(b.dataset.t==="rest") startRest(sec, false); else startBlock(b.dataset.name||"Block", sec, false); })); }
 function dockTick(){
   clearTimeout(dockRaf);
   let el=document.getElementById("dock");
