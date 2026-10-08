@@ -206,7 +206,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-08d";
+const APP_VERSION = "2026-10-08e";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -587,40 +587,73 @@ function renderNight(){
 }
 
 /* ---------- StairMaster timer ---------- */
-let tState = {plan:null, running:false, startAt:0, elapsed:0, raf:0}, wakeLock=null;
+let tState = Object.assign({plan:null, running:false, startAt:0, elapsed:0, raf:0, lastSeg:-1, alarms:false}, local.get("hy1-stair")||{}), wakeLock=null;
+const saveStair = () => local.set("hy1-stair", {plan:tState.plan, running:tState.running, startAt:tState.startAt, elapsed:tState.elapsed, lastSeg:tState.lastSeg, alarms:tState.alarms});
+let stairShortcut = local.get("hy1-stair-shortcut") || "Stair Alarms";
 function planTotal(p){ return PLANS[p].segs.reduce((a,s)=>a+s[0],0)*60; }
 function segAt(p, sec){ let t=0; const segs=PLANS[p].segs; for(let i=0;i<segs.length;i++){ const len=segs[i][0]*60; if(sec<t+len) return {i, lv:segs[i][1], left:t+len-sec, next:segs[i+1]}; t+=len; } return null; }
 const fmt = s => { s=Math.max(0,Math.ceil(s)); return Math.floor(s/60)+":"+String(s%60).padStart(2,"0"); };
+/* Level changes only (back-to-back segments at the same level are merged). [minute from start, level] */
+function levelChanges(p){ const out=[]; let t=0, prev=null; PLANS[p].segs.forEach(([m,l])=>{ if(l!==prev) out.push([t,l]); prev=l; t+=m; }); return {changes:out, total:t}; }
+const clock = d => d.toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"});
 function tick(){
   const p=tState.plan; if(!p) return;
   const sec = tState.elapsed + (tState.running ? (Date.now()-tState.startAt)/1000 : 0);
-  const total = planTotal(p), seg = segAt(p, sec);
   const big=document.getElementById("tbig"), clk=document.getElementById("tclock"), nx=document.getElementById("tnext");
-  if(!big) return;
-  if(!seg){ big.textContent="Done"; big.style.color="var(--accent)"; clk.textContent=fmt(0); nx.textContent="Write down your calories on today's tab."; stopTimer(true); return; }
-  big.textContent="Level "+seg.lv; big.style.color=COLOR[seg.lv];
-  clk.textContent=fmt(seg.left)+" left at this level";
-  nx.textContent=(seg.next?"Next: level "+seg.next[1]+" for "+seg.next[0]+" min":"Last stretch")+" · "+fmt(total-sec)+" to go";
-  if(tState.running) tState.raf=requestAnimationFrame(tick);
+  if(sec<0){ if(big){ big.textContent="Get ready"; big.style.color="var(--muted)"; clk.textContent="Starts in "+fmt(-sec); nx.textContent="First: level "+PLANS[p].segs[0][1]+" for "+PLANS[p].segs[0][0]+" min"+(tState.alarms?" · iPhone alarms set":""); } if(tState.running) tState.raf=setTimeout(()=>requestAnimationFrame(tick),250); return; }
+  const total = planTotal(p), seg = segAt(p, sec);
+  if(tState.running && seg && seg.i!==tState.lastSeg){ if(tState.lastSeg!==-1 || sec<3) alarm(1); tState.lastSeg=seg.i; saveStair(); }
+  if(!seg){ if(tState.running){ alarm(3); stopTimer(true); } if(big){ big.textContent="Done"; big.style.color="var(--accent)"; clk.textContent=fmt(0); nx.textContent="Write down your calories on today's tab."; } return; }
+  if(big){ big.textContent="Level "+seg.lv; big.style.color=COLOR[seg.lv]; clk.textContent=fmt(seg.left)+" left at this level"; nx.textContent=(seg.next?"Next: level "+seg.next[1]+" for "+seg.next[0]+" min":"Last stretch")+" · "+fmt(total-sec)+" to go"; }
+  if(tState.running) tState.raf=setTimeout(()=>requestAnimationFrame(tick),250);
 }
-async function startTimer(){ if(tState.running) return; tState.running=true; tState.startAt=Date.now(); try{ wakeLock = await navigator.wakeLock?.request("screen"); }catch(e){} tick(); syncTimerBtns(); }
-function stopTimer(done){ if(tState.running){ tState.elapsed += (Date.now()-tState.startAt)/1000; } tState.running=false; cancelAnimationFrame(tState.raf); try{ wakeLock?.release(); }catch(e){} wakeLock=null; syncTimerBtns(); }
-function resetTimer(){ stopTimer(); tState.elapsed=0; tick(); }
+async function startTimer(){ if(tState.running) return; unlockAudio(); tState.running=true; tState.startAt=Date.now(); tState.alarms=false; if(!tState.elapsed) tState.lastSeg=-1; saveStair(); try{ wakeLock = await navigator.wakeLock?.request("screen"); }catch(e){} tick(); syncTimerBtns(); }
+function stopTimer(done){ if(tState.running){ tState.elapsed += Math.max(0,(Date.now()-tState.startAt)/1000); } tState.running=false; clearTimeout(tState.raf); try{ wakeLock?.release(); }catch(e){} wakeLock=null; saveStair(); syncTimerBtns(); }
+function resetTimer(){ stopTimer(); tState.elapsed=0; tState.lastSeg=-1; tState.alarms=false; saveStair(); tick(); }
 function syncTimerBtns(){ const b=document.getElementById("tgo"); if(b) b.textContent=tState.running?"Pause":(tState.elapsed?"Resume":"Start"); }
+/* One tap: start at the next full minute and send every level change to the iPhone as Clock alarms. */
+async function startWithAlarms(){
+  unlockAudio(); resetTimer();
+  const p=tState.plan, now=new Date(), start=new Date(now); start.setSeconds(0,0); start.setMinutes(start.getMinutes()+1);
+  if(start-now < 25000) start.setMinutes(start.getMinutes()+1);
+  const {changes,total}=levelChanges(p);
+  const lines = changes.map(([m,l],i)=>`${clock(new Date(+start+m*60000))} · ${i===0?"Start · ":""}Level ${l}`);
+  lines.push(`${clock(new Date(+start+total*60000))} · StairMaster done`);
+  tState.running=true; tState.startAt=+start; tState.elapsed=0; tState.lastSeg=-1; tState.alarms=true; saveStair();
+  try{ wakeLock = await navigator.wakeLock?.request("screen"); }catch(e){}
+  renderStair();
+  setTimeout(()=>{ location.href="shortcuts://run-shortcut?name="+encodeURIComponent(stairShortcut)+"&input=text&text="+encodeURIComponent(lines.join("\n")); },200);
+}
 function renderStair(){
   const def = PLAN_BY_DAY[todayId()] || "p40";
   if(!tState.plan) tState.plan = def;
+  const lc = levelChanges(tState.plan);
   let h = `<div class="dayhead"><div class="kicker">StairMaster · Week 1</div><h2>Fat-burn intervals</h2><p>Mostly level 7–8, with short level 9 pushes (2 min max). Hands off the rails the whole time; if you grab them, drop one level for the rest of that interval.</p>
   <div class="seg">${Object.entries(PLANS).map(([k,p])=>`<button type="button" data-p="${k}" aria-pressed="${tState.plan===k}">${p.h.split(" ")[0]}</button>`).join("")}</div></div>
   <div class="timer"><div class="kicker" style="font:700 13px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">${esc(PLANS[tState.plan].h)} · ${esc(PLANS[tState.plan].when)}</div><div class="big" id="tbig">Level ${PLANS[tState.plan].segs[0][1]}</div><div class="clock" id="tclock"></div><div class="next" id="tnext"></div>
-  <div class="ctl"><button class="btn" id="tgo" type="button">Start</button><button class="btn ghost" id="treset" type="button">Reset</button></div></div>
+  <div class="ctl"><button class="btn" id="tgo" type="button">Start</button><button class="btn ghost" id="treset" type="button">Reset</button></div>
+  <button class="btn startw" id="talarms" type="button" style="margin-top:10px;width:100%;background:var(--warm)">⏰ Start + set ${lc.changes.length+1} iPhone alarms</button>
+  <p class="restwhy" style="margin:8px 0 0">One alarm at every level change, labeled with the level, so your iPhone tells you even inside Crunchyroll. Starts at the next full minute so the app and alarms match.</p></div>
+  <details class="setup"><summary>Set up "${esc(stairShortcut)}" (one time, 2 min)</summary>
+  <div class="field"><label for="stname">Shortcut name</label><input id="stname" autocomplete="off" value="${esc(stairShortcut)}"></div>
+  <ol style="margin-top:10px"><li>Shortcuts app → <b>+</b> → name it <b>Stair Alarms</b>.</li>
+  <li>Add <b>Split Text</b>. Tap "Text" → choose <b>Shortcut Input</b>. Set it to split by <b>New Lines</b>.</li>
+  <li>Add <b>Repeat with Each</b>. It should say "Repeat with each item in <b>Split Text</b>."</li>
+  <li>Inside the repeat, add <b>Get Dates from Input</b> → tap Input → choose <b>Repeat Item</b>.</li>
+  <li>Still inside, add <b>Create Alarm</b>. Set the time to <b>Dates</b>. Tap the arrow to show more and set Label to <b>Repeat Item</b>.</li>
+  <li>Tap <b>Done</b>, come back and tap <b>Test</b> (sets 2 alarms, 2 and 3 min from now).</li></ol>
+  <p>Each alarm shows like "12:37 AM · Level 8". After they ring they switch off and sit in your Clock alarm list; swipe left on them to delete.</p>
+  <button class="btn" type="button" id="sttest">Test (2 alarms)</button></details>
   <section class="block"><h3>Plan</h3><div class="stairs">` + (()=>{let t=0;return PLANS[tState.plan].segs.map(s=>{const a=t;t+=s[0];return `<div class="lvl"><span class="min">min ${a}–${t}</span><span class="lv">${dot(s[1])} ${s[0]} min</span></div>`}).join("")})() + `</div></section>
   <section class="block"><h3>Your levels</h3><div class="list">` + ZONES.map(z=>`<div class="zone"><span class="lv">${dot(z[0])}</span><div><b>${esc(z[1])}</b><div style="color:var(--muted);font-size:14.5px">${esc(z[2])}</div></div></div>`).join("") + `</div></section>`;
   app.innerHTML = h;
-  app.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{ resetTimer(); tState.plan=b.dataset.p; renderStair(); }));
+  app.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{ resetTimer(); tState.plan=b.dataset.p; saveStair(); renderStair(); }));
   document.getElementById("tgo").addEventListener("click",()=> tState.running?stopTimer():startTimer());
   document.getElementById("treset").addEventListener("click",resetTimer);
-  syncTimerBtns(); tick();
+  document.getElementById("talarms").addEventListener("click",startWithAlarms);
+  document.getElementById("stname").addEventListener("input",e=>{ stairShortcut=e.target.value.trim()||"Stair Alarms"; local.set("hy1-stair-shortcut",stairShortcut); });
+  document.getElementById("sttest").addEventListener("click",()=>{ const n=Date.now(), a=new Date(n+120000), b=new Date(n+180000); location.href="shortcuts://run-shortcut?name="+encodeURIComponent(stairShortcut)+"&input=text&text="+encodeURIComponent(`${clock(a)} · Test Level 7\n${clock(b)} · Test Level 8`); });
+  syncTimerBtns(); clearTimeout(tState.raf); tick();
 }
 
 /* ---------- Workout timer dock: total time, current block, rest ---------- */
@@ -692,6 +725,7 @@ function dockTick(){
   dockRaf = setTimeout(()=>requestAnimationFrame(dockTick), 250);
 }
 document.addEventListener("visibilitychange",()=>{ if(!document.hidden && (W.block||W.rest)){ keepAwake(); dockTick(); } });
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden && tState.running){ clearTimeout(tState.raf); tick(); } });
 
 /* ---------- Calisthenics: skill ladders. Check off a step when you hit its target. ---------- */
 const SKILLS = [
