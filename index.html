@@ -206,7 +206,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-08c";
+const APP_VERSION = "2026-10-08d";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -630,25 +630,26 @@ const saveW = () => local.set("hy1-timer", W);
 let alarmMode = local.get("hy1-alarm") || "sound";
 let actx=null, dockRaf=0, wlock=null;
 function unlockAudio(){ try{ actx = actx || new (window.AudioContext||window.webkitAudioContext)(); if(actx.state==="suspended") actx.resume(); }catch(e){} }
-/* Soothing alarm: soft marimba-style chime (rising four-note arpeggio), repeated.
+/* Alarm: short, deep, upbeat two-note "let's go" tone (low root up to the fifth, then the octave).
    "playback" lets it ring even with the silent switch on. */
 function alarm(sec){
   try{ if(navigator.audioSession) navigator.audioSession.type="playback"; }catch(e){}
   try{
     unlockAudio();
-    const notes=[523.25,659.25,783.99,1046.5], reps=Math.max(1,Math.round(sec/1.6)), t0=actx.currentTime+0.05;
-    const out=actx.createGain(); out.gain.value=0.5; out.connect(actx.destination);
-    for(let r=0;r<reps;r++) notes.forEach((f,i)=>{
-      const t=t0+r*1.6+i*0.16;
-      [[1,0.32],[4,0.06],[2,0.04]].forEach(([mult,vol])=>{ // fundamental + soft overtones = warm wooden tone
-        const o=actx.createOscillator(), g=actx.createGain(); o.type="sine"; o.frequency.value=f*mult;
-        o.connect(g); g.connect(out);
-        g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(vol,t+0.012); g.gain.exponentialRampToValueAtTime(0.0001,t+(mult===1?1.1:0.35));
-        o.start(t); o.stop(t+1.15);
+    const notes=[[196.00,0],[293.66,0.11],[392.00,0.22]], reps=Math.max(1,Math.round(sec/1.3)), t0=actx.currentTime+0.05;
+    const out=actx.createGain(); out.gain.value=0.55; out.connect(actx.destination);
+    const lp=actx.createBiquadFilter(); lp.type="lowpass"; lp.frequency.value=2400; lp.connect(out);
+    for(let r=0;r<reps;r++) notes.forEach(([f,dt],i)=>{
+      const t=t0+r*1.3+dt, len=i===2?0.7:0.22;
+      [["triangle",1,0.30],["sine",0.5,0.18],["sine",2,0.05]].forEach(([type,mult,vol])=>{ // body + low weight + a little shine
+        const o=actx.createOscillator(), g=actx.createGain(); o.type=type; o.frequency.value=f*mult;
+        o.connect(g); g.connect(lp);
+        g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(vol,t+0.008); g.gain.exponentialRampToValueAtTime(0.0001,t+len);
+        o.start(t); o.stop(t+len+0.05);
       });
     });
   }catch(e){}
-  try{ navigator.vibrate?.([300,200,300]); }catch(e){}
+  try{ navigator.vibrate?.([120,80,120]); }catch(e){}
 }
 async function keepAwake(){ try{ if(!wlock) wlock = await navigator.wakeLock?.request("screen"); }catch(e){} }
 /* iPhone Clock timer through your Shortcut (default name "Start Timer"). The Clock rings over any app. */
@@ -769,8 +770,8 @@ const SKILLS_BY_DAY = {mon:["Pull-ups → 50","Handstand push-up","One-arm push-
 /* ---------- Breathing + mindset (used in Morning and Night) ---------- */
 const BREATHS = {
  box:{name:"Box breathing", purpose:"Brings your mind back to right now. Slows your breathing and gives racing thoughts something simple to follow.", say:"I am here. I am present. I can slow down and breathe.", phases:[["Breathe in",4],["Hold",4],["Breathe out",4],["Hold",4]], rounds:4},
- belly:{name:"Belly breathing", purpose:"Relaxes your body. One hand on your chest, one on your stomach. Only the stomach hand should move.", say:"With every breath, my body relaxes. I am safe. I can calm down.", phases:[["In through your nose · belly rises",4],["Out through your mouth · let your body soften",6]], rounds:6},
- skull:{name:"Skull shining breath", purpose:"Wakes up your mind and clears fog. Sit tall, take a normal breath in, then short sharp exhales through your nose by snapping your belly in. Let each inhale happen on its own.", say:"I am clearing my mind and strengthening my focus.", phases:[["Sharp exhale · belly snaps in",1]], rounds:20, caution:"Stop and switch to belly breathing if you feel dizzy or lightheaded. Skip it if you're already anxious: it speeds you up."}
+ belly:{name:"Belly breathing", purpose:"Relaxes your body. One hand on your chest, one on your stomach. Only the stomach hand should move.", say:"With every breath, my body relaxes.", phases:[["In through your nose · belly rises",4],["Out through your mouth · let your body soften",6]], rounds:6},
+ skull:{name:"Skull shining breath", purpose:"Wakes up your mind and clears fog. Sit tall, take a normal breath in, then short sharp exhales through your nose by snapping your belly in. Let each inhale happen on its own.", say:"I am clearing my mind and strengthening my focus.", phases:[["Sharp exhale · belly snaps in",1]], rounds:20, caution:"Stop and switch to belly breathing if you feel dizzy or lightheaded. Save it for when you want energy, not when you're winding down."}
 };
 const BELIEF = "For God has not given us a spirit of fear, but of power and of love and of a sound mind.";
 const BELIEF_REF = "2 Timothy 1:7";
