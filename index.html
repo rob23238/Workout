@@ -35,7 +35,18 @@
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.45;margin:0}
 .wrap{max-width:640px;margin:0 auto;padding-inline:16px;padding-block:0 48px}
-header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+header.top{background:var(--bg)}
+.quote{max-width:640px;margin:0 auto;padding:14px 16px 0;font-style:italic;font-size:15px;color:var(--muted)}
+.quote cite{display:block;font-style:normal;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-top:2px}
+.tabsbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.alarmset{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px;font-size:14px;color:var(--muted)}
+.alarmset .seg{margin:0;flex:1;min-width:220px}
+.alarmset .seg button{padding:7px;font-size:14px}
+details.setup{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0 12px 12px;margin-top:8px;font-size:14.5px}
+details.setup:not([open]){padding-bottom:0}
+details.setup summary{cursor:pointer;padding:10px 0;font-weight:700;color:var(--accent)}
+details.setup ol{padding-left:20px;margin:0 0 8px}
+details.setup li{margin-bottom:4px}
 .brand{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:2px 12px;padding:12px 16px 6px;max-width:640px;margin:0 auto}
 .brand h1{font-family:var(--display);font-weight:800;font-size:26px;letter-spacing:.02em;margin:0;text-transform:uppercase}
 .brand span{color:var(--muted);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
@@ -135,7 +146,6 @@ section.block{margin-top:22px}
 .tbtn.rest{border-color:var(--warm);background:var(--warm-soft);color:var(--warm)}
 .tbtn[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
 .restwhy{font-size:13px;color:var(--muted);margin:-4px 0 10px}
-.startw{margin-top:12px;width:100%}
 details.guide{background:var(--surface);border:2px solid var(--accent);border-radius:14px;padding:0 14px;margin:0 0 12px}
 details.guide summary{cursor:pointer;padding:12px 0;font:800 19px var(--display);letter-spacing:.03em;text-transform:uppercase;color:var(--accent);list-style:none}
 details.guide summary::-webkit-details-marker{display:none}
@@ -175,10 +185,13 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </head>
 <body>
 <header class="top">
+  <p class="quote">"…But the will must be stronger than the skill."<cite>Muhammad Ali</cite></p>
   <div class="brand"><h1>Discipline &amp; Consistency</h1><span>Day by day · Big RPJ</span></div>
+</header>
+<div class="tabsbar">
   <nav class="days" id="days" role="tablist" aria-label="Section"></nav>
   <div class="sync" id="sync">Saved on this phone</div>
-</header>
+</div>
 <main class="wrap" id="app"></main>
 <script>
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
@@ -228,14 +241,14 @@ const DAYS = [
     ["Set 4 · Weighted pull-ups","Max with the vest","Stop 1 rep before failure (expect 6–8)",LW,S("weighted pull up form")],
     ["Set 5 · Slow pull-ups","6 reps, no vest","1-sec pause at the top, 3 sec down",LW,S("slow eccentric pull ups")],
     ["Set 6 · Slow pull-ups","6 reps, no vest","Same tempo",LW,S("slow eccentric pull ups")]]},
-   {h:"Bench + 100 push-ups", m:"12 min", note:"Superset A, 4 rounds: one bench set, then straight to 25 push-ups (feet on the bench, no vest), rest 90 sec–2 min. If a set of 25 breaks, take 5 breaths and finish it. 4 × 25 = your 100 for today.", rows:[
+   {h:"Bench + 100 push-ups", m:"12 min", note:"Superset A, 4 rounds: one bench set, then straight to 25 incline push-ups (feet on the bench, no vest), rest 90 sec–2 min. If a set of 25 breaks, take 5 breaths and finish it. 4 × 25 = your 100 for today.", rows:[
     ["Smith bench press","Bar × 10, 135 × 5, then 4 × 10 @ 185","Controlled reps, shoulder blades pinched",HAM,S("smith machine bench press form"),"A1"],
-    ["Feet-on-bench push-ups","4 × 25 (100 total)","Body straight, chest to an inch off the floor","",S("decline push up feet elevated form"),"A2"]]},
+    ["Incline push-ups","4 × 25 (100 total)","Feet on the bench, body straight, chest to an inch off the floor","",S("feet elevated push up form"),"A2"]]},
    {h:"Back + shoulders", m:"6 min", note:"Superset B, 3 rounds, rest 60 sec.", rows:[
     ["Dumbbell bent-over row","3 × 10, 3-sec lowering","50–60 lb, flat back, elbows to hips",HAM,S("dumbbell bent over row form"),"B1"],
     ["Dumbbell lateral raise","3 × 10","Light, slow, lead with the elbows",HAM,S("dumbbell lateral raise form"),"B2"]]},
    {h:"Biceps + forearms", m:"10 min", note:"Supersets C, D and E: each pair back to back, rest 45–60 sec.", rows:[
-    ["Dumbbell curl, palms up, 3-sec lowering","3 × 15","Both heads of the biceps","",S("dumbbell bicep curl slow eccentric"),"C1"],
+    ["Dumbbell curl, neutral to palms up","3 × 15","Start with palms facing each other, turn your palms up as you curl, squeeze at the top, 3 sec down","",S("dumbbell supinating curl"),"C1"],
     ["Curl-bar wrist curl","3 × 15","Forearms on thighs, palms up. Roll the bar to your fingertips, curl back with wrists only","",S("ez bar wrist curl seated"),"C2"],
     ["Dumbbell hammer curl","3 × 15","Thumbs up: outer arm and forearm","",S("dumbbell hammer curl form"),"D1"],
     ["Curl-bar reverse wrist curl","3 × 15","Palms down, lighter weight","",S("ez bar reverse wrist curl"),"D2"],
@@ -319,12 +332,12 @@ const DAYS = [
     ["Band pull-aparts","1 × 12","Squeeze your shoulder blades",HAM,S("band pull aparts form")],
     ["Shoulder taps","1 × 10 each side","Push-up position, hips still",HAM,S("plank shoulder taps")],
     ["Wrist rocks on the floor","1 × 10 each way","Gets wrists ready for handstands","",S("wrist warm up handstand")]]},
-   {h:"Bench pyramid + 100 push-ups", m:"15 min", note:"Warm up: bar × 10, 135 × 5. Superset A: after bench sets 1–4, go straight to 25 feet-on-bench push-ups (no vest), then rest 2 min. Set 5 is your top set: do it fresh, no push-ups after.", rows:[
+   {h:"Bench pyramid + 100 push-ups", m:"15 min", note:"Warm up: bar × 10, 135 × 5. Superset A: after bench sets 1–4, go straight to 25 incline push-ups (no vest), then rest 2 min. Set 5 is your top set: do it fresh, no push-ups after.", rows:[
     ["Set 1","185 × 10","","",S("smith machine bench press form"),"A1"],
     ["Set 2","200 × 8","","","","A1"],
     ["Set 3","215 × 6","","","","A1"],
     ["Set 4","225 × 5","","","","A1"],
-    ["Feet-on-bench push-ups","25 after sets 1–4 (100 total)","If 25 breaks, take 5 breaths and finish it","",S("decline push up feet elevated form"),"A2"],
+    ["Incline push-ups","25 after sets 1–4 (100 total)","If 25 breaks, take 5 breaths and finish it","",S("feet elevated push up form"),"A2"],
     ["Set 5","235 × 3","Top set: clean reps only, full rest before it",HAM,""]]},
    {h:"Calisthenics", m:"10 min", note:"Handstand hold first while you're fresh, then superset B. No dip bar: lock the Smith bar at hip height for straight-bar dips.", rows:[
     ["Wall handstand hold, chest to wall","3 × 30 sec","Walk your feet up the wall, body straight",LW,S("chest to wall handstand hold")],
@@ -374,7 +387,7 @@ const DAYS = [
    {h:"Pull-up volume", m:"12 min", guide:true, note:"Same rules as Monday: every rep from your back. Grip opposite to Monday, no vest. Superset D: each bodyweight set, then 15 push-ups.", rows:[
     ["Explosive chest-to-bar pull-ups","3 × 5","Pull as high and fast as you can, rest 90 sec. Muscle-up prep",LW,S("explosive chest to bar pull ups muscle up")],
     ["Bodyweight pull-ups","4 × 10","Perfect form, rest 60–90 sec after the push-ups",LW,S("strict pull up form"),"D1"],
-    ["Feet-on-bench push-ups","4 × 15","Right after each pull-up set","",S("decline push up feet elevated form"),"D2"]]},
+    ["Incline push-ups","4 × 15","Right after each pull-up set","",S("feet elevated push up form"),"D2"]]},
    {h:"Cool-down", m:"2 min", rows:[
     ["Active pigeon","45 sec each side","Outer hip",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
     ["Seated hamstring V-stretch","30 sec","",HAM,S("seated v sit hamstring stretch")]]}
@@ -457,9 +470,11 @@ let db = null, current = null;
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,48);
 function keysFor(blocks){ const seen={}; return blocks.map(b=>b.rows.map(r=>{ let k=slug(r[0]); if(seen[k]) k+="-"+(++seen[k]); else seen[k]=1; return k; })); }
 /* Version 3 moved rows around; old saves were keyed by position. Map them to row names once. */
-const OLD_KEYS = {"mon":{"0-0":"arm-circles","0-1":"band-pass-throughs","0-2":"band-pull-aparts","0-3":"quadruped-upper-back-rotation","0-4":"scapular-pull-ups-2-sec-hold","1-0":"set-1-weighted-pull-ups","1-1":"set-2-weighted-pull-ups","1-2":"set-3-weighted-pull-ups","1-3":"set-4-weighted-pull-ups","1-4":"set-5-slow-pull-ups","1-5":"set-6-slow-pull-ups","1-6":"feet-on-bench-push-ups","2-0":"smith-bench-press","2-1":"dumbbell-lateral-raise","3-0":"dumbbell-bent-over-row","4-0":"dumbbell-curl-palms-up-3-sec-lowering","4-1":"curl-bar-wrist-curl","4-2":"dumbbell-hammer-curl","4-3":"curl-bar-reverse-wrist-curl","4-4":"zottman-curl","4-5":"farmer-carry","5-0":"quadruped-hip-controlled-circles","5-1":"fire-hydrants","5-2":"hip-flexor-pulses","5-3":"active-pigeon","5-4":"hanging-leg-raise-practice","6-0":"lat-stretch-with-a-stick-shoulder-rotations"},"tue":{"0-0":"jump-rope-basic-bounce","0-1":"squat-to-stand-reach","0-2":"tibialis-raise","0-3":"banded-lateral-walks","1-0":"lateral-ankle-pops","1-1":"ballerinas","1-2":"single-ankle-lifts-3-sec-hold","1-3":"lateral-bounds","1-4":"lateral-reactive-bounds","1-5":"vertical-to-lateral-jump","1-6":"lateral-plate-hops","1-7":"elevated-lateral-lunges","2-0":"smith-back-squat","2-1":"smith-jump-squat","2-2":"single-leg-dumbbell-calf-raise","2-3":"dumbbell-walking-lunge","2-4":"assisted-pistol-squat","3-0":"cable-hip-abduction","3-1":"single-leg-glute-bridge-risers","3-2":"psoas-march-5-sec-hold","4-0":"half-kneeling-hip-flexor-stretch","4-1":"seated-hamstring-v-stretch"},"wed":{"0-0":"banded-lateral-walks","0-1":"single-leg-hold-isometric-6-sec","0-2":"plate-overhead","0-3":"slight-squat-plate-press-3-sec-hold","0-4":"single-leg-bench-squats","0-5":"ankle-lifts-3-sec-hold","1-0":"hanging-leg-raise-full-range","1-1":"candlestick-leg-lifts-on-the-bench","1-2":"one-leg-tucked-dragon-flag-negatives","1-3":"cable-crunch-heavy","1-4":"jack-knife-slow","2-0":"banded-hip-mobilization-in-and-out","2-1":"doggies-3-sec-hold","2-2":"sitting-leg-lifts-in-and-out-3-sec-hold","2-3":"hip-flexor-pulses","2-4":"end-range-knee-pulls-3-sec-hold","2-5":"leg-over-kettles","2-6":"standing-hip-circles","2-7":"fire-hydrants","2-8":"hip-airplanes-assisted","2-9":"l-hip-stretch","2-10":"froggers"},"thu":{"0-0":"arm-circles","0-1":"band-pass-throughs","0-2":"band-pull-aparts","0-3":"shoulder-taps","0-4":"wrist-rocks-on-the-floor","1-0":"set-1","1-1":"set-2","1-2":"set-3","1-3":"set-4","1-4":"set-5","2-0":"wall-handstand-hold-chest-to-wall","2-1":"pike-push-ups","2-2":"smith-straight-bar-dip","2-3":"feet-on-bench-push-ups","3-0":"seated-dumbbell-shoulder-press","3-1":"seated-cable-fly","3-2":"cable-rope-overhead-triceps-extension","3-3":"dumbbell-skull-crusher","3-4":"seated-dumbbell-concentration-curl","3-5":"cross-body-dumbbell-hammer-curl","3-6":"cable-face-pull","4-0":"90-90-hip-internal-rotation","4-1":"doggies-3-sec-hold","4-2":"hanging-leg-raise-practice","5-0":"doorway-chest-stretch","5-1":"lat-stretch-with-a-stick-shoulder-rotations"},"fri":{"0-0":"jump-rope-basic-bounce","0-1":"leg-swings-front-back-side-side","0-2":"kneeling-hip-circles","0-3":"glute-bridge-march","1-0":"elastic-pops","1-1":"push-downs","1-2":"standing-single-leg-press","1-3":"hip-extension-press","1-4":"offset-barbell-stand","1-5":"jump-squats-holding-a-light-dumbbell","1-6":"tuck-jumps","2-0":"smith-zercher-squat","2-1":"single-leg-dumbbell-romanian-deadlift","2-2":"smith-hip-thrust","3-0":"explosive-chest-to-bar-pull-ups","3-1":"bodyweight-pull-ups","4-0":"bear-hug-carry","4-1":"kneeling-dump-trucks","4-2":"copenhagen-plank","5-0":"active-pigeon","5-1":"seated-hamstring-v-stretch"},"sat":{"0-0":"quadruped-hip-controlled-circles","0-1":"crab-walks","0-2":"psoas-march-5-sec-pause","0-3":"kneeling-hip-flexor-stretch","1-0":"90-90-hip-internal-rotation-tense-and-lift","1-1":"active-pigeon","1-2":"butterfly-stretch-tense-and-lift","1-3":"hip-abduction-reps","1-4":"cossack-squats","1-5":"banded-hip-thrust","1-6":"ankle-tense-and-lift","1-7":"frog-stretch-sitting-back","1-8":"seated-glute-stretch","2-0":"hollow-hold","2-1":"stir-the-pot","2-2":"cable-pallof-press","2-3":"bent-knee-wipers","2-4":"side-v-ups","2-5":"one-leg-tucked-dragon-flag-negatives"},"sun":{}};
+const OLD_KEYS = {"mon":{"0-0":"arm-circles","0-1":"band-pass-throughs","0-2":"band-pull-aparts","0-3":"quadruped-upper-back-rotation","0-4":"scapular-pull-ups-2-sec-hold","1-0":"set-1-weighted-pull-ups","1-1":"set-2-weighted-pull-ups","1-2":"set-3-weighted-pull-ups","1-3":"set-4-weighted-pull-ups","1-4":"set-5-slow-pull-ups","1-5":"set-6-slow-pull-ups","1-6":"incline-push-ups","2-0":"smith-bench-press","2-1":"dumbbell-lateral-raise","3-0":"dumbbell-bent-over-row","4-0":"dumbbell-curl-neutral-to-palms-up","4-1":"curl-bar-wrist-curl","4-2":"dumbbell-hammer-curl","4-3":"curl-bar-reverse-wrist-curl","4-4":"zottman-curl","4-5":"farmer-carry","5-0":"quadruped-hip-controlled-circles","5-1":"fire-hydrants","5-2":"hip-flexor-pulses","5-3":"active-pigeon","5-4":"hanging-leg-raise-practice","6-0":"lat-stretch-with-a-stick-shoulder-rotations"},"tue":{"0-0":"jump-rope-basic-bounce","0-1":"squat-to-stand-reach","0-2":"tibialis-raise","0-3":"banded-lateral-walks","1-0":"lateral-ankle-pops","1-1":"ballerinas","1-2":"single-ankle-lifts-3-sec-hold","1-3":"lateral-bounds","1-4":"lateral-reactive-bounds","1-5":"vertical-to-lateral-jump","1-6":"lateral-plate-hops","1-7":"elevated-lateral-lunges","2-0":"smith-back-squat","2-1":"smith-jump-squat","2-2":"single-leg-dumbbell-calf-raise","2-3":"dumbbell-walking-lunge","2-4":"assisted-pistol-squat","3-0":"cable-hip-abduction","3-1":"single-leg-glute-bridge-risers","3-2":"psoas-march-5-sec-hold","4-0":"half-kneeling-hip-flexor-stretch","4-1":"seated-hamstring-v-stretch"},"wed":{"0-0":"banded-lateral-walks","0-1":"single-leg-hold-isometric-6-sec","0-2":"plate-overhead","0-3":"slight-squat-plate-press-3-sec-hold","0-4":"single-leg-bench-squats","0-5":"ankle-lifts-3-sec-hold","1-0":"hanging-leg-raise-full-range","1-1":"candlestick-leg-lifts-on-the-bench","1-2":"one-leg-tucked-dragon-flag-negatives","1-3":"cable-crunch-heavy","1-4":"jack-knife-slow","2-0":"banded-hip-mobilization-in-and-out","2-1":"doggies-3-sec-hold","2-2":"sitting-leg-lifts-in-and-out-3-sec-hold","2-3":"hip-flexor-pulses","2-4":"end-range-knee-pulls-3-sec-hold","2-5":"leg-over-kettles","2-6":"standing-hip-circles","2-7":"fire-hydrants","2-8":"hip-airplanes-assisted","2-9":"l-hip-stretch","2-10":"froggers"},"thu":{"0-0":"arm-circles","0-1":"band-pass-throughs","0-2":"band-pull-aparts","0-3":"shoulder-taps","0-4":"wrist-rocks-on-the-floor","1-0":"set-1","1-1":"set-2","1-2":"set-3","1-3":"set-4","1-4":"set-5","2-0":"wall-handstand-hold-chest-to-wall","2-1":"pike-push-ups","2-2":"smith-straight-bar-dip","2-3":"incline-push-ups","3-0":"seated-dumbbell-shoulder-press","3-1":"seated-cable-fly","3-2":"cable-rope-overhead-triceps-extension","3-3":"dumbbell-skull-crusher","3-4":"seated-dumbbell-concentration-curl","3-5":"cross-body-dumbbell-hammer-curl","3-6":"cable-face-pull","4-0":"90-90-hip-internal-rotation","4-1":"doggies-3-sec-hold","4-2":"hanging-leg-raise-practice","5-0":"doorway-chest-stretch","5-1":"lat-stretch-with-a-stick-shoulder-rotations"},"fri":{"0-0":"jump-rope-basic-bounce","0-1":"leg-swings-front-back-side-side","0-2":"kneeling-hip-circles","0-3":"glute-bridge-march","1-0":"elastic-pops","1-1":"push-downs","1-2":"standing-single-leg-press","1-3":"hip-extension-press","1-4":"offset-barbell-stand","1-5":"jump-squats-holding-a-light-dumbbell","1-6":"tuck-jumps","2-0":"smith-zercher-squat","2-1":"single-leg-dumbbell-romanian-deadlift","2-2":"smith-hip-thrust","3-0":"explosive-chest-to-bar-pull-ups","3-1":"bodyweight-pull-ups","4-0":"bear-hug-carry","4-1":"kneeling-dump-trucks","4-2":"copenhagen-plank","5-0":"active-pigeon","5-1":"seated-hamstring-v-stretch"},"sat":{"0-0":"quadruped-hip-controlled-circles","0-1":"crab-walks","0-2":"psoas-march-5-sec-pause","0-3":"kneeling-hip-flexor-stretch","1-0":"90-90-hip-internal-rotation-tense-and-lift","1-1":"active-pigeon","1-2":"butterfly-stretch-tense-and-lift","1-3":"hip-abduction-reps","1-4":"cossack-squats","1-5":"banded-hip-thrust","1-6":"ankle-tense-and-lift","1-7":"frog-stretch-sitting-back","1-8":"seated-glute-stretch","2-0":"hollow-hold","2-1":"stir-the-pot","2-2":"cable-pallof-press","2-3":"bent-knee-wipers","2-4":"side-v-ups","2-5":"one-leg-tucked-dragon-flag-negatives"},"sun":{}};
+const RENAMED = {"feet-on-bench-push-ups":"incline-push-ups","dumbbell-curl-palms-up-3-sec-lowering":"dumbbell-curl-neutral-to-palms-up"};
 function migrate(id, d){
   if(!d) return d;
+  ["checks","logs"].forEach(f=>{ const o=d[f]; if(!o) return; Object.keys(o).forEach(k=>{ const base=k.replace(/-\d+$/,""), tail=k.slice(base.length); if(RENAMED[base] && !((RENAMED[base]+tail) in o)){ o[RENAMED[base]+tail]=o[k]; delete o[k]; } }); });
   const m = OLD_KEYS[id];
   ["checks","logs"].forEach(f=>{ const o=d[f]; if(!o) return; Object.keys(o).forEach(k=>{
     if(/^\d+-\d+$/.test(k)){ if(m && m[k] && !(m[k] in o)) o[m[k]]=o[k]; delete o[k]; }
@@ -516,7 +531,7 @@ function renderDay(day){
   const plan = PLAN_BY_DAY[day.id], night = NIGHT_BY_DAY[day.id], K = keysFor(day.blocks);
   const valid = new Set(K.flat()); Object.keys(d.checks||{}).forEach(k=>{ if(!valid.has(k)) delete d.checks[k]; });
   let h = `<div class="dayhead"><div class="kicker">${esc(day.kicker)} · Week 1</div><h2>${esc(day.title)}</h2><p>${esc(day.time)}</p>`;
-  if(rowCount) h += `<button class="btn startw" id="startw" type="button">${W.day===day.id&&W.start?"Workout running · tap to stop":"▶ Start workout · "+mins(day.time)+" min target"}</button>`;
+  if(rowCount) h += alarmSetHTML();
   if(rowCount) h += `<div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${rowCount}</b></div>`;
   h += `<div class="after">` + (plan?`<div class="pill"><strong>After</strong><span>${esc(PLANS[plan].h)} · <a href="#stair" data-go="stair" style="color:var(--warm);font-weight:700">open timer</a></span></div>`:"") + `${(SKILLS_BY_DAY[day.id]||[]).length?`<div class="pill" style="background:var(--accent-soft)"><strong style="color:var(--accent)">Builds</strong><span>${esc(SKILLS_BY_DAY[day.id].join(" · "))} · <a href="#cali" data-go="cali" style="color:var(--accent);font-weight:700">see progress</a></span></div>`:""}<div class="pill"><strong>Tonight</strong><span>Hip mobility ${night.toUpperCase()}${PUSH_BY_DAY[day.id]?" + 100 push-ups":""} · <a href="#night" data-go="night" style="color:var(--warm);font-weight:700">open</a></span></div></div></div>`;
   day.blocks.forEach((b,bi)=>{
@@ -532,8 +547,8 @@ function renderDay(day){
   if(rowCount) h += `<button class="reset" id="reset" type="button">Clear today's checkmarks</button>`;
   h += `<p class="foot">"Watch video" opens the exact video from your programs. "Find video" opens YouTube results for that exercise.</p>`;
   app.innerHTML = h; wire(day.id, rowCount);
-  const sw=document.getElementById("startw"); if(sw) sw.addEventListener("click",()=>{ unlockAudio(); if(W.day===day.id&&W.start){ if(confirm("Stop this workout timer?")) stopWorkout(); } else startWorkout(day); renderDay(day); });
-  app.querySelectorAll("[data-block]").forEach(btn=>btn.addEventListener("click",()=>{ unlockAudio(); const b=day.blocks[+btn.dataset.block]; if(!W.start) startWorkout(day); W.block={name:b.h, end:Date.now()+mins(b.m)*60000, len:mins(b.m)*60, warned:false}; W.rest=null; saveW(); dockTick(); }));
+  wireAlarmSet(()=>renderDay(day));
+  app.querySelectorAll("[data-block]").forEach(btn=>btn.addEventListener("click",()=>{ const b=day.blocks[+btn.dataset.block]; startBlock(b.h, mins(b.m)*60); }));
   app.querySelectorAll("[data-rest]").forEach(btn=>btn.addEventListener("click",()=>startRest(+btn.dataset.rest)));
 }
 
@@ -543,6 +558,7 @@ function renderNight(){
   const d = docOf("night-"+wk);
   let h = `<div class="dayhead"><div class="kicker">Hip mobility · after Normatec · 5 min</div><h2>${esc(n.title)}</h2><p style="color:var(--accent);font-weight:700;margin-bottom:6px">${esc(n.focus)}</p><p>${esc(n.intro)}</p>
   <div class="seg"><button type="button" data-n="a" aria-pressed="${sel==="a"}">A · Turn out</button><button type="button" data-n="b" aria-pressed="${sel==="b"}">B · Turn in</button></div>
+  <div class="tbar" style="margin-top:12px"><button class="tbtn" type="button" id="nightgo">▶ 5:00 routine</button></div>
   <div class="after"><div class="pill"><strong>Tonight</strong><span>Hip mobility ${tonight.toUpperCase()}${PUSH_BY_DAY[wk]?" + 100 push-ups":" (no push-ups, you did them in the gym)"}</span></div></div></div>`;
   h += `<section class="block"><h3>Routine <small>${esc(n.days)}</small></h3><div class="list">` + (K=>n.rows.map((r,i)=>rowHTML("night"+sel, sel+"-"+K[0][i], r, d, false)))(keysFor([n])).join("") + `</div></section>`;
   if(PUSH_BY_DAY[wk]) h += `<section class="block"><h3>100 push-ups</h3><p class="note">4 × 25 with clean form, no vest. Floor push-ups are fine at night. <a class="vid" href="${S("perfect push up form")}" target="_blank" rel="noopener">Find video ↗</a></p><div class="field"><input type="checkbox" id="pu" style="flex:0 0 auto;width:24px;height:24px;accent-color:var(--accent)"${d.push?" checked":""}><label for="pu">Done tonight</label></div></section>`;
@@ -550,6 +566,7 @@ function renderNight(){
   h += `<section class="block"><h3>Sunday check</h3><p class="note">Sit in 90/90 each way and note if you can sit tall without your hands, and how pigeon feels on each side. Easier each week means it's working.</p><div class="field"><label for="gaps">Notes</label><input id="gaps" placeholder="e.g. 90/90 L ok, R needs hands · pigeon R tighter" value="${esc((docOf("checks").gaps)||"")}"></div></section>`;
   app.innerHTML = h;
   app.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{ nightSel=b.dataset.n; renderNight(); }));
+  document.getElementById("nightgo").addEventListener("click",()=>startBlock("Hip mobility "+sel.toUpperCase(), 300));
   const g=document.getElementById("gaps"); if(g) g.addEventListener("input",()=>{ docOf("checks").gaps=g.value; saveSoon("checks"); });
   wire("night-"+wk, 0);
 }
@@ -592,31 +609,50 @@ function renderStair(){
 }
 
 /* ---------- Workout timer dock: total time, current block, rest ---------- */
-const W = Object.assign({day:null, start:0, target:0, block:null, rest:null, lastRest:0}, local.get("hy1-timer")||{});
+const W = Object.assign({block:null, rest:null, lastRest:0}, local.get("hy1-timer")||{});
+delete W.start; delete W.target; delete W.day;
 const saveW = () => local.set("hy1-timer", W);
+let alarmMode = local.get("hy1-alarm") || "sound";
 let actx=null, dockRaf=0, wlock=null;
 function unlockAudio(){ try{ actx = actx || new (window.AudioContext||window.webkitAudioContext)(); if(actx.state==="suspended") actx.resume(); }catch(e){} }
-function beep(n){ try{ unlockAudio(); for(let i=0;i<n;i++){ const o=actx.createOscillator(), g=actx.createGain(); o.frequency.value=880; o.connect(g); g.connect(actx.destination); const t=actx.currentTime+i*0.28; g.gain.setValueAtTime(0.25,t); g.gain.exponentialRampToValueAtTime(0.001,t+0.22); o.start(t); o.stop(t+0.24); } }catch(e){} try{ navigator.vibrate?.([200,100,200]); }catch(e){} }
+/* Loud alarm: repeating two-tone pattern. "playback" lets it ring even with the silent switch on. */
+function alarm(sec){ try{ if(navigator.audioSession) navigator.audioSession.type="playback"; }catch(e){} try{ unlockAudio(); const n=Math.round(sec/0.5); for(let i=0;i<n;i++){ const o=actx.createOscillator(), g=actx.createGain(); o.type="square"; o.frequency.value = i%2 ? 988 : 1319; o.connect(g); g.connect(actx.destination); const t=actx.currentTime+i*0.5; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.35,t+0.02); g.gain.exponentialRampToValueAtTime(0.0001,t+0.4); o.start(t); o.stop(t+0.42); } }catch(e){} try{ navigator.vibrate?.([400,150,400,150,400]); }catch(e){} }
 async function keepAwake(){ try{ if(!wlock) wlock = await navigator.wakeLock?.request("screen"); }catch(e){} }
-function startWorkout(day){ W.day=day.id; W.start=Date.now(); W.target=mins(day.time)*60; W.block=null; W.rest=null; saveW(); keepAwake(); dockTick(); }
-function stopWorkout(){ W.day=null; W.start=0; W.block=null; W.rest=null; saveW(); try{ wlock?.release(); }catch(e){} wlock=null; dockTick(); }
-function startRest(sec){ unlockAudio(); if(!W.start){ const d=DAYS.find(x=>x.id===current)||DAYS[0]; startWorkout(d); } W.rest={end:Date.now()+sec*1000, len:sec, warned:false}; W.lastRest=sec; saveW(); dockTick(); }
+/* iPhone Clock timer through a one-time Shortcut called "Workout Timer". The Clock rings over any app. */
+function phoneTimer(sec){ location.href = "shortcuts://run-shortcut?name=" + encodeURIComponent("Workout Timer") + "&input=text&text=" + Math.round(sec); }
+function startBlock(name, sec){ unlockAudio(); W.block={name, end:Date.now()+sec*1000, len:sec, warned:false}; W.rest=null; saveW(); keepAwake(); dockTick(); if(alarmMode==="clock") setTimeout(()=>phoneTimer(sec), 150); }
+function stopAll(){ W.block=null; W.rest=null; saveW(); try{ wlock?.release(); }catch(e){} wlock=null; dockTick(); }
+function startRest(sec){ unlockAudio(); W.rest={end:Date.now()+sec*1000, len:sec, warned:false}; W.lastRest=sec; saveW(); keepAwake(); dockTick(); }
+function alarmSetHTML(){ return `<div class="alarmset"><span>Block alarm</span><div class="seg"><button type="button" data-alarm="sound" aria-pressed="${alarmMode==="sound"}">🔔 App sound</button><button type="button" data-alarm="clock" aria-pressed="${alarmMode==="clock"}">⏰ iPhone timer</button></div></div>
+  ${alarmMode==="clock"?`<details class="setup"${local.get("hy1-alarm-ok")?"":" open"}><summary>Set up the iPhone timer (one time, 1 min)</summary>
+  <p>Your iPhone doesn't let websites set alarms directly, so a Shortcut does it. When you start a block, the app hands the time to the Shortcut, it starts your Clock timer, and the Clock rings over anything: Crunchyroll, YouTube, a locked screen.</p>
+  <ol><li>Open the <b>Shortcuts</b> app → tap <b>+</b>.</li>
+  <li>Name it exactly <b>Workout Timer</b>.</li>
+  <li>Add the action <b>Start Timer</b>.</li>
+  <li>Tap the number in it → choose <b>Shortcut Input</b>. Tap <b>minutes</b> → change it to <b>seconds</b>.</li>
+  <li>Tap <b>Done</b>, come back here and tap <b>Test</b>. A 10-second timer should start in your Clock app.</li></ol>
+  <p>After a block starts, tap <b>◀</b> at the top-left of your screen to jump back here.</p>
+  <button class="btn" type="button" id="alarmtest">Test (10 sec)</button> <button class="btn ghost" type="button" id="alarmok">It worked</button></details>`:`<p class="restwhy" style="margin:6px 0 0">Rings while this app is open, even with the silent switch on. To get alerted inside other apps, switch to iPhone timer.</p>`}`; }
+function wireAlarmSet(rerender){
+  app.querySelectorAll("[data-alarm]").forEach(b=>b.addEventListener("click",()=>{ alarmMode=b.dataset.alarm; local.set("hy1-alarm",alarmMode); unlockAudio(); if(alarmMode==="sound") alarm(1); rerender(); }));
+  document.getElementById("alarmtest")?.addEventListener("click",()=>phoneTimer(10));
+  document.getElementById("alarmok")?.addEventListener("click",()=>{ local.set("hy1-alarm-ok",true); rerender(); });
+}
 function dockTick(){
   clearTimeout(dockRaf);
   let el=document.getElementById("dock");
-  if(!W.start){ if(el) el.remove(); document.body.classList.remove("docked"); return; }
+  const now=Date.now();
+  if(W.rest && W.rest.end<=now){ if(!W.rest.warned){ W.rest.warned=true; alarm(2); } W.rest=null; saveW(); }
+  if(!W.block && !W.rest){ if(el) el.remove(); document.body.classList.remove("docked"); return; }
   if(!el){ el=document.createElement("div"); el.id="dock"; el.className="dock"; el.setAttribute("role","timer"); document.body.appendChild(el); document.body.classList.add("docked");
-    el.addEventListener("click",e=>{ const a=e.target.dataset.act; if(!a) return; if(a==="rest") startRest(W.lastRest||60); if(a==="skip"){ W.rest=null; saveW(); dockTick(); } if(a==="stop"){ if(confirm("Stop the workout timer?")){ stopWorkout(); if(DAYS.some(d=>d.id===current)) render(current); } } }); }
-  const now=Date.now(), el2=(now-W.start)/1000, day=DAYS.find(d=>d.id===W.day);
+    el.addEventListener("click",e=>{ const a=e.target.dataset.act; if(!a) return; if(a==="rest") startRest(W.lastRest||60); if(a==="skip"){ W.rest=null; saveW(); dockTick(); } if(a==="stop") stopAll(); }); }
   let main, cls="", label;
-  if(W.rest){ const left=(W.rest.end-now)/1000; if(left<=0){ if(!W.rest.warned){ W.rest.warned=true; beep(3); } W.rest=null; saveW(); } else { main=fmt(left); cls="rest"; label="Rest · go at 0"; } }
-  if(!main && W.block){ const left=(W.block.end-now)/1000; if(left<=0 && !W.block.warned){ W.block.warned=true; saveW(); beep(2); } main=left>0?fmt(left):"+"+fmt(-left); cls=left>0?"":"over"; label=W.block.name+(left>0?"":" · over, move on"); }
-  if(!main){ main=fmt(el2); label="Workout time"; }
-  const over = el2>W.target;
-  el.innerHTML=`<div class="in"><div class="l1"><span>${esc(day?day.chip:"")} · ${fmt(el2)} / ${fmt(W.target)}${over?" · over":""}</span><span>${esc(label)}</span></div><div class="l2"><div class="main ${cls}">${main}</div><div class="ctl">${W.rest?`<button type="button" data-act="skip">Skip</button>`:`<button type="button" data-act="rest">Rest ${fmt(W.lastRest||60)}</button>`}<button type="button" data-act="stop">End</button></div></div></div>`;
+  if(W.rest){ main=fmt((W.rest.end-now)/1000); cls="rest"; label="Rest · go at 0"; }
+  else { const left=(W.block.end-now)/1000; if(left<=0 && !W.block.warned){ W.block.warned=true; saveW(); alarm(4); } main=left>0?fmt(left):"+"+fmt(-left); cls=left>0?"":"over"; label=left>0?W.block.name:"Time's up · next block"; }
+  el.innerHTML=`<div class="in"><div class="l1"><span>${esc(label)}</span><span>${alarmMode==="clock"?"⏰ iPhone timer":"🔔 Sound on"}</span></div><div class="l2"><div class="main ${cls}">${main}</div><div class="ctl">${W.rest?`<button type="button" data-act="skip">Skip</button>`:`<button type="button" data-act="rest">Rest ${fmt(W.lastRest||60)}</button>`}<button type="button" data-act="stop">Done</button></div></div></div>`;
   dockRaf = setTimeout(()=>requestAnimationFrame(dockTick), 250);
 }
-document.addEventListener("visibilitychange",()=>{ if(!document.hidden && W.start){ keepAwake(); dockTick(); } });
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden && (W.block||W.rest)){ keepAwake(); dockTick(); } });
 
 /* ---------- Calisthenics: skill ladders. Check off a step when you hit its target. ---------- */
 const SKILLS = [
@@ -634,8 +670,8 @@ const SKILLS = [
   ["Slow negative muscle-ups 3 × 3","Jump to the top, lower in 5 sec"],
   ["First muscle-up",""],
   ["3 × 3 clean muscle-ups","No kicking"]]},
- {id:"hspu", name:"Handstand push-up", why:"Your feet-on-bench push-ups are step 1: they put more weight on your shoulders. Each step tips more of your body over your hands until you're upside down.", on:["Mon + Thu: 100 feet-on-bench push-ups","Thu: pike push-ups + wall hold"], steps:[
-  ["Feet-on-bench push-ups 4 × 25","Your daily 100. Foundation",true],
+ {id:"hspu", name:"Handstand push-up", why:"Your incline push-ups are step 1: they put more weight on your shoulders. Each step tips more of your body over your hands until you're upside down.", on:["Mon + Thu: 100 incline push-ups","Thu: pike push-ups + wall hold"], steps:[
+  ["Incline push-ups 4 × 25","Your daily 100. Foundation",true],
   ["Pike push-ups 3 × 6 + wall hold 30 sec","Hips high, head in front of your hands"],
   ["Wall handstand hold 60 sec","Chest to wall, body straight"],
   ["Feet-elevated pike push-ups 3 × 5","Feet on the bench, hips over hands"],
@@ -645,7 +681,7 @@ const SKILLS = [
   ["Freestanding handstand 10 sec","Kick up, hold, no wall"]]},
  {id:"oap", name:"One-arm push-up", why:"Same push-up, half the arms. You shift more weight to one side a step at a time.", on:["Mon + Thu: push-ups","Add archers once pike step 2 is done"], steps:[
   ["100 push-ups a day in 4 × 25","Volume base",true],
-  ["4 × 25 feet-on-bench with the vest","More load, same reps"],
+  ["Incline push-ups 4 × 25 with the vest","More load, same reps"],
   ["Archer push-ups 3 × 6 each side","One arm bends, the other stays straight"],
   ["One-arm push-up, hand on bench 3 × 5","Feet wide, hips square"],
   ["One-arm push-up, lower incline 3 × 5","Hand on a lower step"],
@@ -749,7 +785,8 @@ function summaryText(){
     const d = docOf(day.id); const lines=[];
     const K=keysFor(day.blocks); day.blocks.forEach((b,bi)=>b.rows.forEach((r,ri)=>{ const v=(d.logs||{})[K[bi][ri]]; if(v&&v.trim()) lines.push(`  ${r[0]}: ${v.trim()} (plan ${r[1]})`); }));
     const total = day.blocks.reduce((a,b)=>a+b.rows.length,0), valid=new Set(K.flat()), n=Object.entries(d.checks||{}).filter(([k,v])=>v&&valid.has(k)).length;
-    out += `\n${day.kicker}: ${day.title}\n  Checked off ${n}/${total}\n` + (lines.join("\n")||"  (no numbers logged)") + (d.cal?`\n  StairMaster calories: ${d.cal}`:"") + "\n";
+    const missed = n ? day.blocks.flatMap((b,bi)=>b.rows.filter((r,ri)=>!(d.checks||{})[K[bi][ri]]).map(r=>r[0])) : [];
+    out += `\n${day.kicker}: ${day.title}\n  Checked off ${n}/${total}\n` + (lines.join("\n")||"  (no numbers logged)") + (missed.length?`\n  Not done: ${missed.join(", ")}`:"") + (d.cal?`\n  StairMaster calories: ${d.cal}`:"") + "\n";
   });
   const g = docOf("checks").gaps; if(g) out += `\nHip check (Sunday): ${g}\n`;
   out += `\nHip mobility nights done: ` + ["mon","tue","wed","thu","fri","sat","sun"].map(w=>{const d=docOf("night-"+w);const n=Object.values(d.checks||{}).filter(Boolean).length+(d.legacyNight||0);return w+" "+n+"/"+NIGHT[NIGHT_BY_DAY[w]].rows.length+(PUSH_BY_DAY[w]?(d.push?" +100":" (no push-ups)"):"")}).join(", ") + "\n";
