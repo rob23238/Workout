@@ -206,7 +206,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-08f";
+const APP_VERSION = "2026-10-08g";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -589,7 +589,7 @@ function renderNight(){
 /* ---------- StairMaster timer ---------- */
 let tState = Object.assign({plan:null, running:false, startAt:0, elapsed:0, raf:0, lastSeg:-1, alarms:false}, local.get("hy1-stair")||{}), wakeLock=null;
 const saveStair = () => local.set("hy1-stair", {plan:tState.plan, running:tState.running, startAt:tState.startAt, elapsed:tState.elapsed, lastSeg:tState.lastSeg, alarms:tState.alarms});
-let stairShortcut = local.get("hy1-stair-shortcut") || "Stair Alarms";
+let stairShortcut = (local.get("hy1-stair-shortcut")||"").replace(/^Stair Alarms$/,"") || "Stair Timer";
 function planTotal(p){ return PLANS[p].segs.reduce((a,s)=>a+s[0],0)*60; }
 function segAt(p, sec){ let t=0; const segs=PLANS[p].segs; for(let i=0;i<segs.length;i++){ const len=segs[i][0]*60; if(sec<t+len) return {i, lv:segs[i][1], left:t+len-sec, next:segs[i+1]}; t+=len; } return null; }
 const fmt = s => { s=Math.max(0,Math.ceil(s)); return Math.floor(s/60)+":"+String(s%60).padStart(2,"0"); };
@@ -636,7 +636,7 @@ function renderStair(){
   <p class="restwhy" style="margin:8px 0 0">${alarmMode==="clock"?`Start sets ${lc.changes.length+1} alarms automatically, one per level change, so your iPhone tells you even inside Crunchyroll. It begins at the next full minute so the app and alarms match. Don't pause: the alarms keep their times.`:"Tone plays at each level change while this app is open. Switch to iPhone alarms to get alerted inside other apps."}</p></div>
   <details class="setup"><summary>Set up "${esc(stairShortcut)}" (one time, 2 min)</summary>
   <div class="field"><label for="stname">Shortcut name</label><input id="stname" autocomplete="off" value="${esc(stairShortcut)}"></div>
-  <ol style="margin-top:10px"><li>Shortcuts app → <b>+</b> → name it <b>Stair Alarms</b>.</li>
+  <ol style="margin-top:10px"><li>Shortcuts app → <b>+</b> → name it <b>Stair Timer</b>.</li>
   <li>Add <b>Split Text</b>. Tap "Text" → choose <b>Shortcut Input</b>. Set it to split by <b>New Lines</b>.</li>
   <li>Add <b>Repeat with Each</b>. It should say "Repeat with each item in <b>Split Text</b>."</li>
   <li>Inside the repeat, add <b>Get Dates from Input</b> → tap Input → choose <b>Repeat Item</b>.</li>
@@ -651,7 +651,7 @@ function renderStair(){
   document.getElementById("tgo").addEventListener("click",()=>{ if(tState.running) stopTimer(); else if(!tState.elapsed && alarmMode==="clock") startWithAlarms(); else startTimer(); });
   app.querySelectorAll("[data-alarm]").forEach(b=>b.addEventListener("click",()=>{ alarmMode=b.dataset.alarm; local.set("hy1-alarm",alarmMode); unlockAudio(); if(alarmMode==="sound") alarm(1); renderStair(); }));
   document.getElementById("treset").addEventListener("click",resetTimer);
-  document.getElementById("stname").addEventListener("input",e=>{ stairShortcut=e.target.value.trim()||"Stair Alarms"; local.set("hy1-stair-shortcut",stairShortcut); });
+  document.getElementById("stname").addEventListener("input",e=>{ stairShortcut=e.target.value.trim()||"Stair Timer"; local.set("hy1-stair-shortcut",stairShortcut); });
   document.getElementById("sttest").addEventListener("click",()=>{ const n=Date.now(), a=new Date(n+120000), b=new Date(n+180000); location.href="shortcuts://run-shortcut?name="+encodeURIComponent(stairShortcut)+"&input=text&text="+encodeURIComponent(`${clock(a)} · Test Level 7\n${clock(b)} · Test Level 8`); });
   syncTimerBtns(); clearTimeout(tState.raf); tick();
 }
