@@ -206,7 +206,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-08e";
+const APP_VERSION = "2026-10-08f";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -610,7 +610,7 @@ function tick(){
 async function startTimer(){ if(tState.running) return; unlockAudio(); tState.running=true; tState.startAt=Date.now(); tState.alarms=false; if(!tState.elapsed) tState.lastSeg=-1; saveStair(); try{ wakeLock = await navigator.wakeLock?.request("screen"); }catch(e){} tick(); syncTimerBtns(); }
 function stopTimer(done){ if(tState.running){ tState.elapsed += Math.max(0,(Date.now()-tState.startAt)/1000); } tState.running=false; clearTimeout(tState.raf); try{ wakeLock?.release(); }catch(e){} wakeLock=null; saveStair(); syncTimerBtns(); }
 function resetTimer(){ stopTimer(); tState.elapsed=0; tState.lastSeg=-1; tState.alarms=false; saveStair(); tick(); }
-function syncTimerBtns(){ const b=document.getElementById("tgo"); if(b) b.textContent=tState.running?"Pause":(tState.elapsed?"Resume":"Start"); }
+function syncTimerBtns(){ const b=document.getElementById("tgo"); if(b) b.textContent=tState.running?"Pause":(tState.elapsed?"Resume":(alarmMode==="clock"?"Start + iPhone alarms":"Start")); }
 /* One tap: start at the next full minute and send every level change to the iPhone as Clock alarms. */
 async function startWithAlarms(){
   unlockAudio(); resetTimer();
@@ -632,8 +632,8 @@ function renderStair(){
   <div class="seg">${Object.entries(PLANS).map(([k,p])=>`<button type="button" data-p="${k}" aria-pressed="${tState.plan===k}">${p.h.split(" ")[0]}</button>`).join("")}</div></div>
   <div class="timer"><div class="kicker" style="font:700 13px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">${esc(PLANS[tState.plan].h)} · ${esc(PLANS[tState.plan].when)}</div><div class="big" id="tbig">Level ${PLANS[tState.plan].segs[0][1]}</div><div class="clock" id="tclock"></div><div class="next" id="tnext"></div>
   <div class="ctl"><button class="btn" id="tgo" type="button">Start</button><button class="btn ghost" id="treset" type="button">Reset</button></div>
-  <button class="btn startw" id="talarms" type="button" style="margin-top:10px;width:100%;background:var(--warm)">⏰ Start + set ${lc.changes.length+1} iPhone alarms</button>
-  <p class="restwhy" style="margin:8px 0 0">One alarm at every level change, labeled with the level, so your iPhone tells you even inside Crunchyroll. Starts at the next full minute so the app and alarms match.</p></div>
+  <div class="alarmset" style="justify-content:center"><span>Alerts</span><div class="seg"><button type="button" data-alarm="sound" aria-pressed="${alarmMode==="sound"}">🔔 App sound</button><button type="button" data-alarm="clock" aria-pressed="${alarmMode==="clock"}">⏰ iPhone alarms</button></div></div>
+  <p class="restwhy" style="margin:8px 0 0">${alarmMode==="clock"?`Start sets ${lc.changes.length+1} alarms automatically, one per level change, so your iPhone tells you even inside Crunchyroll. It begins at the next full minute so the app and alarms match. Don't pause: the alarms keep their times.`:"Tone plays at each level change while this app is open. Switch to iPhone alarms to get alerted inside other apps."}</p></div>
   <details class="setup"><summary>Set up "${esc(stairShortcut)}" (one time, 2 min)</summary>
   <div class="field"><label for="stname">Shortcut name</label><input id="stname" autocomplete="off" value="${esc(stairShortcut)}"></div>
   <ol style="margin-top:10px"><li>Shortcuts app → <b>+</b> → name it <b>Stair Alarms</b>.</li>
@@ -647,10 +647,10 @@ function renderStair(){
   <section class="block"><h3>Plan</h3><div class="stairs">` + (()=>{let t=0;return PLANS[tState.plan].segs.map(s=>{const a=t;t+=s[0];return `<div class="lvl"><span class="min">min ${a}–${t}</span><span class="lv">${dot(s[1])} ${s[0]} min</span></div>`}).join("")})() + `</div></section>
   <section class="block"><h3>Your levels</h3><div class="list">` + ZONES.map(z=>`<div class="zone"><span class="lv">${dot(z[0])}</span><div><b>${esc(z[1])}</b><div style="color:var(--muted);font-size:14.5px">${esc(z[2])}</div></div></div>`).join("") + `</div></section>`;
   app.innerHTML = h;
-  app.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{ resetTimer(); tState.plan=b.dataset.p; saveStair(); renderStair(); }));
-  document.getElementById("tgo").addEventListener("click",()=> tState.running?stopTimer():startTimer());
+  app.querySelectorAll("[data-p]").forEach(b=>b.addEventListener("click",()=>{ resetTimer(); tState.plan=b.dataset.p; saveStair(); renderStair(); }));
+  document.getElementById("tgo").addEventListener("click",()=>{ if(tState.running) stopTimer(); else if(!tState.elapsed && alarmMode==="clock") startWithAlarms(); else startTimer(); });
+  app.querySelectorAll("[data-alarm]").forEach(b=>b.addEventListener("click",()=>{ alarmMode=b.dataset.alarm; local.set("hy1-alarm",alarmMode); unlockAudio(); if(alarmMode==="sound") alarm(1); renderStair(); }));
   document.getElementById("treset").addEventListener("click",resetTimer);
-  document.getElementById("talarms").addEventListener("click",startWithAlarms);
   document.getElementById("stname").addEventListener("input",e=>{ stairShortcut=e.target.value.trim()||"Stair Alarms"; local.set("hy1-stair-shortcut",stairShortcut); });
   document.getElementById("sttest").addEventListener("click",()=>{ const n=Date.now(), a=new Date(n+120000), b=new Date(n+180000); location.href="shortcuts://run-shortcut?name="+encodeURIComponent(stairShortcut)+"&input=text&text="+encodeURIComponent(`${clock(a)} · Test Level 7\n${clock(b)} · Test Level 8`); });
   syncTimerBtns(); clearTimeout(tState.raf); tick();
