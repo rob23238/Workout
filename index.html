@@ -185,7 +185,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </head>
 <body>
 <header class="top">
-  <p class="quote">"…But the will must be stronger than the skill."<cite>Muhammad Ali</cite></p>
+  <p class="quote">"The will must be stronger than the skill."<cite>Muhammad Ali</cite></p>
   <div class="brand"><h1>Discipline &amp; Consistency</h1><span>Day by day · Big RPJ</span></div>
 </header>
 <div class="tabsbar">
@@ -619,23 +619,28 @@ function unlockAudio(){ try{ actx = actx || new (window.AudioContext||window.web
 function alarm(sec){ try{ if(navigator.audioSession) navigator.audioSession.type="playback"; }catch(e){} try{ unlockAudio(); const n=Math.round(sec/0.5); for(let i=0;i<n;i++){ const o=actx.createOscillator(), g=actx.createGain(); o.type="square"; o.frequency.value = i%2 ? 988 : 1319; o.connect(g); g.connect(actx.destination); const t=actx.currentTime+i*0.5; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.35,t+0.02); g.gain.exponentialRampToValueAtTime(0.0001,t+0.4); o.start(t); o.stop(t+0.42); } }catch(e){} try{ navigator.vibrate?.([400,150,400,150,400]); }catch(e){} }
 async function keepAwake(){ try{ if(!wlock) wlock = await navigator.wakeLock?.request("screen"); }catch(e){} }
 /* iPhone Clock timer through a one-time Shortcut called "Workout Timer". The Clock rings over any app. */
-function phoneTimer(sec){ location.href = "shortcuts://run-shortcut?name=" + encodeURIComponent("Workout Timer") + "&input=text&text=" + Math.round(sec); }
+let shortcutName = local.get("hy1-shortcut") || "Start Timer";
+function phoneTimer(sec){ location.href = "shortcuts://run-shortcut?name=" + encodeURIComponent(shortcutName) + "&input=text&text=" + Math.round(sec); }
 function startBlock(name, sec){ unlockAudio(); W.block={name, end:Date.now()+sec*1000, len:sec, warned:false}; W.rest=null; saveW(); keepAwake(); dockTick(); if(alarmMode==="clock") setTimeout(()=>phoneTimer(sec), 150); }
 function stopAll(){ W.block=null; W.rest=null; saveW(); try{ wlock?.release(); }catch(e){} wlock=null; dockTick(); }
 function startRest(sec){ unlockAudio(); W.rest={end:Date.now()+sec*1000, len:sec, warned:false}; W.lastRest=sec; saveW(); keepAwake(); dockTick(); }
 function alarmSetHTML(){ return `<div class="alarmset"><span>Block alarm</span><div class="seg"><button type="button" data-alarm="sound" aria-pressed="${alarmMode==="sound"}">🔔 App sound</button><button type="button" data-alarm="clock" aria-pressed="${alarmMode==="clock"}">⏰ iPhone timer</button></div></div>
   ${alarmMode==="clock"?`<details class="setup"${local.get("hy1-alarm-ok")?"":" open"}><summary>Set up the iPhone timer (one time, 1 min)</summary>
-  <p>Your iPhone doesn't let websites set alarms directly, so a Shortcut does it. When you start a block, the app hands the time to the Shortcut, it starts your Clock timer, and the Clock rings over anything: Crunchyroll, YouTube, a locked screen.</p>
-  <ol><li>Open the <b>Shortcuts</b> app → tap <b>+</b>.</li>
-  <li>Name it exactly <b>Workout Timer</b>.</li>
-  <li>Add the action <b>Start Timer</b>.</li>
-  <li>Tap the number in it → choose <b>Shortcut Input</b>. Tap <b>minutes</b> → change it to <b>seconds</b>.</li>
+  <p>Your iPhone doesn't let websites set alarms directly, so your Shortcut does it. When you start a block, the app hands the time to it, it starts your Clock timer, and the Clock rings over anything: Crunchyroll, YouTube, a locked screen.</p>
+  <div class="field"><label for="scname">Shortcut name</label><input id="scname" autocomplete="off" value="${esc(shortcutName)}"></div>
+  <p class="restwhy" style="margin:4px 0 8px">Must match the name in your Shortcuts app exactly, capitals and spaces included.</p>
+  <ol><li>Open the <b>Shortcuts</b> app and tap your shortcut to edit it.</li>
+  <li>It needs one action: <b>Start Timer</b>.</li>
+  <li>In that action, tap the number (it may say 30) → pick <b>Shortcut Input</b> from the list above the keyboard.</li>
+  <li>Tap the word <b>minutes</b> → change it to <b>seconds</b>.</li>
   <li>Tap <b>Done</b>, come back here and tap <b>Test</b>. A 10-second timer should start in your Clock app.</li></ol>
+  <p><b>If Test fails:</b> "Shortcut not found" = the name above doesn't match. Timer starts at 30 minutes = step 3 is missing. Timer is 10 minutes = step 4 is missing.</p>
   <p>After a block starts, tap <b>◀</b> at the top-left of your screen to jump back here.</p>
   <button class="btn" type="button" id="alarmtest">Test (10 sec)</button> <button class="btn ghost" type="button" id="alarmok">It worked</button></details>`:`<p class="restwhy" style="margin:6px 0 0">Rings while this app is open, even with the silent switch on. To get alerted inside other apps, switch to iPhone timer.</p>`}`; }
 function wireAlarmSet(rerender){
   app.querySelectorAll("[data-alarm]").forEach(b=>b.addEventListener("click",()=>{ alarmMode=b.dataset.alarm; local.set("hy1-alarm",alarmMode); unlockAudio(); if(alarmMode==="sound") alarm(1); rerender(); }));
   document.getElementById("alarmtest")?.addEventListener("click",()=>phoneTimer(10));
+  document.getElementById("scname")?.addEventListener("input",e=>{ shortcutName=e.target.value.trim()||"Start Timer"; local.set("hy1-shortcut",shortcutName); });
   document.getElementById("alarmok")?.addEventListener("click",()=>{ local.set("hy1-alarm-ok",true); rerender(); });
 }
 function dockTick(){
