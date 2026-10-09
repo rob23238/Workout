@@ -212,7 +212,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-08k";
+const APP_VERSION = "2026-10-09a";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -462,9 +462,9 @@ const ZONES = [["6","Easy, almost a warm-up","Warm-up and cool-down","#6F8F86"],
 const COLOR = Object.fromEntries(ZONES.map(z=>[z[0],z[3]]));
 const rounds = (n, segs) => Array.from({length:n}, ()=>segs).flat();
 const PLANS = {
- p40:{h:"40-min fat burn", when:"Wednesday, Saturday", segs:[[5,6],[8,7],[6,8],[2,9],[4,7],[6,8],[2,9],[3,7],[4,6]]},
- p35:{h:"35-min intervals", when:"Tuesday, Friday", segs:[[5,6],...rounds(5,[[2,7],[2,8],[1,9]]),[5,6]]},
- p30:{h:"30-min fat-burn intervals", when:"Monday, Thursday", segs:[[4,6],[2,7],...rounds(4,[[2,7],[2,8],[1,9]]),[1,10],[3,6]]}
+ p40:{h:"40-min steady sweat", when:"Wednesday, Saturday", desc:"Relaxed but real work. Long steady stretches at level 7–8, no hard pushes. You can breathe through your nose most of it, and the length is what burns the calories.", segs:[[5,6],[10,7],[8,8],[4,7],[7,8],[4,7],[2,6]]},
+ p35:{h:"35-min climb", when:"Tuesday, Friday", desc:"Your old 40 tightened into 35: builds to two short level 9 pushes with level 7 recoveries in between.", segs:[[4,6],[7,7],[6,8],[2,9],[4,7],[5,8],[2,9],[2,7],[3,6]]},
+ p30:{h:"30-min max burn", when:"Monday, Thursday", desc:"Most calories in 30 minutes. 5 rounds of 2 min level 9, 1 min level 10, 1 min level 8 to recover. Hard but short: intervals pack more work into less time.", segs:[[3,6],[2,7],[2,8],...rounds(5,[[2,9],[1,10],[1,8]]),[3,6]]}
 };
 const PLAN_BY_DAY = {mon:"p30",tue:"p35",wed:"p40",thu:"p30",fri:"p35",sat:"p40",sun:null};
 const LOGGABLE = /pull-ups|Smith|bent-over row|curl|Romanian|Hanging leg raise, full|Cable crunch|straight-bar dip|shoulder press|skull crusher|^Set \d/i;
@@ -609,13 +609,13 @@ function renderNight(){
   h += `<section class="block"><h3>Routine <small>${esc(n.days)}</small></h3><div class="list">` + (K=>n.rows.map((r,i)=>rowHTML("night"+sel, sel+"-"+K[0][i], r, d, false)))(keysFor([n])).join("") + `</div></section>`;
   if(PUSH_BY_DAY[wk]) h += `<section class="block"><h3>100 push-ups</h3><p class="note">4 × 25 with clean form, no vest. Floor push-ups are fine at night. <a class="vid" href="${S("perfect push up form")}" target="_blank" rel="noopener">Find video ↗</a></p><div class="field"><input type="checkbox" id="pu" style="flex:0 0 auto;width:24px;height:24px;accent-color:var(--accent)"${d.push?" checked":""}><label for="pu">Done tonight</label></div></section>`;
   h += `<section class="block"><h3>Wind down <small>in bed · 3 min</small></h3><p class="note">After hips (and push-ups), lie down and let your body slow down.</p>${breathHTML("belly","nbelly")}${breathHTML("box","nbox")}<div class="callout"><b>Say it:</b> "${esc(GROUNDING)}"</div>${sensesHTML()}<div class="list" style="margin-top:10px">${[["w-belly",["Belly breathing done","","","",""]],["w-box",["Box breathing done","","","",""]],["w-ground",["Grounding statement","","","",""]]].map(([k,r])=>rowHTML("night",k,r,d,false)).join("")}</div></section>`;
-  h += journalHTML("pm","One thing that went well today","Something you did, learned or are proud of.");
+  h += thankfulHTML("pm");
   h += `<div class="callout"><b>Knee safety:</b> keep your foot flexed in pigeon and the seated glute stretch. Feel it in the hip; knee pain means come out.</div>`;
   h += `<section class="block"><h3>Sunday check</h3><p class="note">Sit in 90/90 each way and note if you can sit tall without your hands, and how pigeon feels on each side. Easier each week means it's working.</p><div class="field"><label for="gaps">Notes</label><input id="gaps" placeholder="e.g. 90/90 L ok, R needs hands · pigeon R tighter" value="${esc((docOf("checks").gaps)||"")}"></div></section>`;
   app.innerHTML = h;
   app.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{ nightSel=b.dataset.n; renderNight(); }));
   const g=document.getElementById("gaps"); if(g) g.addEventListener("input",()=>{ docOf("checks").gaps=g.value; saveSoon("checks"); });
-  wire("night-"+wk, 0); wirePacers(); wireJournal(); wireTimers();
+  wire("night-"+wk, 0); wirePacers(); wireThankful(); wireTimers();
 }
 
 /* ---------- StairMaster timer ---------- */
@@ -660,7 +660,7 @@ function renderStair(){
   const def = PLAN_BY_DAY[todayId()] || "p40";
   if(!tState.plan) tState.plan = def;
   const lc = levelChanges(tState.plan);
-  let h = `<div class="dayhead"><div class="kicker">StairMaster · Week 1</div><h2>Fat-burn intervals</h2><p>Mostly level 7–8, with short level 9 pushes (2 min max). Hands off the rails the whole time; if you grab them, drop one level for the rest of that interval.</p>
+  let h = `<div class="dayhead"><div class="kicker">StairMaster · Week 1</div><h2>${esc(PLANS[tState.plan].h)}</h2><p>${esc(PLANS[tState.plan].desc)}</p><p style="margin-top:6px">Hands off the rails the whole time; if you grab them, drop one level for the rest of that interval.</p>
   <div class="seg">${Object.entries(PLANS).map(([k,p])=>`<button type="button" data-p="${k}" aria-pressed="${tState.plan===k}">${p.h.split(" ")[0]}</button>`).join("")}</div></div>
   <div class="timer"><div class="kicker" style="font:700 13px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">${esc(PLANS[tState.plan].h)} · ${esc(PLANS[tState.plan].when)}</div><div class="big" id="tbig">Level ${PLANS[tState.plan].segs[0][1]}</div><div class="clock" id="tclock"></div><div class="next" id="tnext"></div>
   <div class="ctl"><button class="btn" id="tgo" type="button">Start</button><button class="btn ghost" id="treset" type="button">Reset</button></div>
@@ -841,8 +841,8 @@ function runPacer(id, key){
 }
 function wirePacers(){ app.querySelectorAll("[data-pace]").forEach(btn=>btn.addEventListener("click",()=>{ if(pacer && pacer.key===btn.dataset.pkey) stopPacer(); else runPacer(btn.dataset.pace, btn.dataset.pkey); })); }
 function sensesHTML(){ return `<details class="guide" style="border-width:1px"><summary>5–4–3–2–1: stay present</summary>${SENSES.map(s=>`<p><b style="font-family:var(--display);font-size:20px;color:var(--accent)">${s[0]}</b> <b>${esc(s[1])}</b><br><span style="color:var(--muted)">${esc(s[2])}</span></p>`).join("")}</details>`; }
-function journalHTML(kind, label, ph){ const k=kind+"-"+ymd(new Date()); const v=(docOf("journal").e||{})[k]||""; return `<section class="block"><h3>Journal <small>stays on this phone</small></h3><div class="field col"><label for="jr">${esc(label)}</label><textarea id="jr" data-jk="${k}" placeholder="${esc(ph)}">${esc(v)}</textarea></div></section>`; }
-function wireJournal(){ const t=document.getElementById("jr"); if(t) t.addEventListener("input",()=>{ const j=docOf("journal"); j.e=j.e||{}; j.e[t.dataset.jk]=t.value; saveSoon("journal"); }); }
+function thankfulHTML(kind){ const k=kind+"-"+ymd(new Date()); const v=((docOf("journal").t||{})[k])||["","",""]; return `<section class="block"><h3>Thankful for <small>3 things · stays on this phone</small></h3><div class="list">${[0,1,2].map(i=>`<div class="field" style="margin:0;border:0;border-top:${i?"1px solid var(--line)":"0"};border-radius:0"><label for="th${i}">${i+1}</label><input id="th${i}" data-th="${i}" data-tk="${k}" autocomplete="off" placeholder="${["e.g. My health and strength","e.g. People in my corner","e.g. Another day to get better"][i]}" value="${esc(v[i]||"")}"></div>`).join("")}</div></section>`; }
+function wireThankful(){ app.querySelectorAll("[data-th]").forEach(t=>t.addEventListener("input",()=>{ const j=docOf("journal"); j.t=j.t||{}; const k=t.dataset.tk; j.t[k]=j.t[k]||["","",""]; j.t[k][+t.dataset.th]=t.value; saveSoon("journal"); })); }
 
 /* ---------- Morning routine ---------- */
 const MORNING_MOB = [
@@ -859,8 +859,8 @@ function renderMorning(){
   h += `<section class="block"><h3>Breathe <small>${weekend?"5":"4"} min</small></h3>` + breaths.map(b=>breathHTML(b,"m"+b)).join("") + `</section>`;
   h += `<section class="block"><h3>Mindset <small>1 min</small></h3><div class="callout"><b>My belief:</b> "${esc(BELIEF)}"<div style="font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-top:4px">${esc(BELIEF_REF)}</div><div style="font:800 22px var(--display);letter-spacing:.03em;text-transform:uppercase;margin-top:10px">Keep going 👑</div></div>${sensesHTML()}</section>`;
   h += `<section class="block"><h3>Check off</h3><div class="list">` + checks.slice(MORNING_MOB.length).map(([k,r])=>rowHTML("morning",k,r,d,false)).join("") + `</div></section>`;
-  h += journalHTML("am","One thing I'll focus on today","e.g. Stay patient in meetings. Hit every block on time.");
-  app.innerHTML = h; wire("morning-"+wk, checks.length); wirePacers(); wireJournal();
+  h += thankfulHTML("am");
+  app.innerHTML = h; wire("morning-"+wk, checks.length); wirePacers(); wireThankful();
   wireTimers();
 }
 
@@ -985,7 +985,7 @@ document.addEventListener("visibilitychange",()=>{ if(!document.hidden) checkUpd
       let changed=false;
       snap.docs.forEach(ds=>{ if(ds.metadata.hasPendingWrites || writing[ds.id] || pending[ds.id]) return; const body=ds.data(); if(body){ cache[ds.id]=migrate(ds.id, JSON.parse(JSON.stringify(body))); local.set("hy1-"+ds.id, cache[ds.id]); changed=true; } });
       setSync("Synced to your account");
-      const typing = document.activeElement && document.activeElement.matches("input[data-log], #cal, #gaps, #i-what, #i-link, #i-why, #i-where, [data-best], #jr");
+      const typing = document.activeElement && document.activeElement.matches("input[data-log], #cal, #gaps, #i-what, #i-link, #i-why, #i-where, [data-best], [data-th]");
       if(changed && !typing && !tState.running) render(current);
     }, ()=>setSync("Saved on this phone"));
   }catch(e){ setSync("Saved on this phone"); }
