@@ -212,7 +212,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-09b";
+const APP_VERSION = "2026-10-10a";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -244,7 +244,7 @@ const PULL_GUIDE = `
 <p>Do 1 scapular pull-up (step 4 only) before each set. If you can't feel your back doing that, you won't feel it in the full rep.</p>`;
 const SS = "Superset: do the 1 then the 2 back to back, rest, repeat for all rounds.";
 const DAYS = [
- {id:"mon", chip:"Mon", kicker:"Day 1 · Monday", title:"Pull + bench + arms + lower abs", time:"~55 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility A (no push-ups tonight, you did 100 with bench)",
+ {id:"mon", chip:"Mon", kicker:"Day 1 · Monday", title:"Pull + bench + arms + lower abs", time:"~60 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility A (no push-ups tonight, you did 100 with bench)",
   blocks:[
    {h:"Shoulder warm-up", m:"5 min", rows:[
     ["Wall slides","1 × 10","Back, head and arms flat on the wall, slide your arms up into a Y and back down. Wakes up the shoulder blades and fixes rounded shoulders","",S("wall slides shoulder mobility")],
@@ -263,19 +263,21 @@ const DAYS = [
    {h:"Bench + 100 push-ups", m:"12 min", note:"Superset A, 4 rounds: one bench set, then straight to 25 incline push-ups (feet on the bench, no vest), rest 90 sec–2 min. If a set of 25 breaks, take 5 breaths and finish it. 4 × 25 = your 100 for today.", rows:[
     ["Smith bench press","Bar × 10, 135 × 5, then 4 × 10 @ 185","Controlled reps, shoulder blades pinched",HAM,S("smith machine bench press form"),"A1"],
     ["Incline push-ups","4 × 25 (100 total)","Feet on the bench, body straight, chest to an inch off the floor","",S("feet elevated push up form"),"A2"]]},
-   {h:"Back + shoulders", m:"6 min", note:"Superset B, 3 rounds, rest 60 sec.", rows:[
-    ["Dumbbell bent-over row","3 × 10, 3-sec lowering","50–60 lb, flat back, elbows to hips",HAM,S("dumbbell bent over row form"),"B1"],
-    ["Dumbbell lateral raise","3 × 10","Light, slow, lead with the elbows",HAM,S("dumbbell lateral raise form"),"B2"]]},
-   {h:"Biceps + forearms", m:"10 min", note:"Supersets C, D and E: each pair back to back, rest 45–60 sec.", rows:[
-    ["Dumbbell curl, neutral to palms up","3 × 15","Start with palms facing each other, turn your palms up as you curl, squeeze at the top, 3 sec down","",S("dumbbell supinating curl"),"C1"],
-    ["Curl-bar wrist curl","3 × 15","Forearms on thighs, palms up. Roll the bar to your fingertips, curl back with wrists only","",S("ez bar wrist curl seated"),"C2"],
-    ["Dumbbell hammer curl","3 × 15","Thumbs up: outer arm and forearm","",S("dumbbell hammer curl form"),"D1"],
-    ["Curl-bar reverse wrist curl","3 × 15","Palms down, lighter weight","",S("ez bar reverse wrist curl"),"D2"],
-    ["Zottman curl","2 × 15","Curl up palms up, turn palms down at the top, lower slowly","",S("zottman curl form"),"E1"],
-    ["Farmer carry","2 × 40 yards","50 lb dumbbells, shoulders back, ribs down",AC,"https://www.youtube.com/watch?v=MH8id-EaoPA","E2"]]},
-   {h:"Core: lower abs", m:"6 min", note:"Superset F, 3 rounds, rest 60 sec. Hanging leg raises: shoulders down, curl your pelvis up first, legs to bar height, 3 sec down. End the set the moment you swing. 5 good reps beat 10 ugly ones.", rows:[
-    ["Hanging leg raise, full range","3 × 5","Perfect reps only",MINE,S("hanging leg raise full range no swing"),"F1"],
-    ["6-inch hold","3 × 20 sec","Heels 6 inches off the floor, low back pressed flat",AC,"https://www.youtube.com/watch?v=1CpgAh7wdDk","F2"],
+   {h:"Back + shoulders", m:"12 min", note:"Supersets B and C, 3 rounds each. Smith rows: bar set just below your knees, hinge until your chest is close to parallel with the floor, flat back, pull the bar to your belly button and squeeze your shoulder blades for 1 sec.", rows:[
+    ["Smith row, overhand grip","3 × 10, 3-sec lowering","Palms down, hands a little wider than shoulders. Elbows flare slightly out: hits upper back and rear shoulders",HAM,S("smith machine bent over row overhand grip form"),"B1"],
+    ["Dumbbell lateral raise","3 × 10","Light, slow, lead with the elbows",HAM,S("dumbbell lateral raise form"),"B2"],
+    ["Smith row, underhand grip","3 × 10, 3-sec lowering","Palms up, hands shoulder width. Elbows stay tight to your sides and drive to your hips: hits lats and biceps",HAM,S("smith machine underhand row form"),"C1"],
+    ["Towel pull-ups","3 × 5","Loop 2 towels over the bar, one in each hand, palms facing each other. Squeeze the towels hard the whole rep, same back-first form as your pull-ups. Huge for grip and forearms",LW,S("towel pull ups grip strength form"),"C2"]]},
+   {h:"Biceps + forearms", m:"10 min", note:"Supersets D, E and F: each pair back to back, rest 45–60 sec.", rows:[
+    ["Dumbbell curl, neutral to palms up","3 × 15","Start with palms facing each other, turn your palms up as you curl, squeeze at the top, 3 sec down","",S("dumbbell supinating curl"),"D1"],
+    ["Curl-bar wrist curl","3 × 15","Forearms on thighs, palms up. Roll the bar to your fingertips, curl back with wrists only","",S("ez bar wrist curl seated"),"D2"],
+    ["Dumbbell hammer curl","3 × 15","Thumbs up: outer arm and forearm","",S("dumbbell hammer curl form"),"E1"],
+    ["Curl-bar reverse wrist curl","3 × 15","Palms down, lighter weight","",S("ez bar reverse wrist curl"),"E2"],
+    ["Zottman curl","2 × 15","Curl up palms up, turn palms down at the top, lower slowly","",S("zottman curl form"),"F1"],
+    ["Farmer carry","2 × 40 yards","50 lb dumbbells, shoulders back, ribs down",AC,"https://www.youtube.com/watch?v=MH8id-EaoPA","F2"]]},
+   {h:"Core: lower abs", m:"6 min", note:"Superset G, 3 rounds, rest 60 sec. Hanging leg raises: shoulders down, curl your pelvis up first, legs to bar height, 3 sec down. End the set the moment you swing. 5 good reps beat 10 ugly ones.", rows:[
+    ["Hanging leg raise, full range","3 × 5","Perfect reps only",MINE,S("hanging leg raise full range no swing"),"G1"],
+    ["6-inch hold","3 × 20 sec","Heels 6 inches off the floor, low back pressed flat",AC,"https://www.youtube.com/watch?v=1CpgAh7wdDk","G2"],
     ["Lying leg raises, slow","1 × 12","3 sec down, don't let your low back lift",AC,"https://www.youtube.com/watch?v=JB2oyawG9KI"]]},
    {h:"Hip finisher", m:"4 min", rows:[
     ["Quadruped hip controlled circles","2 × 4 each side","On hands and knees, slow full circles, back still",FMF,"https://www.youtube.com/watch?v=rqLtUosOs0U"],
