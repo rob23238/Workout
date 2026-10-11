@@ -212,7 +212,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-11d";
+const APP_VERSION = "2026-10-11e";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -941,13 +941,13 @@ function summaryText(){
 }
 function renderLog(){
   const txt = summaryText();
-  app.innerHTML = `<div class="dayhead"><div class="kicker">End of Week 1</div><h2>Your Week 1 log</h2><p>Everything you typed in the "Did" boxes, your checkmarks, StairMaster calories, morning StairMaster days and your ideas. Copy it and paste it to Claude to build Week 2.</p></div>
+  app.innerHTML = `<div class="dayhead"><div class="kicker">End of the week</div><h2>Your log</h2><p>Tap Copy and paste it to Claude to build next week.</p></div>
   <button class="btn" id="copy" type="button" style="margin-top:12px">Copy log</button> <span id="copied" style="color:var(--muted);margin-left:8px"></span>
-  <pre class="sum" id="sum" tabindex="0">${esc(txt)}</pre>`;
+  <details class="setup" id="logbox" style="margin-top:14px"><summary>Show log</summary><pre class="sum" id="sum" tabindex="0">${esc(txt)}</pre></details>`;
   document.getElementById("copy").addEventListener("click",async()=>{
     const msg=document.getElementById("copied");
     try{ await navigator.clipboard.writeText(txt); msg.textContent="Copied"; }
-    catch(e){ const r=document.createRange(); r.selectNodeContents(document.getElementById("sum")); const s=getSelection(); s.removeAllRanges(); s.addRange(r); msg.textContent="Selected: tap Copy"; }
+    catch(e){ document.getElementById("logbox").open=true; const r=document.createRange(); r.selectNodeContents(document.getElementById("sum")); const s=getSelection(); s.removeAllRanges(); s.addRange(r); msg.textContent="Selected: tap Copy"; }
   });
 }
 
