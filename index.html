@@ -212,7 +212,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-11e";
+const APP_VERSION = "2026-10-11f";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -939,27 +939,16 @@ function summaryText(){
   if(ideas.length) out += `\nIDEAS TO ADD (my feedback)\n` + ideas.map(i=>`  - [${i.where}] ${i.what}${i.swap?` (replace: ${i.swap})`:""}${i.link?` ${i.link}`:""}`).join("\n") + "\n";
   return out;
 }
-function renderLog(){
-  const txt = summaryText();
-  app.innerHTML = `<div class="dayhead"><div class="kicker">End of the week</div><h2>Your log</h2><p>Tap Copy and paste it to Claude to build next week.</p></div>
-  <button class="btn" id="copy" type="button" style="margin-top:12px">Copy log</button> <span id="copied" style="color:var(--muted);margin-left:8px"></span>
-  <details class="setup" id="logbox" style="margin-top:14px"><summary>Show log</summary><pre class="sum" id="sum" tabindex="0">${esc(txt)}</pre></details>`;
-  document.getElementById("copy").addEventListener("click",async()=>{
-    const msg=document.getElementById("copied");
-    try{ await navigator.clipboard.writeText(txt); msg.textContent="Copied"; }
-    catch(e){ document.getElementById("logbox").open=true; const r=document.createRange(); r.selectNodeContents(document.getElementById("sum")); const s=getSelection(); s.removeAllRanges(); s.addRange(r); msg.textContent="Selected: tap Copy"; }
-  });
-}
 
 /* ---------- tabs ---------- */
-const TABS = [...DAYS.map(d=>({id:d.id, chip:d.chip})), {id:"morning",chip:"Morning"}, {id:"night",chip:"Night"}, {id:"stair",chip:"Stair"}, {id:"am",chip:"AM Stair"}, {id:"cali",chip:"Calisthenics"}, {id:"ideas",chip:"Ideas"}, {id:"log",chip:"Log"}];
+const TABS = [...DAYS.map(d=>({id:d.id, chip:d.chip})), {id:"morning",chip:"Morning"}, {id:"night",chip:"Night"}, {id:"stair",chip:"Stair"}, {id:"am",chip:"AM Stair"}, {id:"cali",chip:"Calisthenics"}, {id:"ideas",chip:"Ideas"}];
 function todayId(){ return ["sun","mon","tue","wed","thu","fri","sat"][new Date().getDay()]; }
 function render(id){
   current = id; if(typeof stopPacer==="function") stopPacer();
   [...tabsEl.children].forEach(c=>c.setAttribute("aria-selected", c.dataset.id===id ? "true":"false"));
   if(id!=="stair" && tState.running){ /* keep timer running in background state */ }
   const day = DAYS.find(x=>x.id===id);
-  if(day) renderDay(day); else if(id==="stair") renderStair(); else if(id==="night") renderNight(); else if(id==="morning") renderMorning(); else if(id==="am") renderAM(); else if(id==="cali") renderCali(); else if(id==="ideas") renderIdeas(); else renderLog();
+  if(day) renderDay(day); else if(id==="stair") renderStair(); else if(id==="night") renderNight(); else if(id==="morning") renderMorning(); else if(id==="am") renderAM(); else if(id==="cali") renderCali(); else if(id==="ideas") renderIdeas(); else renderDay(DAYS[0]);
   app.querySelectorAll("[data-go]").forEach(a=>a.addEventListener("click",e=>{ e.preventDefault(); go(a.dataset.go); }));
 }
 function go(id){ render(id); window.scrollTo({top:0}); const el=tabsEl.querySelector(`[data-id="${id}"]`); el?.scrollIntoView({inline:"center",block:"nearest"}); }
