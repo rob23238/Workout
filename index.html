@@ -212,7 +212,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-11c";
+const APP_VERSION = "2026-10-11d";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -611,13 +611,12 @@ function renderNight(){
   h += `<section class="block"><h3>Routine <small>${esc(n.days)}</small></h3><div class="list">` + (K=>n.rows.map((r,i)=>rowHTML("night"+sel, sel+"-"+K[0][i], r, d, false)))(keysFor([n])).join("") + `</div></section>`;
   if(PUSH_BY_DAY[wk]) h += `<section class="block"><h3>100 push-ups</h3><p class="note">4 × 25 with clean form, no vest. Floor push-ups are fine at night. <a class="vid" href="${S("perfect push up form")}" target="_blank" rel="noopener">Find video ↗</a></p><div class="field"><input type="checkbox" id="pu" style="flex:0 0 auto;width:24px;height:24px;accent-color:var(--accent)"${d.push?" checked":""}><label for="pu">Done tonight</label></div></section>`;
   h += `<section class="block"><h3>Wind down <small>in bed · 3 min</small></h3><p class="note">After hips (and push-ups), lie down and let your body slow down.</p>${breathHTML("belly","nbelly")}${breathHTML("box","nbox")}<div class="callout"><b>Say it:</b> "${esc(GROUNDING)}"</div>${sensesHTML()}<div class="list" style="margin-top:10px">${[["w-belly",["Belly breathing done","","","",""]],["w-box",["Box breathing done","","","",""]],["w-ground",["Grounding statement","","","",""]]].map(([k,r])=>rowHTML("night",k,r,d,false)).join("")}</div></section>`;
-  h += thankfulHTML("pm");
   h += `<div class="callout"><b>Knee safety:</b> keep your foot flexed in pigeon and the seated glute stretch. Feel it in the hip; knee pain means come out.</div>`;
   h += `<section class="block"><h3>Sunday check</h3><p class="note">Sit in 90/90 each way and note if you can sit tall without your hands, and how pigeon feels on each side. Easier each week means it's working.</p><div class="field"><label for="gaps">Notes</label><input id="gaps" placeholder="e.g. 90/90 L ok, R needs hands · pigeon R tighter" value="${esc((docOf("checks").gaps)||"")}"></div></section>`;
   app.innerHTML = h;
   app.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{ nightSel=b.dataset.n; renderNight(); }));
   const g=document.getElementById("gaps"); if(g) g.addEventListener("input",()=>{ docOf("checks").gaps=g.value; saveSoon("checks"); });
-  wire("night-"+wk, 0); wirePacers(); wireThankful(); wireTimers();
+  wire("night-"+wk, 0); wirePacers(); wireTimers();
 }
 
 /* ---------- StairMaster timer ---------- */
@@ -843,8 +842,6 @@ function runPacer(id, key){
 }
 function wirePacers(){ app.querySelectorAll("[data-pace]").forEach(btn=>btn.addEventListener("click",()=>{ if(pacer && pacer.key===btn.dataset.pkey) stopPacer(); else runPacer(btn.dataset.pace, btn.dataset.pkey); })); }
 function sensesHTML(){ return `<details class="guide" style="border-width:1px"><summary>5–4–3–2–1: stay present</summary>${SENSES.map(s=>`<p><b style="font-family:var(--display);font-size:20px;color:var(--accent)">${s[0]}</b> <b>${esc(s[1])}</b><br><span style="color:var(--muted)">${esc(s[2])}</span></p>`).join("")}</details>`; }
-function thankfulHTML(kind){ const k=kind+"-"+ymd(new Date()); const v=((docOf("journal").t||{})[k])||["","",""]; return `<section class="block"><h3>Thankful for <small>3 things · stays on this phone</small></h3><div class="list">${[0,1,2].map(i=>`<div class="field" style="margin:0;border:0;border-top:${i?"1px solid var(--line)":"0"};border-radius:0"><label for="th${i}">${i+1}</label><input id="th${i}" data-th="${i}" data-tk="${k}" autocomplete="off" placeholder="${["e.g. My health and strength","e.g. People in my corner","e.g. Another day to get better"][i]}" value="${esc(v[i]||"")}"></div>`).join("")}</div></section>`; }
-function wireThankful(){ app.querySelectorAll("[data-th]").forEach(t=>t.addEventListener("input",()=>{ const j=docOf("journal"); j.t=j.t||{}; const k=t.dataset.tk; j.t[k]=j.t[k]||["","",""]; j.t[k][+t.dataset.th]=t.value; saveSoon("journal"); })); }
 
 /* ---------- Nose breathing: retrain from mouth breathing ---------- */
 const NOSE_HTML = `<div class="breath"><div class="bh"><b>Nose unblock</b><span>3–5 rounds</span></div><p><b style="color:var(--ink)">How to:</b> Breathe out normally, then pinch your nose shut. Walk around holding your breath until you feel a strong need to breathe. Let go and breathe in slowly through your nose only. Take 30–60 sec of calm nose breathing, then repeat.</p><p class="warnline">Stop if you feel dizzy.</p></div>
@@ -867,8 +864,7 @@ function renderMorning(){
   h += `<section class="block"><h3>Nose training <small>2 min</small></h3>${NOSE_HTML}</section>`;
   h += `<section class="block"><h3>Mindset <small>1 min</small></h3><div class="callout"><b>My belief:</b> "${esc(BELIEF)}"<div style="font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-top:4px">${esc(BELIEF_REF)}</div><div style="font:800 22px var(--display);letter-spacing:.03em;text-transform:uppercase;margin-top:10px">Keep going 👑</div></div>${sensesHTML()}</section>`;
   h += `<section class="block"><h3>Check off</h3><div class="list">` + checks.slice(MORNING_MOB.length).map(([k,r])=>rowHTML("morning",k,r,d,false)).join("") + `</div></section>`;
-  h += thankfulHTML("am");
-  app.innerHTML = h; wire("morning-"+wk, checks.length); wirePacers(); wireThankful();
+  app.innerHTML = h; wire("morning-"+wk, checks.length); wirePacers();
   wireTimers();
 }
 
@@ -993,7 +989,7 @@ document.addEventListener("visibilitychange",()=>{ if(!document.hidden) checkUpd
       let changed=false;
       snap.docs.forEach(ds=>{ if(ds.metadata.hasPendingWrites || writing[ds.id] || pending[ds.id]) return; const body=ds.data(); if(body){ cache[ds.id]=migrate(ds.id, JSON.parse(JSON.stringify(body))); local.set("hy1-"+ds.id, cache[ds.id]); changed=true; } });
       setSync("Synced to your account");
-      const typing = document.activeElement && document.activeElement.matches("input[data-log], #cal, #gaps, #i-what, #i-link, #i-why, #i-where, [data-best], [data-th]");
+      const typing = document.activeElement && document.activeElement.matches("input[data-log], #cal, #gaps, #i-what, #i-link, #i-why, #i-where, [data-best]");
       if(changed && !typing && !tState.running) render(current);
     }, ()=>setSync("Saved on this phone"));
   }catch(e){ setSync("Saved on this phone"); }
