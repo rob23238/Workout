@@ -212,7 +212,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-12c";
+const APP_VERSION = "2026-10-12d";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -244,32 +244,26 @@ const PULL_GUIDE = `
 <p>Do 1 scapular pull-up (step 4 only) before each set. If you can't feel your back doing that, you won't feel it in the full rep.</p>`;
 const SS = "Superset: do the 1 then the 2 back to back, rest, repeat for all rounds.";
 const DAYS = [
- {id:"mon", chip:"Mon", kicker:"Monday", title:"Legs A: squat + ankles", time:"~50 min", stair:["35-min intervals","after leg day"], night:"Hip mobility B + 100 push-ups",
+ {id:"mon", chip:"Mon", kicker:"Monday", title:"Legs A: explosive + squat", time:"~45 min", stair:["35-min intervals","after leg day"], night:"Hip mobility B + 100 push-ups",
   blocks:[
-   {h:"Jump rope + warm-up", m:"8 min", rows:[
-    ["Jump rope, basic bounce","5 × 30 sec on / 30 sec off","Light on the balls of your feet, small hops","",S("jump rope basic bounce beginner")],
-    ["Squat to stand + reach","1 × 5 each side","Grab your toes, sink your hips, reach one arm up",HAM,S("squat to stand with reach")],
+   {h:"Jump rope + warm-up", m:"5 min", rows:[
+    ["Jump rope, basic bounce","3 × 30 sec on / 30 sec off","Light on the balls of your feet, small hops","",S("jump rope basic bounce beginner")],
     ["Tibialis raise","1 × 20","Back to the wall, lift your toes, pause top and bottom","",S("tibialis raise wall knees over toes")],
     ["Banded lateral walks","2 × 8 each way","Band above the knees, stay low",AD,"https://youtube.com/shorts/GMo4gT2e-Dc"]]},
-   {h:"Functional: Movement day", m:"12 min", note:"Movement day: ankle warm-up first, then side-to-side work. Weak leg first on every one-leg drill; stick each landing.", rows:[
-    ["Lateral ankle pops","2 × 10 each ankle","Quick and springy",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
-    ["Ballerinas","2 × 15 sec","Up on the balls of your feet",AD,"https://youtube.com/shorts/f713edaN-CQ"],
-    ["Single ankle lifts, 3-sec hold","1 × 4 each","Weak side first",AD,"https://youtube.com/shorts/-uEvnEdAgQw"],
-    ["Lateral bounds","2 × 15 sec","Stick each landing",AD,"https://youtube.com/shorts/00tM64YTOTE"],
-    ["Lateral reactive bounds","2 × 12 sec","Short ground contact",AD,"https://youtube.com/shorts/CTi9YTx7HNE"],
-    ["Vertical-to-lateral jump","3 × 6","Fast and explosive",AD,"https://youtube.com/shorts/KjpChNSRIKA"],
-    ["Lateral plate hops","4 × 10 sec","Over a plate on the floor",AD,"https://youtube.com/shorts/XomC_FIU_E0"],
-    ["Elevated lateral lunges","2 × 5 each","Stand on a plate, sink sideways",AD,"https://youtube.com/shorts/oUD0xuP_aa4"]]},
-   {h:"Strength", m:"22 min", note:"Supersets A, B and C. The 2 is something that doesn't tire out what the 1 needs, so you use your rest instead of sitting.", rows:[
-    ["Smith back squat","Bar × 10, 135 × 5, then 4 × 6 @ 185","Full depth you control, chest up, rest 2 min after the calf raises",HAM,S("smith machine squat form"),"A1"],
-    ["Single-leg dumbbell calf raise","4 × 10 each side","2-sec stretch at the bottom","",S("single leg dumbbell calf raise deficit"),"A2"],
-    ["Smith jump squat","3 × 4 @ 95","Light and fast",HAM,S("smith machine jump squat"),"B1"],
-    ["Psoas march, 5-sec hold","3 × 6 each side","Band on the feet, lying down, drive one knee up and hold: hip flexor strength",FMF,S("psoas march exercise"),"B2"],
-    ["Dumbbell walking lunge","2 × 6 each leg","40–50 lb dumbbells, front foot stays flat",HAM,"https://youtube.com/shorts/JMkDwe0Wki4","C1"],
-    ["Assisted pistol squat","2 × 5 each side","Hold the cable column, sit down slowly on one leg",LW,S("assisted pistol squat progression"),"C2"]]},
-   {h:"Glutes + hips", m:"6 min", note:"Superset D, 2–3 rounds.", rows:[
-    ["Cable hip abduction","3 × 12 each side","Cuff at the ankle, leg out to the side: outer hip strength","",S("standing cable hip abduction"),"D1"],
-    ["Single-leg glute bridge risers","3 × 7 each side","Glutes",AH,"https://youtu.be/pTDQ5tJRhC8","D2"]]},
+   {h:"Functional: jump primer", m:"10 min", note:"Getting your body used to jumping again. Ankles first, then small jumps. About 70% effort, quiet landings, knees over your toes. Weak leg first. If anything pinches, skip that drill today.", rows:[
+    ["Lateral ankle pops","3 × 10 each ankle","Quick and springy, small bounces off the ball of the foot",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
+    ["Single ankle lifts, 3-sec hold","3 × 4 each","Up on one foot, hold at the top. Builds the ankle strength your landings need",AD,"https://youtube.com/shorts/-uEvnEdAgQw"],
+    ["Lateral plate hops","3 × 10 sec","Small side-to-side hops over a plate on the floor",AD,"https://youtube.com/shorts/XomC_FIU_E0"],
+    ["Lateral bounds, stick the landing","3 × 4 each side","Jump sideways off one leg, land on the other and hold 2 sec. Short jumps this week; distance comes later",AD,"https://youtube.com/shorts/00tM64YTOTE"]]},
+   {h:"Strength", m:"22 min", note:"3 sets each. Supersets A and B: the 2 doesn't tire out what the 1 needs, so you use your rest instead of sitting.", rows:[
+    ["Smith back squat","Bar × 10, 135 × 5, then 3 × 6 @ 185","Full depth you control, chest up",HAM,S("smith machine squat form"),"A1"],
+    ["Psoas march, 5-sec hold","3 × 6 each side","Band on the feet, lying down, drive one knee up and hold: hip flexor strength",FMF,S("psoas march exercise"),"A2"],
+    ["Dumbbell jump squat","3 × 5","Light dumbbells (15–20 lb each hand) at your sides. Sit to a quarter squat, jump, land soft and reset before the next rep",HAM,S("dumbbell jump squat form"),"B1"],
+    ["Assisted pistol squat","3 × 5 each side","Hold the cable column, sit down slowly on one leg",LW,S("assisted pistol squat progression"),"B2"],
+    ["Dumbbell walking lunge","3 × 10 each leg","40–50 lb dumbbells, front foot stays flat",HAM,"https://youtube.com/shorts/JMkDwe0Wki4"]]},
+   {h:"Glutes + hips", m:"6 min", note:"Superset C, 3 rounds. No equipment needed.", rows:[
+    ["Single-leg glute bridge risers","3 × 7 each side","Glutes",AH,"https://youtu.be/pTDQ5tJRhC8","C1"],
+    ["Side-lying hip abduction","3 × (10 straight leg + 5 bent leg) each side","Lie on your side, lift the top leg slightly behind you: outer hip strength",FMF,"https://www.youtube.com/watch?v=C4bQSvhSGZA","C2"]]},
    {h:"Cool-down", m:"2 min", rows:[
     ["Half-kneeling hip flexor stretch","30 sec each side","Squeeze the back glute",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"],
     ["Seated hamstring V-stretch","30 sec","Legs wide, walk your hands forward",HAM,S("seated v sit hamstring stretch")]]}
@@ -469,7 +463,7 @@ const PLANS = {
  p30:{h:"30-min max burn", when:"Tuesday, Thursday", desc:"Most calories in 30 minutes. 5 rounds of 2 min level 9, 1 min level 10, 1 min level 8 to recover. Hard but short: intervals pack more work into less time.", segs:[[3,6],[2,7],[2,8],...rounds(5,[[2,9],[1,10],[1,8]]),[3,6]]}
 };
 const PLAN_BY_DAY = {mon:"p35",tue:"p30",wed:"p40",thu:"p30",fri:"p35",sat:"p40",sun:null};
-const LOGGABLE = /pull-ups|Smith|bent-over row|curl|Romanian|Hanging leg raise, full|Cable crunch|straight-bar dip|shoulder press|skull crusher|^Set \d/i;
+const LOGGABLE = /pull-ups|Smith|jump squat|walking lunge|bent-over row|curl|Romanian|Hanging leg raise, full|Cable crunch|straight-bar dip|shoulder press|skull crusher|^Set \d/i;
 
 
 /* ---------- Timers: rest standards by block type ----------
