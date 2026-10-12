@@ -212,7 +212,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-11f";
+const APP_VERSION = "2026-10-12a";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -244,7 +244,65 @@ const PULL_GUIDE = `
 <p>Do 1 scapular pull-up (step 4 only) before each set. If you can't feel your back doing that, you won't feel it in the full rep.</p>`;
 const SS = "Superset: do the 1 then the 2 back to back, rest, repeat for all rounds.";
 const DAYS = [
- {id:"mon", chip:"Mon", kicker:"Day 1 · Monday", title:"Pull + bench + arms + lower abs", time:"~60 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility A (no push-ups tonight, you did 100 with bench)",
+ {id:"mon", chip:"Mon", kicker:"Monday · lighter day", title:"Stability + abs A + hips", time:"~45 min", stair:["40-min fat burn","two short level 9 pushes"], night:"Hip mobility A + 100 push-ups",
+  blocks:[
+   {h:"Functional: Stability day", m:"12 min", note:"Stability day: strength in the hips, knees and ankles, and evening out your legs.", rows:[
+    ["Banded lateral walks","3 × 3","Stay low",AD,"https://youtube.com/shorts/GMo4gT2e-Dc"],
+    ["Single-leg hold (isometric), 6 sec","3 × 6 each leg","Quarter squat on one leg, weak leg first, no or light weight",AD,"https://youtube.com/shorts/sSXrGCaWzy0"],
+    ["Plate overhead","2 × 5 each leg","Core stability on one leg",AD,"https://youtube.com/shorts/08PQOpJ6t5w"],
+    ["Slight squat plate press, 3-sec hold","2 × 5 each leg","Balance",AD,"https://youtube.com/shorts/A6edtaVdf4M"],
+    ["Single-leg bench squats","2 × 8 each leg","No weight, sit back to the bench",AD,"https://youtu.be/sXDycqjLbiI"],
+    ["Ankle lifts, 3-sec hold","2 × 4","Ankle strength",AD,"https://youtube.com/shorts/QPkmE4jvrxw"]]},
+   {h:"Abs A: lower abs + dragon flag", m:"14 min", note:"Supersets A and B, rest 60–90 sec after each round. Hanging leg raises: shoulders down, pelvis curls up first, 3 sec down, 1-sec pause at the bottom.", rows:[
+    ["Hanging leg raise, full range","4 × 5","Perfect reps only",MINE,S("hanging leg raise full range no swing"),"A1"],
+    ["Cable crunch, heavy","4 × 10","2-sec squeeze at the bottom, hips still",MINE,S("cable crunch form"),"A2"],
+    ["Candlestick leg lifts on the bench","3 × 5","Dragon flag step 2: grip the bench behind your head, lift your hips to vertical, lower slowly","",S("candlestick leg lift dragon flag progression"),"B1"],
+    ["V-ups","3 × 8","Hands and feet meet, lower slowly",AC,"https://www.youtube.com/watch?v=7UVgs18Y1P4","B2"],
+    ["One-leg tucked dragon flag negatives","3 × 3","Dragon flag step 3: lower in 5 sec, rest 60 sec","",S("tucked dragon flag negative")],
+    ["Jack knife, slow","2 × 10","Hands and feet meet over your hips",AC,"https://www.youtube.com/watch?v=CWOZyf8kaH0"]]},
+   {h:"Hip session A", m:"20 min", rows:[
+    ["Banded hip mobilization, in and out","15 each side","Loosen the joint first",WD,S("banded hip mobilization internal external rotation")],
+    ["Doggies, 3-sec hold","2 × 5 each side","Outer hip",AH,"https://youtu.be/lwxlCzVtjWk"],
+    ["Sitting leg lifts in and out, 3-sec hold","2 × 5 each side","Hip flexors",AH,"https://youtu.be/TSUPBX45krA"],
+    ["Hip flexor pulses","2 × 12 each leg","Hip flexor strength",AH,"https://youtu.be/6VQ0KG3kBac"],
+    ["End-range knee pulls, 3-sec hold","2 × 4 each leg","Strength at the end of your range",AH,"https://youtu.be/PFanwSVshOU"],
+    ["Leg over kettles","2 × 6 each leg","Hip rotation",AH,"https://youtu.be/hps5M-DWg3k"],
+    ["Standing hip circles","2 × 6 each way, each leg","Forward and back",AH,"https://youtu.be/gtpF8l_UfO4"],
+    ["Fire hydrants","2 × 10 each side","Outer hip",AH,"https://youtu.be/s1Ib-pVJpdk"],
+    ["Hip airplanes, assisted","10 in and out, 5-sec holds","Hold the rack",WD,S("hip airplane exercise")],
+    ["L hip stretch","2 × 4 each way","Outer hip + hip flexor",AH,"https://youtu.be/Nt_c2GZ27YQ"]]}
+  ]},
+ {id:"tue", chip:"Tue", kicker:"Day 2 · Tuesday", title:"Legs A: squat + ankles", time:"~50 min", stair:["35-min intervals","after leg day"], night:"Hip mobility B + 100 push-ups",
+  blocks:[
+   {h:"Jump rope + warm-up", m:"8 min", rows:[
+    ["Jump rope, basic bounce","5 × 30 sec on / 30 sec off","Light on the balls of your feet, small hops","",S("jump rope basic bounce beginner")],
+    ["Squat to stand + reach","1 × 5 each side","Grab your toes, sink your hips, reach one arm up",HAM,S("squat to stand with reach")],
+    ["Tibialis raise","1 × 20","Back to the wall, lift your toes, pause top and bottom","",S("tibialis raise wall knees over toes")],
+    ["Banded lateral walks","2 × 8 each way","Band above the knees, stay low",AD,"https://youtube.com/shorts/GMo4gT2e-Dc"]]},
+   {h:"Functional: Movement day", m:"12 min", note:"Movement day: ankle warm-up first, then side-to-side work. Weak leg first on every one-leg drill; stick each landing.", rows:[
+    ["Lateral ankle pops","2 × 10 each ankle","Quick and springy",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
+    ["Ballerinas","2 × 15 sec","Up on the balls of your feet",AD,"https://youtube.com/shorts/f713edaN-CQ"],
+    ["Single ankle lifts, 3-sec hold","1 × 4 each","Weak side first",AD,"https://youtube.com/shorts/-uEvnEdAgQw"],
+    ["Lateral bounds","2 × 15 sec","Stick each landing",AD,"https://youtube.com/shorts/00tM64YTOTE"],
+    ["Lateral reactive bounds","2 × 12 sec","Short ground contact",AD,"https://youtube.com/shorts/CTi9YTx7HNE"],
+    ["Vertical-to-lateral jump","3 × 6","Fast and explosive",AD,"https://youtube.com/shorts/KjpChNSRIKA"],
+    ["Lateral plate hops","4 × 10 sec","Over a plate on the floor",AD,"https://youtube.com/shorts/XomC_FIU_E0"],
+    ["Elevated lateral lunges","2 × 5 each","Stand on a plate, sink sideways",AD,"https://youtube.com/shorts/oUD0xuP_aa4"]]},
+   {h:"Strength", m:"22 min", note:"Supersets A, B and C. The 2 is something that doesn't tire out what the 1 needs, so you use your rest instead of sitting.", rows:[
+    ["Smith back squat","Bar × 10, 135 × 5, then 4 × 6 @ 185","Full depth you control, chest up, rest 2 min after the calf raises",HAM,S("smith machine squat form"),"A1"],
+    ["Single-leg dumbbell calf raise","4 × 10 each side","2-sec stretch at the bottom","",S("single leg dumbbell calf raise deficit"),"A2"],
+    ["Smith jump squat","3 × 4 @ 95","Light and fast",HAM,S("smith machine jump squat"),"B1"],
+    ["Psoas march, 5-sec hold","3 × 6 each side","Band on the feet, lying down, drive one knee up and hold: hip flexor strength",FMF,S("psoas march exercise"),"B2"],
+    ["Dumbbell walking lunge","2 × 6 each leg","40–50 lb dumbbells, front foot stays flat",HAM,"https://youtube.com/shorts/JMkDwe0Wki4","C1"],
+    ["Assisted pistol squat","2 × 5 each side","Hold the cable column, sit down slowly on one leg",LW,S("assisted pistol squat progression"),"C2"]]},
+   {h:"Glutes + hips", m:"6 min", note:"Superset D, 2–3 rounds.", rows:[
+    ["Cable hip abduction","3 × 12 each side","Cuff at the ankle, leg out to the side: outer hip strength","",S("standing cable hip abduction"),"D1"],
+    ["Single-leg glute bridge risers","3 × 7 each side","Glutes",AH,"https://youtu.be/pTDQ5tJRhC8","D2"]]},
+   {h:"Cool-down", m:"2 min", rows:[
+    ["Half-kneeling hip flexor stretch","30 sec each side","Squeeze the back glute",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"],
+    ["Seated hamstring V-stretch","30 sec","Legs wide, walk your hands forward",HAM,S("seated v sit hamstring stretch")]]}
+  ]},
+ {id:"wed", chip:"Wed", kicker:"Wednesday", title:"Pull + bench + arms + lower abs", time:"~60 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility A (no push-ups tonight, you did 100 with bench)",
   blocks:[
    {h:"Shoulder warm-up", m:"5 min", rows:[
     ["Wall slides","1 × 10","Back, head and arms flat on the wall, slide your arms up into a Y and back down. Wakes up the shoulder blades and fixes rounded shoulders","",S("wall slides shoulder mobility")],
@@ -286,64 +344,6 @@ const DAYS = [
     ["Active pigeon","45 sec each side","Outer hip",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"]]},
    {h:"Cool-down", m:"2 min", rows:[
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","Hold the Smith bar, sink your hips back",HAM,S("dowel lat stretch shoulder")]]}
-  ]},
- {id:"tue", chip:"Tue", kicker:"Day 2 · Tuesday", title:"Legs A: squat + ankles", time:"~50 min", stair:["35-min intervals","after leg day"], night:"Hip mobility B + 100 push-ups",
-  blocks:[
-   {h:"Jump rope + warm-up", m:"8 min", rows:[
-    ["Jump rope, basic bounce","5 × 30 sec on / 30 sec off","Light on the balls of your feet, small hops","",S("jump rope basic bounce beginner")],
-    ["Squat to stand + reach","1 × 5 each side","Grab your toes, sink your hips, reach one arm up",HAM,S("squat to stand with reach")],
-    ["Tibialis raise","1 × 20","Back to the wall, lift your toes, pause top and bottom","",S("tibialis raise wall knees over toes")],
-    ["Banded lateral walks","2 × 8 each way","Band above the knees, stay low",AD,"https://youtube.com/shorts/GMo4gT2e-Dc"]]},
-   {h:"Functional: Movement day", m:"12 min", note:"Movement day: ankle warm-up first, then side-to-side work. Weak leg first on every one-leg drill; stick each landing.", rows:[
-    ["Lateral ankle pops","2 × 10 each ankle","Quick and springy",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
-    ["Ballerinas","2 × 15 sec","Up on the balls of your feet",AD,"https://youtube.com/shorts/f713edaN-CQ"],
-    ["Single ankle lifts, 3-sec hold","1 × 4 each","Weak side first",AD,"https://youtube.com/shorts/-uEvnEdAgQw"],
-    ["Lateral bounds","2 × 15 sec","Stick each landing",AD,"https://youtube.com/shorts/00tM64YTOTE"],
-    ["Lateral reactive bounds","2 × 12 sec","Short ground contact",AD,"https://youtube.com/shorts/CTi9YTx7HNE"],
-    ["Vertical-to-lateral jump","3 × 6","Fast and explosive",AD,"https://youtube.com/shorts/KjpChNSRIKA"],
-    ["Lateral plate hops","4 × 10 sec","Over a plate on the floor",AD,"https://youtube.com/shorts/XomC_FIU_E0"],
-    ["Elevated lateral lunges","2 × 5 each","Stand on a plate, sink sideways",AD,"https://youtube.com/shorts/oUD0xuP_aa4"]]},
-   {h:"Strength", m:"22 min", note:"Supersets A, B and C. The 2 is something that doesn't tire out what the 1 needs, so you use your rest instead of sitting.", rows:[
-    ["Smith back squat","Bar × 10, 135 × 5, then 4 × 6 @ 185","Full depth you control, chest up, rest 2 min after the calf raises",HAM,S("smith machine squat form"),"A1"],
-    ["Single-leg dumbbell calf raise","4 × 10 each side","2-sec stretch at the bottom","",S("single leg dumbbell calf raise deficit"),"A2"],
-    ["Smith jump squat","3 × 4 @ 95","Light and fast",HAM,S("smith machine jump squat"),"B1"],
-    ["Psoas march, 5-sec hold","3 × 6 each side","Band on the feet, lying down, drive one knee up and hold: hip flexor strength",FMF,S("psoas march exercise"),"B2"],
-    ["Dumbbell walking lunge","2 × 6 each leg","40–50 lb dumbbells, front foot stays flat",HAM,"https://youtube.com/shorts/JMkDwe0Wki4","C1"],
-    ["Assisted pistol squat","2 × 5 each side","Hold the cable column, sit down slowly on one leg",LW,S("assisted pistol squat progression"),"C2"]]},
-   {h:"Glutes + hips", m:"6 min", note:"Superset D, 2–3 rounds.", rows:[
-    ["Cable hip abduction","3 × 12 each side","Cuff at the ankle, leg out to the side: outer hip strength","",S("standing cable hip abduction"),"D1"],
-    ["Single-leg glute bridge risers","3 × 7 each side","Glutes",AH,"https://youtu.be/pTDQ5tJRhC8","D2"]]},
-   {h:"Cool-down", m:"2 min", rows:[
-    ["Half-kneeling hip flexor stretch","30 sec each side","Squeeze the back glute",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"],
-    ["Seated hamstring V-stretch","30 sec","Legs wide, walk your hands forward",HAM,S("seated v sit hamstring stretch")]]}
-  ]},
- {id:"wed", chip:"Wed", kicker:"Optional · Wednesday", title:"Stability + abs A + hips", time:"~45 min", stair:["40-min fat burn","two short level 9 pushes"], night:"Hip mobility A + 100 push-ups",
-  blocks:[
-   {h:"Functional: Stability day", m:"12 min", note:"Stability day: strength in the hips, knees and ankles, and evening out your legs.", rows:[
-    ["Banded lateral walks","3 × 3","Stay low",AD,"https://youtube.com/shorts/GMo4gT2e-Dc"],
-    ["Single-leg hold (isometric), 6 sec","3 × 6 each leg","Quarter squat on one leg, weak leg first, no or light weight",AD,"https://youtube.com/shorts/sSXrGCaWzy0"],
-    ["Plate overhead","2 × 5 each leg","Core stability on one leg",AD,"https://youtube.com/shorts/08PQOpJ6t5w"],
-    ["Slight squat plate press, 3-sec hold","2 × 5 each leg","Balance",AD,"https://youtube.com/shorts/A6edtaVdf4M"],
-    ["Single-leg bench squats","2 × 8 each leg","No weight, sit back to the bench",AD,"https://youtu.be/sXDycqjLbiI"],
-    ["Ankle lifts, 3-sec hold","2 × 4","Ankle strength",AD,"https://youtube.com/shorts/QPkmE4jvrxw"]]},
-   {h:"Abs A: lower abs + dragon flag", m:"14 min", note:"Supersets A and B, rest 60–90 sec after each round. Hanging leg raises: shoulders down, pelvis curls up first, 3 sec down, 1-sec pause at the bottom.", rows:[
-    ["Hanging leg raise, full range","4 × 5","Perfect reps only",MINE,S("hanging leg raise full range no swing"),"A1"],
-    ["Cable crunch, heavy","4 × 10","2-sec squeeze at the bottom, hips still",MINE,S("cable crunch form"),"A2"],
-    ["Candlestick leg lifts on the bench","3 × 5","Dragon flag step 2: grip the bench behind your head, lift your hips to vertical, lower slowly","",S("candlestick leg lift dragon flag progression"),"B1"],
-    ["V-ups","3 × 8","Hands and feet meet, lower slowly",AC,"https://www.youtube.com/watch?v=7UVgs18Y1P4","B2"],
-    ["One-leg tucked dragon flag negatives","3 × 3","Dragon flag step 3: lower in 5 sec, rest 60 sec","",S("tucked dragon flag negative")],
-    ["Jack knife, slow","2 × 10","Hands and feet meet over your hips",AC,"https://www.youtube.com/watch?v=CWOZyf8kaH0"]]},
-   {h:"Hip session A", m:"20 min", rows:[
-    ["Banded hip mobilization, in and out","15 each side","Loosen the joint first",WD,S("banded hip mobilization internal external rotation")],
-    ["Doggies, 3-sec hold","2 × 5 each side","Outer hip",AH,"https://youtu.be/lwxlCzVtjWk"],
-    ["Sitting leg lifts in and out, 3-sec hold","2 × 5 each side","Hip flexors",AH,"https://youtu.be/TSUPBX45krA"],
-    ["Hip flexor pulses","2 × 12 each leg","Hip flexor strength",AH,"https://youtu.be/6VQ0KG3kBac"],
-    ["End-range knee pulls, 3-sec hold","2 × 4 each leg","Strength at the end of your range",AH,"https://youtu.be/PFanwSVshOU"],
-    ["Leg over kettles","2 × 6 each leg","Hip rotation",AH,"https://youtu.be/hps5M-DWg3k"],
-    ["Standing hip circles","2 × 6 each way, each leg","Forward and back",AH,"https://youtu.be/gtpF8l_UfO4"],
-    ["Fire hydrants","2 × 10 each side","Outer hip",AH,"https://youtu.be/s1Ib-pVJpdk"],
-    ["Hip airplanes, assisted","10 in and out, 5-sec holds","Hold the rack",WD,S("hip airplane exercise")],
-    ["L hip stretch","2 × 4 each way","Outer hip + hip flexor",AH,"https://youtu.be/Nt_c2GZ27YQ"]]}
   ]},
  {id:"thu", chip:"Thu", kicker:"Day 3 · Thursday", title:"Push + arms + core", time:"~60 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility B (no push-ups tonight, you did 100 with bench)",
   blocks:[
@@ -458,17 +458,17 @@ const NIGHT = {
   ["Kneeling hip flexor stretch","20 sec each side · 40 sec","Floor, pillow under the knee. Squeeze the back glute, tuck your tailbone",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"]]}
 };
 const NIGHT_BY_DAY = {mon:"a",tue:"b",wed:"a",thu:"b",fri:"a",sat:"b",sun:"a"};
-const PUSH_BY_DAY = {mon:false,tue:true,wed:true,thu:false,fri:false,sat:true,sun:true};
+const PUSH_BY_DAY = {mon:true,tue:true,wed:false,thu:false,fri:false,sat:true,sun:true};
 
 const ZONES = [["6","Easy, almost a warm-up","Warm-up and cool-down","#6F8F86"],["7","Cruising, feel good","As long as you want","#2F8F75"],["8","Starting to push it","Several minutes at a time","#0D7A63"],["9","Getting there","10–15 min max","#B8801E"],["10","Hard","1–2 min","#B85C1E"],["15","Sprint","30 sec–1 min bursts only","#A33A2A"]];
 const COLOR = Object.fromEntries(ZONES.map(z=>[z[0],z[3]]));
 const rounds = (n, segs) => Array.from({length:n}, ()=>segs).flat();
 const PLANS = {
- p40:{h:"40-min steady sweat", when:"Wednesday, Saturday", desc:"Relaxed but real work. Long steady stretches at level 7–8, no hard pushes. You can breathe through your nose most of it, and the length is what burns the calories.", segs:[[5,6],[10,7],[8,8],[4,7],[7,8],[4,7],[2,6]]},
+ p40:{h:"40-min steady sweat", when:"Monday, Saturday", desc:"Relaxed but real work. Long steady stretches at level 7–8, no hard pushes. You can breathe through your nose most of it, and the length is what burns the calories.", segs:[[5,6],[10,7],[8,8],[4,7],[7,8],[4,7],[2,6]]},
  p35:{h:"35-min climb", when:"Tuesday, Friday", desc:"Your old 40 without the level 6 cool-down at the end: long level 7–8 stretches with two short level 9 pushes. Finish with 2 easy minutes at level 7.", segs:[[5,6],[8,7],[6,8],[2,9],[4,7],[6,8],[2,9],[2,7]]},
- p30:{h:"30-min max burn", when:"Monday, Thursday", desc:"Most calories in 30 minutes. 5 rounds of 2 min level 9, 1 min level 10, 1 min level 8 to recover. Hard but short: intervals pack more work into less time.", segs:[[3,6],[2,7],[2,8],...rounds(5,[[2,9],[1,10],[1,8]]),[3,6]]}
+ p30:{h:"30-min max burn", when:"Wednesday, Thursday", desc:"Most calories in 30 minutes. 5 rounds of 2 min level 9, 1 min level 10, 1 min level 8 to recover. Hard but short: intervals pack more work into less time.", segs:[[3,6],[2,7],[2,8],...rounds(5,[[2,9],[1,10],[1,8]]),[3,6]]}
 };
-const PLAN_BY_DAY = {mon:"p30",tue:"p35",wed:"p40",thu:"p30",fri:"p35",sat:"p40",sun:null};
+const PLAN_BY_DAY = {mon:"p40",tue:"p35",wed:"p30",thu:"p30",fri:"p35",sat:"p40",sun:null};
 const LOGGABLE = /pull-ups|Smith|bent-over row|curl|Romanian|Hanging leg raise, full|Cable crunch|straight-bar dip|shoulder press|skull crusher|^Set \d/i;
 
 
@@ -737,7 +737,7 @@ document.addEventListener("visibilitychange",()=>{ if(!document.hidden && tState
 
 /* ---------- Calisthenics: skill ladders. Check off a step when you hit its target. ---------- */
 const SKILLS = [
- {id:"pull", name:"Pull-ups → 50", why:"Your foundation. Every skill on the bar (muscle-up, front lever) is built on strict pulling strength.", on:["Mon: vest + slow sets","Fri: volume + explosive"], steps:[
+ {id:"pull", name:"Pull-ups → 50", why:"Your foundation. Every skill on the bar (muscle-up, front lever) is built on strict pulling strength.", on:["Wed: vest + slow sets","Fri: volume + explosive"], steps:[
   ["20 strict pull-ups","Where you started",true],
   ["Vest sets 1–3 hit 7 / 6 / 6","Then add 10 lb to the vest (LW rule)"],
   ["25 strict pull-ups","Unlocks front lever work"],
@@ -751,7 +751,7 @@ const SKILLS = [
   ["Slow negative muscle-ups 3 × 3","Jump to the top, lower in 5 sec"],
   ["First muscle-up",""],
   ["3 × 3 clean muscle-ups","No kicking"]]},
- {id:"hspu", name:"Handstand push-up", why:"Your incline push-ups are step 1: they put more weight on your shoulders. Each step tips more of your body over your hands until you're upside down.", on:["Mon + Thu: 100 incline push-ups","Thu: pike push-ups + wall hold"], steps:[
+ {id:"hspu", name:"Handstand push-up", why:"Your incline push-ups are step 1: they put more weight on your shoulders. Each step tips more of your body over your hands until you're upside down.", on:["Wed + Thu: 100 incline push-ups","Thu: pike push-ups + wall hold"], steps:[
   ["Incline push-ups 4 × 25","Your daily 100. Foundation",true],
   ["Pike push-ups 3 × 6 + wall hold 30 sec","Hips high, head in front of your hands"],
   ["Wall handstand hold 60 sec","Chest to wall, body straight"],
@@ -760,27 +760,27 @@ const SKILLS = [
   ["Wall handstand push-up negatives 3 × 3","Lower in 3–5 sec"],
   ["First wall handstand push-up","Then build to 3 × 5"],
   ["Freestanding handstand 10 sec","Kick up, hold, no wall"]]},
- {id:"oap", name:"One-arm push-up", why:"Same push-up, half the arms. You shift more weight to one side a step at a time.", on:["Mon + Thu: push-ups","Add archers once pike step 2 is done"], steps:[
+ {id:"oap", name:"One-arm push-up", why:"Same push-up, half the arms. You shift more weight to one side a step at a time.", on:["Wed + Thu: push-ups","Add archers once pike step 2 is done"], steps:[
   ["100 push-ups a day in 4 × 25","Volume base",true],
   ["Incline push-ups 4 × 25 with the vest","More load, same reps"],
   ["Archer push-ups 3 × 6 each side","One arm bends, the other stays straight"],
   ["One-arm push-up, hand on bench 3 × 5","Feet wide, hips square"],
   ["One-arm push-up, lower incline 3 × 5","Hand on a lower step"],
   ["One-arm push-up on the floor","Then 3 × 3 each arm"]]},
- {id:"pistol", name:"Pistol squat", why:"Squat on one leg. Also fixes your leg imbalance: each leg has to do its own work.", on:["Tue: assisted pistols","Wed: single-leg bench squats"], steps:[
+ {id:"pistol", name:"Pistol squat", why:"Squat on one leg. Also fixes your leg imbalance: each leg has to do its own work.", on:["Tue: assisted pistols","Mon: single-leg bench squats"], steps:[
   ["Assisted pistol holding the cable 2 × 5","Sit down slowly on one leg"],
   ["Pistol to a bench 3 × 5 each","Sit to the bench, stand without rocking"],
   ["Pistol with heel on a plate 3 × 5 each","Easier on stiff ankles"],
   ["Full pistol each leg","Weak leg first"],
   ["3 × 5 pistols each leg",""]]},
- {id:"fl", name:"Front lever", why:"Hang flat like a table under the bar. Pure lat and core strength: the back-pull from your pull-up guide, held still.", on:["Starts on Mon once you hit 25 pull-ups"], steps:[
+ {id:"fl", name:"Front lever", why:"Hang flat like a table under the bar. Pure lat and core strength: the back-pull from your pull-up guide, held still.", on:["Starts on Wed once you hit 25 pull-ups"], steps:[
   ["25 strict pull-ups","Unlock"],
   ["Tuck front lever 3 × 10 sec","Knees to chest, back flat"],
   ["Advanced tuck 3 × 10 sec","Hips open, back flat"],
   ["One leg out 3 × 8 sec",""],
   ["Straddle front lever 3 × 5 sec",""],
   ["Full front lever 5 sec",""]]},
- {id:"core", name:"Lower abs → dragon flag", why:"Hanging leg raises build the lower abs; the dragon flag path builds the strength to hold your whole body straight.", on:["Mon + Wed: hanging leg raises","Wed + Thu: candlestick + negatives","Sat: hollow hold"], steps:[
+ {id:"core", name:"Lower abs → dragon flag", why:"Hanging leg raises build the lower abs; the dragon flag path builds the strength to hold your whole body straight.", on:["Mon + Wed: hanging leg raises","Mon + Thu: candlestick + negatives","Sat: hollow hold"], steps:[
   ["5 clean hanging leg raises","Where you started",true],
   ["Hollow hold 30 sec + candlestick lifts 3 × 5","Low back pressed down"],
   ["Hanging leg raises 3 × 10 clean","No swing, 3 sec down"],
@@ -807,7 +807,7 @@ function renderCali(){
   app.querySelectorAll("[data-sk]").forEach(cb=>cb.addEventListener("change",()=>{ d.done[cb.dataset.sk]=cb.checked; save("cali"); const y=scrollY; renderCali(); scrollTo(0,y); }));
   app.querySelectorAll("[data-best]").forEach(inp=>inp.addEventListener("input",()=>{ d.best[inp.dataset.best]=inp.value; saveSoon("cali"); }));
 }
-const SKILLS_BY_DAY = {mon:["Pull-ups → 50","Handstand push-up","One-arm push-up","Lower abs"],tue:["Pistol squat"],wed:["Pistol squat","Dragon flag"],thu:["Handstand push-up","Muscle-up (dips)","Dragon flag"],fri:["Muscle-up","Pull-ups → 50"],sat:["Dragon flag"],sun:[]};
+const SKILLS_BY_DAY = {mon:["Pistol squat","Dragon flag"],tue:["Pistol squat"],wed:["Pull-ups → 50","Handstand push-up","One-arm push-up","Lower abs"],thu:["Handstand push-up","Muscle-up (dips)","Dragon flag"],fri:["Muscle-up","Pull-ups → 50"],sat:["Dragon flag"],sun:[]};
 
 /* ---------- Breathing + mindset (used in Morning and Night) ---------- */
 const BREATHS = {
@@ -956,6 +956,11 @@ TABS.forEach(t=>{ const b=document.createElement("button"); b.className="chip"; 
 let start = todayId(); try{ const h=location.hash.replace("#",""); if(TABS.some(t=>t.id===h)) start=h; }catch(e){}
 go(start);
 dockTick();
+
+/* ---------- Fresh start for the week of Oct 12: clear day/morning/night checkmarks + logs once ---------- */
+(function freshStart(){ const tag="2026-10-12"; if(local.get("hy1-fresh")===tag) return;
+  ["mon","tue","wed","thu","fri","sat","sun"].forEach(w=>{ ["", "night-", "morning-"].forEach(pre=>{ const id=pre+w, d=docOf(id); d.checks={}; d.logs={}; d.cal=""; d.push=false; delete d.legacyNight; save(id); }); });
+  stopAll(); local.set("hy1-fresh",tag); if(DAYS.some(d=>d.id===current)) render(current); })();
 
 /* ---------- Auto-update: if GitHub has a newer version, reload into it ---------- */
 async function checkUpdate(){
