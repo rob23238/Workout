@@ -212,7 +212,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-14b";
+const APP_VERSION = "2026-10-14c";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -290,29 +290,35 @@ const DAYS = [
     ["Doorway chest stretch","30 sec each side","Opens tight chest muscles","",S("doorway chest stretch")],
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"thu", chip:"Thu", kicker:"Thursday", title:"Legs A: explosive + squat", time:"~45 min", stair:["35-min intervals","after leg day"], night:"Hip mobility B + 100 push-ups",
+ {id:"thu", chip:"Thu", kicker:"Thursday", title:"Legs B: real-world strength + pull volume", time:"~55 min", stair:["35-min intervals","after leg day"], night:"Hip mobility A (no push-ups tonight)",
   blocks:[
-   {h:"Jump rope + warm-up", m:"5 min", rows:[
-    ["Jump rope, basic bounce","3 × 30 sec on / 30 sec off","Light on the balls of your feet, small hops","",S("jump rope basic bounce beginner")],
-    ["Tibialis raise","1 × 20","Back to the wall, lift your toes, pause top and bottom","",S("tibialis raise wall knees over toes")],
-    ["Banded lateral walks","2 × 8 each way","Band above the knees, stay low",AD,"https://youtube.com/shorts/GMo4gT2e-Dc"]]},
-   {h:"Functional: jump primer", m:"10 min", note:"Getting your body used to jumping again. Ankles first, then small jumps. About 70% effort, quiet landings, knees over your toes. Weak leg first. If anything pinches, skip that drill today.", rows:[
-    ["Lateral ankle pops","3 × 10 each ankle","Quick and springy, small bounces off the ball of the foot",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
-    ["Single ankle lifts, 3-sec hold","3 × 4 each","Up on one foot, hold at the top. Builds the ankle strength your landings need",AD,"https://youtube.com/shorts/-uEvnEdAgQw"],
-    ["Lateral plate hops","3 × 10 sec","Small side-to-side hops over a plate on the floor",AD,"https://youtube.com/shorts/XomC_FIU_E0"],
-    ["Lateral bounds, stick the landing","3 × 4 each side","Jump sideways off one leg, land on the other and hold 2 sec. Short jumps this week; distance comes later",AD,"https://youtube.com/shorts/00tM64YTOTE"]]},
-   {h:"Strength", m:"22 min", note:"3 sets each. Supersets A and B: the 2 doesn't tire out what the 1 needs, so you use your rest instead of sitting.", rows:[
-    ["Smith back squat","Bar × 10, 135 × 5, then 3 × 6 @ 185","Full depth you control, chest up",HAM,S("smith machine squat form"),"A1"],
-    ["Psoas march, 5-sec hold","3 × 6 each side","Band on the feet, lying down, drive one knee up and hold: hip flexor strength",FMF,S("psoas march exercise"),"A2"],
-    ["Dumbbell jump squat","3 × 5","Light dumbbells (15–20 lb each hand) at your sides. Sit to a quarter squat, jump, land soft and reset before the next rep",HAM,S("dumbbell jump squat form"),"B1"],
-    ["Assisted pistol squat","3 × 5 each side","Hold the cable column, sit down slowly on one leg",LW,S("assisted pistol squat progression"),"B2"],
-    ["Dumbbell walking lunge","3 × 10 each leg","40–50 lb dumbbells, front foot stays flat",HAM,"https://youtube.com/shorts/JMkDwe0Wki4"]]},
-   {h:"Glutes + hips", m:"6 min", note:"Superset C, 3 rounds. No equipment needed.", rows:[
-    ["Single-leg glute bridge risers","3 × 7 each side","Glutes",AH,"https://youtu.be/pTDQ5tJRhC8","C1"],
-    ["Side-lying hip abduction","3 × (10 straight leg + 5 bent leg) each side","Lie on your side, lift the top leg slightly behind you: outer hip strength",FMF,"https://www.youtube.com/watch?v=C4bQSvhSGZA","C2"]]},
+   {h:"Jump rope + warm-up", m:"8 min", rows:[
+    ["Jump rope, basic bounce","5 × 30 sec on / 30 sec off","Same as Tuesday","",S("jump rope basic bounce beginner")],
+    ["Leg swings, front-back + side-side","1 × 10 each way, each leg","Hold the rack",HAM,S("leg swings front back side")],
+    ["Kneeling hip circles","1 × 6 each way, each side","Big slow circles",AH,"https://youtu.be/8Om5705EYxA"],
+    ["Glute bridge march","1 × 6 each side","Hips stay level",AH,"https://youtu.be/RvfMT6VOqxQ"]]},
+   {h:"Functional: Balance/Explosive day", m:"10 min", rows:[
+    ["Elastic pops","2 × 15 each ankle","Springy bounces off the ball of the foot",AD,"https://youtube.com/shorts/1WcYTsVK8fM"],
+    ["Push downs","2 × 6 each","Drive the foot down, push off fast",AD,"https://youtube.com/shorts/sboTDWBOH4M"],
+    ["Standing single-leg press","2 × 6 each leg","Weak leg first, hips square",AD,"https://youtube.com/shorts/LAKAXwkQX0A"],
+    ["Hip extension press","2 × 4 each leg","Balance + glute",AD,"https://youtu.be/bBjTolQA-kc"],
+    ["Offset barbell stand","2 × 15 sec each leg, each way","On one leg, weight on one side, don't lean",AD,"https://youtube.com/shorts/-RUXZxbziUw"],
+    ["Jump squats holding a light dumbbell","3 × 5","Land soft (his med ball jumps)",AD,"https://youtube.com/shorts/1ivnIpUqkRg"],
+    ["Tuck jumps","2 × 5","Knees high",AD,"https://youtube.com/shorts/QC6O4WRwbyE"]]},
+   {h:"Strength", m:"18 min", note:"Supersets A, B and C, rest 90 sec–2 min after each round.", rows:[
+    ["Smith Zercher squat","Bar × 8, then 3 × 6 @ 135","Bar in the crook of your elbows (pad it with a towel), chest tall",HAM,S("smith machine zercher squat"),"A1"],
+    ["Copenhagen plank","3 × 20 sec each side","Top leg on the bench, hips up: inner thigh + core","",S("copenhagen plank bench"),"A2"],
+    ["Single-leg dumbbell Romanian deadlift","3 × 8 each leg","One 50–60 lb dumbbell, weak leg first, flat back",AD,"https://youtube.com/shorts/DdKdzMu8qkw","B1"],
+    ["Kneeling dump trucks","3 × 6 each side","Outer hip + rotation",AH,"https://youtu.be/FOfbDPBlgaQ","B2"],
+    ["Smith hip thrust","3 × 10 @ 135","Upper back on the bench, 2-sec squeeze","",S("smith machine hip thrust form"),"C1"],
+    ["Bear-hug carry","3 × 30 yards","Hug a 45 lb plate or your heaviest dumbbell tight to your chest","",S("bear hug carry"),"C2"]]},
+   {h:"Pull-up volume", m:"12 min", guide:true, note:"Same rules as Monday: every rep from your back. Grip opposite to Monday, no vest. Superset D: each bodyweight set, then 15 push-ups.", rows:[
+    ["Explosive chest-to-bar pull-ups","3 × 5","Pull as high and fast as you can, rest 90 sec. Muscle-up prep",LW,S("explosive chest to bar pull ups muscle up")],
+    ["Bodyweight pull-ups","4 × 10","Perfect form, rest 60–90 sec after the push-ups",LW,S("strict pull up form"),"D1"],
+    ["Incline push-ups","4 × 15","Right after each pull-up set","",S("feet elevated push up form"),"D2"]]},
    {h:"Cool-down", m:"2 min", rows:[
-    ["Half-kneeling hip flexor stretch","30 sec each side","Squeeze the back glute",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"],
-    ["Seated hamstring V-stretch","30 sec","Legs wide, walk your hands forward",HAM,S("seated v sit hamstring stretch")]]}
+    ["Active pigeon","45 sec each side","Outer hip",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
+    ["Seated hamstring V-stretch","30 sec","",HAM,S("seated v sit hamstring stretch")]]}
   ]},
  {id:"fri", chip:"Fri", kicker:"Friday · finish strong", title:"Pull + bench + arms + lower abs", time:"~60 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility A (no push-ups tonight, you did 100 with bench)",
   blocks:[
@@ -357,35 +363,29 @@ const DAYS = [
    {h:"Cool-down", m:"2 min", rows:[
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","Hold the Smith bar, sink your hips back",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"sat", chip:"Sat", kicker:"Saturday · lift before the fair", title:"Legs B: real-world strength + pull volume", time:"~55 min", stair:["35-min intervals","after leg day"], night:"Hip mobility A (no push-ups tonight)",
+ {id:"sat", chip:"Sat", kicker:"Saturday · lift before the fair", title:"Legs A: explosive + squat", time:"~45 min", stair:["35-min intervals","after leg day"], night:"Hip mobility B + 100 push-ups",
   blocks:[
-   {h:"Jump rope + warm-up", m:"8 min", rows:[
-    ["Jump rope, basic bounce","5 × 30 sec on / 30 sec off","Same as Tuesday","",S("jump rope basic bounce beginner")],
-    ["Leg swings, front-back + side-side","1 × 10 each way, each leg","Hold the rack",HAM,S("leg swings front back side")],
-    ["Kneeling hip circles","1 × 6 each way, each side","Big slow circles",AH,"https://youtu.be/8Om5705EYxA"],
-    ["Glute bridge march","1 × 6 each side","Hips stay level",AH,"https://youtu.be/RvfMT6VOqxQ"]]},
-   {h:"Functional: Balance/Explosive day", m:"10 min", rows:[
-    ["Elastic pops","2 × 15 each ankle","Springy bounces off the ball of the foot",AD,"https://youtube.com/shorts/1WcYTsVK8fM"],
-    ["Push downs","2 × 6 each","Drive the foot down, push off fast",AD,"https://youtube.com/shorts/sboTDWBOH4M"],
-    ["Standing single-leg press","2 × 6 each leg","Weak leg first, hips square",AD,"https://youtube.com/shorts/LAKAXwkQX0A"],
-    ["Hip extension press","2 × 4 each leg","Balance + glute",AD,"https://youtu.be/bBjTolQA-kc"],
-    ["Offset barbell stand","2 × 15 sec each leg, each way","On one leg, weight on one side, don't lean",AD,"https://youtube.com/shorts/-RUXZxbziUw"],
-    ["Jump squats holding a light dumbbell","3 × 5","Land soft (his med ball jumps)",AD,"https://youtube.com/shorts/1ivnIpUqkRg"],
-    ["Tuck jumps","2 × 5","Knees high",AD,"https://youtube.com/shorts/QC6O4WRwbyE"]]},
-   {h:"Strength", m:"18 min", note:"Supersets A, B and C, rest 90 sec–2 min after each round.", rows:[
-    ["Smith Zercher squat","Bar × 8, then 3 × 6 @ 135","Bar in the crook of your elbows (pad it with a towel), chest tall",HAM,S("smith machine zercher squat"),"A1"],
-    ["Copenhagen plank","3 × 20 sec each side","Top leg on the bench, hips up: inner thigh + core","",S("copenhagen plank bench"),"A2"],
-    ["Single-leg dumbbell Romanian deadlift","3 × 8 each leg","One 50–60 lb dumbbell, weak leg first, flat back",AD,"https://youtube.com/shorts/DdKdzMu8qkw","B1"],
-    ["Kneeling dump trucks","3 × 6 each side","Outer hip + rotation",AH,"https://youtu.be/FOfbDPBlgaQ","B2"],
-    ["Smith hip thrust","3 × 10 @ 135","Upper back on the bench, 2-sec squeeze","",S("smith machine hip thrust form"),"C1"],
-    ["Bear-hug carry","3 × 30 yards","Hug a 45 lb plate or your heaviest dumbbell tight to your chest","",S("bear hug carry"),"C2"]]},
-   {h:"Pull-up volume", m:"12 min", guide:true, note:"Same rules as Monday: every rep from your back. Grip opposite to Monday, no vest. Superset D: each bodyweight set, then 15 push-ups.", rows:[
-    ["Explosive chest-to-bar pull-ups","3 × 5","Pull as high and fast as you can, rest 90 sec. Muscle-up prep",LW,S("explosive chest to bar pull ups muscle up")],
-    ["Bodyweight pull-ups","4 × 10","Perfect form, rest 60–90 sec after the push-ups",LW,S("strict pull up form"),"D1"],
-    ["Incline push-ups","4 × 15","Right after each pull-up set","",S("feet elevated push up form"),"D2"]]},
+   {h:"Jump rope + warm-up", m:"5 min", rows:[
+    ["Jump rope, basic bounce","3 × 30 sec on / 30 sec off","Light on the balls of your feet, small hops","",S("jump rope basic bounce beginner")],
+    ["Tibialis raise","1 × 20","Back to the wall, lift your toes, pause top and bottom","",S("tibialis raise wall knees over toes")],
+    ["Banded lateral walks","2 × 8 each way","Band above the knees, stay low",AD,"https://youtube.com/shorts/GMo4gT2e-Dc"]]},
+   {h:"Functional: jump primer", m:"10 min", note:"Getting your body used to jumping again. Ankles first, then small jumps. About 70% effort, quiet landings, knees over your toes. Weak leg first. If anything pinches, skip that drill today.", rows:[
+    ["Lateral ankle pops","3 × 10 each ankle","Quick and springy, small bounces off the ball of the foot",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
+    ["Single ankle lifts, 3-sec hold","3 × 4 each","Up on one foot, hold at the top. Builds the ankle strength your landings need",AD,"https://youtube.com/shorts/-uEvnEdAgQw"],
+    ["Lateral plate hops","3 × 10 sec","Small side-to-side hops over a plate on the floor",AD,"https://youtube.com/shorts/XomC_FIU_E0"],
+    ["Lateral bounds, stick the landing","3 × 4 each side","Jump sideways off one leg, land on the other and hold 2 sec. Short jumps this week; distance comes later",AD,"https://youtube.com/shorts/00tM64YTOTE"]]},
+   {h:"Strength", m:"22 min", note:"3 sets each. Supersets A and B: the 2 doesn't tire out what the 1 needs, so you use your rest instead of sitting.", rows:[
+    ["Smith back squat","Bar × 10, 135 × 5, then 3 × 6 @ 185","Full depth you control, chest up",HAM,S("smith machine squat form"),"A1"],
+    ["Psoas march, 5-sec hold","3 × 6 each side","Band on the feet, lying down, drive one knee up and hold: hip flexor strength",FMF,S("psoas march exercise"),"A2"],
+    ["Dumbbell jump squat","3 × 5","Light dumbbells (15–20 lb each hand) at your sides. Sit to a quarter squat, jump, land soft and reset before the next rep",HAM,S("dumbbell jump squat form"),"B1"],
+    ["Assisted pistol squat","3 × 5 each side","Hold the cable column, sit down slowly on one leg",LW,S("assisted pistol squat progression"),"B2"],
+    ["Dumbbell walking lunge","3 × 10 each leg","40–50 lb dumbbells, front foot stays flat",HAM,"https://youtube.com/shorts/JMkDwe0Wki4"]]},
+   {h:"Glutes + hips", m:"6 min", note:"Superset C, 3 rounds. No equipment needed.", rows:[
+    ["Single-leg glute bridge risers","3 × 7 each side","Glutes",AH,"https://youtu.be/pTDQ5tJRhC8","C1"],
+    ["Side-lying hip abduction","3 × (10 straight leg + 5 bent leg) each side","Lie on your side, lift the top leg slightly behind you: outer hip strength",FMF,"https://www.youtube.com/watch?v=C4bQSvhSGZA","C2"]]},
    {h:"Cool-down", m:"2 min", rows:[
-    ["Active pigeon","45 sec each side","Outer hip",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
-    ["Seated hamstring V-stretch","30 sec","",HAM,S("seated v sit hamstring stretch")]]}
+    ["Half-kneeling hip flexor stretch","30 sec each side","Squeeze the back glute",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"],
+    ["Seated hamstring V-stretch","30 sec","Legs wide, walk your hands forward",HAM,S("seated v sit hamstring stretch")]]}
   ]},
  {id:"sun", chip:"Sun", kicker:"Sunday", title:"Fair day", time:"", stair:["",""], night:"",
   blocks:[
@@ -463,7 +463,7 @@ const NIGHT = {
   ["Kneeling hip flexor stretch","20 sec each side · 40 sec","Floor, pillow under the knee. Squeeze the back glute, tuck your tailbone",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"]]}
 };
 const NIGHT_BY_DAY = {mon:"a",tue:"b",wed:"a",thu:"b",fri:"a",sat:"b",sun:"a"};
-const PUSH_BY_DAY = {mon:false,tue:false,wed:false,thu:true,fri:false,sat:false,sun:false};
+const PUSH_BY_DAY = {mon:false,tue:false,wed:false,thu:false,fri:false,sat:true,sun:false};
 
 const ZONES = [["6","Easy, almost a warm-up","Warm-up and cool-down","#6F8F86"],["7","Cruising, feel good","As long as you want","#2F8F75"],["8","Starting to push it","Several minutes at a time","#0D7A63"],["9","Getting there","10–15 min max","#B8801E"],["10","Hard","1–2 min","#B85C1E"],["15","Sprint","30 sec–1 min bursts only","#A33A2A"]];
 const COLOR = Object.fromEntries(ZONES.map(z=>[z[0],z[3]]));
@@ -812,7 +812,7 @@ function renderCali(){
   app.querySelectorAll("[data-sk]").forEach(cb=>cb.addEventListener("change",()=>{ d.done[cb.dataset.sk]=cb.checked; save("cali"); const y=scrollY; renderCali(); scrollTo(0,y); }));
   app.querySelectorAll("[data-best]").forEach(inp=>inp.addEventListener("input",()=>{ d.best[inp.dataset.best]=inp.value; saveSoon("cali"); }));
 }
-const SKILLS_BY_DAY = {mon:[],tue:[],wed:["Handstand push-up","Muscle-up (dips)","Dragon flag"],thu:["Pistol squat"],fri:["Pull-ups → 50","Handstand push-up","One-arm push-up","Lower abs"],sat:["Muscle-up","Pull-ups → 50"],sun:[]};
+const SKILLS_BY_DAY = {mon:[],tue:[],wed:["Handstand push-up","Muscle-up (dips)","Dragon flag"],thu:["Muscle-up","Pull-ups → 50"],fri:["Pull-ups → 50","Handstand push-up","One-arm push-up","Lower abs"],sat:["Pistol squat"],sun:[]};
 
 /* ---------- Breathing + mindset (used in Morning and Night) ---------- */
 const BREATHS = {
