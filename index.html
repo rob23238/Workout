@@ -212,7 +212,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-14l";
+const APP_VERSION = "2026-10-14m";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -252,7 +252,7 @@ const DAYS = [
   blocks:[
    {h:"Today", m:"", note:"StairMaster this morning, no lift. Nothing else to do here.", rows:[]}
   ]},
- {id:"wed", chip:"Wed", kicker:"Wednesday", title:"Push + arms + core", time:"~60 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility B (no push-ups tonight, you did 100 with bench)",
+ {id:"wed", chip:"Wed", kicker:"Wednesday", title:"Push + arms + core", time:"~65 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility B (no push-ups tonight, you did 100 with bench)",
   blocks:[
    {h:"Shoulder + wrist warm-up", m:"5 min", rows:[
     ["Wall slides","1 × 10","Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
@@ -267,11 +267,11 @@ const DAYS = [
     ["Set 4","225 × 5","","","","A1"],
     ["Incline push-ups","25 after sets 1–4 (100 total)","If 25 breaks, take 5 breaths and finish it","",S("feet elevated push up form"),"A2"],
     ["Set 5","235 × 3","Top set: clean reps only, full rest before it",HAM,""]]},
-   {h:"Calisthenics", m:"10 min", note:"Handstand hold first while you're fresh, then superset B. B2 depends on where you are: dips at the YMCA, L-sit at home.", rows:[
+   {h:"Calisthenics", m:"12 min", note:"Handstand hold first while you're fresh, then superset B. B2 depends on where you are: dips at the YMCA, L-sit at home.", rows:[
     ["Wall handstand hold, chest to wall","3 × 30 sec","Walk your feet up the wall, body straight",LW,"https://www.tiktok.com/t/ZPLSuXqwY/"],
     ["Pike push-ups","3 × 6","Hips high, head lands in front of your hands",LW,"https://www.tiktok.com/t/ZPLSuaT3v/","B1"],
     ["Dips or L-sit","YMCA: dips 3 × 8 · Home: L-sit 3 sets","YMCA (dip bars): parallel bar dips, lean slightly forward, shoulders just below elbows, press to locked arms. Home (no dip bar): your current L-sit step from the Calisthenics tab, hands on two dumbbells",LW,S("parallel bar dips proper form"),"B2"]]},
-   {h:"Shoulders, chest, arms", m:"16 min", note:"Supersets C, D and E, rest 60 sec after each round.", rows:[
+   {h:"Shoulders, chest, arms", m:"20 min", note:"Supersets C, D and E, rest 60 sec after each round.", rows:[
     ["Seated dumbbell shoulder press","3 × 8","Ribs down, don't lean back",HAM,S("seated dumbbell shoulder press form"),"C1"],
     ["Cable face pull","3 × 15","Pull to your forehead, thumbs back: posture","",S("cable face pull form"),"C2"],
     ["Cable rope overhead triceps extension","3 × 12","Big stretch behind your head","",S("cable overhead triceps extension rope"),"D1"],
@@ -319,7 +319,7 @@ const DAYS = [
     ["Active pigeon","45 sec each side","Outer hip",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
     ["Seated hamstring V-stretch","30 sec","",HAM,S("seated v sit hamstring stretch")]]}
   ]},
- {id:"fri", chip:"Fri", kicker:"Friday · finish strong", title:"Pull + bench + arms + lower abs", time:"~60 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility A (no push-ups tonight, you did 100 with bench)",
+ {id:"fri", chip:"Fri", kicker:"Friday · finish strong", title:"Pull + bench + arms + lower abs", time:"~70 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility A (no push-ups tonight, you did 100 with bench)",
   blocks:[
    {h:"Shoulder warm-up", m:"5 min", rows:[
     ["Wall slides","1 × 10","Back, head and arms flat on the wall, slide your arms up into a Y and back down. Wakes up the shoulder blades and fixes rounded shoulders","",S("wall slides shoulder mobility")],
@@ -354,6 +354,8 @@ const DAYS = [
     ["Hanging leg raise, full range","3 × 5","Perfect reps only",MINE,S("hanging leg raise full range no swing"),"G1"],
     ["6-inch hold","3 × 20 sec","Heels 6 inches off the floor, low back pressed flat",AC,"https://www.youtube.com/watch?v=1CpgAh7wdDk","G2"],
     ["Lying leg raises, slow","1 × 12","3 sec down, don't let your low back lift",AC,"https://www.youtube.com/watch?v=JB2oyawG9KI"]]},
+   {h:"Grip finisher", m:"3 min", rows:[
+    ["Dead hang into hanging L","2 × max hold","Hang from the pull-up bar, shoulders pulled down, squeeze the bar hard. When your grip starts to fade, pull your knees up into a tuck L and hold as long as you can. Rest 60 sec","",S("dead hang grip strength hanging l sit tuck")]]},
    {h:"Hip finisher", m:"4 min", rows:[
     ["Quadruped hip controlled circles","2 × 4 each side","On hands and knees, slow full circles, back still",FMF,"https://www.youtube.com/watch?v=rqLtUosOs0U"],
     ["Fire hydrants","1 × 10 each side","Outer hip",AH,"https://youtu.be/s1Ib-pVJpdk"],
