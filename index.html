@@ -217,7 +217,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-14v";
+const APP_VERSION = "2026-10-14w";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -446,18 +446,22 @@ const SPARE_DAYS = [
 ];
 
 const NIGHT = {
- a:{title:"Night A", focus:"Hamstrings · hip flexors · outer hips", days:"Mon · Wed · Fri", rows:[
-  ["Quadruped hip controlled circles","2 slow circles each way, each side · 1 min","Floor. On hands and knees, biggest circle you can, back still. Warms the joint up",FMF,"https://www.youtube.com/watch?v=rqLtUosOs0U"],
-  ["Pigeon, contract-relax","60 sec each side · 2 min","Floor or bed, front foot flexed. Press the front shin down 5 sec, try to lift it 5 sec, sink lower. Repeat",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
-  ["Half split, contract-relax","60 sec each leg · 2 min","Back knee down, front leg straight, toes up. Press the heel into the floor 5 sec, relax, fold lower","",S("half split hamstring stretch contract relax")],
-  ["Kneeling hip flexor stretch","60 sec each side · 2 min","Pillow under the knee. Squeeze the back glute, tuck your tailbone, stand your chest up",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"],
-  ["Front split slide","60 sec each side · 2 min","Hands on the bed edge or two books. Slide the front heel forward and back knee back only as far as you control. Hips square","",S("front split progression with blocks")]]},
- b:{title:"Night B", focus:"Inner thighs · turning in · butterfly", days:"Tue · Thu · Sat", rows:[
-  ["90/90, tense-and-lift","45 sec each side, then 5 lift-offs · 2 min","Floor. Sit tall in 90/90, press the back knee down 10 sec, then lift it off the floor and hold 2 sec",FMF,"https://www.youtube.com/watch?v=RqjzWBqXYSg"],
-  ["Frog stretch, rocking","2 × 60 sec · 2 min","Floor. Knees wide, shins parallel. Rock your hips back and forward slowly, then hold the deepest spot",FMF,S("frog stretch rock back")],
-  ["Butterfly, contract-relax","2 × 60 sec · 2 min","Feet together, hands on your knees. Press your knees up into your hands 5 sec, relax, let them drop lower",FMF,"https://www.youtube.com/watch?v=ml5kqS6LZWc"],
-  ["Straddle reach","60 sec · 1 min","Legs wide, toes up, back flat. Walk your hands forward from the hips","",S("straddle stretch pancake beginner")],
-  ["Horse stance","2 × 45 sec · 2 min","Feet wide, toes out, sit low, chest up. Strength in the wide position so your body lets you go deeper","",S("horse stance hold")]]}
+ a:{title:"Night A", focus:"Front split · outer hips · pigeon", days:"Mon · Wed · Fri", rows:[
+  ["Quadruped hip controlled circles","2 slow circles each way, each side · 1 min","Mobility. On hands and knees, biggest circle you can, back still. Warms the joint up",FMF,"https://www.youtube.com/watch?v=rqLtUosOs0U"],
+  ["Pigeon, contract-relax","60 sec each side · 2 min","Stretch. Front foot flexed. Press the front shin down 5 sec, try to lift it 5 sec, sink lower. Repeat",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
+  ["Doggies, 3-sec hold","5 each side · 1 min","Strength. On hands and knees, lift the bent knee out to the side as high as you can and hold. Outer hip strength in the range pigeon needs",AH,"https://youtu.be/lwxlCzVtjWk"],
+  ["Half split, contract-relax","60 sec each leg · 2 min","Stretch. Back knee down, front leg straight, toes up. Press the heel into the floor 5 sec, relax, fold lower","",S("half split hamstring stretch contract relax")],
+  ["Kneeling hip flexor stretch","60 sec each side · 2 min","Stretch. Pillow under the knee. Squeeze the back glute, tuck your tailbone, stand your chest up",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"],
+  ["End-range knee pulls, 3-sec hold","4 each leg · 1 min","Strength. Pull your knee as high as it goes without hands and hold. Builds the hip flexor strength that holds a front split",AH,"https://youtu.be/PFanwSVshOU"],
+  ["Front split slide","60 sec each side · 2 min","Practice. Hands on the bed edge or two books. Slide the front heel forward and back knee back only as far as you control. Hips square","",S("front split progression with blocks")]]},
+ b:{title:"Night B", focus:"Middle split · butterfly · crisscross", days:"Tue · Thu · Sat", rows:[
+  ["90/90, tense-and-lift","45 sec each side, then 5 lift-offs · 2 min","Mobility. Sit tall in 90/90, press the back knee down 10 sec, then lift it off the floor and hold 2 sec",FMF,"https://www.youtube.com/watch?v=RqjzWBqXYSg"],
+  ["Frog stretch, rocking","2 × 60 sec · 2 min","Stretch. Knees wide, shins parallel. Rock your hips back and forward slowly, then hold the deepest spot",FMF,S("frog stretch rock back")],
+  ["Butterfly, contract-relax","2 × 60 sec · 2 min","Stretch. Feet together, hands on your knees. Press your knees up into your hands 5 sec, relax, let them drop lower",FMF,"https://www.youtube.com/watch?v=ml5kqS6LZWc"],
+  ["Leg over kettles","6 each leg · 1.5 min","Mobility. Seated, lift each leg up and over an object and back, hips turning in and out. Builds the rotation crisscross sitting needs",AH,"https://youtu.be/hps5M-DWg3k"],
+  ["Sitting leg lifts in and out, 3-sec hold","5 each side · 1.5 min","Strength. Seated with legs straight, lift one leg and move it out to the side and back, holding each end",AH,"https://youtu.be/TSUPBX45krA"],
+  ["Straddle reach","60 sec · 1 min","Stretch. Legs wide, toes up, back flat. Walk your hands forward from the hips","",S("straddle stretch pancake beginner")],
+  ["Horse stance","2 × 45 sec · 1.5 min","Strength. Feet wide, toes out, sit low, chest up. Strength in the wide position so your body lets you go deeper","",S("horse stance hold")]]}
 };
 const CR = "Contract-relax: push into the stretch 5 sec, relax 5 sec, sink a little deeper. Repeat for the whole hold. Feel a stretch, never sharp pain.";
 const NIGHT_BY_DAY = {mon:"a",tue:"b",wed:"a",thu:"b",fri:"a",sat:"b",sun:null};
@@ -627,10 +631,10 @@ function renderNight(){
     <div class="seg"><button type="button" data-n="a" aria-pressed="false">Do A anyway</button><button type="button" data-n="b" aria-pressed="false">Do B anyway</button></div></div>`;
   } else {
     const sel = nightSel || tonight, n = NIGHT[sel];
-    h = `<div class="dayhead"><div class="kicker">Night · after Normatec · ~12 min + wind down</div><h2>${esc(n.title)}</h2><p style="color:var(--accent);font-weight:700">${esc(n.focus)}</p>
+    h = `<div class="dayhead"><div class="kicker">Night · after Normatec · ~13 min + wind down</div><h2>${esc(n.title)}</h2><p style="color:var(--accent);font-weight:700">${esc(n.focus)}</p>
     <div class="seg"><button type="button" data-n="a" aria-pressed="${sel==="a"}">A</button><button type="button" data-n="b" aria-pressed="${sel==="b"}">B</button></div>
-    <div class="tbar" style="margin-top:12px">${tpair("block", 720, "12:00 routine", n.title)}</div></div>
-    <div class="callout"><b>How to hold:</b> ${esc(CR)}</div>`;
+    <div class="tbar" style="margin-top:12px">${tpair("block", 780, "13:00 routine", n.title)}</div></div>
+    <div class="callout"><b>Each move is one of three kinds:</b> <b>Mobility</b> moves the joint through its full range. <b>Stretch</b> opens it. <b>Strength</b> makes you strong in the new range so it sticks.<br><br><b>How to hold a stretch:</b> ${esc(CR)}</div>`;
     h += `<section class="block"><h3>Routine <small>${esc(n.days)}</small></h3><div class="list">` + n.rows.map(r=>rowHTML("night"+sel, "n"+sel+"-"+slug(r[0]), r, d, false)).join("") + `</div></section>`;
   }
   if(PUSH_BY_DAY[wk]) h += `<section class="block"><h3>100 push-ups</h3><p class="note">4 × 25 with clean form, no vest. Floor push-ups are fine at night. <a class="vid" href="${S("perfect push up form")}" target="_blank" rel="noopener">Find video ↗</a></p><div class="field"><input type="checkbox" id="pu" style="flex:0 0 auto;width:24px;height:24px;accent-color:var(--accent)"${d.push?" checked":""}><label for="pu">Done tonight</label></div></section>`;
