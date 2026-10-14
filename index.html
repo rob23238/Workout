@@ -217,7 +217,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-14u";
+const APP_VERSION = "2026-10-14v";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -446,20 +446,21 @@ const SPARE_DAYS = [
 ];
 
 const NIGHT = {
- a:{title:"Hip mobility · Night A", focus:"Outer glute + turning out", days:"Mon · Wed · Fri · Sun", intro:"Flow Motion Fitness calls turning the hip out the most important hip motion, so Night A opens the outer glute and works that range. Order matters: circle the joint, open it with holds, then switch on the muscles in the new range so it sticks. Slow breathing, never force it. Feel it in the hip, never the knee.", rows:[
-  ["Quadruped hip controlled circles","2 slow circles each way, each side · 1 min","Floor or bed. On hands and knees, biggest circle you can, back and pelvis still",FMF,"https://www.youtube.com/watch?v=rqLtUosOs0U"],
-  ["Active pigeon, tense-and-lift","45 sec each side · 1.5 min","Floor or bed. 25 sec relaxed, 10 sec press the front shin down, 10 sec try to lift it",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
-  ["Seated glute stretch","30 sec each side · 1 min","Bed edge. Ankle over the opposite knee, foot flexed, lean forward from the hips",FMF,"https://www.youtube.com/watch?v=NoxR58Z-1Zw"],
-  ["Doggies, 3-sec hold","5 each side · 1 min","Floor. On hands and knees, lift the bent knee out to the side and hold: outer glute strength at end range",AH,"https://youtu.be/lwxlCzVtjWk"],
-  ["Kneeling hip flexor stretch","20 sec each side · 40 sec","Floor, pillow under the knee. Squeeze the back glute, tuck your tailbone",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"]]},
- b:{title:"Hip mobility · Night B", focus:"Turning in + hip flexors", days:"Tue · Thu · Sat", intro:"Flow Motion Fitness ties turning the hip in to change of direction, and tight hip flexors pull on it. Night B works internal rotation and the front of the hip. Tense-and-lift: hold the stretch, push into it for 10 sec, then try to lift out of it for 10 sec.", rows:[
-  ["Kneeling hip circles","3 each way, each side · 1 min","Floor. On hands and knees, slow full circles: warms the joint up",AH,"https://youtu.be/8Om5705EYxA"],
-  ["90/90 hip internal rotation, tense-and-lift","45 sec each side · 1.5 min","Floor. Both knees bent at 90 degrees, 25 sec relaxed, then 10 sec press the back knee down, 10 sec try to lift it",FMF,"https://www.youtube.com/watch?v=RqjzWBqXYSg"],
-  ["L hip stretch","30 sec each way · 1 min","Floor. Outer hip and hip flexor together",AH,"https://youtu.be/Nt_c2GZ27YQ"],
-  ["Laying lateral leg lifts","6 each side, 2-sec hold · 1 min","Bed or floor. Lie on your side, lift the top leg slightly behind you: outer glute",AH,"https://youtu.be/pZ0uzrG03-c"],
-  ["Kneeling hip flexor stretch","20 sec each side · 40 sec","Floor, pillow under the knee. Squeeze the back glute, tuck your tailbone",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"]]}
+ a:{title:"Night A", focus:"Hamstrings · hip flexors · outer hips", days:"Mon · Wed · Fri", rows:[
+  ["Quadruped hip controlled circles","2 slow circles each way, each side · 1 min","Floor. On hands and knees, biggest circle you can, back still. Warms the joint up",FMF,"https://www.youtube.com/watch?v=rqLtUosOs0U"],
+  ["Pigeon, contract-relax","60 sec each side · 2 min","Floor or bed, front foot flexed. Press the front shin down 5 sec, try to lift it 5 sec, sink lower. Repeat",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
+  ["Half split, contract-relax","60 sec each leg · 2 min","Back knee down, front leg straight, toes up. Press the heel into the floor 5 sec, relax, fold lower","",S("half split hamstring stretch contract relax")],
+  ["Kneeling hip flexor stretch","60 sec each side · 2 min","Pillow under the knee. Squeeze the back glute, tuck your tailbone, stand your chest up",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"],
+  ["Front split slide","60 sec each side · 2 min","Hands on the bed edge or two books. Slide the front heel forward and back knee back only as far as you control. Hips square","",S("front split progression with blocks")]]},
+ b:{title:"Night B", focus:"Inner thighs · turning in · butterfly", days:"Tue · Thu · Sat", rows:[
+  ["90/90, tense-and-lift","45 sec each side, then 5 lift-offs · 2 min","Floor. Sit tall in 90/90, press the back knee down 10 sec, then lift it off the floor and hold 2 sec",FMF,"https://www.youtube.com/watch?v=RqjzWBqXYSg"],
+  ["Frog stretch, rocking","2 × 60 sec · 2 min","Floor. Knees wide, shins parallel. Rock your hips back and forward slowly, then hold the deepest spot",FMF,S("frog stretch rock back")],
+  ["Butterfly, contract-relax","2 × 60 sec · 2 min","Feet together, hands on your knees. Press your knees up into your hands 5 sec, relax, let them drop lower",FMF,"https://www.youtube.com/watch?v=ml5kqS6LZWc"],
+  ["Straddle reach","60 sec · 1 min","Legs wide, toes up, back flat. Walk your hands forward from the hips","",S("straddle stretch pancake beginner")],
+  ["Horse stance","2 × 45 sec · 2 min","Feet wide, toes out, sit low, chest up. Strength in the wide position so your body lets you go deeper","",S("horse stance hold")]]}
 };
-const NIGHT_BY_DAY = {mon:"a",tue:"b",wed:"a",thu:"b",fri:"a",sat:"b",sun:"a"};
+const CR = "Contract-relax: push into the stretch 5 sec, relax 5 sec, sink a little deeper. Repeat for the whole hold. Feel a stretch, never sharp pain.";
+const NIGHT_BY_DAY = {mon:"a",tue:"b",wed:"a",thu:"b",fri:"a",sat:"b",sun:null};
 const PUSH_BY_DAY = {mon:false,tue:false,wed:false,thu:false,fri:false,sat:true,sun:false};
 
 const ZONES = [["6","Easy, almost a warm-up","Warm-up and cool-down","#6F8F86"],["7","Cruising, feel good","As long as you want","#2F8F75"],["8","Starting to push it","Several minutes at a time","#0D7A63"],["9","Getting there","10–15 min max","#B8801E"],["10","Hard","1–2 min","#B85C1E"],["15","Sprint","30 sec–1 min bursts only","#A33A2A"]];
@@ -594,7 +595,7 @@ function renderDay(day){
   let h = `<div class="dayhead"><div class="kicker">${esc(day.kicker)} · Week 1</div><h2>${esc(day.title)}</h2><p>${esc(day.time)}</p>`;
   if(rowCount){ const on = W.finish && W.dayId===day.id; h += on ? `<button class="btn startw" id="startw" type="button" style="margin-top:12px;width:100%">Workout running · finish by ${clock(new Date(W.finish))} · tap to end</button>` : `<div class="startpair"><button class="btn" id="startw" type="button">▶ Start · finish by ${clock(new Date(Date.now()+mins(day.time)*60000))}</button><button class="btn" id="startios" type="button" aria-label="iPhone finish alarm only">⏰</button></div>`; }
   if(rowCount) h += `<div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${rowCount}</b></div>`;
-  h += `<div class="after"><div class="pill" style="background:var(--accent-soft)"><strong style="color:var(--accent)">Morning</strong><span>Open up + breathe · <a href="#morning" data-go="morning" style="color:var(--accent);font-weight:700">open</a></span></div><div class="pill"><strong>Tonight</strong><span>${FLEX_BY_DAY[day.id]?"Flexibility "+FLEX_BY_DAY[day.id].toUpperCase():"Hip mobility "+night.toUpperCase()}${PUSH_BY_DAY[day.id]?" + 100 push-ups":""} + breathing · <a href="#night" data-go="night" style="color:var(--warm);font-weight:700">open</a></span></div></div></div>`;
+  h += `<div class="after"><div class="pill" style="background:var(--accent-soft)"><strong style="color:var(--accent)">Morning</strong><span>Open up + breathe · <a href="#morning" data-go="morning" style="color:var(--accent);font-weight:700">open</a></span></div><div class="pill"><strong>Tonight</strong><span>${night?"Night "+night.toUpperCase():"Rest night"}${PUSH_BY_DAY[day.id]?" + 100 push-ups":""} + breathing · <a href="#night" data-go="night" style="color:var(--warm);font-weight:700">open</a></span></div></div></div>`;
   day.blocks.forEach((b,bi)=>{
     const rpl = restPlan(b), bm = mins(b.m);
     h += `<section class="block"><h3>${esc(b.h)}${b.m?` <small>${esc(b.m)}</small>`:""}</h3>`;
@@ -619,23 +620,18 @@ function renderDay(day){
 
 let nightSel = null;
 function renderNight(){
-  const wk = todayId(), fl = FLEX_BY_DAY[wk], d = docOf("night-"+wk);
+  const wk = todayId(), tonight = NIGHT_BY_DAY[wk], d = docOf("night-"+wk);
   let h;
-  if(fl){
-    const sel = flexSel || fl, f = FLEX[sel];
-    h = `<div class="dayhead"><div class="kicker">Night · after Normatec · ~20 min</div><h2>${esc(f.title)}</h2><p>Your body is warm after the Normatec: best time to stretch. Then wind down in bed.</p>
-    <div class="seg"><button type="button" data-f="a" aria-pressed="${sel==="a"}">A</button><button type="button" data-f="b" aria-pressed="${sel==="b"}">B</button></div>
-    <div class="tbar" style="margin-top:12px">${tpair("block", 900, "15:00 session", f.title)}</div>
-    <div class="after"><div class="pill"><strong>Tonight</strong><span>Flexibility ${fl.toUpperCase()}${PUSH_BY_DAY[wk]?" + 100 push-ups":""} + breathing</span></div></div></div>
-    <div class="callout"><b>How to hold:</b> ${esc(CR)}</div>`;
-    h += `<section class="block"><h3>Flexibility <small>15 min</small></h3><div class="list">` + f.rows.map(r=>rowHTML("nightf"+sel, "f"+sel+"-"+slug(r[0]), r, d, false)).join("") + `</div></section>`;
+  if(!tonight && !nightSel){
+    h = `<div class="dayhead"><div class="kicker">Night · Sunday</div><h2>Rest night</h2><p>No stretching tonight. Just wind down, and do your push-ups if they're on.</p>
+    <div class="seg"><button type="button" data-n="a" aria-pressed="false">Do A anyway</button><button type="button" data-n="b" aria-pressed="false">Do B anyway</button></div></div>`;
   } else {
-    const tonight = NIGHT_BY_DAY[wk], sel = nightSel || tonight, n = NIGHT[sel];
-    h = `<div class="dayhead"><div class="kicker">Night · hips after Normatec, then wind down · ~8 min</div><h2>${esc(n.title)}</h2><p style="color:var(--accent);font-weight:700;margin-bottom:6px">${esc(n.focus)}</p><p>${esc(n.intro)}</p>
-    <div class="seg"><button type="button" data-n="a" aria-pressed="${sel==="a"}">A · Turn out</button><button type="button" data-n="b" aria-pressed="${sel==="b"}">B · Turn in</button></div>
-    <div class="tbar" style="margin-top:12px">${tpair("block", 300, "5:00 routine", "Hip mobility "+sel.toUpperCase())}</div>
-    <div class="after"><div class="pill"><strong>Tonight</strong><span>Hip mobility ${tonight.toUpperCase()}${PUSH_BY_DAY[wk]?" + 100 push-ups":""} + breathing</span></div></div></div>`;
-    h += `<section class="block"><h3>Routine <small>${esc(n.days)}</small></h3><div class="list">` + (K=>n.rows.map((r,i)=>rowHTML("night"+sel, sel+"-"+K[0][i], r, d, false)))(keysFor([n])).join("") + `</div></section>`;
+    const sel = nightSel || tonight, n = NIGHT[sel];
+    h = `<div class="dayhead"><div class="kicker">Night · after Normatec · ~12 min + wind down</div><h2>${esc(n.title)}</h2><p style="color:var(--accent);font-weight:700">${esc(n.focus)}</p>
+    <div class="seg"><button type="button" data-n="a" aria-pressed="${sel==="a"}">A</button><button type="button" data-n="b" aria-pressed="${sel==="b"}">B</button></div>
+    <div class="tbar" style="margin-top:12px">${tpair("block", 720, "12:00 routine", n.title)}</div></div>
+    <div class="callout"><b>How to hold:</b> ${esc(CR)}</div>`;
+    h += `<section class="block"><h3>Routine <small>${esc(n.days)}</small></h3><div class="list">` + n.rows.map(r=>rowHTML("night"+sel, "n"+sel+"-"+slug(r[0]), r, d, false)).join("") + `</div></section>`;
   }
   if(PUSH_BY_DAY[wk]) h += `<section class="block"><h3>100 push-ups</h3><p class="note">4 × 25 with clean form, no vest. Floor push-ups are fine at night. <a class="vid" href="${S("perfect push up form")}" target="_blank" rel="noopener">Find video ↗</a></p><div class="field"><input type="checkbox" id="pu" style="flex:0 0 auto;width:24px;height:24px;accent-color:var(--accent)"${d.push?" checked":""}><label for="pu">Done tonight</label></div></section>`;
   h += `<section class="block"><h3>Wind down <small>in bed · 3 min</small></h3><p class="note">After your stretching (and push-ups), lie down and let your body slow down.</p>${breathHTML("belly","nbelly")}${breathHTML("box","nbox")}<div class="callout"><b>Say it:</b> "${esc(GROUNDING)}"</div>${sensesHTML()}<div class="list" style="margin-top:10px">${[["w-belly",["Belly breathing done","","","",""]],["w-box",["Box breathing done","","","",""]],["w-ground",["Grounding statement","","","",""]]].map(([k,r])=>rowHTML("night",k,r,d,false)).join("")}</div></section>`;
@@ -643,7 +639,6 @@ function renderNight(){
   h += `<section class="block"><h3>Sunday check</h3><p class="note">Sit in 90/90 each way and note if you can sit tall without your hands, and how pigeon feels on each side. Easier each week means it's working.</p><div class="field"><label for="gaps">Notes</label><input id="gaps" placeholder="e.g. 90/90 L ok, R needs hands · pigeon R tighter" value="${esc((docOf("checks").gaps)||"")}"></div></section>`;
   app.innerHTML = h;
   app.querySelectorAll("[data-n]").forEach(b=>b.addEventListener("click",()=>{ nightSel=b.dataset.n; renderNight(); }));
-  app.querySelectorAll("[data-f]").forEach(b=>b.addEventListener("click",()=>{ flexSel=b.dataset.f; renderNight(); }));
   const g=document.getElementById("gaps"); if(g) g.addEventListener("input",()=>{ docOf("checks").gaps=g.value; saveSoon("checks"); });
   wire("night-"+wk, 0); wirePacers(); wireTimers();
 }
@@ -904,39 +899,6 @@ function renderMorning(){
   wireTimers();
 }
 
-/* ---------- Flexibility: two sessions, A and B, scheduled on the days by FLEX_BY_DAY. ---------- */
-const CR = "Contract-relax: push into the floor for 5 sec, relax 5 sec, sink a little deeper. Repeat for the whole hold.";
-const FLEX = {
- a:{title:"Flexibility A", rows:[
-  ["Half split, contract-relax","2 × 60 sec each leg","Back knee down, front leg straight, toes up, hips back over the knee. Press the front heel into the floor 5 sec, relax, fold a little lower","",S("half split hamstring stretch contract relax")],
-  ["Couch stretch","2 × 60 sec each side","Back knee by a wall or couch, shin up it, squeeze that glute and stand your chest up","",S("couch stretch hip flexor")],
-  ["Front split slide","2 × 60 sec each side","Hands on the bed edge, two books or two dumbbells. Slide the front heel forward and back knee back only as far as you control. Hips square, never into pain","",S("front split progression with blocks")],
-  ["Pigeon, contract-relax","2 × 60 sec each side","Front foot flexed. Press the front shin down 5 sec, then try to lift it 5 sec, then sink lower",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
-  ["90/90 lift-offs","2 × 5 each side","Sit in 90/90, sit tall, lift the back knee off the floor and hold 2 sec",FMF,"https://www.youtube.com/watch?v=RqjzWBqXYSg"]]},
- b:{title:"Flexibility B", rows:[
-  ["Frog stretch, rocking","2 × 60 sec","On hands and knees, knees wide, shins parallel. Rock your hips back and forward slowly, then hold the deepest spot",FMF,S("frog stretch rock back")],
-  ["Horse stance","3 × 30–60 sec","Feet wide, toes out, sit low, chest up","",S("horse stance hold flexibility middle split")],
-  ["Cossack squats","2 × 6 each side","Shift side to side, straight leg toes up. Go only as deep as you control",FMF,S("cossack squat form")],
-  ["Butterfly, contract-relax","2 × 60 sec","Feet together, hands on your knees. Press your knees up into your hands 5 sec, relax, let them drop lower",FMF,"https://www.youtube.com/watch?v=ml5kqS6LZWc"],
-  ["Straddle reach","2 × 60 sec","Sit with legs wide, toes up, back flat. Walk your hands forward from the hips, not the back","",S("straddle stretch pancake beginner")]]}
-};
-/* 6 days a week, alternating; Sunday off. */
-const FLEX_BY_DAY = {mon:"a",tue:"b",wed:"a",thu:"b",fri:"a",sat:"b",sun:null};
-let flexSel = null;
-function renderFlex(){
-  const wk=todayId(), today=FLEX_BY_DAY[wk], sel=flexSel || today || "a", f=FLEX[sel], d=docOf("flex-"+wk);
-  const keys=f.rows.map(r=>sel+"-"+slug(r[0]));
-  let h = `<div class="dayhead"><div class="kicker">Flexibility · tonight · ~15 min${today?` · ${today.toUpperCase()}`:" · Sunday off"}</div><h2>${esc(f.title)}</h2>
-  <p>Do it at night after the Normatec, when your body is warm. It's also on your Night tab. Feel a stretch, never sharp pain.</p>
-  <div class="seg"><button type="button" data-f="a" aria-pressed="${sel==="a"}">A</button><button type="button" data-f="b" aria-pressed="${sel==="b"}">B</button></div>
-  <div class="tbar" style="margin-top:12px">${tpair("block", 900, "15:00 session", f.title)}</div>
-  <div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${f.rows.length}</b></div></div>
-  <div class="callout"><b>How to hold:</b> ${esc(CR)}</div>
-  <section class="block"><h3>Session</h3><div class="list">${f.rows.map((r,i)=>rowHTML("flex",keys[i],r,d,false)).join("")}</div></section>`;
-  app.innerHTML=h; wire("flex-"+wk, f.rows.length); wireTimers();
-  app.querySelectorAll("[data-f]").forEach(b=>b.addEventListener("click",()=>{ flexSel=b.dataset.f; renderFlex(); }));
-}
-
 /* ---------- Ideas: things you see (TikTok, IG, the gym) to add next week ---------- */
 const WHERE = ["Any day","Mon","Tue","Wed","Thu","Fri","Sat","Sun","Night","StairMaster"];
 function renderIdeas(){
@@ -993,37 +955,16 @@ function renderAM(){
   document.getElementById("am-next").addEventListener("click",()=>{ if(amWeek<0){ amWeek++; renderAM(); } });
 }
 
-/* ---------- Week 1 summary to bring back for Week 2 ---------- */
-function summaryText(){
-  let out = "DISCIPLINE & CONSISTENCY · WEEK 1 LOG\n";
-  DAYS.forEach(day=>{
-    const d = docOf(day.id); const lines=[];
-    const K=keysFor(day.blocks); day.blocks.forEach((b,bi)=>b.rows.forEach((r,ri)=>{ const v=(d.logs||{})[K[bi][ri]]; if(v&&v.trim()) lines.push(`  ${r[0]}: ${v.trim()} (plan ${r[1]})`); }));
-    const total = day.blocks.reduce((a,b)=>a+b.rows.length,0), valid=new Set(K.flat()), n=Object.entries(d.checks||{}).filter(([k,v])=>v&&valid.has(k)).length;
-    const missed = n ? day.blocks.flatMap((b,bi)=>b.rows.filter((r,ri)=>!(d.checks||{})[K[bi][ri]]).map(r=>r[0])) : [];
-    out += `\n${day.kicker}: ${day.title}\n  Checked off ${n}/${total}\n` + (lines.join("\n")||"  (no numbers logged)") + (missed.length?`\n  Not done: ${missed.join(", ")}`:"") + (d.cal?`\n  StairMaster calories: ${d.cal}`:"") + "\n";
-  });
-  const g = docOf("checks").gaps; if(g) out += `\nHip check (Sunday): ${g}\n`;
-  out += `\nHip mobility nights done: ` + ["mon","tue","wed","thu","fri","sat","sun"].map(w=>{const d=docOf("night-"+w);const n=Object.entries(d.checks||{}).filter(([k,v])=>v&&/^[ab]-/.test(k)).length+(d.legacyNight||0);return w+" "+n+"/"+NIGHT[NIGHT_BY_DAY[w]].rows.length+(PUSH_BY_DAY[w]?(d.push?" +100":" (no push-ups)"):"")}).join(", ") + "\n";
-  out += `Morning routines done: ` + ["mon","tue","wed","thu","fri","sat","sun"].map(w=>w+" "+Object.values(docOf("morning-"+w).checks||{}).filter(Boolean).length).join(", ") + "\n";
-  out += `Night wind-down done: ` + ["mon","tue","wed","thu","fri","sat","sun"].map(w=>w+" "+Object.entries(docOf("night-"+w).checks||{}).filter(([k,v])=>v&&/^w-/.test(k)).length+"/3").join(", ") + "\n";
-  const am = docOf("am").days || {}; const wk = weekDates(0);
-  out += `\nMorning StairMaster this week: ` + wk.map(x=>x.toLocaleDateString(undefined,{weekday:"short"})+" "+(am[ymd(x)]==="went"?"went":am[ymd(x)]==="skip"?"skipped":"-")).join(", ") + "\n";
-  const cd = docOf("cali"); out += `\nCALISTHENICS\n` + SKILLS.map(sk=>{ const nx=sk.steps.findIndex((_,i)=>!skDone(cd,sk,i)); return `  ${sk.name}: ${sk.steps.filter((_,i)=>skDone(cd,sk,i)).length}/${sk.steps.length}` + (nx>=0?` · next: ${sk.steps[nx][0]}`:" · DONE") + ((cd.best||{})[sk.id]?` · best: ${cd.best[sk.id]}`:""); }).join("\n") + "\n";
-  const ideas = docOf("ideas").items || [];
-  if(ideas.length) out += `\nIDEAS TO ADD (my feedback)\n` + ideas.map(i=>`  - [${i.where}] ${i.what}${i.swap?` (replace: ${i.swap})`:""}${i.link?` ${i.link}`:""}`).join("\n") + "\n";
-  return out;
-}
 
 /* ---------- tabs ---------- */
-const TABS = [...DAYS.map(d=>({id:d.id, chip:d.chip})), {id:"morning",chip:"Morning"}, {id:"night",chip:"Night"}, {id:"flex",chip:"Flexibility"}, {id:"stair",chip:"Stair"}, {id:"am",chip:"AM Stair"}, {id:"cali",chip:"Calisthenics"}, {id:"ideas",chip:"Ideas"}];
+const TABS = [...DAYS.map(d=>({id:d.id, chip:d.chip})), {id:"morning",chip:"Morning"}, {id:"night",chip:"Night"}, {id:"stair",chip:"Stair"}, {id:"am",chip:"AM Stair"}, {id:"cali",chip:"Calisthenics"}, {id:"ideas",chip:"Ideas"}];
 function todayId(){ return ["sun","mon","tue","wed","thu","fri","sat"][new Date().getDay()]; }
 function render(id){
   current = id; if(typeof stopPacer==="function") stopPacer();
   [...tabsEl.children].forEach(c=>c.setAttribute("aria-selected", c.dataset.id===id ? "true":"false"));
   if(id!=="stair" && tState.running){ /* keep timer running in background state */ }
   const day = DAYS.find(x=>x.id===id);
-  if(day) renderDay(day); else if(id==="stair") renderStair(); else if(id==="night") renderNight(); else if(id==="morning") renderMorning(); else if(id==="flex") renderFlex(); else if(id==="am") renderAM(); else if(id==="cali") renderCali(); else if(id==="ideas") renderIdeas(); else renderDay(DAYS[0]);
+  if(day) renderDay(day); else if(id==="stair") renderStair(); else if(id==="night") renderNight(); else if(id==="morning") renderMorning(); else if(id==="am") renderAM(); else if(id==="cali") renderCali(); else if(id==="ideas") renderIdeas(); else renderDay(DAYS[0]);
   app.querySelectorAll("[data-go]").forEach(a=>a.addEventListener("click",e=>{ e.preventDefault(); go(a.dataset.go); }));
 }
 function go(id){ render(id); window.scrollTo({top:0}); const el=tabsEl.querySelector(`[data-id="${id}"]`); el?.scrollIntoView({inline:"center",block:"nearest"}); }
