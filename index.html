@@ -217,7 +217,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-14p";
+const APP_VERSION = "2026-10-14q";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -892,6 +892,44 @@ function renderMorning(){
   wireTimers();
 }
 
+/* ---------- Flexibility: splits, easy pigeon, knees-down butterfly. Separate from workouts. ---------- */
+const CR = "Contract-relax: push into the floor for 5 sec, relax 5 sec, sink a little deeper. Repeat for the whole hold.";
+const FLEX = {
+ a:{title:"Flex A · Front splits + outer hips", focus:"Hamstrings, hip flexors, turning the hip out", rows:[
+  ["Half split, contract-relax","2 × 60 sec each leg","Back knee down, front leg straight, toes up, hips back over the knee. Press the front heel into the floor 5 sec, relax, fold a little lower","",S("half split hamstring stretch contract relax")],
+  ["Couch stretch","2 × 60 sec each side","Back knee by a wall or couch, shin up it, squeeze that glute and stand your chest up. Opens the hip flexor that blocks your front split","",S("couch stretch hip flexor")],
+  ["Front split slide","2 × 60 sec each side","Hands on two chairs or dumbbells. Slide the front heel forward and back knee back only as far as you control. Hips square, never into pain","",S("front split progression with blocks")],
+  ["Pigeon, contract-relax","2 × 60 sec each side","Front foot flexed. Press the front shin down 5 sec, then try to lift it 5 sec, then sink lower. This is what makes pigeon easy",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
+  ["90/90 lift-offs","2 × 5 each side","Sit in 90/90, sit tall, lift the back knee off the floor and hold 2 sec. Strength at end range keeps the new range",FMF,"https://www.youtube.com/watch?v=RqjzWBqXYSg"]]},
+ b:{title:"Flex B · Middle splits + butterfly", focus:"Inner thighs, knees down in butterfly and crisscross", rows:[
+  ["Frog stretch, rocking","2 × 60 sec","On hands and knees, knees wide, shins parallel. Rock your hips back and forward slowly, then hold the deepest spot",FMF,S("frog stretch rock back")],
+  ["Horse stance","3 × 30–60 sec","Feet wide, toes out, sit low, chest up. Builds strength in the wide position so your body lets you go deeper","",S("horse stance hold flexibility middle split")],
+  ["Cossack squats","2 × 6 each side","Shift side to side, straight leg toes up. Go only as deep as you control",FMF,S("cossack squat form")],
+  ["Butterfly, contract-relax","2 × 60 sec","Feet together, hands on your knees. Press your knees UP into your hands 5 sec, relax, let them drop lower. Measure the gap on Sundays",FMF,"https://www.youtube.com/watch?v=ml5kqS6LZWc"],
+  ["Straddle reach","2 × 60 sec","Sit with legs wide, toes up, back flat. Walk your hands forward from the hips, not the back","",S("straddle stretch pancake beginner")]]}
+};
+let flexSel = null;
+function renderFlex(){
+  const wk=todayId(), sel=flexSel || (["mon","wed","fri","sun"].includes(wk)?"a":"b"), f=FLEX[sel], d=docOf("flex-"+wk), c=docOf("flexcheck");
+  const keys=f.rows.map(r=>sel+"-"+slug(r[0]));
+  let h = `<div class="dayhead"><div class="kicker">Flexibility · ~15 min · not part of your workouts</div><h2>${esc(f.title)}</h2><p style="color:var(--accent);font-weight:700;margin-bottom:6px">${esc(f.focus)}</p>
+  <p>Goals: full splits, pigeon that feels easy, knees down in butterfly and crisscross. Alternate A and B, 4–5 days a week, after your StairMaster or a hot shower so your body is warm. Feel a stretch, never sharp pain.</p>
+  <div class="seg"><button type="button" data-f="a" aria-pressed="${sel==="a"}">A · Front + pigeon</button><button type="button" data-f="b" aria-pressed="${sel==="b"}">B · Middle + butterfly</button></div>
+  <div class="tbar" style="margin-top:12px">${tpair("block", 900, "15:00 session", f.title)}</div>
+  <div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${f.rows.length}</b></div></div>
+  <div class="callout"><b>How to hold:</b> ${esc(CR)}</div>
+  <section class="block"><h3>Session</h3><div class="list">${f.rows.map((r,i)=>rowHTML("flex",keys[i],r,d,false)).join("")}</div></section>
+  <section class="block"><h3>Sunday check <small>tracks progress</small></h3><p class="note">Measure once a week, warm, same way each time. Smaller numbers = closer.</p>
+   <div class="field"><label for="fx1">Front split</label><input id="fx1" data-fx="front" autocomplete="off" placeholder="inches hips to floor, L / R" value="${esc((c.v||{}).front||"")}"></div>
+   <div class="field"><label for="fx2">Middle split</label><input id="fx2" data-fx="middle" autocomplete="off" placeholder="inches hips to floor" value="${esc((c.v||{}).middle||"")}"></div>
+   <div class="field"><label for="fx3">Butterfly</label><input id="fx3" data-fx="butterfly" autocomplete="off" placeholder="inches knee to floor, L / R" value="${esc((c.v||{}).butterfly||"")}"></div>
+   <div class="field"><label for="fx4">Pigeon</label><input id="fx4" data-fx="pigeon" autocomplete="off" placeholder="easy / medium / hard, L / R" value="${esc((c.v||{}).pigeon||"")}"></div></section>
+  <p class="foot">Expect months, not weeks. Most adults who start tight take 6–12 months or more for full splits. Showing up 4–5 days a week matters more than pushing hard.</p>`;
+  app.innerHTML=h; wire("flex-"+wk, f.rows.length); wireTimers();
+  app.querySelectorAll("[data-f]").forEach(b=>b.addEventListener("click",()=>{ flexSel=b.dataset.f; renderFlex(); }));
+  app.querySelectorAll("[data-fx]").forEach(inp=>inp.addEventListener("input",()=>{ c.v=c.v||{}; c.v[inp.dataset.fx]=inp.value; saveSoon("flexcheck"); }));
+}
+
 /* ---------- Ideas: things you see (TikTok, IG, the gym) to add next week ---------- */
 const WHERE = ["Any day","Mon","Tue","Wed","Thu","Fri","Sat","Sun","Night","StairMaster"];
 function renderIdeas(){
@@ -971,14 +1009,14 @@ function summaryText(){
 }
 
 /* ---------- tabs ---------- */
-const TABS = [...DAYS.map(d=>({id:d.id, chip:d.chip})), {id:"morning",chip:"Morning"}, {id:"night",chip:"Night"}, {id:"stair",chip:"Stair"}, {id:"am",chip:"AM Stair"}, {id:"cali",chip:"Calisthenics"}, {id:"ideas",chip:"Ideas"}];
+const TABS = [...DAYS.map(d=>({id:d.id, chip:d.chip})), {id:"morning",chip:"Morning"}, {id:"night",chip:"Night"}, {id:"flex",chip:"Flexibility"}, {id:"stair",chip:"Stair"}, {id:"am",chip:"AM Stair"}, {id:"cali",chip:"Calisthenics"}, {id:"ideas",chip:"Ideas"}];
 function todayId(){ return ["sun","mon","tue","wed","thu","fri","sat"][new Date().getDay()]; }
 function render(id){
   current = id; if(typeof stopPacer==="function") stopPacer();
   [...tabsEl.children].forEach(c=>c.setAttribute("aria-selected", c.dataset.id===id ? "true":"false"));
   if(id!=="stair" && tState.running){ /* keep timer running in background state */ }
   const day = DAYS.find(x=>x.id===id);
-  if(day) renderDay(day); else if(id==="stair") renderStair(); else if(id==="night") renderNight(); else if(id==="morning") renderMorning(); else if(id==="am") renderAM(); else if(id==="cali") renderCali(); else if(id==="ideas") renderIdeas(); else renderDay(DAYS[0]);
+  if(day) renderDay(day); else if(id==="stair") renderStair(); else if(id==="night") renderNight(); else if(id==="morning") renderMorning(); else if(id==="flex") renderFlex(); else if(id==="am") renderAM(); else if(id==="cali") renderCali(); else if(id==="ideas") renderIdeas(); else renderDay(DAYS[0]);
   app.querySelectorAll("[data-go]").forEach(a=>a.addEventListener("click",e=>{ e.preventDefault(); go(a.dataset.go); }));
 }
 function go(id){ render(id); window.scrollTo({top:0}); const el=tabsEl.querySelector(`[data-id="${id}"]`); el?.scrollIntoView({inline:"center",block:"nearest"}); }
@@ -1019,7 +1057,7 @@ document.addEventListener("visibilitychange",()=>{ if(!document.hidden) checkUpd
       let changed=false;
       snap.docs.forEach(ds=>{ if(ds.metadata.hasPendingWrites || writing[ds.id] || pending[ds.id]) return; const body=ds.data(); if(body){ cache[ds.id]=migrate(ds.id, JSON.parse(JSON.stringify(body))); local.set("hy1-"+ds.id, cache[ds.id]); changed=true; } });
       setSync("Synced to your account");
-      const typing = document.activeElement && document.activeElement.matches("input[data-log], #xname, #cal, #gaps, #i-what, #i-link, #i-why, #i-where, [data-best]");
+      const typing = document.activeElement && document.activeElement.matches("input[data-log], #xname, #cal, #gaps, #i-what, #i-link, #i-why, #i-where, [data-best], [data-fx]");
       if(changed && !typing && !tState.running) render(current);
     }, ()=>setSync("Saved on this phone"));
   }catch(e){ setSync("Saved on this phone"); }
