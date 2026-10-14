@@ -217,7 +217,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-14y";
+const APP_VERSION = "2026-10-14z";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -265,12 +265,15 @@ const DAYS = [
     ["Band pull-aparts","1 × 12","Squeeze your shoulder blades",HAM,S("band pull aparts form")],
     ["Shoulder taps","1 × 10 each side","Push-up position, hips still",HAM,S("plank shoulder taps")],
     ["Wrist rocks on the floor","1 × 10 each way","Gets wrists ready for handstands","",S("wrist warm up handstand")]]},
-   {h:"Bench pyramid + 100 push-ups", m:"15 min", note:"Warm up: bar × 10, 135 × 5. Superset A: after bench sets 1–4, go straight to 25 incline push-ups (no vest), then rest 2 min. Set 5 is your top set: do it fresh, no push-ups after.", rows:[
+   {h:"Bench pyramid + 100 push-ups", m:"15 min", note:"Warm up: bar × 10, 135 × 5. Superset A: each bench set, straight into 25 incline push-ups (no vest), then rest 2 min. 100 push-ups total. Set 5 is your top set: do it fresh, no push-ups after.", rows:[
     ["Set 1","185 × 10","","",S("smith machine bench press form"),"A1"],
+    ["Incline push-ups","25 · bodyweight (1 of 4)","If 25 breaks, take 5 breaths and finish it","",S("feet elevated push up form"),"A2"],
     ["Set 2","200 × 8","","","","A1"],
+    ["Incline push-ups","25 · bodyweight (2 of 4)","Straight from the bench, then rest 2 min","","","A2"],
     ["Set 3","215 × 6","","","","A1"],
+    ["Incline push-ups","25 · bodyweight (3 of 4)","Straight from the bench, then rest 2 min","","","A2"],
     ["Set 4","225 × 5","","","","A1"],
-    ["Incline push-ups","25 after sets 1–4 (100 total) · bodyweight","If 25 breaks, take 5 breaths and finish it","",S("feet elevated push up form"),"A2"],
+    ["Incline push-ups","25 · bodyweight (4 of 4)","Straight from the bench, then rest 2 min","","","A2"],
     ["Set 5","235 × 3","Top set: clean reps only, full rest before it",HAM,""]]},
    {h:"Calisthenics", m:"10 min", note:"Handstand hold first while you're fresh, then superset B. B2 depends on where you are: dips at the YMCA, L-sit at home.", rows:[
     ["Wall handstand hold, chest to wall","2 × 30 sec · bodyweight","Walk your feet up the wall, body straight",LW,"https://www.tiktok.com/t/ZPLSuXqwY/"],
