@@ -212,7 +212,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-14f";
+const APP_VERSION = "2026-10-14g";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -267,11 +267,10 @@ const DAYS = [
     ["Set 4","225 × 5","","","","A1"],
     ["Incline push-ups","25 after sets 1–4 (100 total)","If 25 breaks, take 5 breaths and finish it","",S("feet elevated push up form"),"A2"],
     ["Set 5","235 × 3","Top set: clean reps only, full rest before it",HAM,""]]},
-   {h:"Calisthenics", m:"12 min", note:"Handstand hold first while you're fresh, then superset B. B2 and B3 both happen on the YMCA dip bars. At home with no dip bar: lock the Smith bar at hip height for straight-bar dips, and do the L-sit on the floor with your hands on two dumbbells.", rows:[
+   {h:"Calisthenics", m:"10 min", note:"Handstand hold first while you're fresh, then superset B. B2 depends on where you are: dips at the YMCA, L-sit at home.", rows:[
     ["Wall handstand hold, chest to wall","3 × 30 sec","Walk your feet up the wall, body straight",LW,S("chest to wall handstand hold")],
     ["Pike push-ups","3 × 6","Hips high, head lands in front of your hands",LW,S("pike push up progression"),"B1"],
-    ["Parallel bar dips","3 × 8","Shoulders down, lean slightly forward, lower until your shoulders are just below your elbows, press up to locked arms",LW,S("parallel bar dips proper form"),"B2"],
-    ["L-sit, your current step","3 × 15–20 sec","On the dip bars. Use the step marked Next up on the Calisthenics tab. Week 1: support hold, then 1–2 tries at the one-leg tuck",LW,S("l sit progression for beginners parallel bars"),"B3"]]},
+    ["Dips or L-sit","YMCA: dips 3 × 8 · Home: L-sit 3 sets","YMCA (dip bars): parallel bar dips, lean slightly forward, shoulders just below elbows, press to locked arms. Home (no dip bar): your current L-sit step from the Calisthenics tab, hands on two dumbbells",LW,S("parallel bar dips proper form"),"B2"]]},
    {h:"Shoulders, chest, arms", m:"16 min", note:"Supersets C, D and E, rest 60 sec after each round.", rows:[
     ["Seated dumbbell shoulder press","3 × 8","Ribs down, don't lean back",HAM,S("seated dumbbell shoulder press form"),"C1"],
     ["Cable face pull","3 × 15","Pull to your forehead, thumbs back: posture","",S("cable face pull form"),"C2"],
@@ -786,15 +785,13 @@ const SKILLS = [
   ["One leg out 3 × 8 sec",""],
   ["Straddle front lever 3 × 5 sec",""],
   ["Full front lever 5 sec",""]]},
- {id:"lsit", name:"L-sit", why:"Hold your body up on locked arms with your legs straight out in front. Builds shoulder push-down strength and core compression, which feeds handstands, dips and muscle-ups. Move to the next step when you hit 3 clean sets of the target.", on:["Push day: B3 on the dip bars","Pull + Stability days: leg raises build the compression"], steps:[
-  ["Support hold 3 × 20–30 sec","Top of a dip, arms locked, shoulders pushed DOWN away from your ears, body still"],
-  ["Support shrugs 3 × 10","In the support hold, sink your shoulders up toward your ears, then push them down hard. This is the muscle that holds an L-sit"],
-  ["Seated pike leg lifts 3 × 10","On the floor, legs straight, hands beside your knees. Lift both heels a few inches and lower. Builds the hip-flexor strength to hold your legs up"],
-  ["One-leg tuck 3 × 15 sec each","On the bars, one knee to your chest, other foot hanging. Switch legs"],
-  ["Tuck L-sit 3 × 15 sec","Both knees to your chest, hips under your shoulders"],
-  ["One leg out 3 × 10 sec each","From the tuck, straighten one leg in front. Switch legs"],
-  ["Full L-sit 3 × 10 sec","Both legs straight, toes pointed, legs parallel to the floor"],
-  ["Full L-sit 20 sec","Then try it on the floor or on dumbbells"]]},
+ {id:"lsit", name:"L-sit", why:"", on:[], steps:[
+  ["Support hold 3 × 20–30 sec",""],
+  ["One-leg tuck 3 × 15 sec each",""],
+  ["Tuck L-sit 3 × 15 sec",""],
+  ["One leg out 3 × 10 sec each",""],
+  ["Full L-sit 3 × 10 sec",""],
+  ["Full L-sit 20 sec",""]]},
  {id:"core", name:"Lower abs → dragon flag", why:"Hanging leg raises build the lower abs; the dragon flag path builds the strength to hold your whole body straight.", on:["Pull + Stability days: hanging leg raises","Push + Stability days: candlestick + negatives","Flow Motion day: hollow hold"], steps:[
   ["5 clean hanging leg raises","Where you started",true],
   ["Hollow hold 30 sec + candlestick lifts 3 × 5","Low back pressed down"],
@@ -813,7 +810,7 @@ function renderCali(){
   <div class="progress"><div class="bar"><i style="width:${got/tot*100}%"></i></div><b>${got} / ${tot}</b></div></div>`;
   SKILLS.forEach(sk=>{
     const n = sk.steps.filter((_,i)=>skDone(d,sk,i)).length, next = sk.steps.findIndex((_,i)=>!skDone(d,sk,i));
-    h += `<section class="skill"><div class="hd"><b>${esc(sk.name)}</b><div class="why">${esc(sk.why)}</div><div class="on">${sk.on.map(o=>`<span>${esc(o)}</span>`).join("")}</div>
+    h += `<section class="skill"><div class="hd"><b>${esc(sk.name)}</b>${sk.why?`<div class="why">${esc(sk.why)}</div>`:""}${sk.on.length?`<div class="on">${sk.on.map(o=>`<span>${esc(o)}</span>`).join("")}</div>`:""}
     <div class="progress"><div class="bar"><i style="width:${n/sk.steps.length*100}%"></i></div><b>${n} / ${sk.steps.length}</b></div></div>` +
     sk.steps.map((st,i)=>{ const done=skDone(d,sk,i), id="sk-"+skKey(sk,i); return `<div class="step${done?" done":""}${i===next?" next":""}"><input type="checkbox" id="${id}" data-sk="${skKey(sk,i)}"${done?" checked":""}><label for="${id}" style="cursor:pointer"><div class="n">${esc(st[0])}${i===next?`<span class="tag">Next up</span>`:""}</div>${st[1]?`<div class="g">${esc(st[1])}</div>`:""}</label></div>`; }).join("") +
     `<div class="field"><label for="best-${sk.id}">Best</label><input id="best-${sk.id}" data-best="${sk.id}" autocomplete="off" placeholder="latest test, e.g. 22 reps · Oct 7" value="${esc(d.best[sk.id]||"")}"></div></section>`;
