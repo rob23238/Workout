@@ -212,7 +212,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-14c";
+const APP_VERSION = "2026-10-14d";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -877,7 +877,7 @@ function renderMorning(){
 const WHERE = ["Any day","Mon","Tue","Wed","Thu","Fri","Sat","Sun","Night","StairMaster"];
 function renderIdeas(){
   const d = docOf("ideas"); d.items = d.items || [];
-  let h = `<div class="dayhead"><div class="kicker">Feedback loop</div><h2>Ideas for next week</h2><p>Saw something on TikTok or in the gym you think would fit? Drop it here with where it goes. It all lands in your Log, so when you paste the log to Claude, the next week gets built with it.</p></div>
+  let h = `<div class="dayhead"><div class="kicker">Feedback loop</div><h2>Ideas for next week</h2><p>Saw something on TikTok or in the gym you think would fit? Drop it here with where it goes. Tap Ask Claude on any idea to send it to me for feedback.</p></div>
   <section class="block"><h3>Add an idea</h3>
    <div class="field col"><label for="i-what">What you saw</label><textarea id="i-what" placeholder="e.g. Copenhagen side plank with a leg lift. Felt like it would hit my inner thigh and core."></textarea></div>
    <div class="field"><label for="i-link">Link</label><input id="i-link" inputmode="url" autocomplete="off" placeholder="paste the TikTok link (optional)"></div>
@@ -885,7 +885,7 @@ function renderIdeas(){
    <div class="field"><label for="i-why">Replace</label><input id="i-why" autocomplete="off" placeholder="swap out an exercise? (optional)"></div>
    <button class="btn" id="i-add" type="button" style="margin-top:12px">Save idea</button> <span id="i-msg" style="color:var(--muted);margin-left:8px"></span>
   </section>`;
-  h += `<section class="block"><h3>Saved <small>${d.items.length} idea${d.items.length===1?"":"s"}</small></h3>` + (d.items.length ? `<div class="list">` + d.items.slice().reverse().map(it=>`<div class="idea"><div class="top"><span class="where">${esc(it.where)}</span><span class="when">${esc(it.date)}</span></div><p>${esc(it.what)}</p>${it.swap?`<p style="color:var(--muted)">Replace: ${esc(it.swap)}</p>`:""}<div class="meta">${it.link?`<a class="vid" href="${esc(it.link)}" target="_blank" rel="noopener">Open link ↗</a>`:""}<button class="del" type="button" data-del="${esc(it.id)}">Delete</button></div></div>`).join("") + `</div>` : `<p class="note">Nothing saved yet.</p>`) + `</section>`;
+  h += `<section class="block"><h3>Saved <small>${d.items.length} idea${d.items.length===1?"":"s"}</small></h3>` + (d.items.length ? `<div class="list">` + d.items.slice().reverse().map(it=>`<div class="idea"><div class="top"><span class="where">${esc(it.where)}</span><span class="when">${esc(it.date)}</span></div><p>${esc(it.what)}</p>${it.swap?`<p style="color:var(--muted)">Replace: ${esc(it.swap)}</p>`:""}<div class="meta">${it.link?`<a class="vid" href="${esc(it.link)}" target="_blank" rel="noopener">Open link ↗</a>`:""}<button class="tbtn" type="button" data-ask="${esc(it.id)}">Ask Claude</button><button class="del" type="button" data-del="${esc(it.id)}">Delete</button></div></div>`).join("") + `</div>` : `<p class="note">Nothing saved yet.</p>`) + `</section>`;
   app.innerHTML = h;
   document.getElementById("i-add").addEventListener("click",()=>{
     const what=document.getElementById("i-what").value.trim(), link=document.getElementById("i-link").value.trim();
@@ -894,6 +894,12 @@ function renderIdeas(){
     save("ideas"); renderIdeas();
   });
   app.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",()=>{ d.items=d.items.filter(x=>x.id!==b.dataset.del); save("ideas"); renderIdeas(); }));
+  app.querySelectorAll("[data-ask]").forEach(b=>b.addEventListener("click",async()=>{
+    const it=d.items.find(x=>x.id===b.dataset.ask); if(!it) return;
+    const text=`Workout idea for my Discipline & Consistency app. Give me feedback: is it good for my goals, is the form safe, and where should it go?\n\nWhat I saw: ${it.what||"(see link)"}\nGoes on: ${it.where}${it.swap?`\nReplace: ${it.swap}`:""}${it.link?`\nLink: ${it.link}`:""}`;
+    try{ if(navigator.share){ await navigator.share({title:"Workout idea", text}); return; } }catch(e){ if(e && e.name==="AbortError") return; }
+    try{ await navigator.clipboard.writeText(text); b.textContent="Copied: paste to Claude"; }catch(e){ prompt("Copy this and paste it to Claude:", text); }
+  }));
 }
 
 /* ---------- Morning StairMaster: did you go before work? ---------- */
