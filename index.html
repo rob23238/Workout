@@ -212,7 +212,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-14m";
+const APP_VERSION = "2026-10-14n";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -252,7 +252,7 @@ const DAYS = [
   blocks:[
    {h:"Today", m:"", note:"StairMaster this morning, no lift. Nothing else to do here.", rows:[]}
   ]},
- {id:"wed", chip:"Wed", kicker:"Wednesday", title:"Push + arms + core", time:"~65 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility B (no push-ups tonight, you did 100 with bench)",
+ {id:"wed", chip:"Wed", kicker:"Wednesday", title:"Push + arms + core", time:"~55 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility B (no push-ups tonight, you did 100 with bench)",
   blocks:[
    {h:"Shoulder + wrist warm-up", m:"5 min", rows:[
     ["Wall slides","1 × 10","Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
@@ -267,32 +267,28 @@ const DAYS = [
     ["Set 4","225 × 5","","","","A1"],
     ["Incline push-ups","25 after sets 1–4 (100 total)","If 25 breaks, take 5 breaths and finish it","",S("feet elevated push up form"),"A2"],
     ["Set 5","235 × 3","Top set: clean reps only, full rest before it",HAM,""]]},
-   {h:"Calisthenics", m:"12 min", note:"Handstand hold first while you're fresh, then superset B. B2 depends on where you are: dips at the YMCA, L-sit at home.", rows:[
-    ["Wall handstand hold, chest to wall","3 × 30 sec","Walk your feet up the wall, body straight",LW,"https://www.tiktok.com/t/ZPLSuXqwY/"],
+   {h:"Calisthenics", m:"10 min", note:"Handstand hold first while you're fresh, then superset B. B2 depends on where you are: dips at the YMCA, L-sit at home.", rows:[
+    ["Wall handstand hold, chest to wall","2 × 30 sec","Walk your feet up the wall, body straight",LW,"https://www.tiktok.com/t/ZPLSuXqwY/"],
     ["Pike push-ups","3 × 6","Hips high, head lands in front of your hands",LW,"https://www.tiktok.com/t/ZPLSuaT3v/","B1"],
     ["Dips or L-sit","YMCA: dips 3 × 8 · Home: L-sit 3 sets","YMCA (dip bars): parallel bar dips, lean slightly forward, shoulders just below elbows, press to locked arms. Home (no dip bar): your current L-sit step from the Calisthenics tab, hands on two dumbbells",LW,S("parallel bar dips proper form"),"B2"]]},
-   {h:"Shoulders, chest, arms", m:"20 min", note:"Supersets C, D and E, rest 60 sec after each round.", rows:[
+   {h:"Shoulders, chest, arms", m:"17 min", note:"Supersets C, D and E, rest 60 sec after each round.", rows:[
     ["Seated dumbbell shoulder press","3 × 8","Ribs down, don't lean back",HAM,S("seated dumbbell shoulder press form"),"C1"],
     ["Cable face pull","3 × 15","Pull to your forehead, thumbs back: posture","",S("cable face pull form"),"C2"],
     ["Cable rope overhead triceps extension","3 × 12","Big stretch behind your head","",S("cable overhead triceps extension rope"),"D1"],
     ["Heavy alternating dumbbell curl","3 × 8–10 each arm","Your heaviest curl of the week: pick a weight where rep 8–10 is hard. Palms up, elbows pinned to your sides, no swinging, 3 sec down. Add 5 lb when you get 10 clean reps on all sets","","https://www.tiktok.com/t/ZPLSuUN8y/","D2"],
-    ["Cable rope triceps pushdown","3 × 12","Elbows pinned to your sides, push the rope down and spread it apart at the bottom, 2 sec up. Add weight on the stack as you get stronger","",S("cable rope triceps pushdown form"),"E1"],
-    ["Cross-body dumbbell hammer curl","3 × 12 each arm","Forearm + outer arm","",S("cross body hammer curl"),"E2"]]},
-   {h:"Core: dragon flag path", m:"6 min", note:"Superset F, 3 rounds, rest 60 sec.", rows:[
+    ["Cable rope triceps pushdown","2 × 12","Elbows pinned to your sides, push the rope down and spread it apart at the bottom, 2 sec up. Add weight on the stack as you get stronger","",S("cable rope triceps pushdown form"),"E1"],
+    ["Cross-body dumbbell hammer curl","2 × 12 each arm","Forearm + outer arm","",S("cross body hammer curl"),"E2"]]},
+   {h:"Core: dragon flag path", m:"5 min", note:"Superset F, 3 rounds, rest 60 sec.", rows:[
     ["Cable crunch, heavy","3 × 12","2-sec squeeze at the bottom, hips still",MINE,S("cable crunch form"),"F1"],
-    ["Candlestick leg lifts on the bench","3 × 5","Dragon flag step 2: hips to vertical, lower slowly","",S("candlestick leg lift dragon flag progression"),"F2"],
-    ["Seated knee tuck","1 × 15","Lean back on your hands, pull knees to chest, extend slowly",AC,"https://www.youtube.com/watch?v=54q250IUEAc"]]},
-   {h:"Hip finisher", m:"3 min", rows:[
-    ["90/90 hip internal rotation","60 sec hold + 2 rounds of 10 sec tense, 10 sec lift, each side","Turning the hip in",FMF,"https://www.youtube.com/watch?v=RqjzWBqXYSg"],
-    ["Doggies, 3-sec hold","1 × 5 each side","Outer hip",AH,"https://youtu.be/lwxlCzVtjWk"]]},
+    ["Candlestick leg lifts on the bench","3 × 5","Dragon flag step 2: hips to vertical, lower slowly","",S("candlestick leg lift dragon flag progression"),"F2"]]},
    {h:"Cool-down", m:"2 min", rows:[
     ["Doorway chest stretch","30 sec each side","Opens tight chest muscles","",S("doorway chest stretch")],
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"thu", chip:"Thu", kicker:"Thursday", title:"Legs B: real-world strength + pull volume", time:"~55 min", stair:["35-min intervals","after leg day"], night:"Hip mobility A (no push-ups tonight)",
+ {id:"thu", chip:"Thu", kicker:"Thursday", title:"Legs B: real-world strength + pull volume", time:"~50 min", stair:["35-min intervals","after leg day"], night:"Hip mobility A (no push-ups tonight)",
   blocks:[
-   {h:"Jump rope + warm-up", m:"8 min", rows:[
-    ["Jump rope, basic bounce","5 × 30 sec on / 30 sec off","Same as Tuesday","",S("jump rope basic bounce beginner")],
+   {h:"Jump rope + warm-up", m:"6 min", rows:[
+    ["Jump rope, basic bounce","3 × 30 sec on / 30 sec off","Same as Tuesday","",S("jump rope basic bounce beginner")],
     ["Leg swings, front-back + side-side","1 × 10 each way, each leg","Hold the rack",HAM,S("leg swings front back side")],
     ["Kneeling hip circles","1 × 6 each way, each side","Big slow circles",AH,"https://youtu.be/8Om5705EYxA"],
     ["Glute bridge march","1 × 6 each side","Hips stay level",AH,"https://youtu.be/RvfMT6VOqxQ"]]},
@@ -319,22 +315,20 @@ const DAYS = [
     ["Active pigeon","45 sec each side","Outer hip",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
     ["Seated hamstring V-stretch","30 sec","",HAM,S("seated v sit hamstring stretch")]]}
   ]},
- {id:"fri", chip:"Fri", kicker:"Friday · finish strong", title:"Pull + bench + arms + lower abs", time:"~70 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility A (no push-ups tonight, you did 100 with bench)",
+ {id:"fri", chip:"Fri", kicker:"Friday · finish strong", title:"Pull + bench + arms + lower abs", time:"~55 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility A (no push-ups tonight, you did 100 with bench)",
   blocks:[
-   {h:"Shoulder warm-up", m:"5 min", rows:[
+   {h:"Shoulder warm-up", m:"4 min", rows:[
     ["Wall slides","1 × 10","Back, head and arms flat on the wall, slide your arms up into a Y and back down. Wakes up the shoulder blades and fixes rounded shoulders","",S("wall slides shoulder mobility")],
     ["Band pass-throughs","1 × 10","Wide grip, arms straight, over your head and behind you","",S("band pass through shoulder dislocates")],
     ["Band pull-aparts","1 × 12","Squeeze your shoulder blades together",HAM,S("band pull aparts form")],
-    ["Quadruped upper-back rotation","1 × 6 each side","On hands and knees, hand behind head, open the elbow to the ceiling",HAM,S("quadruped thoracic rotation")],
     ["Scapular pull-ups, 2-sec hold","2 × 6","Hang with straight arms, pull your shoulders down away from your ears",LW,S("scapular pull ups form")],
     ["Straight-arm cable pulldown","1 × 12, light","Rope or bar on the high cable. Arms stay straight, push it down to your thighs. That squeeze under your armpits is your lats: the exact feeling you want in every pull-up","",S("straight arm cable pulldown lats")]]},
-   {h:"Pull-ups to break the plateau", m:"14 min", guide:true, note:"Open the guide above before set 1. A sloppy rep doesn't count: end the set there. Rest timer is set to 2 min.", rows:[
+   {h:"Pull-ups to break the plateau", m:"12 min", guide:true, note:"Open the guide above before set 1. A sloppy rep doesn't count: end the set there. Rest timer is set to 2 min.", rows:[
     ["Set 1 · Weighted pull-ups","5 reps, 30 lb vest","Controlled, about 2 sec down",LW,S("weighted pull up form")],
     ["Set 2 · Weighted pull-ups","5 reps, vest","Same",LW,S("weighted pull up form")],
     ["Set 3 · Weighted pull-ups","5 reps, vest","Same",LW,S("weighted pull up form")],
     ["Set 4 · Weighted pull-ups","Max with the vest","Stop 1 rep before failure (expect 6–8)",LW,S("weighted pull up form")],
-    ["Set 5 · Slow pull-ups","6 reps, no vest","1-sec pause at the top, 3 sec down",LW,S("slow eccentric pull ups")],
-    ["Set 6 · Slow pull-ups","6 reps, no vest","Same tempo",LW,S("slow eccentric pull ups")]]},
+    ["Set 5 · Slow pull-ups","6 reps, no vest","1-sec pause at the top, 3 sec down",LW,S("slow eccentric pull ups")]]},
    {h:"Bench + 100 push-ups", m:"12 min", note:"Superset A, 4 rounds: one bench set, then straight to 25 incline push-ups (feet on the bench, no vest), rest 90 sec–2 min. If a set of 25 breaks, take 5 breaths and finish it. 4 × 25 = your 100 for today.", rows:[
     ["Smith bench press","Bar × 10, 135 × 5, then 4 × 10 @ 185","Controlled reps, shoulder blades pinched",HAM,S("smith machine bench press form"),"A1"],
     ["Incline push-ups","4 × 25 (100 total)","Feet on the bench, body straight, chest to an inch off the floor","",S("feet elevated push up form"),"A2"]]},
@@ -343,24 +337,15 @@ const DAYS = [
     ["Dumbbell flies","3 × 12","Bent over with a flat back, light dumbbells, slight bend in the elbows. Open your arms out to the sides and squeeze your shoulder blades together, 2 sec down. Back of the shoulders + upper back: pulls rounded shoulders back","",S("bent over dumbbell rear delt fly form"),"B2"],
     ["Smith row, underhand grip","3 × 10, 3-sec lowering","Palms up, hands shoulder width. Elbows stay tight to your sides and drive to your hips: hits lats and biceps",HAM,S("smith machine underhand row form"),"C1"],
     ["Towel pull-ups","3 × 5","Loop 2 towels over the bar, one in each hand, palms facing each other. Squeeze the towels hard the whole rep, same back-first form as your pull-ups. Huge for grip and forearms",LW,S("towel pull ups grip strength form"),"C2"]]},
-   {h:"Biceps + forearms", m:"10 min", note:"Supersets D, E and F: each pair back to back, rest 45–60 sec.", rows:[
+   {h:"Biceps + forearms", m:"6 min", note:"Superset D: the two curls back to back, rest 60 sec, 3 rounds. Farmer carry last. Towel pull-ups, farmer carry and the dead hang cover your forearms and grip.", rows:[
     ["Dumbbell curl, neutral to palms up","3 × 15","Start with palms facing each other, turn your palms up as you curl, squeeze at the top, 3 sec down","",S("dumbbell supinating curl"),"D1"],
-    ["Curl-bar wrist curl","3 × 15","Forearms on thighs, palms up. Roll the bar to your fingertips, curl back with wrists only","",S("ez bar wrist curl seated"),"D2"],
-    ["Dumbbell hammer curl","3 × 15","Thumbs up: outer arm and forearm","",S("dumbbell hammer curl form"),"E1"],
-    ["Curl-bar reverse wrist curl","3 × 15","Palms down, lighter weight","",S("ez bar reverse wrist curl"),"E2"],
-    ["Zottman curl","2 × 15","Curl up palms up, turn palms down at the top, lower slowly","",S("zottman curl form"),"F1"],
-    ["Farmer carry","2 × 40 yards","50 lb dumbbells, shoulders back, ribs down",AC,"https://www.youtube.com/watch?v=MH8id-EaoPA","F2"]]},
-   {h:"Core: lower abs", m:"6 min", note:"Superset G, 3 rounds, rest 60 sec. Hanging leg raises: shoulders down, curl your pelvis up first, legs to bar height, 3 sec down. End the set the moment you swing. 5 good reps beat 10 ugly ones.", rows:[
-    ["Hanging leg raise, full range","3 × 5","Perfect reps only",MINE,S("hanging leg raise full range no swing"),"G1"],
-    ["6-inch hold","3 × 20 sec","Heels 6 inches off the floor, low back pressed flat",AC,"https://www.youtube.com/watch?v=1CpgAh7wdDk","G2"],
-    ["Lying leg raises, slow","1 × 12","3 sec down, don't let your low back lift",AC,"https://www.youtube.com/watch?v=JB2oyawG9KI"]]},
+    ["Dumbbell hammer curl","3 × 15","Thumbs up: outer arm and forearm","",S("dumbbell hammer curl form"),"D2"],
+    ["Farmer carry","2 × 40 yards","50 lb dumbbells, shoulders back, ribs down",AC,"https://www.youtube.com/watch?v=MH8id-EaoPA"]]},
+   {h:"Core: lower abs", m:"5 min", note:"Superset E, 3 rounds, rest 60 sec. Hanging leg raises: shoulders down, curl your pelvis up first, legs to bar height, 3 sec down. End the set the moment you swing. 5 good reps beat 10 ugly ones.", rows:[
+    ["Hanging leg raise, full range","3 × 5","Perfect reps only",MINE,S("hanging leg raise full range no swing"),"E1"],
+    ["6-inch hold","3 × 20 sec","Heels 6 inches off the floor, low back pressed flat",AC,"https://www.youtube.com/watch?v=1CpgAh7wdDk","E2"]]},
    {h:"Grip finisher", m:"3 min", rows:[
     ["Dead hang into hanging L","2 × max hold","Hang from the pull-up bar, shoulders pulled down, squeeze the bar hard. When your grip starts to fade, pull your knees up into a tuck L and hold as long as you can. Rest 60 sec","",S("dead hang grip strength hanging l sit tuck")]]},
-   {h:"Hip finisher", m:"4 min", rows:[
-    ["Quadruped hip controlled circles","2 × 4 each side","On hands and knees, slow full circles, back still",FMF,"https://www.youtube.com/watch?v=rqLtUosOs0U"],
-    ["Fire hydrants","1 × 10 each side","Outer hip",AH,"https://youtu.be/s1Ib-pVJpdk"],
-    ["Hip flexor pulses","1 × 12 each leg","Hip flexor strength",AH,"https://youtu.be/6VQ0KG3kBac"],
-    ["Active pigeon","45 sec each side","Outer hip",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"]]},
    {h:"Cool-down", m:"2 min", rows:[
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","Hold the Smith bar, sink your hips back",HAM,S("dowel lat stretch shoulder")]]}
   ]},
