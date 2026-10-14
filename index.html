@@ -198,6 +198,11 @@ body.docked .wrap{padding-bottom:130px}
 .pace.on{background:var(--accent-soft)}
 .pace .ph{font:800 24px var(--display);letter-spacing:.02em}
 .pace .ct{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:700;min-height:20px}
+.logs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.lg{display:inline-flex;align-items:center;gap:6px;background:var(--accent-soft);color:var(--ink);border-radius:8px;padding:4px 4px 4px 8px;font:600 14px var(--body);font-variant-numeric:tabular-nums}
+.lg b{color:var(--accent);font-size:12px}
+.lgx{border:0;background:none;color:var(--muted);font-size:18px;line-height:1;padding:0 6px;cursor:pointer}
+.lgadd{border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:8px;padding:7px 12px;font:700 14px var(--body);cursor:pointer}
 pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;font:14px/1.5 ui-monospace,Menlo,monospace;overflow-x:auto}
 </style>
 </head>
@@ -212,7 +217,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-14o";
+const APP_VERSION = "2026-10-14p";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -265,24 +270,24 @@ const DAYS = [
     ["Set 2","200 × 8","","","","A1"],
     ["Set 3","215 × 6","","","","A1"],
     ["Set 4","225 × 5","","","","A1"],
-    ["Incline push-ups","25 after sets 1–4 (100 total)","If 25 breaks, take 5 breaths and finish it","",S("feet elevated push up form"),"A2"],
+    ["Incline push-ups","25 after sets 1–4 (100 total) · bodyweight","If 25 breaks, take 5 breaths and finish it","",S("feet elevated push up form"),"A2"],
     ["Set 5","235 × 3","Top set: clean reps only, full rest before it",HAM,""]]},
    {h:"Calisthenics", m:"10 min", note:"Handstand hold first while you're fresh, then superset B. B2 depends on where you are: dips at the YMCA, L-sit at home.", rows:[
-    ["Wall handstand hold, chest to wall","2 × 30 sec","Walk your feet up the wall, body straight",LW,"https://www.tiktok.com/t/ZPLSuXqwY/"],
-    ["Pike push-ups","3 × 6","Hips high, head lands in front of your hands",LW,"https://www.tiktok.com/t/ZPLSuaT3v/","B1"],
-    ["Dips or L-sit","YMCA: dips 3 × 8 · Home: L-sit 3 sets","YMCA (dip bars): parallel bar dips, lean slightly forward, shoulders just below elbows, press to locked arms. Home (no dip bar): your current L-sit step from the Calisthenics tab, hands on two dumbbells",LW,S("parallel bar dips proper form"),"B2"]]},
+    ["Wall handstand hold, chest to wall","2 × 30 sec · bodyweight","Walk your feet up the wall, body straight",LW,"https://www.tiktok.com/t/ZPLSuXqwY/"],
+    ["Pike push-ups","3 × 6 · bodyweight","Hips high, head lands in front of your hands",LW,"https://www.tiktok.com/t/ZPLSuaT3v/","B1"],
+    ["Dips or L-sit","YMCA: dips 3 × 8 bodyweight · Home: L-sit 3 sets","YMCA (dip bars): parallel bar dips, lean slightly forward, shoulders just below elbows, press to locked arms. Home (no dip bar): your current L-sit step from the Calisthenics tab, hands on two dumbbells",LW,S("parallel bar dips proper form"),"B2"]]},
    {h:"Shoulders, chest, arms", m:"20 min", note:"Supersets C, D, E and F, rest 60 sec after each round. F is wrists.", rows:[
     ["Seated dumbbell shoulder press","3 × 8 @ 45–50 lb dumbbells","Ribs down, don't lean back",HAM,S("seated dumbbell shoulder press form"),"C1"],
-    ["Cable face pull","3 × 15, light–medium","Pull to your forehead, thumbs back, 2-sec squeeze: posture","",S("cable face pull form"),"C2"],
-    ["Cable rope overhead triceps extension","3 × 12","Big stretch behind your head. Pick a weight where reps 10–12 are hard","",S("cable overhead triceps extension rope"),"D1"],
+    ["Cable face pull","3 × 15 @ 30–40 lb (cable)","Pull to your forehead, thumbs back, 2-sec squeeze: posture","",S("cable face pull form"),"C2"],
+    ["Cable rope overhead triceps extension","3 × 12 @ 30–40 lb (cable)","Big stretch behind your head. Pick a weight where reps 10–12 are hard","",S("cable overhead triceps extension rope"),"D1"],
     ["Heavy alternating dumbbell curl","3 × 8–10 each arm @ 35–40 lb","Your heaviest curl of the week: pick a weight where rep 8–10 is hard. Palms up, elbows pinned to your sides, no swinging, 3 sec down. Add 5 lb when you get 10 clean reps on all sets","","https://www.tiktok.com/t/ZPLSuUN8y/","D2"],
-    ["Cable rope triceps pushdown","2 × 12","Elbows pinned to your sides, push the rope down and spread it apart at the bottom, 2 sec up. Add weight on the stack as you get stronger","",S("cable rope triceps pushdown form"),"E1"],
+    ["Cable rope triceps pushdown","2 × 12 @ 40–50 lb (cable)","Elbows pinned to your sides, push the rope down and spread it apart at the bottom, 2 sec up. Add weight on the stack as you get stronger","",S("cable rope triceps pushdown form"),"E1"],
     ["Cross-body dumbbell hammer curl","2 × 12 each arm @ 30–35 lb","Forearm + outer arm","",S("cross body hammer curl"),"E2"],
     ["Curl-bar wrist curl","2 × 15 @ 40–50 lb","Forearms on your thighs, palms up. Let the bar roll to your fingertips, curl it back with your wrists only","",S("ez bar wrist curl seated"),"F1"],
     ["Curl-bar reverse wrist curl","2 × 15 @ 25–30 lb","Palms down, lift with your wrists only, slow down","",S("ez bar reverse wrist curl"),"F2"]]},
    {h:"Core: dragon flag path", m:"5 min", note:"Superset G, 3 rounds, rest 60 sec.", rows:[
-    ["Cable crunch, heavy","3 × 12, heavy stack","2-sec squeeze at the bottom, hips still",MINE,S("cable crunch form"),"G1"],
-    ["Candlestick leg lifts on the bench","3 × 5","Dragon flag step 2: hips to vertical, lower slowly","",S("candlestick leg lift dragon flag progression"),"G2"]]},
+    ["Cable crunch, heavy","3 × 12 @ 80–100 lb (cable)","2-sec squeeze at the bottom, hips still",MINE,S("cable crunch form"),"G1"],
+    ["Candlestick leg lifts on the bench","3 × 5 · bodyweight","Dragon flag step 2: hips to vertical, lower slowly","",S("candlestick leg lift dragon flag progression"),"G2"]]},
    {h:"Cool-down", m:"2 min", rows:[
     ["Doorway chest stretch","30 sec each side","Opens tight chest muscles","",S("doorway chest stretch")],
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
@@ -295,24 +300,24 @@ const DAYS = [
     ["Kneeling hip circles","1 × 6 each way, each side","Big slow circles",AH,"https://youtu.be/8Om5705EYxA"],
     ["Glute bridge march","1 × 6 each side","Hips stay level",AH,"https://youtu.be/RvfMT6VOqxQ"]]},
    {h:"Functional: Balance/Explosive day", m:"10 min", rows:[
-    ["Elastic pops","2 × 15 each ankle","Springy bounces off the ball of the foot",AD,"https://youtube.com/shorts/1WcYTsVK8fM"],
-    ["Push downs","2 × 6 each","Drive the foot down, push off fast",AD,"https://youtube.com/shorts/sboTDWBOH4M"],
-    ["Standing single-leg press","2 × 6 each leg","Weak leg first, hips square",AD,"https://youtube.com/shorts/LAKAXwkQX0A"],
-    ["Hip extension press","2 × 4 each leg","Balance + glute",AD,"https://youtu.be/bBjTolQA-kc"],
-    ["Offset barbell stand","2 × 15 sec each leg, each way","On one leg, weight on one side, don't lean",AD,"https://youtube.com/shorts/-RUXZxbziUw"],
+    ["Elastic pops","2 × 15 each ankle · bodyweight","Springy bounces off the ball of the foot",AD,"https://youtube.com/shorts/1WcYTsVK8fM"],
+    ["Push downs","2 × 6 each · bodyweight","Drive the foot down, push off fast",AD,"https://youtube.com/shorts/sboTDWBOH4M"],
+    ["Standing single-leg press","2 × 6 each leg · bodyweight","Weak leg first, hips square",AD,"https://youtube.com/shorts/LAKAXwkQX0A"],
+    ["Hip extension press","2 × 4 each leg · bodyweight","Balance + glute",AD,"https://youtu.be/bBjTolQA-kc"],
+    ["Offset barbell stand","2 × 15 sec each leg, each way @ empty bar, 10 lb plate on one end","On one leg, weight on one side, don't lean",AD,"https://youtube.com/shorts/-RUXZxbziUw"],
     ["Jump squats holding a light dumbbell","3 × 5 @ 15–20 lb","Land soft (his med ball jumps)",AD,"https://youtube.com/shorts/1ivnIpUqkRg"],
-    ["Tuck jumps","2 × 5","Knees high",AD,"https://youtube.com/shorts/QC6O4WRwbyE"]]},
+    ["Tuck jumps","2 × 5 · bodyweight","Knees high",AD,"https://youtube.com/shorts/QC6O4WRwbyE"]]},
    {h:"Strength", m:"18 min", note:"Supersets A, B and C, rest 90 sec–2 min after each round.", rows:[
     ["Smith Zercher squat","Bar × 8, then 3 × 6 @ 135","Bar in the crook of your elbows (pad it with a towel), chest tall",HAM,S("smith machine zercher squat"),"A1"],
-    ["Copenhagen plank","3 × 20 sec each side","Top leg on the bench, hips up: inner thigh + core","",S("copenhagen plank bench"),"A2"],
+    ["Copenhagen plank","3 × 20 sec each side · bodyweight","Top leg on the bench, hips up: inner thigh + core","",S("copenhagen plank bench"),"A2"],
     ["Single-leg dumbbell Romanian deadlift","3 × 8 each leg @ 50–60 lb","One 50–60 lb dumbbell, weak leg first, flat back",AD,"https://youtube.com/shorts/DdKdzMu8qkw","B1"],
-    ["Kneeling dump trucks","3 × 6 each side","Outer hip + rotation",AH,"https://youtu.be/FOfbDPBlgaQ","B2"],
+    ["Kneeling dump trucks","3 × 6 each side · bodyweight","Outer hip + rotation",AH,"https://youtu.be/FOfbDPBlgaQ","B2"],
     ["Smith hip thrust","3 × 10 @ 155","Upper back on the bench, 2-sec squeeze","",S("smith machine hip thrust form"),"C1"],
     ["Bear-hug carry","3 × 30 yards @ 45 lb plate or 60 lb dumbbell","Hug a 45 lb plate or your heaviest dumbbell tight to your chest","",S("bear hug carry"),"C2"]]},
    {h:"Pull-up volume", m:"12 min", guide:true, note:"Same rules as Monday: every rep from your back. Grip opposite to Monday, no vest. Superset D: each bodyweight set, then 15 push-ups.", rows:[
-    ["Explosive chest-to-bar pull-ups","3 × 5","Pull as high and fast as you can, rest 90 sec. Muscle-up prep",LW,S("explosive chest to bar pull ups muscle up")],
-    ["Bodyweight pull-ups","4 × 10","Perfect form, rest 60–90 sec after the push-ups",LW,S("strict pull up form"),"D1"],
-    ["Incline push-ups","4 × 15","Right after each pull-up set","",S("feet elevated push up form"),"D2"]]},
+    ["Explosive chest-to-bar pull-ups","3 × 5 · bodyweight","Pull as high and fast as you can, rest 90 sec. Muscle-up prep",LW,S("explosive chest to bar pull ups muscle up")],
+    ["Bodyweight pull-ups","4 × 10 · bodyweight","Perfect form, rest 60–90 sec after the push-ups",LW,S("strict pull up form"),"D1"],
+    ["Incline push-ups","4 × 15 · bodyweight","Right after each pull-up set","",S("feet elevated push up form"),"D2"]]},
    {h:"Cool-down", m:"2 min", rows:[
     ["Active pigeon","45 sec each side","Outer hip",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
     ["Seated hamstring V-stretch","30 sec","",HAM,S("seated v sit hamstring stretch")]]}
@@ -333,19 +338,19 @@ const DAYS = [
     ["Set 5 · Slow pull-ups","6 reps, no vest","1-sec pause at the top, 3 sec down",LW,S("slow eccentric pull ups")]]},
    {h:"Bench + 100 push-ups", m:"12 min", note:"Superset A, 4 rounds: one bench set, then straight to 25 incline push-ups (feet on the bench, no vest), rest 90 sec–2 min. If a set of 25 breaks, take 5 breaths and finish it. 4 × 25 = your 100 for today.", rows:[
     ["Smith bench press","Bar × 10, 135 × 5, then 4 × 10 @ 185","Controlled reps, shoulder blades pinched",HAM,S("smith machine bench press form"),"A1"],
-    ["Incline push-ups","4 × 25 (100 total)","Feet on the bench, body straight, chest to an inch off the floor","",S("feet elevated push up form"),"A2"]]},
+    ["Incline push-ups","4 × 25 (100 total) · bodyweight","Feet on the bench, body straight, chest to an inch off the floor","",S("feet elevated push up form"),"A2"]]},
    {h:"Back + shoulders", m:"12 min", note:"Supersets B and C, 3 rounds each. Smith rows: bar set just below your knees, hinge until your chest is close to parallel with the floor, flat back, pull the bar to your belly button and squeeze your shoulder blades for 1 sec.", rows:[
     ["Smith row, overhand grip","3 × 10 @ 135, 3-sec lowering","Palms down, hands a little wider than shoulders. Elbows flare slightly out: hits upper back and rear shoulders",HAM,S("smith machine bent over row overhand grip form"),"B1"],
     ["Dumbbell flies","3 × 12 @ 15–20 lb","Bent over with a flat back, light dumbbells, slight bend in the elbows. Open your arms out to the sides and squeeze your shoulder blades together, 2 sec down. Back of the shoulders + upper back: pulls rounded shoulders back","",S("bent over dumbbell rear delt fly form"),"B2"],
     ["Smith row, underhand grip","3 × 10 @ 135, 3-sec lowering","Palms up, hands shoulder width. Elbows stay tight to your sides and drive to your hips: hits lats and biceps",HAM,S("smith machine underhand row form"),"C1"],
-    ["Towel pull-ups","3 × 5","Loop 2 towels over the bar, one in each hand, palms facing each other. Squeeze the towels hard the whole rep, same back-first form as your pull-ups. Huge for grip and forearms",LW,S("towel pull ups grip strength form"),"C2"]]},
+    ["Towel pull-ups","3 × 5 · bodyweight","Loop 2 towels over the bar, one in each hand, palms facing each other. Squeeze the towels hard the whole rep, same back-first form as your pull-ups. Huge for grip and forearms",LW,S("towel pull ups grip strength form"),"C2"]]},
    {h:"Biceps + forearms", m:"6 min", note:"Superset D: the two curls back to back, rest 60 sec, 3 rounds. Farmer carry last. Towel pull-ups, farmer carry and the dead hang cover your forearms and grip.", rows:[
     ["Dumbbell curl, neutral to palms up","3 × 15 @ 25–30 lb","Start with palms facing each other, turn your palms up as you curl, squeeze at the top, 3 sec down","",S("dumbbell supinating curl"),"D1"],
     ["Dumbbell hammer curl","3 × 15 @ 30–35 lb","Thumbs up: outer arm and forearm","",S("dumbbell hammer curl form"),"D2"],
     ["Farmer carry","2 × 40 yards @ 50 lb each hand","50 lb dumbbells, shoulders back, ribs down",AC,"https://www.youtube.com/watch?v=MH8id-EaoPA"]]},
    {h:"Core: lower abs", m:"5 min", note:"Superset E, 3 rounds, rest 60 sec. Hanging leg raises: shoulders down, curl your pelvis up first, legs to bar height, 3 sec down. End the set the moment you swing. 5 good reps beat 10 ugly ones.", rows:[
-    ["Hanging leg raise, full range","3 × 5","Perfect reps only",MINE,S("hanging leg raise full range no swing"),"E1"],
-    ["6-inch hold","3 × 20 sec","Heels 6 inches off the floor, low back pressed flat",AC,"https://www.youtube.com/watch?v=1CpgAh7wdDk","E2"]]},
+    ["Hanging leg raise, full range","3 × 5 · bodyweight","Perfect reps only",MINE,S("hanging leg raise full range no swing"),"E1"],
+    ["6-inch hold","3 × 20 sec · bodyweight","Heels 6 inches off the floor, low back pressed flat",AC,"https://www.youtube.com/watch?v=1CpgAh7wdDk","E2"]]},
    {h:"Grip finisher", m:"3 min", rows:[
     ["Dead hang into hanging L","2 × max hold","Hang from the pull-up bar, shoulders pulled down, squeeze the bar hard. When your grip starts to fade, pull your knees up into a tuck L and hold as long as you can. Rest 60 sec","",S("dead hang grip strength hanging l sit tuck")]]},
    {h:"Cool-down", m:"2 min", rows:[
@@ -358,19 +363,19 @@ const DAYS = [
     ["Tibialis raise","1 × 20","Back to the wall, lift your toes, pause top and bottom","",S("tibialis raise wall knees over toes")],
     ["Banded lateral walks","2 × 8 each way","Band above the knees, stay low",AD,"https://youtube.com/shorts/GMo4gT2e-Dc"]]},
    {h:"Functional: jump primer", m:"10 min", note:"Getting your body used to jumping again. Ankles first, then small jumps. About 70% effort, quiet landings, knees over your toes. Weak leg first. If anything pinches, skip that drill today.", rows:[
-    ["Lateral ankle pops","3 × 10 each ankle","Quick and springy, small bounces off the ball of the foot",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
-    ["Single ankle lifts, 3-sec hold","3 × 4 each","Up on one foot, hold at the top. Builds the ankle strength your landings need",AD,"https://youtube.com/shorts/-uEvnEdAgQw"],
-    ["Lateral plate hops","3 × 10 sec","Small side-to-side hops over a plate on the floor",AD,"https://youtube.com/shorts/XomC_FIU_E0"],
-    ["Lateral bounds, stick the landing","3 × 4 each side","Jump sideways off one leg, land on the other and hold 2 sec. Short jumps this week; distance comes later",AD,"https://youtube.com/shorts/00tM64YTOTE"]]},
+    ["Lateral ankle pops","3 × 10 each ankle · bodyweight","Quick and springy, small bounces off the ball of the foot",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
+    ["Single ankle lifts, 3-sec hold","3 × 4 each · bodyweight","Up on one foot, hold at the top. Builds the ankle strength your landings need",AD,"https://youtube.com/shorts/-uEvnEdAgQw"],
+    ["Lateral plate hops","3 × 10 sec · bodyweight","Small side-to-side hops over a plate on the floor",AD,"https://youtube.com/shorts/XomC_FIU_E0"],
+    ["Lateral bounds, stick the landing","3 × 4 each side · bodyweight","Jump sideways off one leg, land on the other and hold 2 sec. Short jumps this week; distance comes later",AD,"https://youtube.com/shorts/00tM64YTOTE"]]},
    {h:"Strength", m:"22 min", note:"3 sets each. Supersets A and B: the 2 doesn't tire out what the 1 needs, so you use your rest instead of sitting.", rows:[
     ["Smith back squat","Bar × 10, 135 × 5, then 3 × 6 @ 185","Full depth you control, chest up. About 60% of your 315 max while you rebuild form; add 10 lb a week when all reps are clean",HAM,S("smith machine squat form"),"A1"],
-    ["Psoas march, 5-sec hold","3 × 6 each side","Band on the feet, lying down, drive one knee up and hold: hip flexor strength",FMF,S("psoas march exercise"),"A2"],
-    ["Dumbbell jump squat","3 × 5","Light dumbbells (15–20 lb each hand) at your sides. Sit to a quarter squat, jump, land soft and reset before the next rep",HAM,S("dumbbell jump squat form"),"B1"],
-    ["Assisted pistol squat","3 × 5 each side","Hold the cable column, sit down slowly on one leg",LW,S("assisted pistol squat progression"),"B2"],
-    ["Dumbbell walking lunge","3 × 10 each leg","40–50 lb dumbbells, front foot stays flat",HAM,"https://youtube.com/shorts/JMkDwe0Wki4"]]},
+    ["Psoas march, 5-sec hold","3 × 6 each side · band","Band on the feet, lying down, drive one knee up and hold: hip flexor strength",FMF,S("psoas march exercise"),"A2"],
+    ["Dumbbell jump squat","3 × 5 @ 15–20 lb each hand","Light dumbbells (15–20 lb each hand) at your sides. Sit to a quarter squat, jump, land soft and reset before the next rep",HAM,S("dumbbell jump squat form"),"B1"],
+    ["Assisted pistol squat","3 × 5 each side · bodyweight","Hold the cable column, sit down slowly on one leg",LW,S("assisted pistol squat progression"),"B2"],
+    ["Dumbbell walking lunge","3 × 10 each leg @ 40–50 lb each hand","40–50 lb dumbbells, front foot stays flat",HAM,"https://youtube.com/shorts/JMkDwe0Wki4"]]},
    {h:"Glutes + hips", m:"6 min", note:"Superset C, 3 rounds. No equipment needed.", rows:[
-    ["Single-leg glute bridge risers","3 × 7 each side","Glutes",AH,"https://youtu.be/pTDQ5tJRhC8","C1"],
-    ["Side-lying hip abduction","3 × (10 straight leg + 5 bent leg) each side","Lie on your side, lift the top leg slightly behind you: outer hip strength",FMF,"https://www.youtube.com/watch?v=C4bQSvhSGZA","C2"]]},
+    ["Single-leg glute bridge risers","3 × 7 each side · bodyweight","Glutes",AH,"https://youtu.be/pTDQ5tJRhC8","C1"],
+    ["Side-lying hip abduction","3 × (10 straight leg + 5 bent leg) each side · bodyweight","Lie on your side, lift the top leg slightly behind you: outer hip strength",FMF,"https://www.youtube.com/watch?v=C4bQSvhSGZA","C2"]]},
    {h:"Cool-down", m:"2 min", rows:[
     ["Half-kneeling hip flexor stretch","30 sec each side","Squeeze the back glute",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"],
     ["Seated hamstring V-stretch","30 sec","Legs wide, walk your hands forward",HAM,S("seated v sit hamstring stretch")]]}
@@ -552,10 +557,22 @@ const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 const tabsEl = document.getElementById("days"), app = document.getElementById("app");
 const dot = l => `<span class="dot" style="background:${COLOR[l]||'#0D7A63'}">L${l}</span>`;
 
+/* Did log: a list of entries per exercise ("185 × 10"), add as many as you want. */
+const logList = v => Array.isArray(v) ? v : (v && String(v).trim() ? [String(v).trim()] : []);
+function logHTML(prefix, key, list){
+  return `<div class="logwrap">${list.length?`<div class="logs">${list.map((e,i)=>`<span class="lg"><b>${i+1}</b> ${esc(e)}<button type="button" class="lgx" data-rmlog="${esc(key)}" data-i="${i}" aria-label="Remove">×</button></span>`).join("")}</div>`:""}<div class="logbox"><label for="l-${prefix}-${key}">Did</label><input id="l-${prefix}-${key}" data-log="${esc(key)}" inputmode="text" autocomplete="off" enterkeyhint="done" placeholder="weight × reps"><button type="button" class="lgadd" data-addlog="${esc(key)}">Add</button></div></div>`;
+}
+function wireLogs(id, rerender){
+  const d=docOf(id); d.logs=d.logs||{};
+  const add=(key,inp)=>{ const v=inp.value.trim(); if(!v) return; const l=logList(d.logs[key]); l.push(v); d.logs[key]=l; save(id); const y=scrollY; rerender(); scrollTo(0,y); };
+  app.querySelectorAll("[data-addlog]").forEach(b=>b.addEventListener("click",()=>{ const inp=b.parentElement.querySelector("input[data-log]"); add(b.dataset.addlog,inp); }));
+  app.querySelectorAll("input[data-log]").forEach(inp=>inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); add(inp.dataset.log,inp); } }));
+  app.querySelectorAll("[data-rmlog]").forEach(b=>b.addEventListener("click",()=>{ const l=logList(d.logs[b.dataset.rmlog]); l.splice(+b.dataset.i,1); d.logs[b.dataset.rmlog]=l; save(id); const y=scrollY; rerender(); scrollTo(0,y); }));
+}
 function rowHTML(prefix, key, r, d, loggable, rp){
   const on = !!(d.checks||{})[key], cid = `c-${prefix}-${key}`;
-  const logv = (d.logs||{})[key] || "";
-  return `<div class="row${on?" is-done":""}"><input type="checkbox" id="${cid}" data-k="${key}"${on?" checked":""} aria-label="Done: ${esc(r[0])}"><div class="t"><label for="${cid}" style="cursor:pointer;display:block"><div class="name">${r[5]?`<span class="ss">${esc(r[5])}</span>`:""}${esc(r[0])}</div><div class="dose">${esc(r[1])}</div>${r[2]?`<div class="how">${esc(r[2])}</div>`:""}</label>${loggable?`<div class="logbox"><label for="l-${prefix}-${key}">Did</label><input id="l-${prefix}-${key}" data-log="${key}" inputmode="text" autocomplete="off" placeholder="weight × reps" value="${esc(logv)}"></div>`:""}${(r[3]||r[4])?`<div class="meta">${r[3]?`<span class="src">${esc(r[3])}</span>`:""}${r[4]?`<a class="vid" href="${esc(r[4])}" target="_blank" rel="noopener">${r[4].includes("results?search")?"Find video":"Watch video"} ↗</a>`:""}</div>`:""}${rp&&rp.sec?`<div class="meta">${tpair("rest", rp.sec, "Rest "+fmt(rp.sec))}</div>`:rp&&rp.next?`<div class="meta"><span class="src" style="color:var(--warm)">No rest → straight to ${esc(rp.next)}</span></div>`:""}</div></div>`;
+  const logv = logList((d.logs||{})[key]);
+  return `<div class="row${on?" is-done":""}"><input type="checkbox" id="${cid}" data-k="${key}"${on?" checked":""} aria-label="Done: ${esc(r[0])}"><div class="t"><label for="${cid}" style="cursor:pointer;display:block"><div class="name">${r[5]?`<span class="ss">${esc(r[5])}</span>`:""}${esc(r[0])}</div><div class="dose">${esc(r[1])}</div>${r[2]?`<div class="how">${esc(r[2])}</div>`:""}</label>${loggable?logHTML(prefix,key,logv):""}${(r[3]||r[4])?`<div class="meta">${r[3]?`<span class="src">${esc(r[3])}</span>`:""}${r[4]?`<a class="vid" href="${esc(r[4])}" target="_blank" rel="noopener">${r[4].includes("results?search")?"Find video":"Watch video"} ↗</a>`:""}</div>`:""}${rp&&rp.sec?`<div class="meta">${tpair("rest", rp.sec, "Rest "+fmt(rp.sec))}</div>`:rp&&rp.next?`<div class="meta"><span class="src" style="color:var(--warm)">No rest → straight to ${esc(rp.next)}</span></div>`:""}</div></div>`;
 }
 function wire(id, total){
   const d = docOf(id);
@@ -563,7 +580,6 @@ function wire(id, total){
   app.querySelectorAll('.row input[type=checkbox]').forEach(cb=>cb.addEventListener("change",()=>{
     d.checks = d.checks||{}; d.checks[cb.dataset.k]=cb.checked; cb.closest(".row").classList.toggle("is-done",cb.checked); upd(); save(id);
   }));
-  app.querySelectorAll('input[data-log]').forEach(inp=>inp.addEventListener("input",()=>{ d.logs=d.logs||{}; d.logs[inp.dataset.log]=inp.value; saveSoon(id); }));
   const cal=document.getElementById("cal"); if(cal) cal.addEventListener("input",()=>{ d.cal=cal.value; saveSoon(id); });
   const pu=document.getElementById("pu"); if(pu) pu.addEventListener("change",()=>{ d.push=pu.checked; save(id); });
   const rb=document.getElementById("reset"); if(rb) rb.addEventListener("click",()=>{ d.checks={}; save(id); render(id); });
@@ -588,10 +604,14 @@ function renderDay(day){
     if(b.rows.length) h += `<div class="list">` + b.rows.map((r,ri)=>rowHTML(day.id, K[bi][ri], r, d, !/warm-up|cool-down/i.test(b.h), rpl[ri])).join("") + `</div>`;
     h += `</section>`;
   });
+  if(rowCount){ const ex=d.extra||[]; h += `<section class="block"><h3>Extra exercises <small>anything you added</small></h3>${ex.length?`<div class="list">${ex.map(x=>`<div class="row"><span></span><div class="t"><div class="name">${esc(x.name)}</div>${logHTML(day.id,"x-"+x.id,logList((d.logs||{})["x-"+x.id]))}<div class="meta"><button class="del" type="button" data-rmx="${esc(x.id)}">Remove exercise</button></div></div></div>`).join("")}</div>`:""}<div class="field"><label for="xname">Add</label><input id="xname" autocomplete="off" enterkeyhint="done" placeholder="exercise name, e.g. Cable lateral raise"><button type="button" class="lgadd" id="xadd">Add</button></div></section>`; }
   if(plan) h += `<section class="block"><h3>StairMaster</h3><div class="field"><label for="cal">Calories</label><input id="cal" inputmode="numeric" placeholder="from the machine" value="${esc(d.cal||"")}"></div></section>`;
   if(rowCount) h += `<button class="reset" id="reset" type="button">Clear today's checkmarks</button>`;
   h += `<p class="foot">"Watch video" opens the exact video from your programs. "Find video" opens YouTube results for that exercise.</p>`;
-  app.innerHTML = h; wire(day.id, rowCount);
+  app.innerHTML = h; wire(day.id, rowCount); wireLogs(day.id, ()=>renderDay(day));
+  const xi=document.getElementById("xname"), xadd=()=>{ const v=xi.value.trim(); if(!v) return; d.extra=d.extra||[]; d.extra.push({id:String(Date.now()), name:v}); save(day.id); const y=scrollY; renderDay(day); scrollTo(0,y); setTimeout(()=>{ const t=app.querySelector(`input[data-log="x-${d.extra[d.extra.length-1].id}"]`); t?.focus(); },50); };
+  document.getElementById("xadd")?.addEventListener("click",xadd); xi?.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); xadd(); } });
+  app.querySelectorAll("[data-rmx]").forEach(b=>b.addEventListener("click",()=>{ if(!confirm("Remove this exercise and its log?")) return; d.extra=(d.extra||[]).filter(x=>x.id!==b.dataset.rmx); delete d.logs["x-"+b.dataset.rmx]; save(day.id); const y=scrollY; renderDay(day); scrollTo(0,y); }));
   document.getElementById("startw")?.addEventListener("click",()=>{ if(W.finish && W.dayId===day.id){ if(confirm("End this workout?")) stopAll(); } else startWorkout(day, false); renderDay(day); });
   document.getElementById("startios")?.addEventListener("click",()=>{ const fin=new Date(Date.now()+mins(day.time)*60000); location.href="shortcuts://run-shortcut?name="+encodeURIComponent(finishShortcut)+"&input=text&text="+encodeURIComponent(`${clock(fin)} · ${day.chip} workout done`); });
   wireTimers();
@@ -999,7 +1019,7 @@ document.addEventListener("visibilitychange",()=>{ if(!document.hidden) checkUpd
       let changed=false;
       snap.docs.forEach(ds=>{ if(ds.metadata.hasPendingWrites || writing[ds.id] || pending[ds.id]) return; const body=ds.data(); if(body){ cache[ds.id]=migrate(ds.id, JSON.parse(JSON.stringify(body))); local.set("hy1-"+ds.id, cache[ds.id]); changed=true; } });
       setSync("Synced to your account");
-      const typing = document.activeElement && document.activeElement.matches("input[data-log], #cal, #gaps, #i-what, #i-link, #i-why, #i-where, [data-best]");
+      const typing = document.activeElement && document.activeElement.matches("input[data-log], #xname, #cal, #gaps, #i-what, #i-link, #i-why, #i-where, [data-best]");
       if(changed && !typing && !tState.running) render(current);
     }, ()=>setSync("Saved on this phone"));
   }catch(e){ setSync("Saved on this phone"); }
