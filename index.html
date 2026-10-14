@@ -212,7 +212,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-14i";
+const APP_VERSION = "2026-10-14j";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -988,7 +988,13 @@ async function checkUpdate(){
   try{
     const r = await fetch("index.html?check=" + Date.now(), {cache:"no-store"});
     const m = (await r.text()).match(/APP_VERSION = "([^"]+)"/);
-    if(m && m[1] !== APP_VERSION && !W.block && !W.rest){ location.reload(); }
+    if(m && m[1] !== APP_VERSION && !W.block && !W.rest){
+      /* Load the new version by a fresh address so no saved copy gets in the way; only try once per version. */
+      let tried=null; try{ tried=sessionStorage.getItem("hy1-upd"); }catch(e){}
+      if(tried===m[1]) return;
+      try{ sessionStorage.setItem("hy1-upd", m[1]); }catch(e){}
+      location.replace(location.pathname + "?v=" + encodeURIComponent(m[1]) + location.hash);
+    }
   }catch(e){}
 }
 checkUpdate();
