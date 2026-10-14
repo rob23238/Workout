@@ -217,7 +217,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-14w";
+const APP_VERSION = "2026-10-14x";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -638,7 +638,7 @@ function renderNight(){
     h += `<section class="block"><h3>Routine <small>${esc(n.days)}</small></h3><div class="list">` + n.rows.map(r=>rowHTML("night"+sel, "n"+sel+"-"+slug(r[0]), r, d, false)).join("") + `</div></section>`;
   }
   if(PUSH_BY_DAY[wk]) h += `<section class="block"><h3>100 push-ups</h3><p class="note">4 × 25 with clean form, no vest. Floor push-ups are fine at night. <a class="vid" href="${S("perfect push up form")}" target="_blank" rel="noopener">Find video ↗</a></p><div class="field"><input type="checkbox" id="pu" style="flex:0 0 auto;width:24px;height:24px;accent-color:var(--accent)"${d.push?" checked":""}><label for="pu">Done tonight</label></div></section>`;
-  h += `<section class="block"><h3>Wind down <small>in bed · 3 min</small></h3><p class="note">After your stretching (and push-ups), lie down and let your body slow down.</p>${breathHTML("belly","nbelly")}${breathHTML("box","nbox")}<div class="callout"><b>Say it:</b> "${esc(GROUNDING)}"</div>${sensesHTML()}<div class="list" style="margin-top:10px">${[["w-belly",["Belly breathing done","","","",""]],["w-box",["Box breathing done","","","",""]],["w-ground",["Grounding statement","","","",""]]].map(([k,r])=>rowHTML("night",k,r,d,false)).join("")}</div></section>`;
+  h += `<section class="block"><h3>Wind down <small>in bed · ~8 min</small></h3><p class="note">After your stretching (and push-ups), lie down and let your body slow down.</p>${breathHTML("coherent","ncoh")}${breathHTML("belly","nbelly")}${breathHTML("b478","n478")}<div class="callout"><b>Say it:</b> "${esc(GROUNDING)}"</div>${sensesHTML()}<div class="list" style="margin-top:10px">${[["w-coh",["Slow 5-5 breathing done","","","",""]],["w-belly",["Belly breathing done","","","",""]],["w-478",["4-7-8 breathing done","","","",""]],["w-ground",["Grounding statement","","","",""]]].map(([k,r])=>rowHTML("night",k,r,d,false)).join("")}</div></section>`;
   h += `<div class="callout"><b>Knee safety:</b> keep your foot flexed in pigeon and the seated glute stretch. Feel it in the hip; knee pain means come out.</div>`;
   h += `<section class="block"><h3>Sunday check</h3><p class="note">Sit in 90/90 each way and note if you can sit tall without your hands, and how pigeon feels on each side. Easier each week means it's working.</p><div class="field"><label for="gaps">Notes</label><input id="gaps" placeholder="e.g. 90/90 L ok, R needs hands · pigeon R tighter" value="${esc((docOf("checks").gaps)||"")}"></div></section>`;
   app.innerHTML = h;
@@ -846,8 +846,11 @@ const SKILLS_BY_DAY = {mon:[],tue:[],wed:["Handstand push-up","Muscle-up (dips)"
 
 /* ---------- Breathing + mindset (used in Morning and Night) ---------- */
 const BREATHS = {
- box:{name:"Box breathing", how:"Sit or lie still. In through your nose for 4. Hold for 4. Out through your mouth for 4. Hold for 4. Repeat.", phases:[["Breathe in",4],["Hold",4],["Breathe out",4],["Hold",4]], rounds:4},
- belly:{name:"Belly breathing", how:"One hand on your chest, one on your stomach. In through your nose for 4 so only your stomach rises. Out slowly through your mouth for 6.", phases:[["Breathe in",4],["Breathe out",6]], rounds:6},
+ box:{name:"Box breathing", how:"Sit or lie still. In through your nose for 4. Hold for 4. Out through your mouth for 4. Hold for 4. Repeat.", phases:[["Breathe in",4],["Hold",4],["Breathe out",4],["Hold",4]], rounds:15},
+ belly:{name:"Belly breathing", how:"One hand on your chest, one on your stomach. In through your nose for 4 so only your stomach rises. Out slowly through your mouth for 6.", phases:[["Breathe in",4],["Breathe out",6]], rounds:18},
+ sigh:{name:"Physiological sigh", how:"In through your nose, then one more short sip in through your nose to top off your lungs. Then one long, slow exhale through your mouth until you're empty.", phases:[["Breathe in",2],["Sip in more",1],["Long breath out",6]], rounds:20},
+ coherent:{name:"Slow 5-5 breathing", how:"Lying down, in through your nose for 5, out through your nose for 5. Smooth and steady, no pauses. About 6 breaths a minute.", phases:[["Breathe in",5],["Breathe out",5]], rounds:24},
+ b478:{name:"4-7-8 breathing", how:"In through your nose for 4, hold for 7, then out through your mouth for 8 with a soft whoosh. Good for falling asleep.", phases:[["Breathe in",4],["Hold",7],["Breathe out",8]], rounds:4},
  skull:{name:"Skull shining breath", how:"Sit tall. Take a normal breath in. Then short, sharp exhales through your nose by snapping your belly in. Let each inhale happen on its own.", phases:[["Breathe out",1]], rounds:20, caution:"Stop and switch to belly breathing if you feel dizzy or lightheaded. Save it for when you want energy, not when you're winding down."}
 };
 const BELIEF = "For God has not given us a spirit of fear, but of power and of love and of a sound mind.";
@@ -858,7 +861,7 @@ let pacer = null;
 function chime(){ try{ unlockAudio(); const o=actx.createOscillator(), g=actx.createGain(); o.type="sine"; o.frequency.value=660; o.connect(g); g.connect(actx.destination); const t=actx.currentTime; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.18,t+0.03); g.gain.exponentialRampToValueAtTime(0.0001,t+0.9); o.start(t); o.stop(t+0.95); }catch(e){} }
 function breathHTML(id, key){
   const b = BREATHS[id];
-  return `<div class="breath" data-breath="${id}"><div class="bh"><b>${esc(b.name)}</b><span>${b.rounds} ${id==="skull"?"exhales":"rounds"}</span></div><p><b style="color:var(--ink)">How to:</b> ${esc(b.how)}</p>${b.caution?`<p class="warnline">Stop if you feel dizzy.</p>`:""}
+  return `<div class="breath" data-breath="${id}"><div class="bh"><b>${esc(b.name)}</b><span>${id==="skull"?b.rounds+" exhales":fmt(b.rounds*b.phases.reduce((a,p)=>a+p[1],0))+" · "+b.rounds+" rounds"}</span></div><p><b style="color:var(--ink)">How to:</b> ${esc(b.how)}</p>${b.caution?`<p class="warnline">Stop if you feel dizzy.</p>`:""}
   <div class="pace" id="pace-${key}"><div class="ph">Ready</div><div class="ct"></div></div><button class="btn" type="button" data-pace="${id}" data-pkey="${key}">▶ Guide me</button></div>`;
 }
 function stopPacer(){ if(pacer){ clearTimeout(pacer.t); const btn=document.querySelector(`[data-pkey="${pacer.key}"]`); if(btn) btn.textContent="▶ Guide me"; pacer=null; } }
@@ -889,13 +892,13 @@ const MORNING_MOB = [
  ["World's greatest stretch","3 each side · 2 min","Big lunge, back knee down. Same-side hand on the floor inside your front foot, then turn and reach the other arm to the ceiling. Opens hips, hip flexors and upper back in one move","",S("worlds greatest stretch how to")]];
 function renderMorning(){
   const wk=todayId(), weekend = wk==="sat"||wk==="sun", d=docOf("morning-"+wk);
-  const breaths = ["box","belly"].concat(weekend?["skull"]:[]);
+  const breaths = ["box","sigh","belly"].concat(weekend?["skull"]:[]);
   const checks = [...MORNING_MOB.map(r=>["m-"+slug(r[0]),r]), ...breaths.map(b=>["m-"+b,[BREATHS[b].name+" done","","","",""]]), ["m-nose",["Nose unblock done","","","",""]], ["m-senses",["5–4–3–2–1 done","","","",""]], ["m-belief",["Said my belief out loud","","","",""]]];
-  let h = `<div class="dayhead"><div class="kicker">Morning · every day · ~8 min</div><h2>Wake up loose and clear</h2><p>Two moves to open your back and hips, then breathe and set your mind before work. ${weekend?"It's the weekend, so skull shining breath is on today.":"Skull shining breath is saved for weekends."}</p>
-  <div class="tbar" style="margin-top:12px">${tpair("block", 480, "8:00 routine", "Morning routine")}</div>
+  let h = `<div class="dayhead"><div class="kicker">Morning · every day · ~15 min</div><h2>Wake up loose and clear</h2><p>Two moves to open your back and hips, then breathe and set your mind before work. ${weekend?"It's the weekend, so skull shining breath is on today.":"Skull shining breath is saved for weekends."}</p>
+  <div class="tbar" style="margin-top:12px">${tpair("block", 900, "15:00 routine", "Morning routine")}</div>
   <div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${checks.length}</b></div></div>`;
   h += `<section class="block"><h3>Open up <small>3 min</small></h3><div class="list">` + MORNING_MOB.map(r=>rowHTML("morning","m-"+slug(r[0]),r,d,false)).join("") + `</div></section>`;
-  h += `<section class="block"><h3>Breathe <small>${weekend?"5":"4"} min</small></h3>` + breaths.map(b=>breathHTML(b,"m"+b)).join("") + `</section>`;
+  h += `<section class="block"><h3>Breathe <small>${weekend?"11":"10"} min</small></h3>` + breaths.map(b=>breathHTML(b,"m"+b)).join("") + `</section>`;
   h += `<section class="block"><h3>Nose training <small>2 min</small></h3>${NOSE_HTML}</section>`;
   h += `<section class="block"><h3>Mindset <small>1 min</small></h3><div class="callout"><b>My belief:</b> "${esc(BELIEF)}"<div style="font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-top:4px">${esc(BELIEF_REF)}</div><div style="font:800 22px var(--display);letter-spacing:.03em;text-transform:uppercase;margin-top:10px">Keep going 🦁🦍</div></div>${sensesHTML()}</section>`;
   h += `<section class="block"><h3>Check off</h3><div class="list">` + checks.slice(MORNING_MOB.length).map(([k,r])=>rowHTML("morning",k,r,d,false)).join("") + `</div></section>`;
