@@ -212,7 +212,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-14a";
+const APP_VERSION = "2026-10-14b";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -357,23 +357,7 @@ const DAYS = [
    {h:"Cool-down", m:"2 min", rows:[
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","Hold the Smith bar, sink your hips back",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"sat", chip:"Sat", kicker:"Saturday", title:"Fair day", time:"", stair:["",""], night:"",
-  blocks:[
-   {h:"Today", m:"", note:"No workout. Enjoy the fair: all that walking counts.", rows:[]}
-  ]},
- {id:"sun", chip:"Sun", kicker:"Sunday · optional", title:"Quick hotel workout", time:"~20 min", stair:["No StairMaster",""], night:"",
-  blocks:[
-   {h:"Hotel circuit", m:"20 min", note:"Only if you feel like it. No equipment: the bed or a chair is your bench. 3 rounds of everything after the push-ups, rest 60 sec between rounds.", rows:[
-    ["Incline push-ups","4 × 25 (100 total)","Feet on the bed, body straight, chest to an inch off the floor","",S("feet elevated push up form")],
-    ["Bulgarian split squat","3 × 10 each leg","Back foot on the bed or a chair, front foot flat, sink straight down","",S("bulgarian split squat bodyweight form")],
-    ["Single-leg glute bridge","3 × 10 each side","Drive through the heel, squeeze at the top",AH,"https://youtu.be/pTDQ5tJRhC8"],
-    ["Pike push-ups","3 × 6","Hips high, head lands in front of your hands",LW,S("pike push up progression")],
-    ["Dead bug","3 × 10 each side","Low back pressed flat, opposite arm and leg reach slowly","",S("dead bug exercise form")]]}
-  ]},
-];
-/* Not on the schedule this week; kept for next week. */
-const SPARE_DAYS = [
- {id:"fri", chip:"Fri", kicker:"Day 4 · Friday", title:"Legs B: real-world strength + pull volume", time:"~55 min", stair:["35-min intervals","after leg day"], night:"Hip mobility A (no push-ups tonight)",
+ {id:"sat", chip:"Sat", kicker:"Saturday · lift before the fair", title:"Legs B: real-world strength + pull volume", time:"~55 min", stair:["35-min intervals","after leg day"], night:"Hip mobility A (no push-ups tonight)",
   blocks:[
    {h:"Jump rope + warm-up", m:"8 min", rows:[
     ["Jump rope, basic bounce","5 × 30 sec on / 30 sec off","Same as Tuesday","",S("jump rope basic bounce beginner")],
@@ -403,6 +387,13 @@ const SPARE_DAYS = [
     ["Active pigeon","45 sec each side","Outer hip",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
     ["Seated hamstring V-stretch","30 sec","",HAM,S("seated v sit hamstring stretch")]]}
   ]},
+ {id:"sun", chip:"Sun", kicker:"Sunday", title:"Fair day", time:"", stair:["",""], night:"",
+  blocks:[
+   {h:"Today", m:"", note:"No workout. Enjoy the fair: all that walking counts.", rows:[]}
+  ]}
+];
+/* Not on the schedule this week; kept for next week. */
+const SPARE_DAYS = [
  {id:"sat", chip:"Sat", kicker:"Saturday · lighter day", title:"Stability + abs A + hips", time:"~45 min", stair:["40-min fat burn","two short level 9 pushes"], night:"Hip mobility A + 100 push-ups",
   blocks:[
    {h:"Functional: Stability day", m:"12 min", note:"Stability day: strength in the hips, knees and ankles, and evening out your legs.", rows:[
@@ -479,10 +470,10 @@ const COLOR = Object.fromEntries(ZONES.map(z=>[z[0],z[3]]));
 const rounds = (n, segs) => Array.from({length:n}, ()=>segs).flat();
 const PLANS = {
  p40:{h:"40-min steady sweat", when:"Friday", desc:"Relaxed but real work. Long steady stretches at level 7–8, no hard pushes. You can breathe through your nose most of it, and the length is what burns the calories.", segs:[[5,6],[10,7],[8,8],[4,7],[7,8],[4,7],[2,6]]},
- p35:{h:"35-min climb", when:"Thursday", desc:"Your old 40 without the level 6 cool-down at the end: long level 7–8 stretches with two short level 9 pushes. Finish with 2 easy minutes at level 7.", segs:[[5,6],[8,7],[6,8],[2,9],[4,7],[6,8],[2,9],[2,7]]},
+ p35:{h:"35-min climb", when:"Thursday, Saturday", desc:"Your old 40 without the level 6 cool-down at the end: long level 7–8 stretches with two short level 9 pushes. Finish with 2 easy minutes at level 7.", segs:[[5,6],[8,7],[6,8],[2,9],[4,7],[6,8],[2,9],[2,7]]},
  p30:{h:"30-min max burn", when:"Wednesday", desc:"Most calories in 30 minutes. 5 rounds of 2 min level 9, 1 min level 10, 1 min level 8 to recover. Hard but short: intervals pack more work into less time.", segs:[[3,6],[2,7],[2,8],...rounds(5,[[2,9],[1,10],[1,8]]),[3,6]]}
 };
-const PLAN_BY_DAY = {mon:null,tue:null,wed:"p30",thu:"p35",fri:"p40",sat:null,sun:null};
+const PLAN_BY_DAY = {mon:null,tue:null,wed:"p30",thu:"p35",fri:"p40",sat:"p35",sun:null};
 const LOGGABLE = /pull-ups|Smith|jump squat|walking lunge|bent-over row|curl|Romanian|Hanging leg raise, full|Cable crunch|straight-bar dip|shoulder press|skull crusher|^Set \d/i;
 
 
@@ -821,7 +812,7 @@ function renderCali(){
   app.querySelectorAll("[data-sk]").forEach(cb=>cb.addEventListener("change",()=>{ d.done[cb.dataset.sk]=cb.checked; save("cali"); const y=scrollY; renderCali(); scrollTo(0,y); }));
   app.querySelectorAll("[data-best]").forEach(inp=>inp.addEventListener("input",()=>{ d.best[inp.dataset.best]=inp.value; saveSoon("cali"); }));
 }
-const SKILLS_BY_DAY = {mon:[],tue:[],wed:["Handstand push-up","Muscle-up (dips)","Dragon flag"],thu:["Pistol squat"],fri:["Pull-ups → 50","Handstand push-up","One-arm push-up","Lower abs"],sat:[],sun:["Handstand push-up"]};
+const SKILLS_BY_DAY = {mon:[],tue:[],wed:["Handstand push-up","Muscle-up (dips)","Dragon flag"],thu:["Pistol squat"],fri:["Pull-ups → 50","Handstand push-up","One-arm push-up","Lower abs"],sat:["Muscle-up","Pull-ups → 50"],sun:[]};
 
 /* ---------- Breathing + mindset (used in Morning and Night) ---------- */
 const BREATHS = {
