@@ -212,7 +212,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-14e";
+const APP_VERSION = "2026-10-14f";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -271,7 +271,7 @@ const DAYS = [
     ["Wall handstand hold, chest to wall","3 × 30 sec","Walk your feet up the wall, body straight",LW,S("chest to wall handstand hold")],
     ["Pike push-ups","3 × 6","Hips high, head lands in front of your hands",LW,S("pike push up progression"),"B1"],
     ["Parallel bar dips","3 × 8","Shoulders down, lean slightly forward, lower until your shoulders are just below your elbows, press up to locked arms",LW,S("parallel bar dips proper form"),"B2"],
-    ["L-sit hold (tuck to start)","3 × 10–15 sec","On the dip bars: arms locked, shoulders pushed down away from your ears. Start with knees tucked to your chest; once 15 sec is easy, straighten one leg, then both",LW,S("tuck l sit progression parallel bars"),"B3"]]},
+    ["L-sit, your current step","3 × 15–20 sec","On the dip bars. Use the step marked Next up on the Calisthenics tab. Week 1: support hold, then 1–2 tries at the one-leg tuck",LW,S("l sit progression for beginners parallel bars"),"B3"]]},
    {h:"Shoulders, chest, arms", m:"16 min", note:"Supersets C, D and E, rest 60 sec after each round.", rows:[
     ["Seated dumbbell shoulder press","3 × 8","Ribs down, don't lean back",HAM,S("seated dumbbell shoulder press form"),"C1"],
     ["Cable face pull","3 × 15","Pull to your forehead, thumbs back: posture","",S("cable face pull form"),"C2"],
@@ -786,6 +786,15 @@ const SKILLS = [
   ["One leg out 3 × 8 sec",""],
   ["Straddle front lever 3 × 5 sec",""],
   ["Full front lever 5 sec",""]]},
+ {id:"lsit", name:"L-sit", why:"Hold your body up on locked arms with your legs straight out in front. Builds shoulder push-down strength and core compression, which feeds handstands, dips and muscle-ups. Move to the next step when you hit 3 clean sets of the target.", on:["Push day: B3 on the dip bars","Pull + Stability days: leg raises build the compression"], steps:[
+  ["Support hold 3 × 20–30 sec","Top of a dip, arms locked, shoulders pushed DOWN away from your ears, body still"],
+  ["Support shrugs 3 × 10","In the support hold, sink your shoulders up toward your ears, then push them down hard. This is the muscle that holds an L-sit"],
+  ["Seated pike leg lifts 3 × 10","On the floor, legs straight, hands beside your knees. Lift both heels a few inches and lower. Builds the hip-flexor strength to hold your legs up"],
+  ["One-leg tuck 3 × 15 sec each","On the bars, one knee to your chest, other foot hanging. Switch legs"],
+  ["Tuck L-sit 3 × 15 sec","Both knees to your chest, hips under your shoulders"],
+  ["One leg out 3 × 10 sec each","From the tuck, straighten one leg in front. Switch legs"],
+  ["Full L-sit 3 × 10 sec","Both legs straight, toes pointed, legs parallel to the floor"],
+  ["Full L-sit 20 sec","Then try it on the floor or on dumbbells"]]},
  {id:"core", name:"Lower abs → dragon flag", why:"Hanging leg raises build the lower abs; the dragon flag path builds the strength to hold your whole body straight.", on:["Pull + Stability days: hanging leg raises","Push + Stability days: candlestick + negatives","Flow Motion day: hollow hold"], steps:[
   ["5 clean hanging leg raises","Where you started",true],
   ["Hollow hold 30 sec + candlestick lifts 3 × 5","Low back pressed down"],
@@ -813,7 +822,7 @@ function renderCali(){
   app.querySelectorAll("[data-sk]").forEach(cb=>cb.addEventListener("change",()=>{ d.done[cb.dataset.sk]=cb.checked; save("cali"); const y=scrollY; renderCali(); scrollTo(0,y); }));
   app.querySelectorAll("[data-best]").forEach(inp=>inp.addEventListener("input",()=>{ d.best[inp.dataset.best]=inp.value; saveSoon("cali"); }));
 }
-const SKILLS_BY_DAY = {mon:[],tue:[],wed:["Handstand push-up","Muscle-up (dips)","Dragon flag"],thu:["Muscle-up","Pull-ups → 50"],fri:["Pull-ups → 50","Handstand push-up","One-arm push-up","Lower abs"],sat:["Pistol squat"],sun:[]};
+const SKILLS_BY_DAY = {mon:[],tue:[],wed:["Handstand push-up","Muscle-up (dips)","L-sit","Dragon flag"],thu:["Muscle-up","Pull-ups → 50"],fri:["Pull-ups → 50","Handstand push-up","One-arm push-up","Lower abs"],sat:["Pistol squat"],sun:[]};
 
 /* ---------- Breathing + mindset (used in Morning and Night) ---------- */
 const BREATHS = {
