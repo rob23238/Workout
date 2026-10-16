@@ -217,36 +217,39 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-16d";
+const APP_VERSION = "2026-10-16e";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
 <h4>The big idea</h4>
-<p>Your hands and arms are just <b>hooks</b>. Your back is the <b>engine</b>. Think of a tow truck: the hook grabs the car, but the winch does the pulling. If your biceps are doing the work, you're pulling the car with the hook.</p>
+<p>Think of <b>pulling a garage door down</b>. You don't curl it with your biceps. You grab the handle and pull it down with your whole back, elbows driving down to your sides. A pull-up is the same move. The only difference is that the bar doesn't move, so <b>you</b> go up.</p>
 <div class="big">Don't pull yourself up. Pull the bar down to your chest.</div>
-<h4>One rep, step by step</h4>
+<h4>Set up (before rep 1)</h4>
 <ol>
-<li><b>Grip.</b> Hands a little wider than your shoulders, thumbs wrapped. Squeeze the bar like you're trying to crush it. A hard grip turns on your whole back.</li>
-<li><b>Get tight.</b> Legs together, squeeze your glutes, ribs down, toes slightly in front of you. No banana back, no swinging. A stiff body = all the power goes up.</li>
-<li><b>Dead hang.</b> Arms fully straight. Feel the stretch in your armpits. That's your lats loaded like a slingshot.</li>
-<li><b>Shoulders down first (arms stay straight).</b> Pull your shoulders away from your ears, like putting your shoulder blades in your back pockets. You rise about an inch. This is the rep starting from your back. Skip this and your arms take over.</li>
-<li><b>Elbows to your back pockets.</b> Now bend. Drive your elbows down and back toward your hips, like you're trying to elbow someone standing behind you. Elbows go down, not forward. Elbows forward = it turns into a curl.</li>
-<li><b>Chest to the bar.</b> Lead with your chest, not your chin. Chin clears the bar, pause 1 sec, shoulders still down (not shrugged up by your ears).</li>
-<li><b>Lower in 3 sec.</b> Control it all the way back to a full dead hang. The way down builds as much strength as the way up.</li>
-<li><b>Reset.</b> Every rep starts over at step 4. No bouncing out of the bottom.</li>
+<li><b>Grab it like a handle you're crushing.</b> Hands a little wider than your shoulders, thumbs around the bar, squeeze hard.</li>
+<li><b>Lock your body like a plank.</b> Legs together, squeeze your butt, abs tight. Swinging is like a flag in the wind: power leaks out.</li>
+<li><b>Hang with straight arms.</b> Feel the stretch under your armpits. That's your back muscle, ready to pull.</li>
 </ol>
+<h4>Every rep: 3 moves</h4>
+<ol>
+<li><b>Shoulders down (arms still straight).</b> Like climbing <b>out of a pool</b>: you press down on the edge and your shoulders drop away from your ears. Do that on the bar. You rise about an inch. This is the move that turns on your back. Skip it and your arms do the work.</li>
+<li><b>Pull the garage door down.</b> Now bend your arms. Drive your elbows down to your sides, toward your back pockets. Elbows go <b>down</b>, not forward. If your elbows come forward, it turns into a bicep curl.</li>
+<li><b>Chest to the bar.</b> Chest up proud, like you're showing off a jersey number. Chin clears the bar, hold 1 second. Keep your shoulders down, not shrugged up to your ears.</li>
+</ol>
+<h4>Coming down</h4>
+<p><b>Take 3 seconds</b>, like lowering a heavy box onto a table instead of dropping it. Go all the way to straight arms, then start the next rep at move 1 again. No bouncing.</p>
 <h4>Where you should feel it</h4>
-<p>The side of your back under your armpits and the middle of your back. Forearms and biceps will work some, but they should not be the first thing to burn.</p>
-<div class="bad"><b>Stop the set if:</b> your shoulders shrug to your ears, your neck tightens, you kick or swing, your biceps burn before your back, or you can't get back to a full dead hang. That rep doesn't count. Ugly reps teach your body ugly pull-ups.</div>
+<p>Under your armpits and the middle of your back. Your arms work too, but they shouldn't be what burns first.</p>
+<div class="bad"><b>End the set when:</b> your shoulders shrug to your ears, you swing or kick, your biceps burn before your back, or you can't get back to straight arms. That rep doesn't count.</div>
 <h4>Why this breaks the plateau</h4>
 <ul>
-<li><b>Weighted sets (vest)</b> make your body weight feel lighter later, like running in boots then switching to sneakers.</li>
-<li><b>Slow sets</b> build control in the hardest spots, the bottom and the top.</li>
-<li><b>Only perfect reps</b> means every rep trains the back, not the momentum. 15 clean reps beat 20 messy ones.</li>
-<li><b>Full rest (2 min)</b> so every set is quality. You're practicing a skill, not just getting tired.</li>
+<li><b>Vest sets:</b> like practicing in heavy boots, then switching to sneakers. Body weight starts to feel light.</li>
+<li><b>Slow sets:</b> make you strong at the bottom and top, where reps usually die.</li>
+<li><b>Clean reps only:</b> 15 good reps beat 20 swinging reps. You're teaching your back, not your momentum.</li>
+<li><b>2-minute rest:</b> every set stays good quality.</li>
 </ul>
-<h4>Quick self-check</h4>
-<p>Do 1 scapular pull-up (step 4 only) before each set. If you can't feel your back doing that, you won't feel it in the full rep.</p>`;
+<h4>Quick check before each set</h4>
+<p>Hang and do move 1 only (the pool move) once. If you feel your back working, you're ready.</p>`;
 const SS = "Superset: do the 1 then the 2 back to back, rest, repeat for all rounds.";
 const DAYS = [
  {id:"mon", chip:"Mon", kicker:"Monday", title:"StairMaster done", time:"", stair:["",""], night:"",
