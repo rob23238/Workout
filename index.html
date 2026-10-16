@@ -217,7 +217,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-16c";
+const APP_VERSION = "2026-10-16d";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -713,19 +713,19 @@ delete W.start; delete W.target; delete W.day;
 const saveW = () => local.set("hy1-timer", W);
 let actx=null, dockRaf=0, wlock=null;
 function unlockAudio(){ try{
-  try{ if(navigator.audioSession) navigator.audioSession.type="playback"; }catch(e){}
+  try{ if(navigator.audioSession) navigator.audioSession.type="ambient"; }catch(e){}
   if(actx && actx.state==="closed") actx=null;
   actx = actx || new (window.AudioContext||window.webkitAudioContext)();
   if(actx.state!=="running"){ const p=actx.resume(); if(p&&p.catch) p.catch(()=>{}); }
   const s=actx.createBufferSource(); s.buffer=actx.createBuffer(1,1,22050); s.connect(actx.destination); s.start(0);
 }catch(e){} }
 /* iPhone pauses web sound after a lock, call or music: wake it on the next tap */
-["touchstart","pointerdown","keydown"].forEach(ev=>document.addEventListener(ev,()=>{ if(!actx||actx.state!=="running") unlockAudio(); },{passive:true,capture:true}));
+["touchstart","pointerdown","keydown"].forEach(ev=>document.addEventListener(ev,()=>{ if(actx && actx.state!=="running") unlockAudio(); },{passive:true,capture:true}));
 document.addEventListener("visibilitychange",()=>{ if(!document.hidden && actx && actx.state!=="running") unlockAudio(); });
 /* Alarm: short, deep, upbeat two-note "let's go" tone (low root up to the fifth, then the octave).
-   "playback" lets it ring even with the silent switch on. */
+   "ambient" mixes with YouTube/music instead of pausing it. */
 function alarm(sec){
-  try{ if(navigator.audioSession) navigator.audioSession.type="playback"; }catch(e){}
+  try{ if(navigator.audioSession) navigator.audioSession.type="ambient"; }catch(e){}
   try{
     unlockAudio();
     const notes=[[196.00,0],[293.66,0.11],[392.00,0.22]], reps=Math.max(1,Math.round(sec/1.3)), t0=actx.currentTime+0.05;
