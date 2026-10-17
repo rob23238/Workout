@@ -217,7 +217,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-17a";
+const APP_VERSION = "2026-10-17b";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -864,10 +864,10 @@ const SKILLS_BY_DAY = {mon:[],tue:[],wed:["Handstand push-up","Muscle-up (dips)"
 const BREATHS = {
  box:{name:"Box breathing", how:"Sit or lie still. In through your nose for 4. Hold for 4. Out through your mouth for 4. Hold for 4. Repeat.", phases:[["Breathe in",4],["Hold",4],["Breathe out",4],["Hold",4]], rounds:7},
  belly:{name:"Belly breathing", how:"One hand on your chest, one on your stomach. In through your nose for 4 so only your stomach rises. Out slowly through your mouth for 6.", phases:[["Breathe in",4],["Breathe out",6]], rounds:12},
- sigh:{name:"Physiological sigh", how:"In through your nose, then one more short sip in through your nose to top off your lungs. Then one long, slow exhale through your mouth until you're empty.", phases:[["Breathe in",2],["Sip in more",1],["Long breath out",6]], rounds:6},
+ sigh:{name:"Double-inhale reset", how:"Breathe in through your nose, then take one more quick sip of air on top, like topping off a gas tank. Then let it all out slowly through your mouth, like letting air out of a tire, until you're empty. The double breath in opens your lungs all the way, and the long breath out is what slows your heart rate and calms you down fastest.", phases:[["Breathe in",2],["Sip in more",1],["Long breath out",6]], rounds:13},
  coherent:{name:"Slow 5-5 breathing", how:"Lying down, in through your nose for 5, out through your nose for 5. Smooth and steady, no pauses. About 6 breaths a minute.", phases:[["Breathe in",5],["Breathe out",5]], rounds:12},
  b478:{name:"4-7-8 breathing", how:"In through your nose for 4, hold for 7, then out through your mouth for 8 with a soft whoosh. Good for falling asleep.", phases:[["Breathe in",4],["Hold",7],["Breathe out",8]], rounds:4},
- skull:{name:"Skull shining breath", how:"Sit tall. Take a normal breath in. Then short, sharp exhales through your nose by snapping your belly in. Let each inhale happen on its own.", phases:[["Breathe out",1]], rounds:20, caution:"Stop and switch to belly breathing if you feel dizzy or lightheaded. Save it for when you want energy, not when you're winding down."}
+ skull:{name:"Skull shining breath", how:"Sit tall. Take a normal breath in. Then short, sharp exhales through your nose by snapping your belly in. Let each inhale happen on its own. Do 30 quick pumps (about 1 per second), then breathe normally for 30 sec. That's one round.", phases:[...Array(30).fill(["Pump out",1]),["Breathe normally",30]], rounds:3, caution:"Stop and switch to belly breathing if you feel dizzy or lightheaded. Save it for when you want energy, not when you're winding down."}
 };
 const BELIEF = "For God has not given us a spirit of fear, but of power and of love and of a sound mind.";
 const BELIEF_REF = "2 Timothy 1:7";
@@ -876,19 +876,19 @@ let pacer = null;
 function chime(){ try{ unlockAudio(); const o=actx.createOscillator(), g=actx.createGain(); o.type="sine"; o.frequency.value=660; o.connect(g); g.connect(actx.destination); const t=actx.currentTime; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.18,t+0.03); g.gain.exponentialRampToValueAtTime(0.0001,t+0.9); o.start(t); o.stop(t+0.95); }catch(e){} }
 function breathHTML(id, key){
   const b = BREATHS[id];
-  return `<div class="breath" data-breath="${id}"><div class="bh"><b>${esc(b.name)}</b><span>${id==="skull"?b.rounds+" exhales":fmt(b.rounds*b.phases.reduce((a,p)=>a+p[1],0))+" · "+b.rounds+" rounds"}</span></div><p><b style="color:var(--ink)">How to:</b> ${esc(b.how)}</p>${b.caution?`<p class="warnline">Stop if you feel dizzy.</p>`:""}
+  return `<div class="breath" data-breath="${id}"><div class="bh"><b>${esc(b.name)}</b><span>${fmt(b.rounds*b.phases.reduce((a,p)=>a+p[1],0))+" · "+b.rounds+" rounds"}</span></div><p><b style="color:var(--ink)">How to:</b> ${esc(b.how)}</p>${b.caution?`<p class="warnline">Stop if you feel dizzy.</p>`:""}
   <div class="pace" id="pace-${key}"><div class="ph">Ready</div><div class="ct"></div></div><button class="btn" type="button" data-pace="${id}" data-pkey="${key}">▶ Guide me</button></div>`;
 }
 function stopPacer(){ if(pacer){ clearTimeout(pacer.t); const btn=document.querySelector(`[data-pkey="${pacer.key}"]`); if(btn) btn.textContent="▶ Guide me"; pacer=null; } }
 function runPacer(id, key){
   unlockAudio(); stopPacer(); keepAwake();
-  const b=BREATHS[id], steps=[]; for(let r=0;r<b.rounds;r++) b.phases.forEach(p=>steps.push([p[0],p[1],r+1]));
+  const b=BREATHS[id], steps=[]; for(let r=0;r<b.rounds;r++){ let n=0; b.phases.forEach(p=>steps.push([p[0],p[1],r+1,p[1]===1?++n:0])); }
   pacer={key, t:0}; const btn=document.querySelector(`[data-pkey="${key}"]`); if(btn) btn.textContent="■ Stop";
   let i=0, left=0;
   const tick=()=>{
     const box=document.getElementById("pace-"+key); if(!box || !pacer || pacer.key!==key){ stopPacer(); return; }
-    if(left<=0){ if(i>=steps.length){ box.querySelector(".ph").textContent="Done"; box.querySelector(".ct").textContent="✓"; box.classList.remove("on"); chime(); stopPacer(); return; } left=steps[i][1]; box.querySelector(".ph").textContent=steps[i][0]; box.classList.add("on"); if(id!=="skull") chime(); i++; }
-    box.querySelector(".ct").textContent = id==="skull" ? `${steps[i-1][2]} / ${b.rounds}` : `${left}  ·  round ${steps[i-1][2]} of ${b.rounds}`;
+    if(left<=0){ if(i>=steps.length){ box.querySelector(".ph").textContent="Done"; box.querySelector(".ct").textContent="✓"; box.classList.remove("on"); chime(); stopPacer(); return; } left=steps[i][1]; box.querySelector(".ph").textContent=steps[i][0]; box.classList.add("on"); if(id!=="skull" || i===0 || steps[i][0]!==steps[i-1][0]) chime(); i++; }
+    box.querySelector(".ct").textContent = id==="skull" ? (steps[i-1][1]===1 ? `${steps[i-1][3]} / 30  ·  round ${steps[i-1][2]} of ${b.rounds}` : `${left}  ·  round ${steps[i-1][2]} of ${b.rounds}`) : `${left}  ·  round ${steps[i-1][2]} of ${b.rounds}`;
     left--; pacer.t=setTimeout(tick, 1000);
   };
   tick();
@@ -913,7 +913,7 @@ function renderMorning(){
   <div class="tbar" style="margin-top:12px">${tpair("block", 600, "10:00 routine", "Morning routine")}</div>
   <div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${checks.length}</b></div></div>`;
   h += `<section class="block"><h3>Open up <small>3 min</small></h3><div class="list">` + MORNING_MOB.map(r=>rowHTML("morning","m-"+slug(r[0]),r,d,false)).join("") + `</div></section>`;
-  h += `<section class="block"><h3>Breathe <small>${weekend?"6":"5"} min</small></h3>` + breaths.map(b=>breathHTML(b,"m"+b)).join("") + `</section>`;
+  h += `<section class="block"><h3>Breathe <small>${weekend?"9":"6"} min</small></h3>` + breaths.map(b=>breathHTML(b,"m"+b)).join("") + `</section>`;
   h += `<section class="block"><h3>Nose training <small>2 min</small></h3>${NOSE_HTML}</section>`;
   h += `<section class="block"><h3>Mindset <small>1 min</small></h3><div class="callout"><b>My belief:</b> "${esc(BELIEF)}"<div style="font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-top:4px">${esc(BELIEF_REF)}</div><div style="font:800 22px var(--display);letter-spacing:.03em;text-transform:uppercase;margin-top:10px">Keep going 🦁🦍</div></div>${sensesHTML()}</section>`;
   h += `<section class="block"><h3>Check off</h3><div class="list">` + checks.slice(MORNING_MOB.length).map(([k,r])=>rowHTML("morning",k,r,d,false)).join("") + `</div></section>`;
