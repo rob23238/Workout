@@ -217,7 +217,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-17c";
+const APP_VERSION = "2026-10-17d";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -262,8 +262,9 @@ const DAYS = [
   ]},
  {id:"wed", chip:"Wed", kicker:"Wednesday", title:"Push + arms + core", time:"~55–60 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility B (no push-ups tonight, you did 100 with bench)",
   blocks:[
-   {h:"Shoulder + wrist warm-up", m:"5 min", rows:[
+   {h:"Shoulder + wrist warm-up", m:"6 min", rows:[
     ["Wall slides","1 × 10","Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
+    ["Prone Y raise","1 × 10 · bodyweight","Posture. Lie face down, arms overhead in a Y, thumbs up. Lift your arms by pulling your shoulder blades down and back, 2-sec hold. Strengthens the muscle that holds your shoulders back","",S("prone Y raise lower trap")],
     ["Band pass-throughs","1 × 10","Arms straight","",S("band pass through shoulder dislocates")],
     ["Band pull-aparts","1 × 12","Squeeze your shoulder blades",HAM,S("band pull aparts form")],
     ["Shoulder taps","1 × 10 each side","Push-up position, hips still",HAM,S("plank shoulder taps")],
@@ -295,16 +296,17 @@ const DAYS = [
     ["Cable crunch, heavy","3 × 12 @ 80–100 lb (cable)","2-sec squeeze at the bottom, hips still",MINE,S("cable crunch form"),"G1"],
     ["Candlestick leg lifts on the bench","3 × 5 · bodyweight","Dragon flag step 2: hips to vertical, lower slowly","",S("candlestick leg lift dragon flag progression"),"G2"]]},
    {h:"Cool-down", m:"2 min", rows:[
-    ["Doorway chest stretch","30 sec each side","Opens tight chest muscles","",S("doorway chest stretch")],
+    ["Doorway chest stretch","30 sec each side","Posture. Forearm on the door frame, elbow at shoulder height, step through. Opens the tight chest that pulls your shoulders forward","",S("doorway pec minor stretch")],
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
   ]},
  {id:"thu", chip:"Thu", kicker:"Thursday", title:"Legs B: real-world strength + pull volume", time:"~50 min", stair:["35-min intervals","after leg day"], night:"Hip mobility A (no push-ups tonight)",
   blocks:[
-   {h:"Jump rope + warm-up", m:"6 min", rows:[
+   {h:"Jump rope + warm-up", m:"7 min", rows:[
     ["Jump rope, basic bounce","3 × 30 sec on / 30 sec off","Same as Tuesday","",S("jump rope basic bounce beginner")],
     ["Leg swings, front-back + side-side","1 × 10 each way, each leg","Hold the rack",HAM,S("leg swings front back side")],
     ["Kneeling hip circles","1 × 6 each way, each side","Big slow circles",AH,"https://youtu.be/8Om5705EYxA"],
-    ["Glute bridge march","1 × 6 each side","Hips stay level",AH,"https://youtu.be/RvfMT6VOqxQ"]]},
+    ["Glute bridge march","1 × 6 each side","Hips stay level",AH,"https://youtu.be/RvfMT6VOqxQ"],
+    ["Band pull-aparts + chin tuck","1 × 15","Posture. Pull the band apart to your chest and at the same time slide your chin straight back (make a double chin). Undoes the hunch from phones and desks",HAM,S("band pull apart chin tuck posture")]]},
    {h:"Functional: Balance/Explosive day", m:"10 min", rows:[
     ["Elastic pops","2 × 15 each ankle · bodyweight","Springy bounces off the ball of the foot",AD,"https://youtube.com/shorts/1WcYTsVK8fM"],
     ["Push downs","2 × 6 each · bodyweight","Drive the foot down, push off fast",AD,"https://youtube.com/shorts/sboTDWBOH4M"],
@@ -330,8 +332,10 @@ const DAYS = [
   ]},
  {id:"fri", chip:"Fri", kicker:"Friday · finish strong", title:"Pull + incline bench + arms + lower abs", time:"~55 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility A (no push-ups tonight, you did 100 with incline bench)",
   blocks:[
-   {h:"Shoulder warm-up", m:"4 min", rows:[
+   {h:"Shoulder warm-up", m:"6 min", rows:[
     ["Wall slides","1 × 10","Back, head and arms flat on the wall, slide your arms up into a Y and back down. Wakes up the shoulder blades and fixes rounded shoulders","",S("wall slides shoulder mobility")],
+    ["Doorway chest stretch","30 sec each side","Posture. Forearm on the door frame, elbow at shoulder height. Step through until the front of your shoulder and chest open up. Rounded shoulders come from a tight chest pulling them forward","",S("doorway pec minor stretch")],
+    ["Prone Y raise","1 × 10 · bodyweight","Posture. Lie face down, arms overhead in a Y, thumbs up. Lift your arms by pulling your shoulder blades down and back, 2-sec hold. Strengthens the muscle that holds your shoulders back","",S("prone Y raise lower trap")],
     ["Band pass-throughs","1 × 10","Wide grip, arms straight, over your head and behind you","",S("band pass through shoulder dislocates")],
     ["Band pull-aparts","1 × 12","Squeeze your shoulder blades together",HAM,S("band pull aparts form")],
     ["Scapular pull-ups, 2-sec hold","2 × 6","Hang with straight arms, pull your shoulders down away from your ears",LW,S("scapular pull ups form")],
@@ -364,10 +368,11 @@ const DAYS = [
   ]},
  {id:"sat", chip:"Sat", kicker:"Saturday · lift before the fair", title:"Legs A: explosive + squat", time:"~45 min", stair:["35-min intervals","after leg day"], night:"Hip mobility B + 100 push-ups",
   blocks:[
-   {h:"Jump rope + warm-up", m:"5 min", rows:[
+   {h:"Jump rope + warm-up", m:"6 min", rows:[
     ["Jump rope, basic bounce","3 × 30 sec on / 30 sec off","Light on the balls of your feet, small hops","",S("jump rope basic bounce beginner")],
     ["Tibialis raise","1 × 20","Back to the wall, lift your toes, pause top and bottom","",S("tibialis raise wall knees over toes")],
-    ["Banded lateral walks","2 × 8 each way","Band above the knees, stay low",AD,"https://youtube.com/shorts/GMo4gT2e-Dc"]]},
+    ["Banded lateral walks","2 × 8 each way","Band above the knees, stay low",AD,"https://youtube.com/shorts/GMo4gT2e-Dc"],
+    ["Band pull-aparts + chin tuck","1 × 15","Posture. Pull the band apart to your chest and at the same time slide your chin straight back (make a double chin). Undoes the hunch from phones and desks",HAM,S("band pull apart chin tuck posture")]]},
    {h:"Functional: jump primer", m:"10 min", note:"Getting your body used to jumping again. Ankles first, then small jumps. About 70% effort, quiet landings, knees over your toes. Weak leg first. If anything pinches, skip that drill today.", rows:[
     ["Lateral ankle pops","3 × 10 each ankle · bodyweight","Quick and springy, small bounces off the ball of the foot",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
     ["Single ankle lifts, 3-sec hold","3 × 4 each · bodyweight","Up on one foot, hold at the top. Builds the ankle strength your landings need",AD,"https://youtube.com/shorts/-uEvnEdAgQw"],
@@ -459,7 +464,8 @@ const NIGHT = {
   ["Half split, contract-relax","60 sec each leg · 2 min","Stretch. Back knee down, front leg straight, toes up. Press the heel into the floor 5 sec, relax, fold lower","",S("half split hamstring stretch contract relax")],
   ["Kneeling hip flexor stretch","60 sec each side · 2 min","Stretch. Pillow under the knee. Squeeze the back glute, tuck your tailbone, stand your chest up",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"],
   ["End-range knee pulls, 3-sec hold","4 each leg · 1 min","Strength. Pull your knee as high as it goes without hands and hold. Builds the hip flexor strength that holds a front split",AH,"https://youtu.be/PFanwSVshOU"],
-  ["Front split slide","60 sec each side · 2 min","Practice. Hands on the bed edge or two books. Slide the front heel forward and back knee back only as far as you control. Hips square","",S("front split progression with blocks")]]},
+  ["Front split slide","60 sec each side · 2 min","Practice. Hands on the bed edge or two books. Slide the front heel forward and back knee back only as far as you control. Hips square","",S("front split progression with blocks")],
+  ["Crisscross sit, lean forward","60 sec, switch legs halfway · 1 min","Stretch. Sit cross-legged on a pillow so your hips are higher than your knees. Sit tall, walk your hands forward and breathe. Switch which leg is in front halfway. As your hips open, use a thinner pillow","",S("cross legged forward fold hip opener")]]},
  b:{title:"Night B", focus:"Middle split · butterfly · crisscross", days:"Tue · Thu · Sat", rows:[
   ["90/90, tense-and-lift","45 sec each side, then 5 lift-offs · 2 min","Mobility. Sit tall in 90/90, press the back knee down 10 sec, then lift it off the floor and hold 2 sec",FMF,"https://www.youtube.com/watch?v=RqjzWBqXYSg"],
   ["Frog stretch, rocking","2 × 60 sec · 2 min","Stretch. Knees wide, shins parallel. Rock your hips back and forward slowly, then hold the deepest spot",FMF,S("frog stretch rock back")],
@@ -470,7 +476,7 @@ const NIGHT = {
   ["Horse stance","2 × 45 sec · 1.5 min","Strength. Feet wide, toes out, sit low, chest up. Strength in the wide position so your body lets you go deeper","",S("horse stance hold")],
   ["Deep squat hold","60 sec · 1 min","Stretch. Sit all the way down, heels flat, elbows pushing knees out. Slow belly breaths and let everything relax. Hold a doorframe if needed","",S("deep squat hold mobility")]]}
 };
-const CR = "Contract-relax: push into the stretch 5 sec, relax 5 sec, sink a little deeper. Repeat for the whole hold. Feel a stretch, never sharp pain.";
+const CR = "Contract-relax: push into the stretch 5 sec, relax 5 sec, sink a little deeper. Repeat for the whole hold. Aim for about 6 out of 10: a strong stretch you can still breathe slowly through, never sharp pain.";
 const NIGHT_BY_DAY = {mon:"a",tue:"b",wed:"a",thu:"b",fri:"a",sat:"b",sun:null};
 const PUSH_BY_DAY = {mon:false,tue:false,wed:false,thu:false,fri:false,sat:true,sun:false};
 
@@ -638,11 +644,11 @@ function renderNight(){
     <div class="seg"><button type="button" data-n="a" aria-pressed="false">Do A anyway</button><button type="button" data-n="b" aria-pressed="false">Do B anyway</button></div></div>`;
   } else {
     const sel = nightSel || tonight, n = NIGHT[sel];
-    h = `<div class="dayhead"><div class="kicker">Night · after Normatec · ~13 min + wind down</div><h2>${esc(n.title)}</h2><p style="color:var(--accent);font-weight:700">${esc(n.focus)}</p>
+    h = `<div class="dayhead"><div class="kicker">Night · after Normatec · ~16 min + wind down</div><h2>${esc(n.title)}</h2><p style="color:var(--accent);font-weight:700">${esc(n.focus)}</p>
     <div class="seg"><button type="button" data-n="a" aria-pressed="${sel==="a"}">A</button><button type="button" data-n="b" aria-pressed="${sel==="b"}">B</button></div>
-    <div class="tbar" style="margin-top:12px">${tpair("block", 780, "13:00 routine", n.title)}</div></div>
-    <div class="callout"><b>Each move is one of three kinds:</b> <b>Mobility</b> moves the joint through its full range. <b>Stretch</b> opens it. <b>Strength</b> makes you strong in the new range so it sticks.<br><br><b>How to hold a stretch:</b> ${esc(CR)}</div>`;
-    h += `<section class="block"><h3>Routine <small>${esc(n.days)}</small></h3><div class="list">` + n.rows.map(r=>rowHTML("night"+sel, "n"+sel+"-"+slug(r[0]), r, d, false)).join("") + `</div></section>`;
+    <div class="tbar" style="margin-top:12px">${tpair("block", 960, "16:00 routine", n.title)}</div></div>
+    <div class="callout"><b>Each move is one of three kinds:</b> <b>Mobility</b> moves the joint through its full range. <b>Stretch</b> opens it. <b>Strength</b> makes you strong in the new range so it sticks.<br><br><b>How to hold a stretch:</b> ${esc(CR)}<br><br><b>Rest:</b> 15 sec between sides or holds on stretches, 30 sec after strength moves. Tap the rest button under each move.</div>`;
+    h += `<section class="block"><h3>Routine <small>${esc(n.days)}</small></h3><div class="list">` + n.rows.map(r=>rowHTML("night"+sel, "n"+sel+"-"+slug(r[0]), r, d, false, {sec:/^Strength/.test(r[2])?30:15})).join("") + `</div></section>`;
   }
   if(PUSH_BY_DAY[wk]) h += `<section class="block"><h3>100 push-ups</h3><p class="note">4 × 25 with clean form, no vest. Floor push-ups are fine at night. <a class="vid" href="${S("perfect push up form")}" target="_blank" rel="noopener">Find video ↗</a></p><div class="field"><input type="checkbox" id="pu" style="flex:0 0 auto;width:24px;height:24px;accent-color:var(--accent)"${d.push?" checked":""}><label for="pu">Done tonight</label></div></section>`;
   h += `<section class="block"><h3>Wind down <small>in bed · ~5 min</small></h3><p class="note">After your stretching (and push-ups), lie down and let your body slow down.</p>${breathHTML("coherent","ncoh")}${breathHTML("belly","nbelly")}${breathHTML("b478","n478")}<div class="callout"><b>Relax.</b></div>${sensesHTML()}<div class="list" style="margin-top:10px">${[["w-coh",["Slow 5-5 breathing done","","","",""]],["w-belly",["Belly breathing done","","","",""]],["w-478",["4-7-8 breathing done","","","",""]],["w-ground",["Relax","","","",""]]].map(([k,r])=>rowHTML("night",k,r,d,false)).join("")}</div></section>`;
