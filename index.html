@@ -217,7 +217,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-17d";
+const APP_VERSION = "2026-10-17e";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -260,7 +260,7 @@ const DAYS = [
   blocks:[
    {h:"Today", m:"", note:"StairMaster this morning, no lift. Nothing else to do here.", rows:[]}
   ]},
- {id:"wed", chip:"Wed", kicker:"Wednesday", title:"Push + arms + core", time:"~55–60 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility B (no push-ups tonight, you did 100 with bench)",
+ {id:"wed", chip:"Wed", kicker:"Wednesday", title:"Push + arms + core", time:"~55–60 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with bench)",
   blocks:[
    {h:"Shoulder + wrist warm-up", m:"6 min", rows:[
     ["Wall slides","1 × 10","Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
@@ -299,7 +299,7 @@ const DAYS = [
     ["Doorway chest stretch","30 sec each side","Posture. Forearm on the door frame, elbow at shoulder height, step through. Opens the tight chest that pulls your shoulders forward","",S("doorway pec minor stretch")],
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"thu", chip:"Thu", kicker:"Thursday", title:"Legs B: real-world strength + pull volume", time:"~50 min", stair:["35-min intervals","after leg day"], night:"Hip mobility A (no push-ups tonight)",
+ {id:"thu", chip:"Thu", kicker:"Thursday", title:"Legs B: real-world strength + pull volume", time:"~50 min", stair:["35-min intervals","after leg day"], night:"Night stretch (no push-ups tonight)",
   blocks:[
    {h:"Jump rope + warm-up", m:"7 min", rows:[
     ["Jump rope, basic bounce","3 × 30 sec on / 30 sec off","Same as Tuesday","",S("jump rope basic bounce beginner")],
@@ -330,7 +330,7 @@ const DAYS = [
     ["Active pigeon","45 sec each side","Outer hip",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
     ["Seated hamstring V-stretch","30 sec","",HAM,S("seated v sit hamstring stretch")]]}
   ]},
- {id:"fri", chip:"Fri", kicker:"Friday · finish strong", title:"Pull + incline bench + arms + lower abs", time:"~55 min", stair:["30-min intervals","see StairMaster tab"], night:"Hip mobility A (no push-ups tonight, you did 100 with incline bench)",
+ {id:"fri", chip:"Fri", kicker:"Friday · finish strong", title:"Pull + incline bench + arms + lower abs", time:"~55 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with incline bench)",
   blocks:[
    {h:"Shoulder warm-up", m:"6 min", rows:[
     ["Wall slides","1 × 10","Back, head and arms flat on the wall, slide your arms up into a Y and back down. Wakes up the shoulder blades and fixes rounded shoulders","",S("wall slides shoulder mobility")],
@@ -366,7 +366,7 @@ const DAYS = [
    {h:"Cool-down", m:"2 min", rows:[
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","Hold the Smith bar, sink your hips back",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"sat", chip:"Sat", kicker:"Saturday · lift before the fair", title:"Legs A: explosive + squat", time:"~45 min", stair:["35-min intervals","after leg day"], night:"Hip mobility B + 100 push-ups",
+ {id:"sat", chip:"Sat", kicker:"Saturday · lift before the fair", title:"Legs A: explosive + squat", time:"~45 min", stair:["35-min intervals","after leg day"], night:"Night stretch + 100 push-ups",
   blocks:[
    {h:"Jump rope + warm-up", m:"6 min", rows:[
     ["Jump rope, basic bounce","3 × 30 sec on / 30 sec off","Light on the balls of your feet, small hops","",S("jump rope basic bounce beginner")],
@@ -402,7 +402,7 @@ const SAVED_EXERCISES = [
 ];
 /* Not on the schedule this week; kept for next week. */
 const SPARE_DAYS = [
- {id:"sat", chip:"Sat", kicker:"Saturday · lighter day", title:"Stability + abs A + hips", time:"~45 min", stair:["40-min fat burn","two short level 9 pushes"], night:"Hip mobility A + 100 push-ups",
+ {id:"sat", chip:"Sat", kicker:"Saturday · lighter day", title:"Stability + abs A + hips", time:"~45 min", stair:["40-min fat burn","two short level 9 pushes"], night:"Night stretch + 100 push-ups",
   blocks:[
    {h:"Functional: Stability day", m:"12 min", note:"Stability day: strength in the hips, knees and ankles, and evening out your legs.", rows:[
     ["Banded lateral walks","3 × 3","Stay low",AD,"https://youtube.com/shorts/GMo4gT2e-Dc"],
@@ -430,7 +430,7 @@ const SPARE_DAYS = [
     ["Hip airplanes, assisted","10 in and out, 5-sec holds","Hold the rack",WD,S("hip airplane exercise")],
     ["L hip stretch","2 × 4 each way","Outer hip + hip flexor",AH,"https://youtu.be/Nt_c2GZ27YQ"]]}
   ]},
- {id:"mon", chip:"Mon", kicker:"Monday · optional", title:"Flow Motion Fitness hips + abs B", time:"~40 min", stair:["40-min fat burn","two short level 9 pushes"], night:"Hip mobility B + 100 push-ups",
+ {id:"mon", chip:"Mon", kicker:"Monday · optional", title:"Flow Motion Fitness hips + abs B", time:"~40 min", stair:["40-min fat burn","two short level 9 pushes"], night:"Night stretch + 100 push-ups",
   blocks:[
    {h:"Warm-up", m:"8 min", rows:[
     ["Quadruped hip controlled circles","2 × 4 (forward + back = 1)","Full circle, back still",FMF,"https://www.youtube.com/watch?v=rqLtUosOs0U"],
@@ -457,6 +457,12 @@ const SPARE_DAYS = [
 ];
 
 const NIGHT = {
+ d:{title:"Night stretch", focus:"5 moves · every night", days:"Every night", rows:[
+  ["90/90, tense-and-lift","45 sec each side + 5 lift-offs · 2 min","Mobility + strength. Sit with both knees bent at 90°, one in front, one to the side. Sit tall, press the back knee into the floor 10 sec, then lift it off and hold 2 sec. Switch sides. Turns your hips in and out, the rotation crisscross needs",FMF,"https://www.youtube.com/watch?v=RqjzWBqXYSg"],
+  ["Pigeon, contract-relax","60 sec each side · 2 min","Stretch. Front foot flexed. Press the front shin down 5 sec, relax 5 sec, sink lower. Repeat for the whole hold. Opens the outer hip and glute",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
+  ["Frog stretch, rocking","60 sec rocking + 60 sec hold · 2 min","Stretch. On hands and knees, knees wide, shins parallel. Rock your hips back and forward slowly, then hold the deepest spot. Opens the inner thighs for butterfly and the middle split",FMF,S("frog stretch rock back")],
+  ["Lunge to half split","30 sec lunge + 30 sec half split, each side · 2 min","Stretch. Back knee down on a pillow. Squeeze the back glute and lean forward 30 sec (front of the hip). Then sit back, straighten the front leg, toes up, and fold over it 30 sec (back of the leg). Both halves of the front split",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"],
+  ["Cossack squat into deep squat hold","5 each side, 3-sec hold at the bottom, then 30 sec deep squat · 2 min","Strength. Feet wide, sit down into one hip with the other leg straight, toes up. Hold the floor or a door frame if needed. Finish in a deep squat, heels down, elbows pushing knees out, slow belly breaths. Strength in the wide position so your body lets you go deeper",AH,S("cossack squat beginner")]]},
  a:{title:"Night A", focus:"Front split · outer hips · pigeon", days:"Mon · Wed · Fri", rows:[
   ["Quadruped hip controlled circles","2 slow circles each way, each side · 1 min","Mobility. On hands and knees, biggest circle you can, back still. Warms the joint up",FMF,"https://www.youtube.com/watch?v=rqLtUosOs0U"],
   ["Pigeon, contract-relax","60 sec each side · 2 min","Stretch. Front foot flexed. Press the front shin down 5 sec, try to lift it 5 sec, sink lower. Repeat",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
@@ -477,7 +483,9 @@ const NIGHT = {
   ["Deep squat hold","60 sec · 1 min","Stretch. Sit all the way down, heels flat, elbows pushing knees out. Slow belly breaths and let everything relax. Hold a doorframe if needed","",S("deep squat hold mobility")]]}
 };
 const CR = "Contract-relax: push into the stretch 5 sec, relax 5 sec, sink a little deeper. Repeat for the whole hold. Aim for about 6 out of 10: a strong stretch you can still breathe slowly through, never sharp pain.";
-const NIGHT_BY_DAY = {mon:"a",tue:"b",wed:"a",thu:"b",fri:"a",sat:"b",sun:null};
+const NIGHT_BY_DAY = {mon:"d",tue:"d",wed:"d",thu:"d",fri:"d",sat:"d",sun:"d"};
+/* Night A and B stay above as the library to rotate from later. */
+const NIGHT_LEVELUP = [["90/90","No hands: switch sides by lifting both knees, sitting tall the whole time"],["Pigeon","Fold your chest down over the front shin"],["Frog","Slide into a wide straddle (pancake) and walk your hands forward"],["Lunge to half split","Front split slide with hands on books"],["Cossack squat","Hold a 10–20 lb weight at your chest"]];
 const PUSH_BY_DAY = {mon:false,tue:false,wed:false,thu:false,fri:false,sat:true,sun:false};
 
 const ZONES = [["6","Easy, almost a warm-up","Warm-up and cool-down","#6F8F86"],["7","Cruising, feel good","As long as you want","#2F8F75"],["8","Starting to push it","Several minutes at a time","#0D7A63"],["9","Getting there","10–15 min max","#B8801E"],["10","Hard","1–2 min","#B85C1E"],["15","Sprint","30 sec–1 min bursts only","#A33A2A"]];
@@ -612,7 +620,7 @@ function renderDay(day){
   let h = `<div class="dayhead"><div class="kicker">${esc(day.kicker)} · Week 1</div><h2>${esc(day.title)}</h2><p>${esc(day.time)}</p>`;
   if(rowCount){ const on = W.finish && W.dayId===day.id; h += on ? `<button class="btn startw" id="startw" type="button" style="margin-top:12px;width:100%">Workout running · finish by ${clock(new Date(W.finish))} · tap to end</button>` : `<div class="startpair"><button class="btn" id="startw" type="button">▶ Start · finish by ${clock(new Date(Date.now()+mins(day.time)*60000))}</button><button class="btn" id="startios" type="button" aria-label="iPhone finish alarm only">⏰</button></div>`; }
   if(rowCount) h += `<div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${rowCount}</b></div>`;
-  h += `<div class="after"><div class="pill" style="background:var(--accent-soft)"><strong style="color:var(--accent)">Morning</strong><span>Open up + breathe · <a href="#morning" data-go="morning" style="color:var(--accent);font-weight:700">open</a></span></div><div class="pill"><strong>Tonight</strong><span>${night?"Night "+night.toUpperCase():"Rest night"}${PUSH_BY_DAY[day.id]?" + 100 push-ups":""} + breathing · <a href="#night" data-go="night" style="color:var(--warm);font-weight:700">open</a></span></div></div></div>`;
+  h += `<div class="after"><div class="pill" style="background:var(--accent-soft)"><strong style="color:var(--accent)">Morning</strong><span>Open up + breathe · <a href="#morning" data-go="morning" style="color:var(--accent);font-weight:700">open</a></span></div><div class="pill"><strong>Tonight</strong><span>${night?"Night stretch":"Rest night"}${PUSH_BY_DAY[day.id]?" + 100 push-ups":""} + breathing · <a href="#night" data-go="night" style="color:var(--warm);font-weight:700">open</a></span></div></div></div>`;
   day.blocks.forEach((b,bi)=>{
     const rpl = restPlan(b), bm = mins(b.m);
     h += `<section class="block"><h3>${esc(b.h)}${b.m?` <small>${esc(b.m)}</small>`:""}</h3>`;
@@ -644,11 +652,11 @@ function renderNight(){
     <div class="seg"><button type="button" data-n="a" aria-pressed="false">Do A anyway</button><button type="button" data-n="b" aria-pressed="false">Do B anyway</button></div></div>`;
   } else {
     const sel = nightSel || tonight, n = NIGHT[sel];
-    h = `<div class="dayhead"><div class="kicker">Night · after Normatec · ~16 min + wind down</div><h2>${esc(n.title)}</h2><p style="color:var(--accent);font-weight:700">${esc(n.focus)}</p>
-    <div class="seg"><button type="button" data-n="a" aria-pressed="${sel==="a"}">A</button><button type="button" data-n="b" aria-pressed="${sel==="b"}">B</button></div>
-    <div class="tbar" style="margin-top:12px">${tpair("block", 960, "16:00 routine", n.title)}</div></div>
+    h = `<div class="dayhead"><div class="kicker">Night · after Normatec · ~12 min + wind down</div><h2>${esc(n.title)}</h2><p style="color:var(--accent);font-weight:700">${esc(n.focus)}</p>
+    <div class="tbar" style="margin-top:12px">${tpair("block", 720, "12:00 routine", n.title)}</div></div>
     <div class="callout"><b>Each move is one of three kinds:</b> <b>Mobility</b> moves the joint through its full range. <b>Stretch</b> opens it. <b>Strength</b> makes you strong in the new range so it sticks.<br><br><b>How to hold a stretch:</b> ${esc(CR)}<br><br><b>Rest:</b> 15 sec between sides or holds on stretches, 30 sec after strength moves. Tap the rest button under each move.</div>`;
     h += `<section class="block"><h3>Routine <small>${esc(n.days)}</small></h3><div class="list">` + n.rows.map(r=>rowHTML("night"+sel, "n"+sel+"-"+slug(r[0]), r, d, false, {sec:/^Strength/.test(r[2])?30:15})).join("") + `</div></section>`;
+    h += `<details class="guide" style="border-width:1px"><summary>Level up (when a move feels easy for 2 weeks)</summary><ul>${NIGHT_LEVELUP.map(x=>`<li><b>${esc(x[0])}:</b> ${esc(x[1])}</li>`).join("")}</ul></details>`;
   }
   if(PUSH_BY_DAY[wk]) h += `<section class="block"><h3>100 push-ups</h3><p class="note">4 × 25 with clean form, no vest. Floor push-ups are fine at night. <a class="vid" href="${S("perfect push up form")}" target="_blank" rel="noopener">Find video ↗</a></p><div class="field"><input type="checkbox" id="pu" style="flex:0 0 auto;width:24px;height:24px;accent-color:var(--accent)"${d.push?" checked":""}><label for="pu">Done tonight</label></div></section>`;
   h += `<section class="block"><h3>Wind down <small>in bed · ~5 min</small></h3><p class="note">After your stretching (and push-ups), lie down and let your body slow down.</p>${breathHTML("coherent","ncoh")}${breathHTML("belly","nbelly")}${breathHTML("b478","n478")}<div class="callout"><b>Relax.</b></div>${sensesHTML()}<div class="list" style="margin-top:10px">${[["w-coh",["Slow 5-5 breathing done","","","",""]],["w-belly",["Belly breathing done","","","",""]],["w-478",["4-7-8 breathing done","","","",""]],["w-ground",["Relax","","","",""]]].map(([k,r])=>rowHTML("night",k,r,d,false)).join("")}</div></section>`;
