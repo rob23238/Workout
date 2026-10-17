@@ -218,7 +218,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-17p";
+const APP_VERSION = "2026-10-17q";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -371,25 +371,20 @@ const DAYS = [
     ["Lateral ankle pops","2 × 10 each ankle · bodyweight","Quick and springy, small bounces off the ball of the foot",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
     ["Lateral plate hops","2 × 10 sec · bodyweight","Small side-to-side hops over a plate on the floor",AD,"https://youtube.com/shorts/XomC_FIU_E0"]]},
    {h:"Light legs: recovery lift", m:"16 min", note:"About 60% effort. Soreness should feel better by the end, not worse. If anything hurts more than a 4 out of 10, skip it. No squats or jumps today: those come back next Saturday. Machines today so each muscle gets blood without any heavy load. Supersets A and B: go 1 to 2, then rest.", rows:[
-    ["Leg extension (quad machine)","3 × 15, light","Pick a weight you could do 20 times. 2-sec squeeze at the top, 3 sec down. Pumps blood through sore quads without loading your back. Rest 60 sec","",S("leg extension machine form"),"A1"],
-    ["Seated or lying hamstring curl","3 × 15, light","Same idea: a weight you could do 20 times, squeeze 2 sec, 3 sec back up. Hips stay down on the pad","",S("hamstring curl machine form"),"A2"],
-    ["Pistol squat to a box","2 × 5 each side · bodyweight","Stand on one leg in front of a bench or box, other leg out front. Sit down slowly on one leg until you touch the box, then stand back up. No hands. Lower the box (or stack fewer plates) as you get stronger: that's how you build depth. A small plate under your heel helps too",LW,S("box pistol squat progression"),"B1"],
-    ["Single-leg glute bridge risers","2 × 7 each side · bodyweight","Glutes",AH,"https://youtu.be/pTDQ5tJRhC8","B2"],
-    ["Side-lying hip abduction","2 × (10 straight leg + 5 bent leg) each side · bodyweight","Outer hip strength. Lift the top leg slightly behind you, 2 sec down. Rest 30 sec",FMF,"https://www.youtube.com/watch?v=C4bQSvhSGZA"],
-    ["Banded lateral walks","2 × 8 each way","Outer hip strength. Band above the knees, stay low. Rest 30 sec",AD,"https://youtube.com/shorts/GMo4gT2e-Dc"]]},
+    ["Leg extension (quad machine)","3 × 10 @ 90–110 lb","Moderate: rep 10 should feel like a 7 out of 10. Machines weigh differently, so adjust the first set. 2-sec squeeze at the top, 3 sec down. Pumps blood through sore quads without loading your back. Rest 60 sec","",S("leg extension machine form"),"A1"],
+    ["Seated or lying hamstring curl","3 × 10 @ 70–90 lb","Moderate: rep 10 should feel like a 7 out of 10. Squeeze 2 sec, 3 sec back up. Hips stay down on the pad","",S("hamstring curl machine form"),"A2"],
+    ["Pistol squat to a box","3 × 5 each side · bodyweight","Stand on one leg in front of a bench or box, other leg out front. Sit down slowly on one leg until you touch the box, then stand back up. No hands. Lower the box (or stack fewer plates) as you get stronger: that's how you build depth. A small plate under your heel helps too",LW,S("box pistol squat progression"),"B1"],
+    ["Single-leg glute bridge risers","3 × 10 each side · bodyweight","Glutes",AH,"https://youtu.be/pTDQ5tJRhC8","B2"],
+    ["Side-lying hip abduction","3 × 10 each side · bodyweight","Outer hip strength. Lift the top leg slightly behind you, 2 sec down. Rest 30 sec",FMF,"https://www.youtube.com/watch?v=C4bQSvhSGZA"],
+    ["Banded lateral walks","3 × 10 each way","Outer hip strength. Band above the knees, stay low. Rest 30 sec",AD,"https://youtube.com/shorts/GMo4gT2e-Dc"]]},
    {h:"Abs", m:"16 min", note:"Supersets A and B: go straight from 1 to 2, then use the rest timer. Hanging leg raises go first while your grip and abs are fresh. Cable crunches are the main event: go heavy.", rows:[
     ["Hanging leg raise, full range","3 × 5 · bodyweight","Shoulders down, curl your pelvis up first, legs to the bar, 3 sec down. End the set the moment you swing",MINE,S("hanging leg raise full range no swing"),"A1"],
     ["Decline bench reverse crunch","3 × 10 · bodyweight","Lie on the decline bench with your head at the top, hold the bench behind your head. Curl your knees to your chest and lift your hips off the bench, 3 sec down. This is the flipped one","",S("decline bench reverse crunch"),"A2"],
     ["Cable crunch, heavy","3 × 12 @ 80–100 lb (cable)","Kneel, rope by your ears. Crunch your ribs to your hips, 2-sec squeeze at the bottom, hips stay still. Last set: go to 15",MINE,S("cable crunch form"),"B1"],
     ["Decline bench sit-up","3 × 10 · bodyweight","Feet hooked at the top, arms crossed on your chest. Roll up one vertebra at a time, 3 sec down. Add a plate on your chest when 10 gets easy","",S("decline sit up form"),"B2"],
     ["Dragon flag negatives","2 × 3 · bodyweight","On the flat bench, grab behind your head, get your body straight up, then lower as slow as you can (aim for 5 sec) with a straight body. Tuck one knee if you need to. Rest 90 sec","",S("dragon flag negative beginner tucked")]]},
-   {h:"Cool-down", m:"6 min", rows:[
-    ["Knees-to-chest rock","30 sec","On your back, hug your knees and rock side to side. Low back relief","",S("knees to chest rock low back")],
-    ["Supine twist","30 sec each side","Knees fall to one side, arms out, look the other way","",S("supine spinal twist")],
-    ["Cobra stretch","2 × 20 sec","Opens your abs after all that crunching","",S("cobra stretch")],
-    ["Frog stretch, rocking","60 sec","Inner thighs. Slow rocks back and forward",FMF,S("frog stretch rock back")],
-    ["Pigeon, contract-relax","45 sec each side","Outer hips",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
-    ["Doorway chest stretch","30 sec each side","Posture. Forearm on the door frame, step through","",S("doorway pec minor stretch")]]}
+   {h:"Cool-down", m:"3 min", rows:[
+    ["Deep squat hold","3 × 45 sec","Sit all the way down, heels flat, elbows pushing knees out. Slow belly breaths and let everything relax. Hold the rack if you need to. Stand up and shake your legs out between holds","",S("deep squat hold mobility")]]}
   ]},
  {id:"sun", chip:"Sun", kicker:"Sunday", title:"Fair day", time:"", stair:["",""], night:"",
   blocks:[
