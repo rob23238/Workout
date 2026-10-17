@@ -218,7 +218,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-17q";
+const APP_VERSION = "2026-10-17r";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -361,15 +361,14 @@ const DAYS = [
    {h:"Cool-down", m:"2 min", rows:[
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","Hold the Smith bar, sink your hips back",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"sat", chip:"Sat", kicker:"Saturday · sore day at the Y", title:"Recovery legs + abs", time:"~45 min", stair:["3-mile easy run","this morning"], night:"Night stretch + 100 push-ups",
+ {id:"sat", chip:"Sat", kicker:"Saturday · sore day at the Y", title:"Recovery legs + back + abs", time:"~55 min", stair:["3-mile easy run","this morning"], night:"Night stretch + 100 push-ups",
   blocks:[
-   {h:"Warm-up", m:"6 min", rows:[
+   {h:"Warm-up + quick feet", m:"9 min", note:"Feet drills small and light, about 50% effort.", rows:[
     ["Easy bike or walk","5 min","Easy pace, just get blood moving through sore legs. Like rinsing out a sponge","",S("easy recovery bike warm up")],
     ["Band pull-aparts + chin tuck","1 × 15","Posture. Pull the band apart and slide your chin straight back",HAM,S("band pull apart chin tuck posture")],
-    ["Dead bug","1 × 8 each side","Low back pressed into the floor, opposite arm and leg reach out slowly. Wakes your abs up","",S("dead bug exercise form")]]},
-   {h:"Functional: quick feet", m:"4 min", note:"Small, quick and light, about 50% effort. Just waking your feet and ankles up. No big jumps today.", rows:[
-    ["Lateral ankle pops","2 × 10 each ankle · bodyweight","Quick and springy, small bounces off the ball of the foot",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
-    ["Lateral plate hops","2 × 10 sec · bodyweight","Small side-to-side hops over a plate on the floor",AD,"https://youtube.com/shorts/XomC_FIU_E0"]]},
+    ["Dead bug","1 × 8 each side","Low back pressed into the floor, opposite arm and leg reach out slowly. Wakes your abs up","",S("dead bug exercise form")],
+    ["Lateral ankle pops","2 × 10 each ankle · bodyweight","Functional. Quick and springy, small bounces off the ball of the foot",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
+    ["Lateral plate hops","2 × 10 sec · bodyweight","Functional. Small, quick side-to-side hops over a plate on the floor",AD,"https://youtube.com/shorts/XomC_FIU_E0"]]},
    {h:"Light legs: recovery lift", m:"16 min", note:"About 60% effort. Soreness should feel better by the end, not worse. If anything hurts more than a 4 out of 10, skip it. No squats or jumps today: those come back next Saturday. Machines today so each muscle gets blood without any heavy load. Supersets A and B: go 1 to 2, then rest.", rows:[
     ["Leg extension (quad machine)","3 × 10 @ 90–110 lb","Moderate: rep 10 should feel like a 7 out of 10. Machines weigh differently, so adjust the first set. 2-sec squeeze at the top, 3 sec down. Pumps blood through sore quads without loading your back. Rest 60 sec","",S("leg extension machine form"),"A1"],
     ["Seated or lying hamstring curl","3 × 10 @ 70–90 lb","Moderate: rep 10 should feel like a 7 out of 10. Squeeze 2 sec, 3 sec back up. Hips stay down on the pad","",S("hamstring curl machine form"),"A2"],
@@ -377,6 +376,9 @@ const DAYS = [
     ["Single-leg glute bridge risers","3 × 10 each side · bodyweight","Glutes",AH,"https://youtu.be/pTDQ5tJRhC8","B2"],
     ["Side-lying hip abduction","3 × 10 each side · bodyweight","Outer hip strength. Lift the top leg slightly behind you, 2 sec down. Rest 30 sec",FMF,"https://www.youtube.com/watch?v=C4bQSvhSGZA"],
     ["Banded lateral walks","3 × 10 each way","Outer hip strength. Band above the knees, stay low. Rest 30 sec",AD,"https://youtube.com/shorts/GMo4gT2e-Dc"]]},
+   {h:"Back", m:"10 min", note:"Superset C, 3 rounds: pulldown straight into the row, then rest 90 sec. Moderate: rep 10 should feel like a 7 out of 10. Same back-first pull as your pull-up guide.", rows:[
+    ["Lat pulldown","3 × 10 @ 140–160 lb","Hands a little wider than shoulders. Shoulders down first (the pool move), then pull the bar to your upper chest, elbows down to your back pockets. 3 sec up","",S("lat pulldown form"),"C1"],
+    ["Seated cable row","3 × 10 @ 130–150 lb","Chest tall, pull the handle to your belly button, squeeze your shoulder blades together 1 sec, 3 sec back. Don't rock your body. Rest 90 sec","",S("seated cable row form"),"C2"]]},
    {h:"Abs", m:"16 min", note:"Supersets A and B: go straight from 1 to 2, then use the rest timer. Hanging leg raises go first while your grip and abs are fresh. Cable crunches are the main event: go heavy.", rows:[
     ["Hanging leg raise, full range","3 × 5 · bodyweight","Shoulders down, curl your pelvis up first, legs to the bar, 3 sec down. End the set the moment you swing",MINE,S("hanging leg raise full range no swing"),"A1"],
     ["Decline bench reverse crunch","3 × 10 · bodyweight","Lie on the decline bench with your head at the top, hold the bench behind your head. Curl your knees to your chest and lift your hips off the bench, 3 sec down. This is the flipped one","",S("decline bench reverse crunch"),"A2"],
