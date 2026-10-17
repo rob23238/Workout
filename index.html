@@ -218,7 +218,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-17n";
+const APP_VERSION = "2026-10-17o";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -261,7 +261,7 @@ const DAYS = [
   blocks:[
    {h:"Today", m:"", note:"StairMaster this morning, no lift. Nothing else to do here.", rows:[]}
   ]},
- {id:"wed", chip:"Wed", kicker:"Wednesday", title:"Push + arms + core", time:"~55–60 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with bench)",
+ {id:"wed", chip:"Wed", kicker:"Wednesday", title:"Push + arms", time:"~50 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with bench)",
   blocks:[
    {h:"Shoulder + wrist warm-up", m:"6 min", rows:[
     ["Wall slides","1 × 10","Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
@@ -275,27 +275,22 @@ const DAYS = [
     ["Incline push-ups","25 · bodyweight (1 of 4)","If 25 breaks, take 5 breaths and finish it","",S("feet elevated push up form"),"A2"],
     ["Set 2","200 × 8","","","","A1"],
     ["Incline push-ups","25 · bodyweight (2 of 4)","Straight from the bench, then rest 2 min","","","A2"],
-    ["Set 3","215 × 6","","","","A1"],
+    ["Set 3","225 × 6","","","","A1"],
     ["Incline push-ups","25 · bodyweight (3 of 4)","Straight from the bench, then rest 2 min","","","A2"],
-    ["Set 4","225 × 5","","","","A1"],
+    ["Set 4","230 × 5","","","","A1"],
     ["Incline push-ups","25 · bodyweight (4 of 4)","Straight from the bench, then rest 2 min","","","A2"],
-    ["Set 5","235 × 3","Top set: clean reps only, full rest before it",HAM,""]]},
+    ["Set 5","240 × 3","Top set: clean reps only, full rest before it. When 240 feels mid, go 245",HAM,""]]},
    {h:"Calisthenics", m:"10 min", note:"Handstand hold first while you're fresh, then superset B. B2 depends on where you are: dips at the YMCA, L-sit at home.", rows:[
     ["Wall handstand hold, chest to wall","2 × 30 sec · bodyweight","Walk your feet up the wall, body straight",LW,"https://www.tiktok.com/t/ZPLSuXqwY/"],
     ["Pike push-ups","3 × 6 · bodyweight","Hips high, head lands in front of your hands",LW,"https://www.tiktok.com/t/ZPLSuaT3v/","B1"],
     ["Dips or L-sit","YMCA: dips 3 × 8 bodyweight · Home: L-sit 3 sets","YMCA (dip bars): parallel bar dips, lean slightly forward, shoulders just below elbows, press to locked arms. Home (no dip bar): your current L-sit step from the Calisthenics tab, hands on two dumbbells",LW,S("parallel bar dips proper form"),"B2"]]},
-   {h:"Shoulders, chest, arms", m:"20 min", note:"Supersets C, D, E and F, rest 60 sec after each round. F is wrists.", rows:[
-    ["Seated dumbbell shoulder press","3 × 8 @ 45–50 lb dumbbells","Ribs down, don't lean back",HAM,S("seated dumbbell shoulder press form"),"C1"],
+   {h:"Shoulders, chest, arms", m:"15 min", note:"Supersets C, D and F, rest 60 sec after each round. F is wrists.", rows:[
+    ["Seated dumbbell shoulder press","3 × 8 @ 50 lb dumbbells","Ribs down, don't lean back",HAM,S("seated dumbbell shoulder press form"),"C1"],
     ["Cable face pull","3 × 15 @ 30–40 lb (cable)","Pull to your forehead, thumbs back, 2-sec squeeze: posture","",S("cable face pull form"),"C2"],
     ["Cable rope overhead triceps extension","3 × 12 @ 30–40 lb (cable)","Big stretch behind your head. Pick a weight where reps 10–12 are hard","",S("cable overhead triceps extension rope"),"D1"],
     ["Heavy alternating dumbbell curl","3 × 8–10 each arm @ 35–40 lb","Your heaviest curl of the week: pick a weight where rep 8–10 is hard. Palms up, elbows pinned to your sides, no swinging, 3 sec down. Add 5 lb when you get 10 clean reps on all sets","","https://www.tiktok.com/t/ZPLSuUN8y/","D2"],
-    ["Cable rope triceps pushdown","2 × 12 @ 40–50 lb (cable)","Elbows pinned to your sides, push the rope down and spread it apart at the bottom, 2 sec up. Add weight on the stack as you get stronger","",S("cable rope triceps pushdown form"),"E1"],
-    ["Cross-body dumbbell hammer curl","2 × 12 each arm @ 30–35 lb","Forearm + outer arm","",S("cross body hammer curl"),"E2"],
     ["Curl-bar wrist curl","2 × 15 @ 40–50 lb","Forearms on your thighs, palms up. Let the bar roll to your fingertips, curl it back with your wrists only","",S("ez bar wrist curl seated"),"F1"],
     ["Curl-bar reverse wrist curl","2 × 15 @ 25–30 lb","Palms down, lift with your wrists only, slow down","",S("ez bar reverse wrist curl"),"F2"]]},
-   {h:"Core: dragon flag path", m:"5 min", note:"Superset G, 3 rounds, rest 60 sec.", rows:[
-    ["Cable crunch, heavy","3 × 12 @ 80–100 lb (cable)","2-sec squeeze at the bottom, hips still",MINE,S("cable crunch form"),"G1"],
-    ["Candlestick leg lifts on the bench","3 × 5 · bodyweight","Dragon flag step 2: hips to vertical, lower slowly","",S("candlestick leg lift dragon flag progression"),"G2"]]},
    {h:"Cool-down", m:"2 min", rows:[
     ["Doorway chest stretch","30 sec each side","Posture. Forearm on the door frame, elbow at shoulder height, step through. Opens the tight chest that pulls your shoulders forward","",S("doorway pec minor stretch")],
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
@@ -310,19 +305,18 @@ const DAYS = [
     ["Band pull-aparts + chin tuck","1 × 15","Posture. Pull the band apart to your chest and at the same time slide your chin straight back (make a double chin). Undoes the hunch from phones and desks",HAM,S("band pull apart chin tuck posture")]]},
    {h:"Functional: Balance/Explosive day", m:"10 min", rows:[
     ["Elastic pops","2 × 15 each ankle · bodyweight","Springy bounces off the ball of the foot",AD,"https://youtube.com/shorts/1WcYTsVK8fM"],
-    ["Push downs","2 × 6 each · bodyweight","Drive the foot down, push off fast",AD,"https://youtube.com/shorts/sboTDWBOH4M"],
     ["Standing single-leg press","2 × 6 each leg · bodyweight","Weak leg first, hips square",AD,"https://youtube.com/shorts/LAKAXwkQX0A"],
     ["Hip extension press","2 × 4 each leg · bodyweight","Balance + glute",AD,"https://youtu.be/bBjTolQA-kc"],
-    ["Offset barbell stand","2 × 15 sec each leg, each way @ empty bar, 10 lb plate on one end","On one leg, weight on one side, don't lean",AD,"https://youtube.com/shorts/-RUXZxbziUw"],
-    ["Jump squats holding a light dumbbell","3 × 5 @ 15–20 lb","Land soft (his med ball jumps)",AD,"https://youtube.com/shorts/1ivnIpUqkRg"],
-    ["Tuck jumps","2 × 5 · bodyweight","Knees high",AD,"https://youtube.com/shorts/QC6O4WRwbyE"]]},
+    ["Offset dumbbell single-leg hold","2 × 15 sec each leg, each side @ 25–35 lb","Stand on one leg holding one dumbbell in one hand. Stay tall, don't lean toward the weight. Then switch hands. Works at home or the Y",AD,S("single leg offset dumbbell hold balance")],
+    ["Jump squats holding a light dumbbell","3 × 5 @ 20–25 lb","Land soft (his med ball jumps). Last week was easy: heavier dumbbell",AD,"https://youtube.com/shorts/1ivnIpUqkRg"],
+    ["Tuck jumps","3 × 5 · bodyweight","Knees high",AD,"https://youtube.com/shorts/QC6O4WRwbyE"]]},
    {h:"Strength", m:"18 min", note:"Supersets A, B and C, rest 90 sec–2 min after each round.", rows:[
     ["Smith Zercher squat","Bar × 8, 135 × 5, then 3 × 6 @ 175","Bar in the crook of your elbows (pad it with a towel), chest tall",HAM,S("smith machine zercher squat"),"A1"],
     ["Copenhagen plank","3 × 20 sec each side · bodyweight","Top leg on the bench, hips up: inner thigh + core","",S("copenhagen plank bench"),"A2"],
-    ["Single-leg dumbbell Romanian deadlift","3 × 8 each leg @ 50–60 lb","One 50–60 lb dumbbell, weak leg first, flat back",AD,"https://youtube.com/shorts/DdKdzMu8qkw","B1"],
-    ["Kneeling dump trucks","3 × 6 each side · bodyweight","Outer hip + rotation",AH,"https://youtu.be/FOfbDPBlgaQ","B2"],
-    ["Smith hip thrust","3 × 10 @ 155","Upper back on the bench, 2-sec squeeze","",S("smith machine hip thrust form"),"C1"],
-    ["Bear-hug carry","3 × 30 yards @ 45 lb plate or 60 lb dumbbell","Hug a 45 lb plate or your heaviest dumbbell tight to your chest","",S("bear hug carry"),"C2"]]},
+    ["Single-leg dumbbell Romanian deadlift","3 × 6 each leg, build to 8 @ 50–60 lb","One dumbbell, weak leg first, flat back. Add a rep each week until 3 × 8",AD,"https://youtube.com/shorts/DdKdzMu8qkw","B1"],
+    ["Kneeling dump trucks","3 × 8 each side · bodyweight","Outer hip + rotation. Last week was easy: more reps, 2-sec hold at the top",AH,"https://youtu.be/FOfbDPBlgaQ","B2"],
+    ["Hip thrust","3 × 10 @ 155","Smith at home, barbell or hip thrust machine at the Y. Upper back on the bench, 2-sec squeeze","",S("barbell hip thrust form"),"C1"],
+    ["Bear-hug carry","3 × 30 yards @ 60 lb dumbbell","Hug your heaviest dumbbell tight to your chest. 50 was easy","",S("bear hug carry"),"C2"]]},
    {h:"Pull-up volume", m:"12 min", guide:true, note:"Same rules as Monday: every rep from your back. Grip opposite to Monday, no vest. Superset D: each bodyweight set, then 15 push-ups.", rows:[
     ["Explosive chest-to-bar pull-ups","3 × 5 · bodyweight","Pull as high and fast as you can, rest 90 sec. Muscle-up prep",LW,S("explosive chest to bar pull ups muscle up")],
     ["Bodyweight pull-ups","4 × 10 · bodyweight","Perfect form, rest 60–90 sec after the push-ups",LW,S("strict pull up form"),"D1"],
@@ -355,10 +349,10 @@ const DAYS = [
     ["Dumbbell flies","3 × 12 @ 15–20 lb","Bent over with a flat back, light dumbbells, slight bend in the elbows. Open your arms out to the sides and squeeze your shoulder blades together, 2 sec down. Back of the shoulders + upper back: pulls rounded shoulders back","",S("bent over dumbbell rear delt fly form"),"B2"],
     ["Smith row, underhand grip","3 × 10 @ 135, 3-sec lowering","Palms up, hands shoulder width. Elbows stay tight to your sides and drive to your hips: hits lats and biceps",HAM,S("smith machine underhand row form"),"C1"],
     ["Towel pull-ups","3 × 5 · bodyweight","Loop 2 towels over the bar, one in each hand, palms facing each other. Squeeze the towels hard the whole rep, same back-first form as your pull-ups. Huge for grip and forearms",LW,S("towel pull ups grip strength form"),"C2"]]},
-   {h:"Biceps + forearms", m:"6 min", note:"Superset D: the two curls back to back, rest 60 sec, 3 rounds. Farmer carry last. Towel pull-ups, farmer carry and the dead hang cover your forearms and grip.", rows:[
+   {h:"Biceps + forearms", m:"6 min", note:"Superset D: the two curls back to back, rest 60 sec, 3 rounds. Farmer hold last. Towel pull-ups, farmer hold and the dead hang cover your forearms and grip.", rows:[
     ["Dumbbell curl, neutral to palms up","3 × 15 @ 25–30 lb","Start with palms facing each other, turn your palms up as you curl, squeeze at the top, 3 sec down","",S("dumbbell supinating curl"),"D1"],
     ["EZ-bar reverse curl","3 × 12 @ 40–50 lb","Palms down, elbows pinned to your sides, curl up, 3 sec down. Top of the forearm + the muscle under the bicep: thicker arms","",S("ez bar reverse curl form"),"D2"],
-    ["Farmer carry","2 × 40 yards @ 50 lb each hand","50 lb dumbbells, shoulders back, ribs down",AC,"https://www.youtube.com/watch?v=MH8id-EaoPA"]]},
+    ["Farmer hold","2 × 30–45 sec @ 50–60 lb each hand","No room needed: stand tall holding heavy dumbbells at your sides, shoulders back, ribs down, squeeze hard",AC,S("farmer hold static grip")]]},
    {h:"Core: lower abs", m:"5 min", note:"Superset E, 3 rounds, rest 60 sec. Hanging leg raises: shoulders down, curl your pelvis up first, legs to bar height, 3 sec down. End the set the moment you swing. 5 good reps beat 10 ugly ones.", rows:[
     ["Hanging leg raise, full range","3 × 5 · bodyweight","Perfect reps only",MINE,S("hanging leg raise full range no swing"),"E1"],
     ["6-inch hold","3 × 20 sec · bodyweight","Heels 6 inches off the floor, low back pressed flat",AC,"https://www.youtube.com/watch?v=1CpgAh7wdDk","E2"]]},
@@ -417,13 +411,12 @@ const SPARE_DAYS = [
     ["Band pull-aparts + chin tuck","1 × 15","Posture. Pull the band apart to your chest and at the same time slide your chin straight back (make a double chin). Undoes the hunch from phones and desks",HAM,S("band pull apart chin tuck posture")]]},
    {h:"Functional: jump primer", m:"10 min", note:"Getting your body used to jumping again. Ankles first, then small jumps. About 70% effort, quiet landings, knees over your toes. Weak leg first. If anything pinches, skip that drill today.", rows:[
     ["Lateral ankle pops","3 × 10 each ankle · bodyweight","Quick and springy, small bounces off the ball of the foot",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
-    ["Single ankle lifts, 3-sec hold","3 × 4 each · bodyweight","Up on one foot, hold at the top. Builds the ankle strength your landings need",AD,"https://youtube.com/shorts/-uEvnEdAgQw"],
     ["Lateral plate hops","3 × 10 sec · bodyweight","Small side-to-side hops over a plate on the floor",AD,"https://youtube.com/shorts/XomC_FIU_E0"],
     ["Lateral bounds, stick the landing","3 × 4 each side · bodyweight","Jump sideways off one leg, land on the other and hold 2 sec. Short jumps this week; distance comes later",AD,"https://youtube.com/shorts/00tM64YTOTE"]]},
    {h:"Strength", m:"22 min", note:"3 sets each. Supersets A and B: the 2 doesn't tire out what the 1 needs, so you use your rest instead of sitting.", rows:[
-    ["Smith back squat","Bar × 10, 135 × 5, then 3 × 6 @ 185","Full depth you control, chest up. About 60% of your 315 max while you rebuild form; add 10 lb a week when all reps are clean",HAM,S("smith machine squat form"),"A1"],
+    ["Back squat","Bar × 10, 135 × 5, then 3 × 6 @ 185","YMCA squat rack (or Smith at home). Full depth you control, chest up. Add 10 lb a week when all reps are clean",HAM,S("barbell back squat form"),"A1"],
     ["Psoas march, 5-sec hold","3 × 6 each side · band","Band on the feet, lying down, drive one knee up and hold: hip flexor strength",FMF,S("psoas march exercise"),"A2"],
-    ["Dumbbell jump squat","3 × 5 @ 15–20 lb each hand","Light dumbbells (15–20 lb each hand) at your sides. Sit to a quarter squat, jump, land soft and reset before the next rep",HAM,S("dumbbell jump squat form"),"B1"],
+    ["Barbell jump squat","3 × 5 @ bar (45 lb)","Bar on your back, quarter squat, jump, land soft and reset each rep",AD,S("barbell jump squat form")],
     ["Pistol squat to a box","3 × 5 each side · bodyweight","Sit down slowly on one leg until you touch a bench or box, stand back up, no hands. Lower the box as you get stronger. A small plate under your heel helps depth",LW,S("box pistol squat progression"),"B2"],
     ["Dumbbell walking lunge","3 × 10 each leg @ 40–50 lb each hand","40–50 lb dumbbells, front foot stays flat",HAM,"https://youtube.com/shorts/JMkDwe0Wki4"]]},
    {h:"Glutes + hips", m:"6 min", note:"Superset C, 3 rounds. No equipment needed.", rows:[
@@ -1036,7 +1029,7 @@ go(start);
 dockTick();
 
 /* ---------- Fresh start for the week of Oct 12: clear day/morning/night checkmarks + logs once ---------- */
-(function freshStart(){ const tag="2026-10-12"; if(local.get("hy1-fresh")===tag) return;
+(function freshStart(){ const tag="2026-10-17"; if(local.get("hy1-fresh")===tag) return;
   ["mon","tue","wed","thu","fri","sat","sun"].forEach(w=>{ ["", "night-", "morning-"].forEach(pre=>{ const id=pre+w, d=docOf(id); d.checks={}; d.logs={}; d.cal=""; d.push=false; delete d.legacyNight; save(id); }); });
   stopAll(); local.set("hy1-fresh",tag); if(DAYS.some(d=>d.id===current)) render(current); })();
 
