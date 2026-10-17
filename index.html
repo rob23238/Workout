@@ -213,11 +213,11 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </header>
 <div class="tabsbar">
   <nav class="days" id="days" role="tablist" aria-label="Section"></nav>
-  <div class="sync" id="sync">Saved on this phone</div>
+  <div class="sync" id="sync">Saved on this phone</div><button type="button" class="btn" id="copydata" style="margin-top:6px;font-size:13px;padding:6px 10px">Copy my data for Claude</button>
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-17i";
+const APP_VERSION = "2026-10-17j";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -588,7 +588,13 @@ function save(id){
 }
 let saveTimer = {};
 function saveSoon(id){ clearTimeout(saveTimer[id]); saveTimer[id] = setTimeout(()=>save(id), 700); }
-function setSync(t){ const el=document.getElementById("sync"); if(el) el.textContent=t; }
+function setSync(t){ const el=document.getElementById("sync"); if(el) el.textContent=t; const b=document.getElementById("copydata"); if(b) b.style.display=/Synced/.test(t)?"none":""; }
+document.getElementById("copydata")?.addEventListener("click", async()=>{
+  const out={}; try{ for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(k && k.startsWith("hy1-")) out[k]=JSON.parse(localStorage.getItem(k)); } }catch(e){}
+  const txt="My workout app data:\n"+JSON.stringify(out);
+  try{ await navigator.clipboard.writeText(txt); alert("Copied. Paste it into your chat with Claude."); }
+  catch(e){ window.prompt("Copy this and paste it to Claude:", txt); }
+});
 
 const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const tabsEl = document.getElementById("days"), app = document.getElementById("app");
@@ -1028,6 +1034,7 @@ dockTick();
 
 /* ---------- Auto-update: if GitHub has a newer version, reload into it ---------- */
 async function checkUpdate(){
+  if(!/github\.io$/.test(location.hostname)) return;
   try{
     const r = await fetch("index.html?check=" + Date.now(), {cache:"no-store"});
     const m = (await r.text()).match(/APP_VERSION = "([^"]+)"/);
