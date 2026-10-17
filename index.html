@@ -218,7 +218,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-17r";
+const APP_VERSION = "2026-10-17s";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -674,7 +674,7 @@ function renderNight(){
     h += `<details class="guide" style="border-width:1px"><summary>Level up (when a move feels easy for 2 weeks)</summary><ul>${NIGHT_LEVELUP[sel].map(x=>`<li><b>${esc(x[0])}:</b> ${esc(x[1])}</li>`).join("")}</ul></details>`;
   }
   if(PUSH_BY_DAY[wk]) h += `<section class="block"><h3>100 push-ups</h3><p class="note">4 × 25 with clean form, no vest. Floor push-ups are fine at night. <a class="vid" href="${S("perfect push up form")}" target="_blank" rel="noopener">Find video ↗</a></p><div class="field"><input type="checkbox" id="pu" style="flex:0 0 auto;width:24px;height:24px;accent-color:var(--accent)"${d.push?" checked":""}><label for="pu">Done tonight</label></div></section>`;
-  h += `<section class="block"><h3>Wind down <small>in bed · ~5 min</small></h3><p class="note">After your stretching (and push-ups), lie down and let your body slow down.</p>${breathHTML("coherent","ncoh")}${breathHTML("belly","nbelly")}${breathHTML("b478","n478")}<div class="callout"><b>Relax.</b></div>${sensesHTML()}<div class="list" style="margin-top:10px">${[["w-coh",["Slow 5-5 breathing done","","","",""]],["w-belly",["Belly breathing done","","","",""]],["w-478",["4-7-8 breathing done","","","",""]],["w-ground",["Relax","","","",""]]].map(([k,r])=>rowHTML("night",k,r,d,false)).join("")}</div></section>`;
+  h += `<section class="block"><h3>Wind down <small>in bed · 2 min</small></h3><p class="note">After your stretching (and push-ups), lie down and let your body slow down.</p>${breathHTML("coherent","ncoh")}<details class="guide" style="border-width:1px;margin-top:10px"><summary>Optional (extra time only)</summary>${breathHTML("belly","nbelly")}${breathHTML("b478","n478")}</details><div class="callout"><b>Relax.</b></div>${sensesHTML()}<div class="list" style="margin-top:10px">${[["w-coh",["Slow 5-5 breathing done","","","",""]],["w-belly",["Belly breathing done","","","",""]],["w-478",["4-7-8 breathing done","","","",""]],["w-ground",["Relax","","","",""]]].map(([k,r])=>rowHTML("night",k,r,d,false)).join("")}</div></section>`;
   h += `<div class="callout"><b>Knee safety:</b> keep your foot flexed in pigeon and the seated glute stretch. Feel it in the hip; knee pain means come out.</div>`;
   h += `<section class="block"><h3>Sunday check</h3><p class="note">Sit in 90/90 each way and note if you can sit tall without your hands, and how pigeon feels on each side. Easier each week means it's working.</p><div class="field"><label for="gaps">Notes</label><input id="gaps" placeholder="e.g. 90/90 L ok, R needs hands · pigeon R tighter" value="${esc((docOf("checks").gaps)||"")}"></div></section>`;
   app.innerHTML = h;
@@ -892,7 +892,7 @@ const SKILLS_BY_DAY = {mon:[],tue:[],wed:["Handstand push-up","Muscle-up (dips)"
 /* ---------- Breathing + mindset (used in Morning and Night) ---------- */
 const BREATHS = {
  box:{name:"Box breathing", how:"Sit or lie still. In through your nose for 4. Hold for 4. Out through your mouth for 4. Hold for 4. Repeat.", phases:[["Breathe in",4],["Hold",4],["Breathe out",4],["Hold",4]], rounds:7},
- belly:{name:"Belly breathing", how:"One hand on your chest, one on your stomach. In through your nose for 4 so only your stomach rises. Out slowly through your mouth for 6.", phases:[["Breathe in",4],["Breathe out",6]], rounds:12},
+ belly:{name:"Belly breathing", how:"One hand on your chest, one on your stomach. In through your nose for 4 so only your stomach rises. Out slowly through your nose for 6.", phases:[["Breathe in",4],["Breathe out",6]], rounds:12},
  sigh:{name:"Double-inhale reset", how:"Breathe in through your nose, then take one more quick sip of air on top, like topping off a gas tank. Then let it all out slowly through your mouth, like letting air out of a tire, until you're empty. The double breath in opens your lungs all the way, and the long breath out is what slows your heart rate and calms you down fastest.", phases:[["Breathe in",2],["Sip in more",1],["Long breath out",6]], rounds:13},
  coherent:{name:"Slow 5-5 breathing", how:"Lying down, in through your nose for 5, out through your nose for 5. Smooth and steady, no pauses. About 6 breaths a minute.", phases:[["Breathe in",5],["Breathe out",5]], rounds:12},
  b478:{name:"4-7-8 breathing", how:"In through your nose for 4, hold for 7, then out through your mouth for 8 with a soft whoosh. Good for falling asleep.", phases:[["Breathe in",4],["Hold",7],["Breathe out",8]], rounds:4},
@@ -937,14 +937,13 @@ const MORNING_MOB = [
  ["Prone Y-T raises","1 × 8 Y + 8 T · 1.5 min","Posture. Lie face down, thumbs up. Lift your arms in a Y, then out to the sides in a T, 2-sec hold at the top each rep. Pull your shoulder blades down and back. Builds the back muscles that hold your shoulders back","",S("prone Y T raise lower trap")]];
 function renderMorning(){
   const wk=todayId(), weekend = wk==="sat"||wk==="sun", d=docOf("morning-"+wk);
-  const breaths = ["box","sigh","belly"].concat(weekend?["skull"]:[]);
+  const breaths = ["sigh","belly","box"].concat(weekend?["skull"]:[]), core = ["sigh","belly"];
   const checks = [...MORNING_MOB.map(r=>["m-"+slug(r[0]),r]), ...breaths.map(b=>["m-"+b,[BREATHS[b].name+" done","","","",""]]), ["m-nose",["Nose unblock done","","","",""]], ["m-senses",["5–4–3–2–1 done","","","",""]], ["m-belief",["Said my belief out loud","","","",""]]];
-  let h = `<div class="dayhead"><div class="kicker">Morning · every day · ~12 min</div><h2>Wake up loose and clear</h2><p>Three posture moves to pull your shoulders and head back, then breathe and set your mind before work. ${weekend?"It's the weekend, so skull shining breath is on today.":"Skull shining breath is saved for weekends."}</p>
-  <div class="tbar" style="margin-top:12px">${tpair("block", 720, "12:00 routine", "Morning routine")}</div>
+  let h = `<div class="dayhead"><div class="kicker">Morning · every day · ~10 min</div><h2>Wake up loose and clear</h2><p>Three posture moves to pull your shoulders and head back, then breathe and set your mind before work. ${weekend?"It's the weekend, so skull shining breath is on today.":"Skull shining breath is saved for weekends."}</p>
+  <div class="tbar" style="margin-top:12px">${tpair("block", 600, "10:00 routine", "Morning routine")}</div>
   <div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${checks.length}</b></div></div>`;
   h += `<section class="block"><h3>Posture <small>4.5 min</small></h3><div class="list">` + MORNING_MOB.map(r=>rowHTML("morning","m-"+slug(r[0]),r,d,false)).join("") + `</div></section>`;
-  h += `<section class="block"><h3>Breathe <small>${weekend?"8":"6"} min</small></h3>` + breaths.map(b=>breathHTML(b,"m"+b)).join("") + `</section>`;
-  h += `<section class="block"><h3>Nose training <small>2 min</small></h3>${NOSE_HTML}</section>`;
+  h += `<section class="block"><h3>Breathe <small>4 min</small></h3>` + core.map(b=>breathHTML(b,"m"+b)).join("") + `<details class="guide" style="border-width:1px;margin-top:10px"><summary>Optional (extra time only)</summary>${breaths.filter(b=>!core.includes(b)).map(b=>breathHTML(b,"m"+b)).join("")}${NOSE_HTML}</details></section>`;
   h += `<section class="block"><h3>Mindset <small>1 min</small></h3><div class="callout"><b>My belief:</b> "${esc(BELIEF)}"<div style="font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-top:4px">${esc(BELIEF_REF)}</div><div style="font:800 22px var(--display);letter-spacing:.03em;text-transform:uppercase;margin-top:10px">Keep going 🦁🦍</div></div>${sensesHTML()}</section>`;
   h += `<section class="block"><h3>Check off</h3><div class="list">` + checks.slice(MORNING_MOB.length).map(([k,r])=>rowHTML("morning",k,r,d,false)).join("") + `</div></section>`;
   app.innerHTML = h; wire("morning-"+wk, checks.length); wirePacers();
