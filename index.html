@@ -217,7 +217,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-17g";
+const APP_VERSION = "2026-10-17h";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -461,7 +461,7 @@ const NIGHT = {
   ["90/90, tense-and-lift","45 sec each side + 5 lift-offs · 2 min","Mobility + strength. Sit with both knees bent at 90°, one in front, one to the side. Sit tall, press the back knee into the floor 10 sec, then lift it off and hold 2 sec. Switch sides. Turns your hips in and out, the rotation crisscross needs",FMF,"https://www.youtube.com/watch?v=RqjzWBqXYSg"],
   ["Pigeon, contract-relax","60 sec each side · 2 min","Stretch. Front foot flexed. Press the front shin down 5 sec, relax 5 sec, sink lower. Repeat for the whole hold. Opens the outer hip and glute",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
   ["Frog stretch, rocking","60 sec rocking + 60 sec hold · 2 min","Stretch. On hands and knees, knees wide, shins parallel. Rock your hips back and forward slowly, then hold the deepest spot. Opens the inner thighs for butterfly and the middle split",FMF,S("frog stretch rock back")],
-  ["Lunge to half split","30 sec lunge + 30 sec half split, each side · 2 min","Stretch. Back knee down on a pillow. Squeeze the back glute and lean forward 30 sec (front of the hip). Then sit back, straighten the front leg, toes up, and fold over it 30 sec (back of the leg). Both halves of the front split",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"],
+  ["Wall straddle, contract-relax","2 min · 2 min","Stretch. Lie on your back, butt against the wall, legs up and let them fall open wide. Gently squeeze your legs in against gravity 5 sec, relax 5 sec, let them sink lower. Gravity does the work for the middle split","",S("wall straddle stretch middle split")],
   ["Cossack squat into deep squat hold","5 each side, 3-sec hold at the bottom, then 30 sec deep squat · 2 min","Strength. Feet wide, sit down into one hip with the other leg straight, toes up. Hold the floor or a door frame if needed. Finish in a deep squat, heels down, elbows pushing knees out, slow belly breaths. Strength in the wide position so your body lets you go deeper",AH,S("cossack squat beginner")]]},
  b:{title:"Night B", focus:"5 moves", days:"Tue · Thu · Sat", rows:[
   ["Butterfly, contract-relax","2 × 60 sec · 2 min","Stretch. Feet together, hands on your knees. Press your knees up into your hands 5 sec, relax, let them drop lower",FMF,"https://www.youtube.com/watch?v=ml5kqS6LZWc"],
@@ -472,7 +472,7 @@ const NIGHT = {
 };
 const CR = "Contract-relax: push into the stretch 5 sec, relax 5 sec, sink a little deeper. Repeat for the whole hold. Aim for about 6 out of 10: a strong stretch you can still breathe slowly through, never sharp pain.";
 const NIGHT_BY_DAY = {mon:"a",tue:"b",wed:"a",thu:"b",fri:"a",sat:"b",sun:"a"};
-const NIGHT_LEVELUP = {a:[["90/90","No hands: switch sides by lifting both knees, sitting tall the whole time"],["Pigeon","Fold your chest down over the front shin"],["Frog","Slide into a wide straddle (pancake) and walk your hands forward"],["Lunge to half split","Front split slide with hands on books"],["Cossack squat","Hold a 10–20 lb weight at your chest"]], b:[["Butterfly","Fold your chest forward toward your feet, back flat"],["Crisscross sit","Thinner pillow, then no pillow"],["Figure-4","Sit up and do it seated, chest folding over the shin"],["Straddle reach","Elbows to the floor (pancake)"],["Doggies","Add a light band above the knees"]]};
+const NIGHT_LEVELUP = {a:[["90/90","No hands: switch sides by lifting both knees, sitting tall the whole time"],["Pigeon","Fold your chest down over the front shin"],["Frog","Slide into a wide straddle (pancake) and walk your hands forward"],["Wall straddle","Scoot your butt closer to the wall, or hold light ankle weights"],["Cossack squat","Hold a 10–20 lb weight at your chest"]], b:[["Butterfly","Fold your chest forward toward your feet, back flat"],["Crisscross sit","Thinner pillow, then no pillow"],["Figure-4","Sit up and do it seated, chest folding over the shin"],["Straddle reach","Elbows to the floor (pancake)"],["Doggies","Add a light band above the knees"]]};
 const PUSH_BY_DAY = {mon:false,tue:false,wed:false,thu:false,fri:false,sat:true,sun:false};
 
 const ZONES = [["6","Easy, almost a warm-up","Warm-up and cool-down","#6F8F86"],["7","Cruising, feel good","As long as you want","#2F8F75"],["8","Starting to push it","Several minutes at a time","#0D7A63"],["9","Getting there","10–15 min max","#B8801E"],["10","Hard","1–2 min","#B85C1E"],["15","Sprint","30 sec–1 min bursts only","#A33A2A"]];
