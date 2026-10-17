@@ -217,7 +217,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-17e";
+const APP_VERSION = "2026-10-17f";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -457,35 +457,22 @@ const SPARE_DAYS = [
 ];
 
 const NIGHT = {
- d:{title:"Night stretch", focus:"5 moves · every night", days:"Every night", rows:[
+ a:{title:"Night A", focus:"5 moves", days:"Mon · Wed · Fri · Sun", rows:[
   ["90/90, tense-and-lift","45 sec each side + 5 lift-offs · 2 min","Mobility + strength. Sit with both knees bent at 90°, one in front, one to the side. Sit tall, press the back knee into the floor 10 sec, then lift it off and hold 2 sec. Switch sides. Turns your hips in and out, the rotation crisscross needs",FMF,"https://www.youtube.com/watch?v=RqjzWBqXYSg"],
   ["Pigeon, contract-relax","60 sec each side · 2 min","Stretch. Front foot flexed. Press the front shin down 5 sec, relax 5 sec, sink lower. Repeat for the whole hold. Opens the outer hip and glute",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
   ["Frog stretch, rocking","60 sec rocking + 60 sec hold · 2 min","Stretch. On hands and knees, knees wide, shins parallel. Rock your hips back and forward slowly, then hold the deepest spot. Opens the inner thighs for butterfly and the middle split",FMF,S("frog stretch rock back")],
   ["Lunge to half split","30 sec lunge + 30 sec half split, each side · 2 min","Stretch. Back knee down on a pillow. Squeeze the back glute and lean forward 30 sec (front of the hip). Then sit back, straighten the front leg, toes up, and fold over it 30 sec (back of the leg). Both halves of the front split",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"],
   ["Cossack squat into deep squat hold","5 each side, 3-sec hold at the bottom, then 30 sec deep squat · 2 min","Strength. Feet wide, sit down into one hip with the other leg straight, toes up. Hold the floor or a door frame if needed. Finish in a deep squat, heels down, elbows pushing knees out, slow belly breaths. Strength in the wide position so your body lets you go deeper",AH,S("cossack squat beginner")]]},
- a:{title:"Night A", focus:"Front split · outer hips · pigeon", days:"Mon · Wed · Fri", rows:[
-  ["Quadruped hip controlled circles","2 slow circles each way, each side · 1 min","Mobility. On hands and knees, biggest circle you can, back still. Warms the joint up",FMF,"https://www.youtube.com/watch?v=rqLtUosOs0U"],
-  ["Pigeon, contract-relax","60 sec each side · 2 min","Stretch. Front foot flexed. Press the front shin down 5 sec, try to lift it 5 sec, sink lower. Repeat",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
-  ["Doggies, 3-sec hold","5 each side · 1 min","Strength. On hands and knees, lift the bent knee out to the side as high as you can and hold. Outer hip strength in the range pigeon needs",AH,"https://youtu.be/lwxlCzVtjWk"],
-  ["Half split, contract-relax","60 sec each leg · 2 min","Stretch. Back knee down, front leg straight, toes up. Press the heel into the floor 5 sec, relax, fold lower","",S("half split hamstring stretch contract relax")],
-  ["Kneeling hip flexor stretch","60 sec each side · 2 min","Stretch. Pillow under the knee. Squeeze the back glute, tuck your tailbone, stand your chest up",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"],
-  ["End-range knee pulls, 3-sec hold","4 each leg · 1 min","Strength. Pull your knee as high as it goes without hands and hold. Builds the hip flexor strength that holds a front split",AH,"https://youtu.be/PFanwSVshOU"],
-  ["Front split slide","60 sec each side · 2 min","Practice. Hands on the bed edge or two books. Slide the front heel forward and back knee back only as far as you control. Hips square","",S("front split progression with blocks")],
-  ["Crisscross sit, lean forward","60 sec, switch legs halfway · 1 min","Stretch. Sit cross-legged on a pillow so your hips are higher than your knees. Sit tall, walk your hands forward and breathe. Switch which leg is in front halfway. As your hips open, use a thinner pillow","",S("cross legged forward fold hip opener")]]},
- b:{title:"Night B", focus:"Middle split · butterfly · crisscross", days:"Tue · Thu · Sat", rows:[
-  ["90/90, tense-and-lift","45 sec each side, then 5 lift-offs · 2 min","Mobility. Sit tall in 90/90, press the back knee down 10 sec, then lift it off the floor and hold 2 sec",FMF,"https://www.youtube.com/watch?v=RqjzWBqXYSg"],
-  ["Frog stretch, rocking","2 × 60 sec · 2 min","Stretch. Knees wide, shins parallel. Rock your hips back and forward slowly, then hold the deepest spot",FMF,S("frog stretch rock back")],
+ b:{title:"Night B", focus:"5 moves", days:"Tue · Thu · Sat", rows:[
   ["Butterfly, contract-relax","2 × 60 sec · 2 min","Stretch. Feet together, hands on your knees. Press your knees up into your hands 5 sec, relax, let them drop lower",FMF,"https://www.youtube.com/watch?v=ml5kqS6LZWc"],
-  ["Leg over kettles","6 each leg · 1.5 min","Mobility. Seated, lift each leg up and over an object and back, hips turning in and out. Builds the rotation crisscross sitting needs",AH,"https://youtu.be/hps5M-DWg3k"],
-  ["Sitting leg lifts in and out, 3-sec hold","5 each side · 1.5 min","Strength. Seated with legs straight, lift one leg and move it out to the side and back, holding each end",AH,"https://youtu.be/TSUPBX45krA"],
-  ["Straddle reach","60 sec · 1 min","Stretch. Legs wide, toes up, back flat. Walk your hands forward from the hips","",S("straddle stretch pancake beginner")],
-  ["Horse stance","2 × 45 sec · 1.5 min","Strength. Feet wide, toes out, sit low, chest up. Strength in the wide position so your body lets you go deeper","",S("horse stance hold")],
-  ["Deep squat hold","60 sec · 1 min","Stretch. Sit all the way down, heels flat, elbows pushing knees out. Slow belly breaths and let everything relax. Hold a doorframe if needed","",S("deep squat hold mobility")]]}
+  ["Crisscross sit, lean forward","60 sec, switch legs halfway · 1 min","Stretch. Sit cross-legged on a pillow so your hips are higher than your knees. Sit tall, walk your hands forward and breathe. Switch which leg is in front halfway. As your hips open, use a thinner pillow","",S("cross legged forward fold hip opener")],
+  ["Front split slide","60 sec each side · 2 min","Practice. Hands on the bed edge or two books. Slide the front heel forward and back knee back only as far as you control. Hips square","",S("front split progression with blocks")],
+  ["Straddle reach, contract-relax","60 sec + 60 sec · 2 min","Stretch. Legs wide, toes up, back flat. Press your heels into the floor 5 sec, relax 5 sec, walk your hands a little further forward from the hips. Works the middle split","",S("straddle stretch pancake beginner")],
+  ["Horse stance","2 × 45 sec · 1.5 min","Strength. Feet wide, toes out, sit low, chest up. Strength in the wide position so your body lets you go deeper","",S("horse stance hold")]]}
 };
 const CR = "Contract-relax: push into the stretch 5 sec, relax 5 sec, sink a little deeper. Repeat for the whole hold. Aim for about 6 out of 10: a strong stretch you can still breathe slowly through, never sharp pain.";
-const NIGHT_BY_DAY = {mon:"d",tue:"d",wed:"d",thu:"d",fri:"d",sat:"d",sun:"d"};
-/* Night A and B stay above as the library to rotate from later. */
-const NIGHT_LEVELUP = [["90/90","No hands: switch sides by lifting both knees, sitting tall the whole time"],["Pigeon","Fold your chest down over the front shin"],["Frog","Slide into a wide straddle (pancake) and walk your hands forward"],["Lunge to half split","Front split slide with hands on books"],["Cossack squat","Hold a 10–20 lb weight at your chest"]];
+const NIGHT_BY_DAY = {mon:"a",tue:"b",wed:"a",thu:"b",fri:"a",sat:"b",sun:"a"};
+const NIGHT_LEVELUP = {a:[["90/90","No hands: switch sides by lifting both knees, sitting tall the whole time"],["Pigeon","Fold your chest down over the front shin"],["Frog","Slide into a wide straddle (pancake) and walk your hands forward"],["Lunge to half split","Front split slide with hands on books"],["Cossack squat","Hold a 10–20 lb weight at your chest"]], b:[["Butterfly","Fold your chest forward toward your feet, back flat"],["Crisscross sit","Thinner pillow, then no pillow"],["Front split slide","Take away one book, slide lower"],["Straddle reach","Elbows to the floor (pancake)"],["Horse stance","Hold a plate at your chest, sit lower"]]};
 const PUSH_BY_DAY = {mon:false,tue:false,wed:false,thu:false,fri:false,sat:true,sun:false};
 
 const ZONES = [["6","Easy, almost a warm-up","Warm-up and cool-down","#6F8F86"],["7","Cruising, feel good","As long as you want","#2F8F75"],["8","Starting to push it","Several minutes at a time","#0D7A63"],["9","Getting there","10–15 min max","#B8801E"],["10","Hard","1–2 min","#B85C1E"],["15","Sprint","30 sec–1 min bursts only","#A33A2A"]];
@@ -620,7 +607,7 @@ function renderDay(day){
   let h = `<div class="dayhead"><div class="kicker">${esc(day.kicker)} · Week 1</div><h2>${esc(day.title)}</h2><p>${esc(day.time)}</p>`;
   if(rowCount){ const on = W.finish && W.dayId===day.id; h += on ? `<button class="btn startw" id="startw" type="button" style="margin-top:12px;width:100%">Workout running · finish by ${clock(new Date(W.finish))} · tap to end</button>` : `<div class="startpair"><button class="btn" id="startw" type="button">▶ Start · finish by ${clock(new Date(Date.now()+mins(day.time)*60000))}</button><button class="btn" id="startios" type="button" aria-label="iPhone finish alarm only">⏰</button></div>`; }
   if(rowCount) h += `<div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${rowCount}</b></div>`;
-  h += `<div class="after"><div class="pill" style="background:var(--accent-soft)"><strong style="color:var(--accent)">Morning</strong><span>Open up + breathe · <a href="#morning" data-go="morning" style="color:var(--accent);font-weight:700">open</a></span></div><div class="pill"><strong>Tonight</strong><span>${night?"Night stretch":"Rest night"}${PUSH_BY_DAY[day.id]?" + 100 push-ups":""} + breathing · <a href="#night" data-go="night" style="color:var(--warm);font-weight:700">open</a></span></div></div></div>`;
+  h += `<div class="after"><div class="pill" style="background:var(--accent-soft)"><strong style="color:var(--accent)">Morning</strong><span>Open up + breathe · <a href="#morning" data-go="morning" style="color:var(--accent);font-weight:700">open</a></span></div><div class="pill"><strong>Tonight</strong><span>${night?"Night "+night.toUpperCase():"Rest night"}${PUSH_BY_DAY[day.id]?" + 100 push-ups":""} + breathing · <a href="#night" data-go="night" style="color:var(--warm);font-weight:700">open</a></span></div></div></div>`;
   day.blocks.forEach((b,bi)=>{
     const rpl = restPlan(b), bm = mins(b.m);
     h += `<section class="block"><h3>${esc(b.h)}${b.m?` <small>${esc(b.m)}</small>`:""}</h3>`;
@@ -653,10 +640,11 @@ function renderNight(){
   } else {
     const sel = nightSel || tonight, n = NIGHT[sel];
     h = `<div class="dayhead"><div class="kicker">Night · after Normatec · ~12 min + wind down</div><h2>${esc(n.title)}</h2><p style="color:var(--accent);font-weight:700">${esc(n.focus)}</p>
+    <div class="seg"><button type="button" data-n="a" aria-pressed="${sel==="a"}">A</button><button type="button" data-n="b" aria-pressed="${sel==="b"}">B</button></div>
     <div class="tbar" style="margin-top:12px">${tpair("block", 720, "12:00 routine", n.title)}</div></div>
     <div class="callout"><b>Each move is one of three kinds:</b> <b>Mobility</b> moves the joint through its full range. <b>Stretch</b> opens it. <b>Strength</b> makes you strong in the new range so it sticks.<br><br><b>How to hold a stretch:</b> ${esc(CR)}<br><br><b>Rest:</b> 15 sec between sides or holds on stretches, 30 sec after strength moves. Tap the rest button under each move.</div>`;
     h += `<section class="block"><h3>Routine <small>${esc(n.days)}</small></h3><div class="list">` + n.rows.map(r=>rowHTML("night"+sel, "n"+sel+"-"+slug(r[0]), r, d, false, {sec:/^Strength/.test(r[2])?30:15})).join("") + `</div></section>`;
-    h += `<details class="guide" style="border-width:1px"><summary>Level up (when a move feels easy for 2 weeks)</summary><ul>${NIGHT_LEVELUP.map(x=>`<li><b>${esc(x[0])}:</b> ${esc(x[1])}</li>`).join("")}</ul></details>`;
+    h += `<details class="guide" style="border-width:1px"><summary>Level up (when a move feels easy for 2 weeks)</summary><ul>${NIGHT_LEVELUP[sel].map(x=>`<li><b>${esc(x[0])}:</b> ${esc(x[1])}</li>`).join("")}</ul></details>`;
   }
   if(PUSH_BY_DAY[wk]) h += `<section class="block"><h3>100 push-ups</h3><p class="note">4 × 25 with clean form, no vest. Floor push-ups are fine at night. <a class="vid" href="${S("perfect push up form")}" target="_blank" rel="noopener">Find video ↗</a></p><div class="field"><input type="checkbox" id="pu" style="flex:0 0 auto;width:24px;height:24px;accent-color:var(--accent)"${d.push?" checked":""}><label for="pu">Done tonight</label></div></section>`;
   h += `<section class="block"><h3>Wind down <small>in bed · ~5 min</small></h3><p class="note">After your stretching (and push-ups), lie down and let your body slow down.</p>${breathHTML("coherent","ncoh")}${breathHTML("belly","nbelly")}${breathHTML("b478","n478")}<div class="callout"><b>Relax.</b></div>${sensesHTML()}<div class="list" style="margin-top:10px">${[["w-coh",["Slow 5-5 breathing done","","","",""]],["w-belly",["Belly breathing done","","","",""]],["w-478",["4-7-8 breathing done","","","",""]],["w-ground",["Relax","","","",""]]].map(([k,r])=>rowHTML("night",k,r,d,false)).join("")}</div></section>`;
