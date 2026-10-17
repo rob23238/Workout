@@ -218,7 +218,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-17m";
+const APP_VERSION = "2026-10-17n";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -373,10 +373,13 @@ const DAYS = [
     ["Easy bike or walk","5 min","Easy pace, just get blood moving through sore legs. Like rinsing out a sponge","",S("easy recovery bike warm up")],
     ["Band pull-aparts + chin tuck","1 × 15","Posture. Pull the band apart and slide your chin straight back",HAM,S("band pull apart chin tuck posture")],
     ["Dead bug","1 × 8 each side","Low back pressed into the floor, opposite arm and leg reach out slowly. Wakes your abs up","",S("dead bug exercise form")]]},
+   {h:"Functional: quick feet", m:"4 min", note:"Small, quick and light, about 50% effort. Just waking your feet and ankles up. No big jumps today.", rows:[
+    ["Lateral ankle pops","2 × 10 each ankle · bodyweight","Quick and springy, small bounces off the ball of the foot",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
+    ["Lateral plate hops","2 × 10 sec · bodyweight","Small side-to-side hops over a plate on the floor",AD,"https://youtube.com/shorts/XomC_FIU_E0"]]},
    {h:"Light legs: recovery lift", m:"16 min", note:"About 60% effort. Soreness should feel better by the end, not worse. If anything hurts more than a 4 out of 10, skip it. No jumps today: those come back next Saturday. Supersets A and B: go 1 to 2, then rest.", rows:[
     ["Back squat (YMCA squat rack)","Bar × 10, then 3 × 8 @ 135","Slow 3 sec down, smooth up. Light on purpose: this pushes blood through sore legs. Rest 90 sec",HAM,S("barbell back squat form"),"A1"],
     ["Psoas march, 5-sec hold","2 × 6 each side · band","Band on the feet, lying down, drive one knee up and hold: hip flexor strength",FMF,S("psoas march exercise"),"A2"],
-    ["Assisted pistol squat","2 × 5 each side · bodyweight","Hold the rack, sit down slowly on one leg. Only as low as feels good",LW,S("assisted pistol squat progression"),"B1"],
+    ["Pistol squat to a box","2 × 5 each side · bodyweight","Stand on one leg in front of a bench or box, other leg out front. Sit down slowly on one leg until you touch the box, then stand back up. No hands. Lower the box (or stack fewer plates) as you get stronger: that's how you build depth. A small plate under your heel helps too",LW,S("box pistol squat progression"),"B1"],
     ["Single-leg glute bridge risers","2 × 7 each side · bodyweight","Glutes",AH,"https://youtu.be/pTDQ5tJRhC8","B2"],
     ["Side-lying hip abduction","2 × (10 straight leg + 5 bent leg) each side · bodyweight","Outer hip strength. Lift the top leg slightly behind you, 2 sec down. Rest 30 sec",FMF,"https://www.youtube.com/watch?v=C4bQSvhSGZA"],
     ["Banded lateral walks","2 × 8 each way","Outer hip strength. Band above the knees, stay low. Rest 30 sec",AD,"https://youtube.com/shorts/GMo4gT2e-Dc"]]},
@@ -421,7 +424,7 @@ const SPARE_DAYS = [
     ["Smith back squat","Bar × 10, 135 × 5, then 3 × 6 @ 185","Full depth you control, chest up. About 60% of your 315 max while you rebuild form; add 10 lb a week when all reps are clean",HAM,S("smith machine squat form"),"A1"],
     ["Psoas march, 5-sec hold","3 × 6 each side · band","Band on the feet, lying down, drive one knee up and hold: hip flexor strength",FMF,S("psoas march exercise"),"A2"],
     ["Dumbbell jump squat","3 × 5 @ 15–20 lb each hand","Light dumbbells (15–20 lb each hand) at your sides. Sit to a quarter squat, jump, land soft and reset before the next rep",HAM,S("dumbbell jump squat form"),"B1"],
-    ["Assisted pistol squat","3 × 5 each side · bodyweight","Hold the cable column, sit down slowly on one leg",LW,S("assisted pistol squat progression"),"B2"],
+    ["Pistol squat to a box","3 × 5 each side · bodyweight","Sit down slowly on one leg until you touch a bench or box, stand back up, no hands. Lower the box as you get stronger. A small plate under your heel helps depth",LW,S("box pistol squat progression"),"B2"],
     ["Dumbbell walking lunge","3 × 10 each leg @ 40–50 lb each hand","40–50 lb dumbbells, front foot stays flat",HAM,"https://youtube.com/shorts/JMkDwe0Wki4"]]},
    {h:"Glutes + hips", m:"6 min", note:"Superset C, 3 rounds. No equipment needed.", rows:[
     ["Single-leg glute bridge risers","3 × 7 each side · bodyweight","Glutes",AH,"https://youtu.be/pTDQ5tJRhC8","C1"],
@@ -939,16 +942,17 @@ const NOSE_CARDIO = `<div class="callout"><b>Nose training:</b> breathe only thr
 
 /* ---------- Morning routine ---------- */
 const MORNING_MOB = [
- ["Cat-cow","8 slow reps · 1 min","On hands and knees. Breathe in as your belly drops and chest lifts; breathe out as you round your back up to the ceiling. Wakes up your whole spine","",S("cat cow stretch how to")],
- ["World's greatest stretch","3 each side · 2 min","Big lunge, back knee down. Same-side hand on the floor inside your front foot, then turn and reach the other arm to the ceiling. Opens hips, hip flexors and upper back in one move","",S("worlds greatest stretch how to")]];
+ ["Chin tucks against the wall","2 × 10, 5-sec hold · 1.5 min","Posture. Back and head on the wall. Slide your chin straight back like making a double chin, pushing the back of your head into the wall. Strengthens the deep neck muscles that pull your head back over your shoulders","",S("chin tuck exercise forward head posture")],
+ ["Wall angels","2 × 8 · 1.5 min","Posture. Back, head and arms flat on the wall in a goal-post shape. Slide your arms up and down without anything coming off the wall. Opens the chest and wakes up the upper back","",S("wall angels exercise posture")],
+ ["Prone Y-T raises","1 × 8 Y + 8 T · 1.5 min","Posture. Lie face down, thumbs up. Lift your arms in a Y, then out to the sides in a T, 2-sec hold at the top each rep. Pull your shoulder blades down and back. Builds the back muscles that hold your shoulders back","",S("prone Y T raise lower trap")]];
 function renderMorning(){
   const wk=todayId(), weekend = wk==="sat"||wk==="sun", d=docOf("morning-"+wk);
   const breaths = ["box","sigh","belly"].concat(weekend?["skull"]:[]);
   const checks = [...MORNING_MOB.map(r=>["m-"+slug(r[0]),r]), ...breaths.map(b=>["m-"+b,[BREATHS[b].name+" done","","","",""]]), ["m-nose",["Nose unblock done","","","",""]], ["m-senses",["5–4–3–2–1 done","","","",""]], ["m-belief",["Said my belief out loud","","","",""]]];
-  let h = `<div class="dayhead"><div class="kicker">Morning · every day · ~10 min</div><h2>Wake up loose and clear</h2><p>Two moves to open your back and hips, then breathe and set your mind before work. ${weekend?"It's the weekend, so skull shining breath is on today.":"Skull shining breath is saved for weekends."}</p>
-  <div class="tbar" style="margin-top:12px">${tpair("block", 600, "10:00 routine", "Morning routine")}</div>
+  let h = `<div class="dayhead"><div class="kicker">Morning · every day · ~12 min</div><h2>Wake up loose and clear</h2><p>Three posture moves to pull your shoulders and head back, then breathe and set your mind before work. ${weekend?"It's the weekend, so skull shining breath is on today.":"Skull shining breath is saved for weekends."}</p>
+  <div class="tbar" style="margin-top:12px">${tpair("block", 720, "12:00 routine", "Morning routine")}</div>
   <div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${checks.length}</b></div></div>`;
-  h += `<section class="block"><h3>Open up <small>3 min</small></h3><div class="list">` + MORNING_MOB.map(r=>rowHTML("morning","m-"+slug(r[0]),r,d,false)).join("") + `</div></section>`;
+  h += `<section class="block"><h3>Posture <small>4.5 min</small></h3><div class="list">` + MORNING_MOB.map(r=>rowHTML("morning","m-"+slug(r[0]),r,d,false)).join("") + `</div></section>`;
   h += `<section class="block"><h3>Breathe <small>${weekend?"8":"6"} min</small></h3>` + breaths.map(b=>breathHTML(b,"m"+b)).join("") + `</section>`;
   h += `<section class="block"><h3>Nose training <small>2 min</small></h3>${NOSE_HTML}</section>`;
   h += `<section class="block"><h3>Mindset <small>1 min</small></h3><div class="callout"><b>My belief:</b> "${esc(BELIEF)}"<div style="font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-top:4px">${esc(BELIEF_REF)}</div><div style="font:800 22px var(--display);letter-spacing:.03em;text-transform:uppercase;margin-top:10px">Keep going 🦁🦍</div></div>${sensesHTML()}</section>`;
