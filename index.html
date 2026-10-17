@@ -217,7 +217,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-17h";
+const APP_VERSION = "2026-10-17i";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -366,7 +366,42 @@ const DAYS = [
    {h:"Cool-down", m:"2 min", rows:[
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","Hold the Smith bar, sink your hips back",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"sat", chip:"Sat", kicker:"Saturday · lift before the fair", title:"Legs A: explosive + squat", time:"~45 min", stair:["35-min intervals","after leg day"], night:"Night stretch + 100 push-ups",
+ {id:"sat", chip:"Sat", kicker:"Saturday · sore day at the Y", title:"Abs + recovery", time:"~40 min", stair:["3-mile easy run","this morning"], night:"Night stretch + 100 push-ups",
+  blocks:[
+   {h:"Warm-up", m:"6 min", rows:[
+    ["Easy bike or walk","5 min","Easy pace, just get blood moving through sore legs. Like rinsing out a sponge","",S("easy recovery bike warm up")],
+    ["Band pull-aparts + chin tuck","1 × 15","Posture. Pull the band apart and slide your chin straight back",HAM,S("band pull apart chin tuck posture")],
+    ["Dead bug","1 × 8 each side","Low back pressed into the floor, opposite arm and leg reach out slowly. Wakes your abs up","",S("dead bug exercise form")]]},
+   {h:"Leg flush (only if your legs say yes)", m:"6 min", note:"50% effort, no weight. This is to loosen sore legs, not train them. If it hurts more than a 4 out of 10, skip to abs.", rows:[
+    ["Bodyweight box squat","2 × 10 · bodyweight","Sit back to a bench, stand up slow. Smooth, no bouncing. Rest 30 sec","",S("bodyweight box squat form")],
+    ["Glute bridge","2 × 12 · bodyweight","Squeeze at the top 2 sec. Rest 30 sec","",S("glute bridge form")],
+    ["Side-lying hip abduction","2 × 12 each side · bodyweight","Outer hip strength. Top leg straight, toes forward, lift slow, 2 sec down. Rest 30 sec","",S("side lying hip abduction form")]]},
+   {h:"Abs", m:"22 min", note:"Supersets A and B: go straight from 1 to 2, then use the rest timer. Hanging leg raises go first while your grip and abs are fresh. Cable crunches are the main event: go heavy.", rows:[
+    ["Hanging leg raise, full range","4 × 5 · bodyweight","Shoulders down, curl your pelvis up first, legs to the bar, 3 sec down. End the set the moment you swing",MINE,S("hanging leg raise full range no swing"),"A1"],
+    ["Decline bench reverse crunch","4 × 10 · bodyweight","Lie on the decline bench with your head at the top, hold the bench behind your head. Curl your knees to your chest and lift your hips off the bench, 3 sec down. This is the flipped one","",S("decline bench reverse crunch"),"A2"],
+    ["Cable crunch, heavy","4 × 12 @ 80–100 lb (cable)","Kneel, rope by your ears. Crunch your ribs to your hips, 2-sec squeeze at the bottom, hips stay still. Last set: go to 15",MINE,S("cable crunch form"),"B1"],
+    ["Decline bench sit-up","3 × 10 · bodyweight","Feet hooked at the top, arms crossed on your chest. Roll up one vertebra at a time, 3 sec down. Add a plate on your chest when 10 gets easy","",S("decline sit up form"),"B2"],
+    ["Dragon flag negatives","3 × 3 · bodyweight","On the flat bench, grab behind your head, get your body straight up, then lower as slow as you can (aim for 5 sec) with a straight body. Tuck one knee if you need to. Rest 90 sec","",S("dragon flag negative beginner tucked")]]},
+   {h:"Cool-down", m:"6 min", rows:[
+    ["Knees-to-chest rock","30 sec","On your back, hug your knees and rock side to side. Low back relief","",S("knees to chest rock low back")],
+    ["Supine twist","30 sec each side","Knees fall to one side, arms out, look the other way","",S("supine spinal twist")],
+    ["Cobra stretch","2 × 20 sec","Opens your abs after all that crunching","",S("cobra stretch")],
+    ["Frog stretch, rocking","60 sec","Inner thighs. Slow rocks back and forward",FMF,S("frog stretch rock back")],
+    ["Pigeon, contract-relax","45 sec each side","Outer hips",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
+    ["Doorway chest stretch","30 sec each side","Posture. Forearm on the door frame, step through","",S("doorway pec minor stretch")]]}
+  ]},
+ {id:"sun", chip:"Sun", kicker:"Sunday", title:"Fair day", time:"", stair:["",""], night:"",
+  blocks:[
+   {h:"Today", m:"", note:"No workout. Enjoy the fair: all that walking counts.", rows:[]}
+  ]}
+];
+/* Saved for later: exercises Big RPJ wants to add in the future. Not on any day yet. */
+const SAVED_EXERCISES = [
+ ["Plank kettlebell pull-through","3 × 8 each side","High plank, kettlebell (or dumbbell) just outside one hand. Reach under with the opposite hand and drag it across to the other side. Hips stay level and still: anti-rotation core","",S("plank kettlebell pull through form")]
+];
+/* Not on the schedule this week; kept for next week. */
+const SPARE_DAYS = [
+ {id:"sat", chip:"Sat", kicker:"Saturday · next week", title:"Legs A: explosive + squat", time:"~45 min", stair:["35-min intervals","after leg day"], night:"Night stretch + 100 push-ups",
   blocks:[
    {h:"Jump rope + warm-up", m:"6 min", rows:[
     ["Jump rope, basic bounce","3 × 30 sec on / 30 sec off","Light on the balls of your feet, small hops","",S("jump rope basic bounce beginner")],
@@ -391,17 +426,6 @@ const DAYS = [
     ["Half-kneeling hip flexor stretch","30 sec each side","Squeeze the back glute",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"],
     ["Seated hamstring V-stretch","30 sec","Legs wide, walk your hands forward",HAM,S("seated v sit hamstring stretch")]]}
   ]},
- {id:"sun", chip:"Sun", kicker:"Sunday", title:"Fair day", time:"", stair:["",""], night:"",
-  blocks:[
-   {h:"Today", m:"", note:"No workout. Enjoy the fair: all that walking counts.", rows:[]}
-  ]}
-];
-/* Saved for later: exercises Big RPJ wants to add in the future. Not on any day yet. */
-const SAVED_EXERCISES = [
- ["Plank kettlebell pull-through","3 × 8 each side","High plank, kettlebell (or dumbbell) just outside one hand. Reach under with the opposite hand and drag it across to the other side. Hips stay level and still: anti-rotation core","",S("plank kettlebell pull through form")]
-];
-/* Not on the schedule this week; kept for next week. */
-const SPARE_DAYS = [
  {id:"sat", chip:"Sat", kicker:"Saturday · lighter day", title:"Stability + abs A + hips", time:"~45 min", stair:["40-min fat burn","two short level 9 pushes"], night:"Night stretch + 100 push-ups",
   blocks:[
    {h:"Functional: Stability day", m:"12 min", note:"Stability day: strength in the hips, knees and ankles, and evening out your legs.", rows:[
