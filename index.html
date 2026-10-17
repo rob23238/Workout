@@ -210,14 +210,15 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 <header class="top">
   <p class="quote">"The will must be stronger than the skill."<cite>Muhammad Ali</cite></p>
   <div class="brand"><h1>Discipline &amp; Consistency</h1><span>Day by day · Big RPJ</span></div>
+  <button type="button" class="btn" id="copydata" style="margin-top:8px;font-size:13px;padding:6px 12px">Copy data</button>
 </header>
 <div class="tabsbar">
   <nav class="days" id="days" role="tablist" aria-label="Section"></nav>
-  <div class="sync" id="sync">Saved on this phone</div><button type="button" class="btn" id="copydata" style="margin-top:6px;font-size:13px;padding:6px 10px">Copy my data for Claude</button>
+  <div class="sync" id="sync">Saved on this phone</div>
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-17j";
+const APP_VERSION = "2026-10-17k";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -588,12 +589,12 @@ function save(id){
 }
 let saveTimer = {};
 function saveSoon(id){ clearTimeout(saveTimer[id]); saveTimer[id] = setTimeout(()=>save(id), 700); }
-function setSync(t){ const el=document.getElementById("sync"); if(el) el.textContent=t; const b=document.getElementById("copydata"); if(b) b.style.display=/Synced/.test(t)?"none":""; }
+function setSync(t){ const el=document.getElementById("sync"); if(el) el.textContent=t; }
 document.getElementById("copydata")?.addEventListener("click", async()=>{
   const out={}; try{ for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(k && k.startsWith("hy1-")) out[k]=JSON.parse(localStorage.getItem(k)); } }catch(e){}
   const txt="My workout app data:\n"+JSON.stringify(out);
-  try{ await navigator.clipboard.writeText(txt); alert("Copied. Paste it into your chat with Claude."); }
-  catch(e){ window.prompt("Copy this and paste it to Claude:", txt); }
+  try{ await navigator.clipboard.writeText(txt); alert("Copied. Paste it into the chat."); }
+  catch(e){ window.prompt("Copy this and paste it into the chat:", txt); }
 });
 
 const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
