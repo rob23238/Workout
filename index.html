@@ -218,7 +218,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-18a";
+const APP_VERSION = "2026-10-18b";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -253,9 +253,9 @@ const PULL_GUIDE = `
 <p>Hang and do move 1 only (the pool move) once. If you feel your back working, you're ready.</p>`;
 const SS = "Superset: do the 1 then the 2 back to back, rest, repeat for all rounds.";
 const DAYS = [
- {id:"mon", chip:"Mon", kicker:"Monday", title:"StairMaster only", time:"", stair:["40-min relaxed","see StairMaster tab"], night:"Night stretch + 100 push-ups",
+ {id:"mon", chip:"Mon", kicker:"Monday", title:"StairMaster only", time:"", stair:["30-min max burn","this morning"], night:"Night stretch + 100 push-ups",
   blocks:[
-   {h:"Today", m:"", note:"StairMaster, no lift. Then your night stretch and 100 push-ups.", rows:[]}
+   {h:"Today", m:"", note:"StairMaster this morning (30-min max burn), no lift. Then your night stretch and 100 push-ups.", rows:[]}
   ]},
  {id:"tue", chip:"Tue", kicker:"Tuesday", title:"Push + arms", time:"~50 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with bench)",
   blocks:[
@@ -518,11 +518,11 @@ const ZONES = [["6","Easy, almost a warm-up","Warm-up and cool-down","#6F8F86"],
 const COLOR = Object.fromEntries(ZONES.map(z=>[z[0],z[3]]));
 const rounds = (n, segs) => Array.from({length:n}, ()=>segs).flat();
 const PLANS = {
- p40:{h:"40-min steady sweat", when:"Friday", desc:"Relaxed but real work. Long steady stretches at level 7–8, no hard pushes. You can breathe through your nose most of it, and the length is what burns the calories.", segs:[[5,6],[10,7],[8,8],[4,7],[7,8],[4,7],[2,6]]},
- p35:{h:"35-min climb", when:"Thursday, Saturday", desc:"Your old 40 without the level 6 cool-down at the end: long level 7–8 stretches with two short level 9 pushes. Finish with 2 easy minutes at level 7.", segs:[[5,6],[8,7],[6,8],[2,9],[4,7],[6,8],[2,9],[2,7]]},
- p30:{h:"30-min max burn", when:"Wednesday", desc:"Most calories in 30 minutes. 5 rounds of 2 min level 9, 1 min level 10, 1 min level 8 to recover. Hard but short: intervals pack more work into less time.", segs:[[3,6],[2,7],[2,8],...rounds(5,[[2,9],[1,10],[1,8]]),[3,6]]}
+ p40:{h:"40-min steady sweat", when:"Wednesday morning (leg day: keep it relaxed)", desc:"Relaxed but real work. Long steady stretches at level 7–8, no hard pushes. You can breathe through your nose most of it, and the length is what burns the calories.", segs:[[5,6],[10,7],[8,8],[4,7],[7,8],[4,7],[2,6]]},
+ p35:{h:"35-min climb", when:"Tuesday + Thursday mornings", desc:"Your old 40 without the level 6 cool-down at the end: long level 7–8 stretches with two short level 9 pushes. Finish with 2 easy minutes at level 7.", segs:[[5,6],[8,7],[6,8],[2,9],[4,7],[6,8],[2,9],[2,7]]},
+ p30:{h:"30-min max burn", when:"Monday morning (no lift)", desc:"Most calories in 30 minutes. 5 rounds of 2 min level 9, 1 min level 10, 1 min level 8 to recover. Hard but short: intervals pack more work into less time.", segs:[[3,6],[2,7],[2,8],...rounds(5,[[2,9],[1,10],[1,8]]),[3,6]]}
 };
-const PLAN_BY_DAY = {mon:"p40",tue:"p30",wed:"p35",thu:"p40",fri:"p30",sat:null,sun:null};
+const PLAN_BY_DAY = {mon:"p30",tue:"p35",wed:"p40",thu:"p35",fri:null,sat:null,sun:null};
 const LOGGABLE = /pull-ups|Smith|jump squat|walking lunge|bent-over row|curl|Romanian|Hanging leg raise, full|Cable crunch|dips|shoulder press|skull crusher|^Set \d/i;
 
 
@@ -663,7 +663,7 @@ function renderDay(day){
     h += `</section>`;
   });
   if(rowCount){ const ex=d.extra||[]; h += `<section class="block"><h3>Extra exercises <small>anything you added</small></h3>${ex.length?`<div class="list">${ex.map(x=>`<div class="row"><span></span><div class="t"><div class="name">${esc(x.name)}</div>${logHTML(day.id,"x-"+x.id,logList((d.logs||{})["x-"+x.id]))}<div class="meta"><button class="del" type="button" data-rmx="${esc(x.id)}">Remove exercise</button></div></div></div>`).join("")}</div>`:""}<div class="field"><label for="xname">Add</label><input id="xname" autocomplete="off" enterkeyhint="done" placeholder="exercise name, e.g. Cable lateral raise"><button type="button" class="lgadd" id="xadd">Add</button></div></section>`; }
-  if(plan) h += `<section class="block"><h3>StairMaster</h3><div class="field"><label for="cal">Calories</label><input id="cal" inputmode="numeric" placeholder="from the machine" value="${esc(d.cal||"")}"></div></section>`;
+  if(plan) h += `<section class="block"><h3>StairMaster <small>this morning</small></h3><div class="field"><label for="cal">Calories</label><input id="cal" inputmode="numeric" placeholder="from the machine" value="${esc(d.cal||"")}"></div></section>`;
   if(rowCount) h += `<button class="reset" id="reset" type="button">Clear today's checkmarks</button>`;
   h += `<p class="foot">"Watch video" opens the exact video from your programs. "Find video" opens YouTube results for that exercise.</p>`;
   app.innerHTML = h; wire(day.id, rowCount); wireLogs(day.id, ()=>renderDay(day));
