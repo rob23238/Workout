@@ -218,7 +218,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-19b";
+const APP_VERSION = "2026-10-19c";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -276,10 +276,10 @@ const DAYS = [
     ["Set 4","230 × 5","","","","A1"],
     ["Incline push-ups","25 · bodyweight (4 of 4)","Straight from the bench, then rest 2 min","","","A2"],
     ["Set 5","240 × 3","Top set: clean reps only, full rest before it. When 240 feels mid, go 245",HAM,""]]},
-   {h:"Calisthenics", m:"10 min", note:"Handstand hold first while you're fresh, then superset B. B2 depends on where you are: dips at the YMCA, L-sit at home.", rows:[
+   {h:"Calisthenics", m:"10 min", note:"Handstand hold first while you're fresh, then superset B. B2 is your L-sit: log which step and how many seconds.", rows:[
     ["Wall handstand hold, chest to wall","2 × 30 sec · bodyweight","Walk your feet up the wall, body straight",LW,"https://www.tiktok.com/t/ZPLSuXqwY/"],
     ["Pike push-ups","3 × 6 · bodyweight","Hips high, head lands in front of your hands",LW,"https://www.tiktok.com/t/ZPLSuaT3v/","B1"],
-    ["Dips or L-sit","YMCA: dips 3 × 8 bodyweight · Home: L-sit 3 sets","YMCA (dip bars): parallel bar dips, lean slightly forward, shoulders just below elbows, press to locked arms. Home (no dip bar): your current L-sit step from the Calisthenics tab, hands on two dumbbells",LW,S("parallel bar dips proper form"),"B2"]]},
+["L-sit (progression)","3 sets · your current step","Hands on two dumbbells or the floor, arms locked, push the floor away so your shoulders drop. Ladder: 1) Support hold 3 × 20–30 sec → 2) One-leg tuck 3 × 15 sec each → 3) Tuck L-sit 3 × 15 sec → 4) One leg out 3 × 10 sec each → 5) Full L-sit 3 × 10 sec → 6) Full L-sit 20 sec. Move up a step when you hit every set clean twice in a row. Start at step 1 or 2",LW,S("l sit progression beginner"),"B2"]]},
    {h:"Shoulders, chest, arms", m:"15 min", note:"Supersets C, D and F, rest 60 sec after each round. F is wrists.", rows:[
     ["Seated dumbbell shoulder press","3 × 8 @ 50 lb dumbbells","Ribs down, don't lean back",HAM,S("seated dumbbell shoulder press form"),"C1"],
     ["Cable face pull","3 × 15 @ 30–40 lb (cable)","Pull to your forehead, thumbs back, 2-sec squeeze: posture","",S("cable face pull form"),"C2"],
