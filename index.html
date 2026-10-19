@@ -218,7 +218,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-18b";
+const APP_VERSION = "2026-10-19a";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -639,6 +639,7 @@ function wire(id, total){
     d.checks = d.checks||{}; d.checks[cb.dataset.k]=cb.checked; cb.closest(".row").classList.toggle("is-done",cb.checked); upd(); save(id);
   }));
   const cal=document.getElementById("cal"); if(cal) cal.addEventListener("input",()=>{ d.cal=cal.value; saveSoon(id); });
+  app.querySelectorAll("[data-am]").forEach(b=>b.addEventListener("click",()=>{ d.am = d.am===b.dataset.am ? "" : b.dataset.am; app.querySelectorAll("[data-am]").forEach(x=>x.setAttribute("aria-pressed", String(x.dataset.am===d.am))); save(id); }));
   const pu=document.getElementById("pu"); if(pu) pu.addEventListener("change",()=>{ d.push=pu.checked; save(id); });
   const rb=document.getElementById("reset"); if(rb) rb.addEventListener("click",()=>{ d.checks={}; save(id); render(id); });
   upd();
@@ -653,6 +654,7 @@ function renderDay(day){
   if(rowCount){ const on = W.finish && W.dayId===day.id; h += on ? `<button class="btn startw" id="startw" type="button" style="margin-top:12px;width:100%">Workout running · finish by ${clock(new Date(W.finish))} · tap to end</button>` : `<div class="startpair"><button class="btn" id="startw" type="button">▶ Start · finish by ${clock(new Date(Date.now()+mins(day.time)*60000))}</button><button class="btn" id="startios" type="button" aria-label="iPhone finish alarm only">⏰</button></div>`; }
   if(rowCount) h += `<div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${rowCount}</b></div>`;
   h += `<div class="after"><div class="pill" style="background:var(--accent-soft)"><strong style="color:var(--accent)">Morning</strong><span>Open up + breathe · <a href="#morning" data-go="morning" style="color:var(--accent);font-weight:700">open</a></span></div><div class="pill"><strong>Tonight</strong><span>${night?"Night "+night.toUpperCase():"Rest night"}${PUSH_BY_DAY[day.id]?" + 100 push-ups":""} + breathing · <a href="#night" data-go="night" style="color:var(--warm);font-weight:700">open</a></span></div></div></div>`;
+  { const am=d.am||"", pl=plan&&PLANS[plan]; h += `<section class="block"><h3>Morning StairMaster${pl?` <small>${esc(pl.h)}</small>`:""}</h3><div class="seg"><button type="button" data-am="went" aria-pressed="${am==="went"}">Went ✓</button><button type="button" data-am="skip" aria-pressed="${am==="skip"}">Didn't go</button></div><div class="field" style="margin-top:8px"><label for="cal">Calories</label><input id="cal" inputmode="numeric" placeholder="from the machine" value="${esc(d.cal||"")}"></div></section>`; }
   day.blocks.forEach((b,bi)=>{
     const rpl = restPlan(b), bm = mins(b.m);
     h += `<section class="block"><h3>${esc(b.h)}${b.m?` <small>${esc(b.m)}</small>`:""}</h3>`;
@@ -663,7 +665,6 @@ function renderDay(day){
     h += `</section>`;
   });
   if(rowCount){ const ex=d.extra||[]; h += `<section class="block"><h3>Extra exercises <small>anything you added</small></h3>${ex.length?`<div class="list">${ex.map(x=>`<div class="row"><span></span><div class="t"><div class="name">${esc(x.name)}</div>${logHTML(day.id,"x-"+x.id,logList((d.logs||{})["x-"+x.id]))}<div class="meta"><button class="del" type="button" data-rmx="${esc(x.id)}">Remove exercise</button></div></div></div>`).join("")}</div>`:""}<div class="field"><label for="xname">Add</label><input id="xname" autocomplete="off" enterkeyhint="done" placeholder="exercise name, e.g. Cable lateral raise"><button type="button" class="lgadd" id="xadd">Add</button></div></section>`; }
-  if(plan) h += `<section class="block"><h3>StairMaster <small>this morning</small></h3><div class="field"><label for="cal">Calories</label><input id="cal" inputmode="numeric" placeholder="from the machine" value="${esc(d.cal||"")}"></div></section>`;
   if(rowCount) h += `<button class="reset" id="reset" type="button">Clear today's checkmarks</button>`;
   h += `<p class="foot">"Watch video" opens the exact video from your programs. "Find video" opens YouTube results for that exercise.</p>`;
   app.innerHTML = h; wire(day.id, rowCount); wireLogs(day.id, ()=>renderDay(day));
@@ -1026,7 +1027,7 @@ function renderAM(){
 
 
 /* ---------- tabs ---------- */
-const TABS = [...DAYS.map(d=>({id:d.id, chip:d.chip})), {id:"morning",chip:"Morning"}, {id:"night",chip:"Night"}, {id:"stair",chip:"Stair"}, {id:"am",chip:"AM Stair"}, {id:"cali",chip:"Calisthenics"}, {id:"ideas",chip:"Ideas"}];
+const TABS = [...DAYS.map(d=>({id:d.id, chip:d.chip})), {id:"morning",chip:"Morning"}, {id:"night",chip:"Night"}, {id:"stair",chip:"Stair"}, {id:"cali",chip:"Calisthenics"}, {id:"ideas",chip:"Ideas"}];
 function todayId(){ return ["sun","mon","tue","wed","thu","fri","sat"][new Date().getDay()]; }
 function render(id){
   current = id; if(typeof stopPacer==="function") stopPacer();
@@ -1044,7 +1045,7 @@ dockTick();
 
 /* ---------- Fresh start for the week of Oct 12: clear day/morning/night checkmarks + logs once ---------- */
 (function freshStart(){ const tag="2026-10-19"; if(local.get("hy1-fresh")===tag) return; if(new Date() < new Date(2026,9,19)) return;
-  ["mon","tue","wed","thu","fri","sat","sun"].forEach(w=>{ ["", "night-", "morning-"].forEach(pre=>{ const id=pre+w, d=docOf(id); d.checks={}; d.logs={}; d.cal=""; d.push=false; delete d.legacyNight; save(id); }); });
+  ["mon","tue","wed","thu","fri","sat","sun"].forEach(w=>{ ["", "night-", "morning-"].forEach(pre=>{ const id=pre+w, d=docOf(id); d.checks={}; d.logs={}; d.cal=""; d.am=""; d.push=false; delete d.legacyNight; save(id); }); });
   stopAll(); local.set("hy1-fresh",tag); if(DAYS.some(d=>d.id===current)) render(current); })();
 
 /* ---------- Auto-update: if GitHub has a newer version, reload into it ---------- */
