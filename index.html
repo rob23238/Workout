@@ -218,7 +218,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-19a";
+const APP_VERSION = "2026-10-19b";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -951,8 +951,8 @@ const NOSE_CARDIO = `<div class="callout"><b>Nose training:</b> breathe only thr
 
 /* ---------- Morning routine ---------- */
 const MORNING_MOB = [
- ["Chin tucks against the wall","2 × 10, 5-sec hold · 1.5 min","Posture. Back and head on the wall. Slide your chin straight back like making a double chin, pushing the back of your head into the wall. Strengthens the deep neck muscles that pull your head back over your shoulders","",S("chin tuck exercise forward head posture")],
- ["Wall angels","2 × 8 · 1.5 min","Posture. Back, head and arms flat on the wall in a goal-post shape. Slide your arms up and down without anything coming off the wall. Opens the chest and wakes up the upper back","",S("wall angels exercise posture")],
+ ["Doorway chest stretch","2 × 30 sec each side · 2 min","Posture. Forearm on the door frame, elbow at shoulder height. Step through until the front of your shoulder and chest open. A tight chest is what pulls your shoulders forward, so this opens the front while the next two moves strengthen the back","",S("doorway pec minor stretch")],
+ ["Wall angels","2 × 8 · 1.5 min","Posture. Back, head and arms flat on the wall in a goal-post shape, chin tucked. Slide your arms up and down without anything coming off the wall. Opens the chest and wakes up the upper back","",S("wall angels exercise posture")],
  ["Prone Y-T raises","1 × 8 Y + 8 T · 1.5 min","Posture. Lie face down, thumbs up. Lift your arms in a Y, then out to the sides in a T, 2-sec hold at the top each rep. Pull your shoulder blades down and back. Builds the back muscles that hold your shoulders back","",S("prone Y T raise lower trap")]];
 function renderMorning(){
   const wk=todayId(), weekend = wk==="sat"||wk==="sun", d=docOf("morning-"+wk);
