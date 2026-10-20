@@ -218,7 +218,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-19e";
+const APP_VERSION = "2026-10-19f";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -496,13 +496,13 @@ const SPARE_DAYS = [
 ];
 
 const NIGHT = {
- a:{title:"Night A", focus:"5 moves", days:"Mon · Wed · Fri · Sun", rows:[
+ a:{title:"Night A", focus:"Mon · Wed · Fri · Sun", days:"Mon · Wed · Fri · Sun", rows:[
   ["90/90, tense-and-lift","45 sec each side + 5 lift-offs · 2 min","Mobility + strength. Sit with both knees bent at 90°, one in front, one to the side. Sit tall, press the back knee into the floor 10 sec, then lift it off and hold 2 sec. Switch sides. Turns your hips in and out, the rotation crisscross needs",FMF,"https://www.youtube.com/watch?v=RqjzWBqXYSg"],
   ["Quadruped hip CARs","3 slow circles each way, each side · 2 min","Mobility + strength. On hands and knees, back still. Lift one knee out to the side, draw the biggest, slowest circle you can (knee forward, out, back, down), squeezing hard the whole way. Builds outer hip strength through its full range, no bench needed",MINE,"https://www.youtube.com/shorts/xKPhW_At_7w"],
   ["Frog stretch, rocking","60 sec rocking + 60 sec hold · 2 min","Stretch. On hands and knees, knees wide, shins parallel. Rock your hips back and forward slowly, then hold the deepest spot. Opens the inner thighs for butterfly and the middle split",FMF,S("frog stretch rock back")],
   ["Standing straddle fold, contract-relax","2 min · 2 min","Stretch. Feet as wide as you can, toes forward, knees straight. Hinge at the hips and let your hands hang to the floor (or a pillow). Press your feet into the floor like you're trying to pull them together 5 sec, relax 5 sec, let gravity drop you lower. Walk your feet a little wider each week",FMF,S("standing wide leg forward fold straddle stretch")],
   ["Cossack squat into deep squat hold","5 each side, 3-sec hold at the bottom, then 30 sec deep squat · 2 min","Strength. Feet wide, sit down into one hip with the other leg straight, toes up. Hold the floor or a door frame if needed. Finish in a deep squat, heels down, elbows pushing knees out, slow belly breaths. Strength in the wide position so your body lets you go deeper",AH,S("cossack squat beginner")]]},
- b:{title:"Night B", focus:"5 moves", days:"Tue · Thu · Sat", rows:[
+ b:{title:"Night B", focus:"Tue · Thu · Sat", days:"Tue · Thu · Sat", rows:[
   ["Butterfly, contract-relax","2 × 60 sec · 2 min","Stretch. Feet together, hands on your knees. Press your knees up into your hands 5 sec, relax, let them drop lower",FMF,"https://www.youtube.com/watch?v=ml5kqS6LZWc"],
   ["Crisscross sit, lean forward","2 min, switch legs halfway · 2 min","Stretch. Sit cross-legged on a pillow so your hips are higher than your knees. Sit tall, walk your hands forward and breathe. Switch which leg is in front halfway. As your hips open, use a thinner pillow","",S("cross legged forward fold hip opener")],
   ["Figure-4 stretch, contract-relax","60 sec each side · 2 min","Stretch. On your back, cross one ankle over the other knee, foot flexed. Pull the bottom leg toward your chest. Push the top knee away 5 sec, relax 5 sec, pull a little closer. Deep outer hip and glute","",S("figure 4 stretch contract relax outer hip")],
@@ -686,7 +686,7 @@ function renderNight(){
   } else {
     const sel = nightSel || tonight, n = NIGHT[sel];
     h = `<div class="dayhead"><div class="kicker">Night · after Normatec · ~12 min + wind down</div><h2>${esc(n.title)}</h2><p style="color:var(--accent);font-weight:700">${esc(n.focus)}</p>
-    <div class="seg"><button type="button" data-n="a" aria-pressed="${sel==="a"}">A</button><button type="button" data-n="b" aria-pressed="${sel==="b"}">B</button></div>
+    <div class="seg"><button type="button" data-n="a" aria-pressed="${sel==="a"}">A · Mon Wed Fri Sun</button><button type="button" data-n="b" aria-pressed="${sel==="b"}">B · Tue Thu Sat</button></div>
     <div class="tbar" style="margin-top:12px">${tpair("block", 720, "12:00 routine", n.title)}</div></div>
     <div class="callout"><b>Each move is one of three kinds:</b> <b>Mobility</b> moves the joint through its full range. <b>Stretch</b> opens it. <b>Strength</b> makes you strong in the new range so it sticks.<br><br><b>How to hold a stretch:</b> ${esc(CR)}<br><br><b>Rest:</b> 15 sec between sides or holds on stretches, 30 sec after strength moves. Tap the rest button under each move.</div>`;
     h += `<section class="block"><h3>Routine <small>${esc(n.days)}</small></h3><div class="list">` + n.rows.map(r=>rowHTML("night"+sel, "n"+sel+"-"+slug(r[0]), r, d, false, {sec:/^Strength/.test(r[2])?30:15})).join("") + `</div></section>`;
