@@ -218,7 +218,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-19d";
+const APP_VERSION = "2026-10-19e";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -519,10 +519,10 @@ const COLOR = Object.fromEntries(ZONES.map(z=>[z[0],z[3]]));
 const rounds = (n, segs) => Array.from({length:n}, ()=>segs).flat();
 const PLANS = {
  p40:{h:"40-min steady sweat", when:"Wednesday morning (leg day: keep it relaxed)", desc:"Relaxed but real work. Long steady stretches at level 7–8, no hard pushes. You can breathe through your nose most of it, and the length is what burns the calories.", segs:[[5,6],[10,7],[8,8],[4,7],[7,8],[4,7],[2,6]]},
- p35:{h:"35-min climb", when:"Tuesday + Thursday mornings", desc:"Your old 40 without the level 6 cool-down at the end: long level 7–8 stretches with two short level 9 pushes. Finish with 2 easy minutes at level 7.", segs:[[5,6],[8,7],[6,8],[2,9],[4,7],[6,8],[2,9],[2,7]]},
- p30:{h:"30-min max burn", when:"Monday morning (no lift)", desc:"Most calories in 30 minutes. 5 rounds of 2 min level 9, 1 min level 10, 1 min level 8 to recover. Hard but short: intervals pack more work into less time.", segs:[[3,6],[2,7],[2,8],...rounds(5,[[2,9],[1,10],[1,8]]),[3,6]]}
+ p35:{h:"35-min climb", when:"Thursday morning", desc:"Your old 40 without the level 6 cool-down at the end: long level 7–8 stretches with two short level 9 pushes. Finish with 2 easy minutes at level 7.", segs:[[5,6],[8,7],[6,8],[2,9],[4,7],[6,8],[2,9],[2,7]]},
+ p30:{h:"30-min max burn", when:"Monday + Tuesday mornings", desc:"Most calories in 30 minutes. 5 rounds of 2 min level 9, 1 min level 10, 1 min level 8 to recover. Hard but short: intervals pack more work into less time.", segs:[[3,6],[2,7],[2,8],...rounds(5,[[2,9],[1,10],[1,8]]),[3,6]]}
 };
-const PLAN_BY_DAY = {mon:"p30",tue:"p35",wed:"p40",thu:"p35",fri:null,sat:null,sun:null};
+const PLAN_BY_DAY = {mon:"p30",tue:"p30",wed:"p40",thu:"p35",fri:null,sat:null,sun:null};
 const LOGGABLE = /pull-ups|Smith|jump squat|walking lunge|bent-over row|curl|Romanian|Hanging leg raise, full|Cable crunch|dips|shoulder press|skull crusher|^Set \d/i;
 
 
@@ -1047,6 +1047,7 @@ dockTick();
 (function freshStart(){ const tag="2026-10-19"; if(local.get("hy1-fresh")===tag) return; if(new Date() < new Date(2026,9,19)) return;
   ["mon","tue","wed","thu","fri","sat","sun"].forEach(w=>{ ["", "night-", "morning-"].forEach(pre=>{ const id=pre+w, d=docOf(id); d.checks={}; d.logs={}; d.cal=""; d.am=""; d.push=false; delete d.legacyNight; save(id); }); });
   stopAll(); local.set("hy1-fresh",tag); if(DAYS.some(d=>d.id===current)) render(current); })();
+(function markMondayMissed(){ const tag="2026-10-19-mon"; if(local.get("hy1-monmiss")===tag) return; if(new Date() < new Date(2026,9,19)) return; const d=docOf("mon"); if(!d.am){ d.am="skip"; save("mon"); } local.set("hy1-monmiss",tag); })();
 
 /* ---------- Auto-update: if GitHub has a newer version, reload into it ---------- */
 async function checkUpdate(){
