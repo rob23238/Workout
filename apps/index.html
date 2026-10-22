@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BIG RPJ Apps</title>
+<meta name="theme-color" content="#0b0f1a">
+<link rel="icon" type="image/png" href="icons/training-180.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@700;800&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+/* Layout: one column of three big app tiles, like a phone home screen for the web. Single dark look. */
+:root{color-scheme:dark;--bg:#0b0f1a;--panel:#121828;--line:#253051;--ink:#e9edf7;--muted:#93a0bf;--gold:#f2b84b;
+  --display:"Saira Condensed","Arial Narrow",Impact,sans-serif;--body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif}
+*{box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink);margin:0}
+body{font-family:var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:max(28px,env(safe-area-inset-top,0px)) 40px;
+  background:radial-gradient(800px 340px at 50% -120px,rgba(242,184,75,.12),transparent 70%),var(--bg)}
+main{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+h1{font:800 46px/.95 var(--display);text-transform:uppercase;margin:0}
+h1 span{color:var(--gold)}
+p{margin:0;color:var(--muted)}
+a.app{display:grid;grid-template-columns:76px 1fr;gap:16px;align-items:center;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+a.app:hover,a.app:focus-visible{border-color:var(--gold);outline:none}
+a.app img{width:76px;height:76px;border-radius:18px;display:block}
+a.app b{display:block;font:700 26px/1 var(--display);text-transform:uppercase;letter-spacing:.02em}
+a.app small{color:var(--muted);font-size:14px}
+.foot{font-size:12px;margin-top:10px}
+</style>
+</head>
+<body>
+<main>
+  <h1>BIG RPJ <span>Apps</span></h1>
+  <p>AI-powered, synced across your devices. Unlock once with your passcode on each device.</p>
+  <a class="app" href="training/"><img src="icons/training-180.png" alt=""><span><b>RPJ Training Arc</b><small>Daily sessions, skill tree, Intel feed and your resume coach</small></span></a>
+  <a class="app" href="cissp/"><img src="icons/cissp-180.png" alt=""><span><b>CISSP 100 Refresh</b><small>All 8 domains, AI coach, and the CCNA-depth Network Lab</small></span></a>
+  <a class="app" href="fuel/"><img src="icons/fuel-180.png" alt=""><span><b>Fuel &amp; Consistency</b><small>Food log, recipes, groceries and AI meal estimates</small></span></a>
+  <p class="foot">On your phone: open an app, tap Share, then Add to Home Screen.</p>
+</main>
+</body>
+</html>
