@@ -218,7 +218,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-21c";
+const APP_VERSION = "2026-10-23a";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -318,7 +318,7 @@ const DAYS = [
     ["Active pigeon","45 sec each side","Outer hip",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
     ["Seated hamstring V-stretch","30 sec","",HAM,S("seated v sit hamstring stretch")]]}
   ]},
- {id:"thu", chip:"Thu", kicker:"Thursday · lighter day", title:"Skills + core + arms", time:"~50 min", stair:["40-min relaxed","see StairMaster tab"], night:"Night stretch + 100 push-ups",
+ {id:"thu", chip:"Thu", kicker:"Thursday · missed, moved to Saturday", title:"Skills + core + arms", time:"~50 min", stair:["40-min relaxed","see StairMaster tab"], night:"Night stretch + 100 push-ups",
   blocks:[
    {h:"Warm-up", m:"5 min", rows:[
     ["Wall slides","1 × 10","Posture. Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
@@ -346,7 +346,69 @@ const DAYS = [
     ["Doorway chest stretch","30 sec each side","Posture. Forearm on the door frame, step through","",S("doorway pec minor stretch")],
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"fri", chip:"Fri", kicker:"Friday · finish strong", title:"Pull + incline bench + arms + levers", time:"~55 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with incline bench)",
+ {id:"fri", chip:"Fri", kicker:"Friday · at the Y (moved from Saturday)", title:"Explosion + strength", time:"~45 min", stair:["2-mile easy run (optional)","after lifting or later in the day"], night:"Night stretch + 100 push-ups",
+  blocks:[
+   {h:"Jump rope + warm-up", m:"7 min", rows:[
+    ["Jump rope, basic bounce","3 × 30 sec on / 30 sec off","Light on the balls of your feet","",S("jump rope basic bounce beginner")],
+    ["Leg swings, front-back + side-side","1 × 10 each way, each leg","Hold the rack",HAM,S("leg swings front back side")],
+    ["Band pull-aparts + chin tuck","1 × 15","Posture",HAM,S("band pull apart chin tuck posture")]]},
+   {h:"Functional: ankles", m:"4 min", rows:[
+    ["Ankle drills: first 4 from the video","1 round each · bodyweight","Do the first 4 ankle exercises from the video, in order",AD,"https://youtu.be/dEcd2xGAuLI"]]},
+   {h:"Functional: explosion", m:"18 min", note:"Your Explosion/Strength Day. Quality over speed: every rep crisp. Rest 30–45 sec between exercises.", rows:[
+    ["Single-leg ISO hold","Set 1: 4 reps, 6-sec holds · Set 2: 6 reps, 3-sec holds (each leg)","Stand on one leg, slight bend in the knee, and hold still. Tall chest",AD,"https://youtu.be/U-T2nkoSorU"],
+    ["Slight squat plate press","2 × 8 @ 25–45 lb plate","Quarter squat and hold it while you press the plate straight out from your chest and back",AD,"https://youtu.be/U-T2nkoSorU"],
+    ["Single leg bend","2 × 7 each leg · bodyweight","Slow, controlled bend on one leg, knee tracks over your toes",AD,"https://youtu.be/U-T2nkoSorU"],
+    ["Single leg squat, 4 sec down + 4-sec hold","2 × 4 each leg · bodyweight","4 seconds down, hold 4 seconds at the bottom, stand up. Use a box behind you if you need it",AD,"https://youtu.be/U-T2nkoSorU"],
+    ["Dumbbell hip extension to dumbbell press","2 × 6 each leg @ 20–30 lb","Drive the hip through to stand tall on one leg, then press the dumbbell overhead",AD,"https://youtu.be/U-T2nkoSorU"],
+    ["Band under pull-ups","2 × 5","As shown in the explosion video",AD,"https://youtu.be/U-T2nkoSorU"],
+    ["Box jumps","2 × 6 · bodyweight","Jump up, land soft and quiet, step down. Reset each rep. Rest 60 sec",AD,"https://youtu.be/U-T2nkoSorU"],
+    ["Skiers","2 × 7 each leg · bodyweight","Quick side-to-side bounds, land on one leg and stick it",AD,"https://m.youtube.com/watch?v=61pcNAWAZFc"]]},
+   {h:"Strength", m:"12 min", note:"Superset A: squat, then Pallof press while you rest. Rest 2 min after each round. Squat progression: add 5 lb each week all reps are clean, 185 → 285.", rows:[
+    ["Back squat (YMCA squat rack)","Bar × 10, 135 × 5, then 3 × 6 @ 185","Full depth you control, chest up, 3 sec down",HAM,S("barbell back squat form"),"A1"],
+    ["Cable Pallof press","3 × 10 each side @ 20–30 lb (cable)","Rotational core: press out, hold 2 sec, don't let it twist you",AC,S("cable pallof press form"),"A2"]]},
+   {h:"Cool-down", m:"2 min", rows:[
+    ["Deep squat hold","2 × 45 sec","Heels flat, elbows pushing knees out, slow belly breaths","",S("deep squat hold mobility")]]}
+  ]},
+ {id:"sat", chip:"Sat", kicker:"Saturday · at the Y (moved from Thursday)", title:"Skills + core + arms", time:"~50 min", stair:["40-min relaxed","see StairMaster tab"], night:"Night stretch + 100 push-ups",
+  blocks:[
+   {h:"Warm-up", m:"5 min", rows:[
+    ["Wall slides","1 × 10","Posture. Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
+    ["Band pull-aparts + chin tuck","1 × 15","Posture. Pull the band apart and slide your chin straight back",HAM,S("band pull apart chin tuck posture")],
+    ["Scapular pull-ups, 2-sec hold","1 × 8","Hang with straight arms, pull your shoulders down away from your ears (the pool move)",LW,S("scapular pull ups form")],
+    ["Wrist rocks on the floor","1 × 10 each way","Gets wrists ready for handstands","",S("wrist warm up handstand")]]},
+   {h:"Calisthenics", m:"12 min", note:"Skills first while you're fresh. Rest 90 sec between sets. Stop each hold when your form breaks.", rows:[
+    ["Wall handstand hold, chest to wall","2 × 30 sec · bodyweight","Second handstand day of the week. You were 1 sec short last time",LW,"https://www.tiktok.com/t/ZPLSuXqwY/"],
+    ["Tuck front lever hold","4 × 10 sec · bodyweight","Hang, pull your shoulders down, pull your knees to your chest and lean back until your back is flat like a table. Straight arms. Front lever step 1",LW,S("tuck front lever tutorial")],
+    ["German hang","3 × 15 sec · bodyweight","From a hang, tuck and roll your legs through your arms until you're hanging behind you. Gentle: opens your shoulders for the back lever. Come out slowly",LW,S("german hang skin the cat beginner")],
+    ["L-sit","3 × max hold · bodyweight","Hands on the floor or parallettes, push down, lift your hips and legs. Use your L-sit level from the Calisthenics tab",LW,S("l sit progression beginner")]]},
+   {h:"Core: rotation + abs", m:"12 min", note:"Supersets A and B, 3 rounds, rest 60 sec. Pallof press teaches your core to resist twisting; woodchops teach it to make twisting: both are athletic core.", rows:[
+    ["Cable Pallof press","3 × 10 each side @ 20–30 lb (cable)","Stand sideways to the cable, handle at your chest. Press it straight out and hold 2 sec. Don't let it pull you around",AC,S("cable pallof press form"),"A1"],
+    ["Cable woodchop, high to low","3 × 10 each side @ 20–30 lb (cable)","Cable high, pull it down across your body to the opposite hip. Turn from your hips and core, arms stay long",AC,S("cable woodchop high to low form"),"A2"],
+    ["Hanging leg raise, full range","3 × 5 · bodyweight","Shoulders down, curl your pelvis up first, 3 sec down. End the set the moment you swing",MINE,S("hanging leg raise full range no swing"),"B1"],
+    ["Cable crunch, heavy","3 × 12 @ 80–100 lb (cable)","2-sec squeeze at the bottom, hips still",MINE,S("cable crunch form"),"B2"]]},
+   {h:"Shoulders + arms + grip", m:"18 min", note:"Supersets E, C and D, 3 rounds, rest 60 sec. E moved here from Tuesday.", rows:[
+    ["Seated dumbbell shoulder press","3 × 8 @ 50 lb dumbbells","Ribs down, don't lean back",HAM,S("seated dumbbell shoulder press form"),"E1"],,
+    ["Cable face pull","3 × 15 @ 30–40 lb (cable)","Pull to your forehead, thumbs back, 2-sec squeeze: posture","",S("cable face pull form"),"E2"],
+    ["Cable rope triceps pushdown","3 × 12 @ 40–50 lb (cable)","Elbows pinned to your sides, spread the rope at the bottom","",S("cable rope triceps pushdown form"),"C1"],
+    ["Cross-body dumbbell hammer curl","3 × 12 each arm @ 30–35 lb","Curl across your body toward the opposite shoulder: forearm + outer arm","",S("cross body hammer curl"),"C2"],
+    ["Plate pinch hold","3 × 30 sec @ two 10 lb plates each hand","Pinch two plates together, smooth sides out, fingers only. Builds the grip strength for levers and heavy pulls","",S("plate pinch grip hold"),"D1"],
+    ["Dead hang","3 × max hold · bodyweight","Squeeze the bar hard, shoulders down. Rest 60 sec","",S("dead hang grip strength"),"D2"]]},
+   {h:"Cool-down", m:"2 min", rows:[
+    ["Doorway chest stretch","30 sec each side","Posture. Forearm on the door frame, step through","",S("doorway pec minor stretch")],
+    ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
+  ]},
+ {id:"sun", chip:"Sun", kicker:"Sunday", title:"Rest day", time:"", stair:["",""], night:"",
+  blocks:[
+   {h:"Today", m:"", note:"Rest. Walk, stretch if you want, and get ready for the week.", rows:[]}
+  ]}
+];
+/* Saved for later: exercises Big RPJ wants to add in the future. Not on any day yet. */
+const SAVED_EXERCISES = [
+ ["Plank kettlebell pull-through","3 × 8 each side","High plank, kettlebell (or dumbbell) just outside one hand. Reach under with the opposite hand and drag it across to the other side. Hips stay level and still: anti-rotation core","",S("plank kettlebell pull through form")]
+];
+/* Not on the schedule this week; kept for next week. */
+const SPARE_DAYS = [
+ {id:"fri", chip:"Fri", kicker:"Friday · next week", title:"Pull + incline bench + arms + levers", time:"~55 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with incline bench)",
   blocks:[
    {h:"Shoulder warm-up", m:"6 min", rows:[
     ["Wall slides","1 × 10","Back, head and arms flat on the wall, slide your arms up into a Y and back down. Wakes up the shoulder blades and fixes rounded shoulders","",S("wall slides shoulder mobility")],
@@ -382,40 +444,6 @@ const DAYS = [
    {h:"Cool-down", m:"2 min", rows:[
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","Hold the Smith bar, sink your hips back",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"sat", chip:"Sat", kicker:"Saturday · morning", title:"Explosion + strength", time:"~45 min", stair:["2-mile easy run (optional)","after lifting or later in the day"], night:"Night stretch + 100 push-ups",
-  blocks:[
-   {h:"Jump rope + warm-up", m:"7 min", rows:[
-    ["Jump rope, basic bounce","3 × 30 sec on / 30 sec off","Light on the balls of your feet","",S("jump rope basic bounce beginner")],
-    ["Leg swings, front-back + side-side","1 × 10 each way, each leg","Hold the rack",HAM,S("leg swings front back side")],
-    ["Band pull-aparts + chin tuck","1 × 15","Posture",HAM,S("band pull apart chin tuck posture")]]},
-   {h:"Functional: ankles", m:"4 min", rows:[
-    ["Ankle drills: first 4 from the video","1 round each · bodyweight","Do the first 4 ankle exercises from the video, in order",AD,"https://youtu.be/dEcd2xGAuLI"]]},
-   {h:"Functional: explosion", m:"18 min", note:"Your Explosion/Strength Day. Quality over speed: every rep crisp. Rest 30–45 sec between exercises.", rows:[
-    ["Single-leg ISO hold","Set 1: 4 reps, 6-sec holds · Set 2: 6 reps, 3-sec holds (each leg)","Stand on one leg, slight bend in the knee, and hold still. Tall chest",AD,"https://youtu.be/U-T2nkoSorU"],
-    ["Slight squat plate press","2 × 8 @ 25–45 lb plate","Quarter squat and hold it while you press the plate straight out from your chest and back",AD,"https://youtu.be/U-T2nkoSorU"],
-    ["Single leg bend","2 × 7 each leg · bodyweight","Slow, controlled bend on one leg, knee tracks over your toes",AD,"https://youtu.be/U-T2nkoSorU"],
-    ["Single leg squat, 4 sec down + 4-sec hold","2 × 4 each leg · bodyweight","4 seconds down, hold 4 seconds at the bottom, stand up. Use a box behind you if you need it",AD,"https://youtu.be/U-T2nkoSorU"],
-    ["Dumbbell hip extension to dumbbell press","2 × 6 each leg @ 20–30 lb","Drive the hip through to stand tall on one leg, then press the dumbbell overhead",AD,"https://youtu.be/U-T2nkoSorU"],
-    ["Band under pull-ups","2 × 5","As shown in the explosion video",AD,"https://youtu.be/U-T2nkoSorU"],
-    ["Box jumps","2 × 6 · bodyweight","Jump up, land soft and quiet, step down. Reset each rep. Rest 60 sec",AD,"https://youtu.be/U-T2nkoSorU"],
-    ["Skiers","2 × 7 each leg · bodyweight","Quick side-to-side bounds, land on one leg and stick it",AD,"https://m.youtube.com/watch?v=61pcNAWAZFc"]]},
-   {h:"Strength", m:"12 min", note:"Superset A: squat, then Pallof press while you rest. Rest 2 min after each round. Squat progression: add 5 lb each week all reps are clean, 185 → 285.", rows:[
-    ["Back squat (YMCA squat rack)","Bar × 10, 135 × 5, then 3 × 6 @ 185","Full depth you control, chest up, 3 sec down",HAM,S("barbell back squat form"),"A1"],
-    ["Cable Pallof press","3 × 10 each side @ 20–30 lb (cable)","Rotational core: press out, hold 2 sec, don't let it twist you",AC,S("cable pallof press form"),"A2"]]},
-   {h:"Cool-down", m:"2 min", rows:[
-    ["Deep squat hold","2 × 45 sec","Heels flat, elbows pushing knees out, slow belly breaths","",S("deep squat hold mobility")]]}
-  ]},
- {id:"sun", chip:"Sun", kicker:"Sunday", title:"Rest day", time:"", stair:["",""], night:"",
-  blocks:[
-   {h:"Today", m:"", note:"Rest. Walk, stretch if you want, and get ready for the week.", rows:[]}
-  ]}
-];
-/* Saved for later: exercises Big RPJ wants to add in the future. Not on any day yet. */
-const SAVED_EXERCISES = [
- ["Plank kettlebell pull-through","3 × 8 each side","High plank, kettlebell (or dumbbell) just outside one hand. Reach under with the opposite hand and drag it across to the other side. Hips stay level and still: anti-rotation core","",S("plank kettlebell pull through form")]
-];
-/* Not on the schedule this week; kept for next week. */
-const SPARE_DAYS = [
  {id:"sat", chip:"Sat", kicker:"Saturday · next week", title:"Legs A: explosive + squat", time:"~45 min", stair:["35-min intervals","after leg day"], night:"Night stretch + 100 push-ups",
   blocks:[
    {h:"Jump rope + warm-up", m:"6 min", rows:[
