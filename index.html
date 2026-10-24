@@ -218,69 +218,36 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-24f";
+const APP_VERSION = "2026-10-24g";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
-<h4>The big idea</h4>
-<p>Your arms are the <b>rope</b>. Your back is the <b>engine</b>. Think of pulling a heavy garage door down: you don't curl it with your biceps, you drive your elbows down to your sides and your whole back does it. A pull-up is the same move. The bar can't move, so <b>you</b> go up.</p>
 <div class="big">Don't pull yourself up. Pull the bar down to your chest.</div>
-
 <h4>1. Crush the bar</h4>
-<p><b>What:</b> squeeze the bar like you're trying to crush it into dust. Thumbs wrapped around.</p>
-<p><b>Why:</b> your body works like a chain of light switches. A hard grip flips on the next switch up: your forearms, then the small muscles that lock your shoulder in place (rotator cuff), then your lats. A loose grip leaves those switches off, so your shoulder is wobbly and your arms end up doing the work. A strong squeeze = a stronger, safer pull.</p>
-<p><b>Football:</b> it's like grabbing a jersey to make a tackle. A loose grab and he slips away. A death grip and your whole body locks in behind it.</p>
-
+<p>Your body works like a chain of light switches. A hard grip flips on your forearms, then the small muscles that lock your shoulder in place (rotator cuff), then your lats. With a loose grip those stay off, your shoulder is wobbly and your arms do all the work. It's like grabbing a jersey to make a tackle: a loose grab and he slips away, a death grip and your whole body locks in.</p>
 <h4>2. Bend the bar</h4>
-<p><b>What:</b> while you hang, try to bend the bar into a U, like you're snapping a stick over your knee. Your hands don't move, you just twist them out as if bending it.</p>
-<p><b>Why:</b> that twist turns your elbows down and in toward your ribs instead of flaring out. That's the position where your lats (the big wings on the sides of your back) can pull hardest, and it keeps your shoulders from rolling forward. Flared elbows = shoulders and arms doing the work. Tucked elbows = lats doing the work.</p>
-<p><b>Football:</b> same as keeping your elbows tight when you punch on a block. Elbows flared out and you lose all your power.</p>
-
-<h4>3. Shoulders down first (the pool move)</h4>
-<p><b>What:</b> with straight arms, pull your shoulders down away from your ears, like climbing out of a pool by pressing down on the edge. You rise about an inch.</p>
-<p><b>Why:</b> this is the moment your lats switch on before your arms bend. Skip it and your biceps start the rep and steal the work.</p>
-
-<h4>4. Pull down with your lats (the rip)</h4>
-<p><b>Find your lats first:</b> stand up, put your right hand flat on the left side of your ribs, just under your armpit. Now press your left arm down hard against your side, like you're squeezing a newspaper in your armpit. That muscle that just got hard under your hand? That's your lat. That's the muscle that does pull-ups.</p>
-<p><b>The rip, step by step:</b> a defensive lineman gets his arm under the blocker's arm, then rips it <b>down and back</b>, elbow driving to his own back pocket. He's not curling his arm. His elbow moves, his hand just comes along for the ride.</p>
-<p><b>On the bar:</b></p>
-<ol>
-<li>Forget your hands. Pretend they're just hooks.</li>
-<li>Think only about your <b>elbows</b>.</li>
-<li>Rip both elbows down and back, like you're trying to jam them into your back pockets.</li>
-<li>Squeeze that newspaper in your armpits the whole way up.</li>
-</ol>
-<p><b>Two more everyday examples:</b></p><ul><li><b>Train horn cord:</b> you grab the cord overhead and yank it straight down. Your elbow drives down to your side and your hand barely does anything. The pull comes from your back.</li><li><b>Climbing onto a high wall:</b> hanging off the top of a wall, you pull yourself up by pressing down and driving your elbows toward your hips. You feel it in the sides of your back, not your biceps. That's your lats.</li></ul><p><b>Wrong vs right:</b> if you think "pull my hands to my face," your biceps do it. If you think "rip my elbows to my pockets," your lats do it. Same movement, different engine.</p>
-
+<p>Try to bend the bar into a U, like snapping a stick over your knee. Your hands don't actually move. That twist tucks your elbows down and in, which is where your lats pull strongest. When your elbows flare out, your shoulders and arms take over. It's the same as keeping your elbows tight when you punch on a block.</p>
+<h4>3. The pool move</h4>
+<p>With straight arms, press your shoulders down, like climbing out of a pool. This switches your lats on before your arms bend.</p>
+<h4>4. Pull down with your lats</h4>
+<p>It's the <b>rip move</b> a defensive lineman uses to get past a blocker: the arm drives down hard and back, elbow to the hip. That power comes from the lat, not the bicep. Do a rip move on the bar. When it's working, you'll feel the sides of your back under your armpits, not just your biceps burning.</p>
+<p><b>How to feel it:</b> standing up, raise both arms overhead like you're holding the bar. Slowly drive your elbows down and back to your back pockets. Your elbows draw a curve; your hands are just hooks along for the ride. Feel the sides of your back squeeze? That's your lats. Do that 3 times before your first set, then copy it on the bar.</p>
 <h4>5. Chest to the bar</h4>
-<p><b>Picture this:</b> you're standing in front of a doorway with the bar at chest height, and someone tells you to touch the bar with your chest, not your face. You'd stand tall, stick your chest out and lean back a little. That's the shape.</p>
-<p><b>On the bar:</b></p>
-<ol>
-<li>As you pull, <b>lift your chest up and out</b>, like you're proud and showing off your jersey number.</li>
-<li>Let your head tilt back slightly, looking just over the bar.</li>
-<li>Aim to bring your <b>upper chest</b> (just under your collarbones) toward the bar, not your chin.</li>
-<li>At the top, squeeze your shoulder blades together like you're pinching a pencil between them. Hold 1 second.</li>
-</ol>
-<p><b>Why it matters:</b> getting your chin over the bar only works the bottom part. That last push toward your chest is where your shoulder blades squeeze together, which builds your back and pulls your shoulders out of that rounded position. Chin-only reps leave half the work on the table.</p>
-<p><b>Can't get all the way yet?</b> That's normal. Get your chest as high as you can every rep. It goes up a little every week.</p>
-
+<p>Puff your chest out like you're showing off your jersey number. Or like Vegeta: chest out, shoulders back, too proud to let your face touch the bar first. The last few inches are where your mid-back squeezes your shoulder blades together. That's half the back workout, and it's the part that fixes rounded shoulders. Chin-only reps skip it.</p>
 <h4>6. Down slow</h4>
-<p>Take <b>3 seconds</b> down, like setting a heavy box on a table instead of dropping it, all the way to straight arms. Then start the next rep at step 3 again.</p>
-
+<p>Take 3 seconds, like setting a heavy box on a table instead of dropping it.</p>
 <h4>Muscles you're using</h4>
 <ul>
-<li><b>Lats:</b> the big wings on your sides. The main engine.</li>
-<li><b>Mid-back (rhomboids + mid traps):</b> squeeze your shoulder blades together at the top.</li>
+<li><b>Lats:</b> the big wings on your sides. The engine.</li>
+<li><b>Mid-back:</b> squeezes your shoulder blades together at the top.</li>
 <li><b>Lower traps:</b> pull your shoulders down (the pool move).</li>
 <li><b>Grip + forearms:</b> the crush. They turn everything else on.</li>
-<li><b>Biceps:</b> they help, but they're the passenger, not the driver.</li>
-<li><b>Abs + glutes:</b> squeezed tight so your body stays straight like a plank and doesn't swing.</li>
+<li><b>Biceps:</b> just the passenger, not the driver.</li>
+<li><b>Abs + glutes:</b> keep you straight like a plank, so you don't swing.</li>
 </ul>
-
-<div class="bad"><b>End the set when:</b> your shoulders shrug to your ears, you swing or kick, your biceps burn before your back, or you can't get back to straight arms. That rep doesn't count.</div>
-
-<h4>Quick check before each set</h4>
-<p>Hang, crush the bar, bend the bar, then do the pool move once. If you feel your lats tighten under your armpits, you're ready.</p>`;
+<div class="bad"><b>End the set when:</b> your shoulders shrug to your ears, you swing or kick, your biceps burn before your back, or you can't get back to straight arms.</div>
+<h4>Before each set</h4>
+<p>Hang, crush the bar, bend the bar, then do one pool move. If your lats tighten under your armpits, you're ready.</p>`;
 const SS = "Superset: do the 1 then the 2 back to back, rest, repeat for all rounds.";
 const DAYS = [
  {id:"mon", chip:"Mon", kicker:"Monday", title:"StairMaster only", time:"", stair:["30-min max burn","this morning"], night:"Night stretch + 100 push-ups",
