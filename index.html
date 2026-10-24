@@ -218,7 +218,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-24g";
+const APP_VERSION = "2026-10-24h";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -366,35 +366,29 @@ const DAYS = [
    {h:"Cool-down", m:"2 min", rows:[
     ["Deep squat hold","2 × 45 sec","Heels flat, elbows pushing knees out, slow belly breaths","",S("deep squat hold mobility")]]}
   ]},
- {id:"sat", chip:"Sat", kicker:"Saturday · at the Y", title:"Pull + incline bench + arms + abs", time:"~50 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with incline bench)",
+ {id:"sat", chip:"Sat", kicker:"Saturday · home gym", title:"Pull + incline bench + arms + abs", time:"~40–45 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with incline bench)",
   blocks:[
-   {h:"Shoulder warm-up", m:"4 min", rows:[
+   {h:"Shoulder warm-up", m:"3 min", rows:[
     ["Wall slides","1 × 10","Back, head and arms flat on the wall, slide your arms up into a Y and back down. Wakes up the shoulder blades and fixes rounded shoulders","",S("wall slides shoulder mobility")],
-    ["Prone Y raise","1 × 10 · bodyweight","Posture. Lie face down, arms overhead in a Y, thumbs up. Lift your arms by pulling your shoulder blades down and back, 2-sec hold. Strengthens the muscle that holds your shoulders back","",S("prone Y raise lower trap")],
     ["Band pull-aparts","1 × 12","Squeeze your shoulder blades together",HAM,S("band pull aparts form")],
-    ["Scapular pull-ups, 2-sec hold","2 × 6","Hang with straight arms, pull your shoulders down away from your ears",LW,S("scapular pull ups form")],
-    ["Straight-arm cable pulldown","1 × 12, light","Rope or bar on the high cable. Arms stay straight, push it down to your thighs. That squeeze under your armpits is your lats: the exact feeling you want in every pull-up","",S("straight arm cable pulldown lats")]]},
-   {h:"Pull-ups to break the plateau", m:"12 min", guide:true, note:"Open the guide above before set 1. A sloppy rep doesn't count: end the set there. Rest timer is set to 2 min.", rows:[
+    ["Scapular pull-ups, 2-sec hold","2 × 6","Hang with straight arms, pull your shoulders down away from your ears",LW,S("scapular pull ups form")]]},
+   {h:"Pull-ups to break the plateau", m:"9 min", guide:true, note:"Open the guide above before set 1. A sloppy rep doesn't count: end the set there. Rest timer is set to 2 min.", rows:[
     ["Set 1 · Weighted pull-ups","5 reps, 30 lb vest","Controlled, about 2 sec down",LW,S("weighted pull up form")],
     ["Set 2 · Weighted pull-ups","5 reps, vest","Same",LW,S("weighted pull up form")],
     ["Set 3 · Weighted pull-ups","5 reps, vest","Same",LW,S("weighted pull up form")],
-    ["Set 4 · Weighted pull-ups","Max with the vest","Stop 1 rep before failure (expect 6–8)",LW,S("weighted pull up form")],
-    ["Set 5 · Slow pull-ups","6 reps, no vest","1-sec pause at the top, 3 sec down",LW,S("slow eccentric pull ups")]]},
+    ["Set 4 · Weighted pull-ups","Max with the vest","Stop 1 rep before failure (expect 6–8)",LW,S("weighted pull up form")]]},
    {h:"Incline bench + 100 push-ups", m:"12 min", note:"Superset A, 4 rounds: one incline bench set, then straight to 25 incline push-ups (feet on the bench, no vest), rest 90 sec–2 min. If a set of 25 breaks, take 5 breaths and finish it. 4 × 25 = your 100 for today.", rows:[
     ["Incline bench press","Bar × 10, 135 × 5, then 4 × 8 @ 155","Bench at about 30°. Shoulder blades pinched, bar touches your upper chest just under the collarbone, 2 sec down. All 4 sets clean? Next week go 165",HAM,S("incline barbell bench press form 30 degree"),"A1"],
     ["Incline push-ups","4 × 25 (100 total) · bodyweight","Feet on the bench, body straight, chest to an inch off the floor","",S("feet elevated push up form"),"A2"]]},
    {h:"Back + shoulders", m:"7 min", note:"Superset B, 3 rounds. Smith rows: bar set just below your knees, hinge until your chest is close to parallel with the floor, flat back, pull the bar to your belly button and squeeze your shoulder blades for 1 sec.", rows:[
     ["Smith row, overhand grip","3 × 10 @ 115, 3-sec lowering","Palms down, hands a little wider than shoulders. Elbows flare slightly out: hits upper back and rear shoulders",HAM,S("smith machine bent over row overhand grip form"),"B1"],
     ["Dumbbell flies","3 × 12 @ 15–20 lb","Bent over with a flat back, light dumbbells, slight bend in the elbows. Open your arms out to the sides and squeeze your shoulder blades together, 2 sec down. Back of the shoulders + upper back: pulls rounded shoulders back","",S("bent over dumbbell rear delt fly form"),"B2"]]},
-   {h:"Biceps + forearms", m:"6 min", note:"Superset D: the two curls back to back, rest 60 sec, 3 rounds. Farmer hold last. Farmer hold covers your grip.", rows:[
+   {h:"Biceps + forearms", m:"6 min", note:"Superset D: the two curls back to back, rest 60 sec, 3 rounds. ", rows:[
     ["Dumbbell curl, neutral to palms up","3 × 15 @ 25–30 lb","Start with palms facing each other, turn your palms up as you curl, squeeze at the top, 3 sec down","",S("dumbbell supinating curl"),"D1"],
-    ["EZ-bar reverse curl","3 × 12 @ 40–50 lb","Palms down, elbows pinned to your sides, curl up, 3 sec down. Top of the forearm + the muscle under the bicep: thicker arms","",S("ez bar reverse curl form"),"D2"],
-    ["Farmer hold","2 × 30–45 sec @ 50–60 lb each hand","No room needed: stand tall holding heavy dumbbells at your sides, shoulders back, ribs down, squeeze hard",AC,S("farmer hold static grip")]]},
-   {h:"Core", m:"10 min", note:"Supersets E and F, 3 rounds, rest 60 sec. YMCA: cable stack + the incline/decline ab bench.", rows:[
+    ["EZ-bar reverse curl","3 × 12 @ 40–50 lb","Palms down, elbows pinned to your sides, curl up, 3 sec down. Top of the forearm + the muscle under the bicep: thicker arms","",S("ez bar reverse curl form"),"D2"]]},
+   {h:"Core", m:"5 min", note:"Superset E, 3 rounds, rest 60 sec.", rows:[
     ["Hanging leg raise, full range","3 × 6 · bodyweight","Up from 5. Shoulders down, curl your pelvis up first, legs to the bar, 3 sec down. End the set the moment you swing",MINE,S("hanging leg raise full range no swing"),"E1"],
-    ["Cable crunch, heavy","3 × 12 @ 80–100 lb (cable)","Kneel, rope by your ears. Crunch your ribs to your hips, 2-sec squeeze, hips still",MINE,S("cable crunch form"),"E2"],
-    ["Decline bench reverse crunch","3 × 10 · bodyweight","Lie on the ab bench with your head at the top, hold the bench behind your head. Curl your knees to your chest and lift your hips off the bench, 3 sec down","",S("decline bench reverse crunch"),"F1"],
-    ["Decline bench sit-up","3 × 10 · bodyweight","Feet hooked at the top, arms crossed on your chest. Roll up slowly, 3 sec down. Hold a plate on your chest when 10 gets easy","",S("decline sit up form"),"F2"]]},
+    ["Cable crunch, heavy","3 × 12 @ 80–100 lb (cable)","Kneel, rope by your ears. Crunch your ribs to your hips, 2-sec squeeze, hips still",MINE,S("cable crunch form"),"E2"]]},
    {h:"Cool-down", m:"2 min", rows:[
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","Hold the Smith bar, sink your hips back",HAM,S("dowel lat stretch shoulder")]]}
   ]},
