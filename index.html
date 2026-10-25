@@ -218,7 +218,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-24i";
+const APP_VERSION = "2026-10-25a";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -366,7 +366,7 @@ const DAYS = [
    {h:"Cool-down", m:"2 min", rows:[
     ["Deep squat hold","2 × 45 sec","Heels flat, elbows pushing knees out, slow belly breaths","",S("deep squat hold mobility")]]}
   ]},
- {id:"sat", chip:"Sat", kicker:"Saturday · home gym", title:"Pull + incline bench + arms + abs", time:"~45 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with incline bench)",
+ {id:"sat", chip:"Sat", kicker:"Saturday · StairMaster only (lift moved to Sunday)", title:"Pull + incline bench + arms + abs", time:"~45 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with incline bench)",
   blocks:[
    {h:"Shoulder warm-up", m:"3 min", rows:[
     ["Wall slides","1 × 10","Back, head and arms flat on the wall, slide your arms up into a Y and back down. Wakes up the shoulder blades and fixes rounded shoulders","",S("wall slides shoulder mobility")],
@@ -393,30 +393,32 @@ const DAYS = [
    {h:"Cool-down", m:"2 min", rows:[
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","Hold the Smith bar, sink your hips back",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"sun", chip:"Sun", kicker:"Sunday · skill builder + legs", title:"Skills + core + legs", time:"~50 min", stair:["40-min relaxed","see StairMaster tab"], night:"Night stretch + 100 push-ups",
+ {id:"sun", chip:"Sun", kicker:"Sunday · hybrid (home gym)", title:"Squat + pull + incline + skills + arms + abs", time:"~48 min", stair:["",""], night:"Night stretch + 100 push-ups",
   blocks:[
-   {h:"Warm-up", m:"5 min", rows:[
-    ["Wall slides","1 × 10","Posture. Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
-    ["Band pull-aparts + chin tuck","1 × 15","Posture. Pull the band apart and slide your chin straight back",HAM,S("band pull apart chin tuck posture")],
-    ["Scapular pull-ups, 2-sec hold","1 × 8","Hang with straight arms, pull your shoulders down away from your ears (the pool move)",LW,S("scapular pull ups form")],
-    ["Wrist rocks on the floor","1 × 10 each way","Gets wrists ready for handstands","",S("wrist warm up handstand")]]},
-   {h:"Legs", m:"12 min", note:"Superset L, 3 rounds, rest 2 min. Squat progression: add 5 lb each week all reps are clean, 185 → 285.", rows:[
-    ["Back squat (Smith or rack)","Bar × 10, 135 × 5, then 3 × 6 @ 185","Full depth you control, chest up, 3 sec down",HAM,S("barbell back squat form"),"L1"],
-    ["Single-leg Romanian deadlift (one dumbbell)","3 × 6 each leg @ 40–50 lb","Dumbbell in the hand opposite your standing leg. Soft knee, hinge, flat back, squeeze your glute to stand. Weak leg first","",S("single leg romanian deadlift one dumbbell form"),"L2"]]},
-   {h:"Calisthenics", m:"12 min", note:"Skills first while you're fresh. Rest 90 sec between sets. Stop each hold when your form breaks.", rows:[
-    ["Wall handstand hold, chest to wall","2 × 30 sec · bodyweight","Second handstand day of the week. You were 1 sec short last time",LW,"https://www.tiktok.com/t/ZPLSuXqwY/"],
-    ["Tuck front lever hold","4 × 10 sec · bodyweight","Hang, pull your shoulders down, pull your knees to your chest and lean back until your back is flat like a table. Straight arms. Front lever step 1",LW,S("tuck front lever tutorial")],
-    ["German hang","3 × 15 sec · bodyweight","From a hang, tuck and roll your legs through your arms until you're hanging behind you. Gentle: opens your shoulders for the back lever. Come out slowly",LW,S("german hang skin the cat beginner")],
-    ["L-sit","3 × max hold · bodyweight","Hands on the floor or parallettes, push down, lift your hips and legs. Use your L-sit level from the Calisthenics tab",LW,S("l sit progression beginner")]]},
-   {h:"Core: rotation", m:"6 min", note:"Superset A, 3 rounds, rest 60 sec. Abs got hit hard Saturday, so just rotation today. Pallof press teaches your core to resist twisting; woodchops teach it to make twisting: both are athletic core.", rows:[
-    ["Cable Pallof press","3 × 10 each side @ 20–30 lb (cable)","Stand sideways to the cable, handle at your chest. Press it straight out and hold 2 sec. Don't let it pull you around",AC,S("cable pallof press form"),"A1"],
-    ["Cable woodchop, high to low","3 × 10 each side @ 20–30 lb (cable)","Cable high, pull it down across your body to the opposite hip. Turn from your hips and core, arms stay long",AC,S("cable woodchop high to low form"),"A2"]]},
-   {h:"Shoulders", m:"6 min", note:"Superset E, 3 rounds, rest 60 sec.", rows:[
-    ["Seated dumbbell shoulder press","3 × 8 @ 50 lb dumbbells","Ribs down, don't lean back",HAM,S("seated dumbbell shoulder press form"),"E1"],
-    ["Cable face pull","3 × 15 @ 30–40 lb (cable)","Pull to your forehead, thumbs back, 2-sec squeeze: posture","",S("cable face pull form"),"E2"]]},
+   {h:"Warm-up", m:"4 min", rows:[
+    ["Leg swings, front-back + side-side","1 × 10 each way, each leg","Hold the rack",HAM,S("leg swings front back side")],
+    ["Band pull-aparts + chin tuck","1 × 15","Posture",HAM,S("band pull apart chin tuck posture")],
+    ["Scapular pull-ups, 2-sec hold","1 × 8","The pool move: shoulders down, arms straight",LW,S("scapular pull ups form")],
+    ["Wrist rocks on the floor","1 × 10 each way","Gets wrists ready for the handstand","",S("wrist warm up handstand")]]},
+   {h:"Squat", m:"8 min", note:"Legs first while you're fresh. Rest 2 min between work sets. Squat progression: add 5 lb each week all reps are clean, 185 → 285.", rows:[
+    ["Smith back squat","Bar × 10, 135 × 5, then 3 × 6 @ 185","Full depth you control, chest up, 3 sec down",HAM,S("smith machine squat form")]]},
+   {h:"Pull-ups", m:"8 min", guide:true, note:"Crush the bar, bend the bar, pool move, elbows to your back pockets, chest to the bar. Rest 2 min.", rows:[
+    ["Weighted pull-ups","3 × 5 @ 30 lb vest","Controlled, about 2 sec down",LW,S("weighted pull up form")],
+    ["Slow pull-ups","1 × 6, no vest","1-sec pause at the top, 3 sec down",LW,S("slow eccentric pull ups")]]},
+   {h:"Incline bench + push-ups", m:"8 min", note:"Superset A, 3 rounds: incline set, straight into push-ups, rest 2 min.", rows:[
+    ["Incline bench press","Bar × 10, then 3 × 8 @ 155","Bench at about 30°, shoulder blades pinched, bar to your upper chest, 2 sec down",HAM,S("incline barbell bench press form 30 degree"),"A1"],
+    ["Incline push-ups","3 × 20 · bodyweight","Feet on the bench, body straight","",S("feet elevated push up form"),"A2"]]},
+   {h:"Calisthenics", m:"5 min", note:"Rest 60–90 sec between holds.", rows:[
+    ["Wall handstand hold, chest to wall","2 × 30 sec · bodyweight","Walk your feet up the wall, body straight",LW,"https://www.tiktok.com/t/ZPLSuXqwY/"],
+    ["L-sit","3 × 5 sec full L-sit · build to 10 sec","Hands on two dumbbells or the floor, arms locked, push the floor away",LW,S("l sit progression")]]},
+   {h:"Arms", m:"6 min", note:"Superset B, 3 rounds, rest 60 sec.", rows:[
+    ["Heavy alternating dumbbell curl","3 × 8–10 each arm @ 35–40 lb","Palms up, elbows pinned, no swinging, 3 sec down","",S("alternating dumbbell curl form"),"B1"],
+    ["Cable triceps pushdown","3 × 12 @ 40–50 lb (cable)","Elbows pinned to your sides, push down to straight arms, 2 sec back up","",S("cable rope triceps pushdown form"),"B2"]]},
+   {h:"Abs", m:"5 min", note:"Superset C, 3 rounds, rest 60 sec.", rows:[
+    ["Hanging leg raise, full range","3 × 6 · bodyweight","Shoulders down, curl your pelvis up first, 3 sec down. End the set the moment you swing",MINE,S("hanging leg raise full range no swing"),"C1"],
+    ["Cable crunch, heavy","3 × 12 @ 80–100 lb (cable)","2-sec squeeze at the bottom, hips still",MINE,S("cable crunch form"),"C2"]]},
    {h:"Cool-down", m:"2 min", rows:[
-    ["Doorway chest stretch","30 sec each side","Posture. Forearm on the door frame, step through","",S("doorway pec minor stretch")],
-    ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
+    ["Deep squat hold","2 × 45 sec","Heels flat, elbows pushing knees out, slow belly breaths","",S("deep squat hold mobility")]]}
   ]}
 ];
 /* Saved for later: exercises Big RPJ wants to add in the future. Not on any day yet. */
