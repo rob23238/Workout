@@ -267,7 +267,7 @@ const DAYS = [
   blocks:[
    {h:"Today", m:"", note:"StairMaster this morning (30-min max burn), no lift. Then your night stretch and 100 push-ups.", rows:[]}
   ]},
- {id:"tue", chip:"Tue", kicker:"Tuesday", title:"Push + arms", time:"~50 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with bench)",
+ {id:"tue", chip:"Tue", kicker:"Tuesday", title:"Push + arms", time:"~55 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with bench)",
   blocks:[
    {h:"Shoulder + wrist warm-up", m:"6 min", rows:[
     ["Wall slides","1 × 10","Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
@@ -286,6 +286,8 @@ const DAYS = [
     ["Set 4","230 × 5","","","","A1"],
     ["Incline push-ups","25 · bodyweight (4 of 4)","Straight from the bench, then rest 2 min","","","A2"],
     ["Set 5","250 × 3","Top set: clean reps only, full rest before it. You hit 245 easy-mid, so 250 now",HAM,""]]},
+   {h:"Upper chest", m:"6 min", note:"Chest is the priority now: upper chest builds the full, thick look. Rest 90 sec between sets.", rows:[
+    ["Incline dumbbell press","3 × 10 @ 50–60 lb dumbbells","Incline bench at about 30°. Shoulder blades pinched, lower the dumbbells to the sides of your upper chest in 3 sec, press up and slightly in. Rep 10 should be hard. Get all 3 × 10 at 60? Go heavier at the Y","",S("incline dumbbell press form 30 degree")]]},
    {h:"Calisthenics", m:"10 min", note:"Handstand hold first while you're fresh, then superset B. B2 is your L-sit: log which step and how many seconds.", rows:[
     ["Wall handstand hold, chest to wall","2 × 30 sec · bodyweight","Walk your feet up the wall, body straight",LW,"https://www.tiktok.com/t/ZPLSuXqwY/"],
     ["Pike push-ups","3 × 6 · bodyweight","Hips high, head lands in front of your hands",LW,"https://www.tiktok.com/t/ZPLSuaT3v/","B1"],
@@ -320,10 +322,10 @@ const DAYS = [
     ["Kneeling dump trucks","3 × 8 each side · bodyweight","Outer hip + rotation. Last week was easy: more reps, 2-sec hold at the top",AH,"https://youtu.be/FOfbDPBlgaQ","B2"],
     ["Single-leg glute bridge (floor)","3 × 8 each leg @ 50 lb dumbbell","No bench needed: lie on the floor, dumbbell on your hips, drive up and squeeze 2 sec at the top. One leg at a time when it gets easy","",S("dumbbell glute bridge floor"),"C1"],
     ["Goblet march in place","3 × 45 sec @ 50 lb dumbbell","No room needed: hug the dumbbell tight to your chest, march in place driving your knees up, stay tall. Same real-world strength as the carry","",S("goblet march in place"),"C2"]]},
-   {h:"Pull-up volume", m:"12 min", guide:true, note:"Same rules as Friday: every rep from your back. Grip opposite to Friday, no vest. Superset D: each bodyweight set, then 15 push-ups.", rows:[
+   {h:"Pull-up volume", m:"12 min", guide:true, note:"Same rules as Friday: every rep from your back. Grip opposite to Friday, no vest. Superset D: each bodyweight set, then 25 incline push-ups.", rows:[
     ["Explosive chest-to-bar pull-ups","3 × 6 · bodyweight","Pull as high and fast as you can, rest 90 sec. Muscle-up prep",LW,S("explosive chest to bar pull ups muscle up")],
     ["Bodyweight pull-ups","4 × 10 · bodyweight","Perfect form, rest 60–90 sec after the push-ups",LW,S("strict pull up form"),"D1"],
-    ["Incline push-ups","4 × 15 · bodyweight","Right after each pull-up set","",S("feet elevated push up form"),"D2"],
+    ["Incline push-ups","4 × 25 · bodyweight","Feet on the bench, right after each pull-up set. If 25 breaks, take 5 breaths and finish it","",S("feet elevated push up form"),"D2"],
     ["L-sit","3 × 5 sec full L-sit · build to 10 sec","Last thing in this block. Hands on two dumbbells or the floor, arms locked, push the floor away, legs straight out. Rest 60 sec",LW,S("l sit progression")]]},
    {h:"Cool-down", m:"2 min", rows:[
     ["Figure-4 stretch","45 sec each side","Outer hip. On your back, ankle over the other knee, pull the bottom leg in",FMF,S("figure 4 stretch lying")],
@@ -357,7 +359,7 @@ const DAYS = [
     ["Doorway chest stretch","30 sec each side","Posture. Forearm on the door frame, step through","",S("doorway pec minor stretch")],
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"fri", chip:"Fri", kicker:"Friday · finish strong", title:"Pull + incline bench + arms + abs", time:"~50 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with incline bench)",
+ {id:"fri", chip:"Fri", kicker:"Friday · finish strong", title:"Pull + incline bench + arms + abs", time:"~55 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with incline bench)",
   blocks:[
    {h:"Shoulder warm-up", m:"3 min", rows:[
     ["Wall slides","1 × 10","Back, head and arms flat on the wall, slide your arms up into a Y and back down. Wakes up the shoulder blades and fixes rounded shoulders","",S("wall slides shoulder mobility")],
@@ -372,6 +374,8 @@ const DAYS = [
    {h:"Incline bench + 100 push-ups", m:"12 min", note:"Superset A, 4 rounds: one incline bench set, then straight to 25 incline push-ups (feet on the bench, no vest), rest 90 sec–2 min. If a set of 25 breaks, take 5 breaths and finish it. 4 × 25 = your 100 for today.", rows:[
     ["Incline bench press","Bar × 10, 135 × 5, then 4 × 8 @ 155","Bench at about 30°. Shoulder blades pinched, bar touches your upper chest just under the collarbone, 2 sec down. All 4 sets clean? Next week go 165",HAM,S("incline barbell bench press form 30 degree"),"A1"],
     ["Incline push-ups","4 × 25 (100 total) · 30 lb vest","Feet on the bench, body straight, chest to an inch off the floor","",S("feet elevated push up form"),"A2"]]},
+   {h:"Upper chest finisher", m:"4 min", note:"Light and slow: this is for the squeeze, not the weight. Rest 60 sec.", rows:[
+    ["Low-to-high cable fly","3 × 12 @ 15–25 lb each side (cable)","Handles at the bottom of both cables, step forward, slight bend in the elbows. Sweep your hands up and together to chin height, squeeze 1 sec, 3 sec back. Hits the upper chest","",S("low to high cable fly form")]]},
    {h:"Back + shoulders", m:"12 min", note:"Supersets B and C, 3 rounds. More back than chest this week on purpose: pulling has to match pushing to fix rounded shoulders. Smith rows: bar set just below your knees, hinge until your chest is close to parallel with the floor, flat back, pull the bar to your belly button and squeeze your shoulder blades for 1 sec.", rows:[
     ["Smith row, overhand grip","3 × 10 @ 115, 3-sec lowering","Palms down, hands a little wider than shoulders. Elbows flare slightly out: hits upper back and rear shoulders",HAM,S("smith machine bent over row overhand grip form"),"B1"],
     ["Dumbbell flies","3 × 12 @ 15–20 lb","Bent over with a flat back, light dumbbells, slight bend in the elbows. Open your arms out to the sides and squeeze your shoulder blades together, 2 sec down. Back of the shoulders + upper back: pulls rounded shoulders back","",S("bent over dumbbell rear delt fly form"),"B2"],
@@ -707,7 +711,7 @@ function renderNight(){
     h += `<section class="block"><h3>Routine <small>${esc(n.days)}</small></h3><div class="list">` + n.rows.map(r=>rowHTML("night"+sel, "n"+sel+"-"+slug(r[0]), r, d, false, {sec:/^Strength/.test(r[2])?30:15})).join("") + `</div></section>`;
     h += `<details class="guide" style="border-width:1px"><summary>Level up (when a move feels easy for 2 weeks)</summary><ul>${NIGHT_LEVELUP[sel].map(x=>`<li><b>${esc(x[0])}:</b> ${esc(x[1])}</li>`).join("")}</ul></details>`;
   }
-  if(PUSH_BY_DAY[wk]) h += `<section class="block"><h3>100 push-ups</h3><p class="note">4 × 25 with clean form, no vest. Floor push-ups are fine at night. <a class="vid" href="${S("perfect push up form")}" target="_blank" rel="noopener">Find video ↗</a></p><div class="field"><input type="checkbox" id="pu" style="flex:0 0 auto;width:24px;height:24px;accent-color:var(--accent)"${d.push?" checked":""}><label for="pu">Done tonight</label></div></section>`;
+  if(PUSH_BY_DAY[wk]) h += `<section class="block"><h3>100 push-ups</h3><p class="note">4 × 25 incline push-ups with clean form, no vest. Feet up on the edge of the bed, hands on the floor. <a class="vid" href="${S("feet elevated push up form")}" target="_blank" rel="noopener">Find video ↗</a></p><div class="field"><input type="checkbox" id="pu" style="flex:0 0 auto;width:24px;height:24px;accent-color:var(--accent)"${d.push?" checked":""}><label for="pu">Done tonight</label></div></section>`;
   h += `<section class="block"><h3>Wind down <small>in bed · 2 min</small></h3><p class="note">After your stretching (and push-ups), lie down and let your body slow down.</p>${breathHTML("coherent","ncoh")}<details class="guide" style="border-width:1px;margin-top:10px"><summary>Optional (extra time only)</summary>${breathHTML("belly","nbelly")}${breathHTML("b478","n478")}</details><div class="callout"><b>Relax.</b></div>${sensesHTML()}<div class="list" style="margin-top:10px">${[["w-coh",["Slow 5-5 breathing done","","","",""]],["w-belly",["Belly breathing done","","","",""]],["w-478",["4-7-8 breathing done","","","",""]],["w-ground",["Relax","","","",""]]].map(([k,r])=>rowHTML("night",k,r,d,false)).join("")}</div></section>`;
   h += `<div class="callout"><b>Knee safety:</b> keep your foot flexed in pigeon and the seated glute stretch. Feel it in the hip; knee pain means come out.</div>`;
   h += `<section class="block"><h3>Sunday check</h3><p class="note">Sit in 90/90 each way and note if you can sit tall without your hands, and how pigeon feels on each side. Easier each week means it's working.</p><div class="field"><label for="gaps">Notes</label><input id="gaps" placeholder="e.g. 90/90 L ok, R needs hands · pigeon R tighter" value="${esc((docOf("checks").gaps)||"")}"></div></section>`;
