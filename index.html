@@ -662,12 +662,14 @@ function wire(id, total){
   upd();
 }
 
+// Nutrition phase shown on every day: change this one line when the phase changes
+const FUEL = "Cut to 179 · 2,400 cal · 180 g protein · weigh every morning, go by the weekly average. Weekly average hits 179? Switch to super lean bulk";
 function renderDay(day){
   const d = docOf(day.id);
   const rowCount = day.blocks.reduce((a,b)=>a+b.rows.length,0);
   const plan = PLAN_BY_DAY[day.id], night = NIGHT_BY_DAY[day.id], K = keysFor(day.blocks);
   const valid = new Set(K.flat()); Object.keys(d.checks||{}).forEach(k=>{ if(!valid.has(k)) delete d.checks[k]; });
-  let h = `<div class="dayhead"><div class="kicker">${esc(day.kicker)} · Week 3</div><h2>${esc(day.title)}</h2><p>${esc(day.time)}</p>`;
+  let h = `<div class="dayhead"><div class="kicker">${esc(day.kicker)} · Week 3</div><h2>${esc(day.title)}</h2><p>${esc(day.time)}</p><p style="margin-top:6px;color:var(--accent);font-weight:700">${esc(FUEL)}</p>`;
   if(rowCount){ const on = W.finish && W.dayId===day.id; h += on ? `<button class="btn startw" id="startw" type="button" style="margin-top:12px;width:100%">Workout running · finish by ${clock(new Date(W.finish))} · tap to end</button>` : `<div class="startpair"><button class="btn" id="startw" type="button">▶ Start · finish by ${clock(new Date(Date.now()+mins(day.time)*60000))}</button><button class="btn" id="startios" type="button" aria-label="iPhone finish alarm only">⏰</button></div>`; }
   if(rowCount) h += `<div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${rowCount}</b></div>`;
   h += `<div class="after"><div class="pill" style="background:var(--accent-soft)"><strong style="color:var(--accent)">Morning</strong><span>Open up + breathe · <a href="#morning" data-go="morning" style="color:var(--accent);font-weight:700">open</a></span></div><div class="pill"><strong>Tonight</strong><span>${night?"Night "+night.toUpperCase():"Rest night"}${PUSH_BY_DAY[day.id]?" + 100 push-ups":""} + breathing · <a href="#night" data-go="night" style="color:var(--warm);font-weight:700">open</a></span></div></div></div>`;
