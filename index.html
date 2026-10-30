@@ -231,7 +231,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-26b";
+const APP_VERSION = "2026-10-30b";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -300,7 +300,7 @@ const DAYS = [
     ["Child's pose","45 sec","Knees wide, sit back toward your heels, arms long. Breathe into your lower back","",S("child's pose stretch")],
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"wed", chip:"Wed", kicker:"Wednesday", title:"Legs B: real-world strength + pull volume", time:"~50 min", stair:["40-min steady sweat","tonight"], night:"Night stretch (no push-ups tonight)",
+ {id:"wed", chip:"Wed", kicker:"Wednesday · missed", title:"Legs B: real-world strength + pull volume", time:"~50 min", stair:["40-min steady sweat","tonight"], night:"Night stretch (no push-ups tonight)",
   blocks:[
    {h:"Jump rope + warm-up", m:"7 min", rows:[
     ["Jump rope, basic bounce","3 × 30 sec on / 30 sec off","Same as Tuesday","",S("jump rope basic bounce beginner")],
@@ -331,7 +331,7 @@ const DAYS = [
     ["Figure-4 stretch","45 sec each side","Outer hip. On your back, ankle over the other knee, pull the bottom leg in",FMF,S("figure 4 stretch lying")],
     ["Seated hamstring V-stretch","30 sec","",HAM,S("seated v sit hamstring stretch")]]}
   ]},
- {id:"thu", chip:"Thu", kicker:"Thursday · lighter day", title:"Skills + core + arms", time:"~50 min", stair:["40-min relaxed","see StairMaster tab"], night:"Night stretch + 100 push-ups",
+ {id:"thu", chip:"Thu", kicker:"Thursday · missed, moved to Sunday", title:"Skills + core + arms", time:"~50 min", stair:["40-min relaxed","see StairMaster tab"], night:"Night stretch + 100 push-ups",
   blocks:[
    {h:"Warm-up", m:"5 min", rows:[
     ["Wall slides","1 × 10","Posture. Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
@@ -376,8 +376,8 @@ const DAYS = [
     ["Incline push-ups","4 × 25 (100 total) · 30 lb vest","Feet on the bench, body straight, chest to an inch off the floor","",S("feet elevated push up form"),"A2"]]},
    {h:"Upper chest finisher", m:"4 min", note:"Light and slow: this is for the squeeze, not the weight. Rest 60 sec.", rows:[
     ["Low-to-high cable fly","3 × 12 @ 15–25 lb each side (cable)","Handles at the bottom of both cables, step forward, slight bend in the elbows. Sweep your hands up and together to chin height, squeeze 1 sec, 3 sec back. Hits the upper chest. Keep both shoulder blades pinned: if your right shoulder rolls forward, go lighter","",S("low to high cable fly form")]]},
-   {h:"Back + shoulders", m:"12 min", note:"Supersets B and C, 3 rounds. More back than chest this week on purpose: pulling has to match pushing to fix rounded shoulders. Smith rows: bar set just below your knees, hinge until your chest is close to parallel with the floor, flat back, pull the bar to your belly button and squeeze your shoulder blades for 1 sec.", rows:[
-    ["Smith row, overhand grip","3 × 10 @ 115, 3-sec lowering","Palms down, hands a little wider than shoulders. Elbows flare slightly out: hits upper back and rear shoulders",HAM,S("smith machine bent over row overhand grip form"),"B1"],
+   {h:"Back + shoulders", m:"12 min", note:"Supersets B and C, 3 rounds. More back than chest this week on purpose: pulling has to match pushing to fix rounded shoulders. Rows are chest-supported this week to go easy on your lower back.", rows:[
+    ["Chest-supported dumbbell row","3 × 10 @ 45–50 lb each hand","Lie chest-down on the incline bench (about 30°), dumbbells hanging. Row both elbows back to your hips, squeeze your shoulder blades 1 sec, 3 sec down. Chest on the pad takes your lower back out of it","",S("chest supported dumbbell row incline bench"),"B1"],
     ["Dumbbell flies","3 × 12 @ 15–20 lb","Bent over with a flat back, light dumbbells, slight bend in the elbows. Open your arms out to the sides and squeeze your shoulder blades together, 2 sec down. Back of the shoulders + upper back: pulls rounded shoulders back","",S("bent over dumbbell rear delt fly form"),"B2"],
     ["Single-arm cable row","3 × 10 each arm, plus 1 extra set right arm @ 40–60 lb (cable)","Right arm first. Elbow drives back to your hip, squeeze the shoulder blade back 1 sec, don't twist your body. Builds lat width and evens out the right side","",S("single arm cable row form"),"C1"],
     ["Cable face pull","3 × 15 @ 30–40 lb (cable)","Pull to your forehead, thumbs back, 2-sec squeeze. Posture","",S("cable face pull form"),"C2"]]},
@@ -412,9 +412,33 @@ const DAYS = [
    {h:"Cool-down", m:"2 min", rows:[
     ["Deep squat hold","2 × 45 sec","Heels flat, elbows pushing knees out, slow belly breaths","",S("deep squat hold mobility")]]}
   ]},
- {id:"sun", chip:"Sun", kicker:"Sunday", title:"Rest day", time:"", stair:["",""], night:"",
+ {id:"sun", chip:"Sun", kicker:"Sunday · make-up (moved from Thursday)", title:"Skills + core + arms", time:"~50 min", stair:["40-min relaxed","see StairMaster tab"], night:"Night stretch + 100 push-ups",
   blocks:[
-   {h:"Today", m:"", note:"Rest. Walk, stretch if you want, and get ready for the week.", rows:[]},
+   {h:"Warm-up", m:"5 min", rows:[
+    ["Wall slides","1 × 10","Posture. Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
+    ["Band pull-aparts + chin tuck","1 × 15","Posture. Pull the band apart and slide your chin straight back",HAM,S("band pull apart chin tuck posture")],
+    ["Scapular pull-ups, 2-sec hold","1 × 8","Hang with straight arms, pull your shoulders down away from your ears (the pool move)",LW,S("scapular pull ups form")],
+    ["Wrist rocks on the floor","1 × 10 each way","Gets wrists ready for handstands","",S("wrist warm up handstand")]]},
+   {h:"Calisthenics", m:"12 min", note:"Skills first while you're fresh. Rest 90 sec between sets. Stop each hold when your form breaks.", rows:[
+    ["Wall handstand hold, chest to wall","3 × 40 sec · bodyweight","Second handstand day of the week, same level as Tuesday",LW,"https://www.tiktok.com/t/ZPLSuXqwY/"],
+    ["Tuck front lever hold","4 × 10 sec · bodyweight","Hang, pull your shoulders down, pull your knees to your chest and lean back until your back is flat like a table. Straight arms. Front lever step 1",LW,S("tuck front lever tutorial")],
+    ["German hang","3 × 15 sec · bodyweight","From a hang, tuck and roll your legs through your arms until you're hanging behind you. Gentle: opens your shoulders for the back lever. Come out slowly",LW,S("german hang skin the cat beginner")],
+    ["L-sit","3 × max hold · bodyweight","Hands on the floor or parallettes, push down, lift your hips and legs. Use your L-sit level from the Calisthenics tab",LW,S("l sit progression beginner")]]},
+   {h:"Core: rotation + abs", m:"12 min", note:"Supersets A and B, 3 rounds, rest 60 sec. Pallof press teaches your core to resist twisting; woodchops teach it to make twisting: both are athletic core.", rows:[
+    ["Cable Pallof press","3 × 10 each side @ 20–30 lb (cable)","Stand sideways to the cable, handle at your chest. Press it straight out and hold 2 sec. Don't let it pull you around",AC,S("cable pallof press form"),"A1"],
+    ["Cable woodchop, high to low","3 × 10 each side @ 20–30 lb (cable)","Cable high, pull it down across your body to the opposite hip. Turn from your hips and core, arms stay long",AC,S("cable woodchop high to low form"),"A2"],
+    ["Hanging leg raise, full range","3 × 5 · bodyweight","Hang, crush the bar, shoulders down (the pool move). Brace your abs like you're about to get punched. First curl your pelvis up, like rolling your tailbone toward your belly button, then lift your legs. Breathe out on the way up, 3 sec down, and stop before your legs swing back. If you swing, pause 1 sec at the bottom",MINE,S("hanging leg raise full range no swing"),"B1"],
+    ["Cable crunch, heavy","3 × 12 @ 100–120 lb (cable)","2-sec squeeze at the bottom, hips still",MINE,S("cable crunch form"),"B2"]]},
+   {h:"Shoulders + arms + grip", m:"18 min", note:"Supersets E, C and D, 3 rounds, rest 60 sec. E moved here from Tuesday.", rows:[
+    ["Seated dumbbell shoulder press","3 × 8 @ 50 lb dumbbells","Ribs down, don't lean back",HAM,S("seated dumbbell shoulder press form"),"E1"],,
+    ["Cable face pull","3 × 15 @ 30–40 lb (cable), plus 1 single-arm set right","Pull to your forehead, thumbs back, 2-sec squeeze: posture","",S("cable face pull form"),"E2"],
+    ["Cable rope triceps pushdown","3 × 12 @ 40–50 lb (cable)","Elbows pinned to your sides, spread the rope at the bottom","",S("cable rope triceps pushdown form"),"C1"],
+    ["Cross-body dumbbell hammer curl","3 × 12 each arm @ 30–35 lb","Curl across your body toward the opposite shoulder: forearm + outer arm","",S("cross body hammer curl"),"C2"],
+    ["Plate pinch hold","3 × 30 sec @ two 10 lb plates each hand","Pinch two plates together, smooth sides out, fingers only. Builds the grip strength for levers and heavy pulls","",S("plate pinch grip hold"),"D1"],
+    ["Dead hang","3 × max hold · bodyweight","Squeeze the bar hard, shoulders down. Rest 60 sec","",S("dead hang grip strength"),"D2"]]},
+   {h:"Cool-down", m:"2 min", rows:[
+    ["Doorway chest stretch","30 sec each side","Posture. Forearm on the door frame, step through","",S("doorway pec minor stretch")],
+    ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]},
    {h:"Progress photos", m:"every 4 weeks", note:"Next: Sun, Nov 22. Same spot, same light, phone on a timer at chest height, relaxed (not posing), looking straight ahead.", rows:[
     ["Side photo, facing left","1 photo · relaxed","Stand how you normally stand. Don't pull your shoulders back","",""],
     ["Side photo, facing right","1 photo · relaxed","Same spot and distance as the first","",""],
@@ -528,7 +552,7 @@ const NIGHT = {
 const CR = "Breathe in through your nose for 4, out slowly for 6–8. Sink a little deeper on every exhale. On holds, push into the stretch 5 sec, relax 5 sec, go a little further. Rock gently at the edge, change the angle to find new tight spots, and never force sharp pain. Do the tighter side first and longer.";
 const NIGHT_BY_DAY = {mon:"a",tue:"b",wed:"a",thu:"b",fri:"a",sat:"b",sun:"a"};
 const NIGHT_LEVELUP = {a:[["Couch stretch","Knee closer to the wall, then chest fully upright"],["90/90","No hands, sitting tall"],["Figure-4 rocks","Sit up and do them seated, then pigeon on the floor"],["Half split","Take away a book, then hands on the floor"],["Hip CARs","Pause 1 sec at each side, then light ankle weight"]], b:[["Frog","Knees wider, hips lower"],["Adductor rocks","Deeper rock, then hold at the back"],["Butterfly","Fold your chest toward your feet"],["Straddle","Straight knees, then elbows down"],["Cossack squats","No hands, then hold a 10–20 lb weight"]]};
-const PUSH_BY_DAY = {mon:true,tue:false,wed:false,thu:true,fri:false,sat:true,sun:false};
+const PUSH_BY_DAY = {mon:true,tue:false,wed:false,thu:true,fri:false,sat:true,sun:true};
 
 const ZONES = [["6","Easy, almost a warm-up","Warm-up and cool-down","#6F8F86"],["7","Cruising, feel good","As long as you want","#2F8F75"],["8","Starting to push it","Several minutes at a time","#0D7A63"],["9","Getting there","10–15 min max","#B8801E"],["10","Hard","1–2 min","#B85C1E"],["15","Sprint","30 sec–1 min bursts only","#A33A2A"]];
 const COLOR = Object.fromEntries(ZONES.map(z=>[z[0],z[3]]));
