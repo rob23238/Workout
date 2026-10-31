@@ -231,7 +231,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-31b";
+const APP_VERSION = "2026-10-31c";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -390,26 +390,21 @@ const DAYS = [
     ["Figure-4 stretch","45 sec each side","Outer hip. On your back, ankle over the other knee, pull the bottom leg in",FMF,S("figure 4 stretch lying")],
     ["Seated hamstring V-stretch","30 sec","",HAM,S("seated v sit hamstring stretch")]]}
   ]},
- {id:"sat", chip:"Sat", kicker:"Saturday · YMCA · hard", title:"Chest + pull-ups + arms", time:"~45–48 min", stair:["StairMaster later (optional)",""], night:"Night stretch",
+ {id:"sat", chip:"Sat", kicker:"Saturday · YMCA · hard", title:"Pull-up circuit + incline + arms", time:"~40 min", stair:["StairMaster later (optional)",""], night:"Night stretch",
   blocks:[
    {h:"Warm-up + posture", m:"5 min", rows:[
     ["Wall slides","1 × 10","Posture. Back, head and arms flat on the wall, chin tucked, slide up into a Y and down","",S("wall slides shoulder mobility")],
     ["Band pull-aparts + chin tuck","2 × 15, then 1 × 12 right arm","Posture. Squeeze your shoulder blades, slide your chin straight back",HAM,S("band pull apart chin tuck posture")],
     ["Cable face pull, light","1 × 15, plus 1 × 12 right arm only","Posture. Pull to your forehead, thumbs back, 2-sec squeeze","",S("cable face pull form")],
     ["Scapular pull-ups, 2-sec hold","1 × 8","The pool move: shoulders down, arms straight",LW,S("scapular pull ups form")],
-    ["Incline dumbbell press, warm-up","1 × 12 @ 35–40 lb","Light, smooth, wake the shoulders up","",S("incline dumbbell press form")]]},
-   {h:"Pull-ups to break the plateau", m:"11 min", guide:true, note:"Crush the bar, bend the bar, pool move, elbows to your back pockets, chest to the bar. Rest 2 min.", rows:[
-    ["Set 1 · Weighted pull-ups","5 reps, 30 lb vest","Controlled, about 2 sec down",LW,S("weighted pull up form")],
-    ["Set 2 · Weighted pull-ups","5 reps, vest","Same",LW,S("weighted pull up form")],
-    ["Set 3 · Weighted pull-ups","5 reps, vest","Same",LW,S("weighted pull up form")],
-    ["Set 4 · Weighted pull-ups","Max with the vest","Stop 1 rep before failure (expect 6–8)",LW,S("weighted pull up form")],
-    ["Set 5 · Slow pull-ups","6 reps, no vest","1-sec pause at the top, 3 sec down",LW,S("slow eccentric pull ups")]]},
-   {h:"Chest + lats", m:"12 min", note:"Superset A, 4 rounds: press, straight to pulldowns, rest 90 sec. Last 2 reps of each set should be hard.", rows:[
-    ["Incline dumbbell press","4 × 8–10 @ 70–80 lb dumbbells","Bench at about 30°. Shoulder blades pinched, lower to your upper chest in 3 sec, press up and slightly in. Right shoulder stays pinned back",HAM,S("incline dumbbell press form"),"A1"],
-    ["Lat pulldown","4 × 10 @ 140–160 lb","Shoulders down first, then rip your elbows to your back pockets, bar to upper chest, 3 sec up","",S("lat pulldown form"),"A2"]]},
-   {h:"Chest finish", m:"8 min", note:"Superset B, 3 rounds, rest 60 sec.", rows:[
-    ["Dips","3 × 8–12 · bodyweight","Lean slightly forward for chest, shoulders just below elbows at the bottom, press to locked arms. Stop 1–2 reps before failure",LW,S("chest dips form")],
-    ["Low-to-high cable fly","3 × 12 @ 15–25 lb each side (cable)","Cables low, sweep your hands up and together to chin height. Squeeze the upper chest 1 sec","",S("low to high cable fly")]]},
+    ["Light incline press, warm-up","1 × 12 @ empty bar or light dumbbells","Light, smooth, wake the shoulders up","",S("incline dumbbell press form")]]},
+   {h:"Pull-up + dip + push-up circuit", m:"12 min", guide:true, note:"Superset A, 4 rounds: pull-ups, straight to dips, straight to push-ups, then rest 90 sec. Pull-ups: crush the bar, pool move, elbows to your back pockets.", rows:[
+    ["Weighted pull-ups","Rounds 1–3: 5 reps · Round 4: max · 30 lb vest","Controlled, 2 sec down. Take the vest off after the pull-ups if dips get sloppy",LW,S("weighted pull up form"),"A1"],
+    ["Dips","4 × 8–12 · bodyweight","Lean slightly forward, shoulders just below elbows, press to locked arms",LW,S("chest dips form"),"A2"],
+    ["Push-ups","4 × 20 · bodyweight","Body straight like a plank, chest to an inch off the floor. Feet on a bench if you have one nearby","",S("perfect push up form"),"A3"]]},
+   {h:"Incline bench", m:"14 min", note:"Superset B, 4 rounds: incline set, straight to pulldowns, rest 2 min. Pulling matches pushing for your posture.", rows:[
+    ["Incline bench press","Bar × 10, 135 × 5, then 4 × 8 @ 155","Bench at about 30°. Shoulder blades pinched, bar to your upper chest just under the collarbone, 2 sec down. Watch the right shoulder: keep it pinned back. All 4 sets clean? Next time 165",HAM,S("incline barbell bench press form 30 degree"),"B1"],
+    ["Lat pulldown","4 × 10 @ 140–160 lb","Shoulders down first, rip your elbows to your back pockets, bar to upper chest, 3 sec up","",S("lat pulldown form"),"B2"]]},
    {h:"Arms", m:"7 min", note:"Superset C, 3 rounds, rest 60 sec.", rows:[
     ["Incline dumbbell curl","3 × 10 @ 25–30 lb","Lie back on the incline bench, arms hanging straight down. Curl without moving your elbows forward, 3 sec down. Big stretch = big biceps","",S("incline dumbbell curl form"),"C1"],
     ["Cable rope triceps pushdown","3 × 12 @ 50–60 lb (cable)","Elbows pinned, spread the rope at the bottom, 2 sec up","",S("cable rope triceps pushdown form"),"C2"]]},
