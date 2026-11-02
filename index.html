@@ -231,7 +231,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-10-31f";
+const APP_VERSION = "2026-11-01a";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -1091,8 +1091,8 @@ let start = todayId(); try{ const h=location.hash.replace("#",""); if(TABS.some(
 go(start);
 dockTick();
 
-/* ---------- Fresh start for the week of Oct 12: clear day/morning/night checkmarks + logs once ---------- */
-(function freshStart(){ const tag="2026-10-26"; if(local.get("hy1-fresh")===tag) return; if(new Date() < new Date(2026,9,26)) return;
+/* ---------- November lock-in: clear day/morning/night checkmarks + logs once (Nov 1, 2026) ---------- */
+(function freshStart(){ const tag="2026-11-01"; if(local.get("hy1-fresh")===tag) return; if(new Date() < new Date(2026,10,1)) return;
   ["mon","tue","wed","thu","fri","sat","sun"].forEach(w=>{ ["", "night-", "morning-"].forEach(pre=>{ const id=pre+w, d=docOf(id); d.checks={}; d.logs={}; d.cal=""; d.am=""; d.push=false; delete d.legacyNight; save(id); }); });
   stopAll(); local.set("hy1-fresh",tag); if(DAYS.some(d=>d.id===current)) render(current); })();
 (function markMondayWent(){ const tag="2026-10-26-mon"; if(local.get("hy1-monwent")===tag) return; if(new Date() < new Date(2026,9,26)) return; const d=docOf("mon"); if(!d.am){ d.am="went"; save("mon"); } local.set("hy1-monwent",tag); })();
