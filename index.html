@@ -231,7 +231,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-11-01b";
+const APP_VERSION = "2026-11-03a";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -267,7 +267,7 @@ const DAYS = [
   blocks:[
    {h:"Today", m:"", note:"StairMaster this morning (30-min max burn), no lift. Then your night stretch and 100 push-ups.", rows:[]}
   ]},
- {id:"tue", chip:"Tue", kicker:"Tuesday", title:"Bench + back + biceps + abs", time:"~53 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with bench)",
+ {id:"tue", chip:"Tue", kicker:"Tuesday", title:"Bench + back + biceps + abs", time:"~45 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with bench)",
   blocks:[
    {h:"Warm-up", m:"4 min", note:"Lower back is aching: everything today keeps it supported or still. Sharp pain? Stop that move.", rows:[
     ["Wall slides","1 × 10","Posture. Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
@@ -284,18 +284,17 @@ const DAYS = [
     ["Set 4","230 × 5","","","","A1"],
     ["Incline push-ups","25 · bodyweight (4 of 4)","Straight from the bench, then rest 2 min","","","A2"],
     ["Set 5","250 × 3","Top set: clean reps only, full rest before it. You hit 245 easy-mid, so 250 now",HAM,""]]},
-   {h:"Back", m:"14 min", note:"Supersets A and B, rest 60–90 sec after each round. No cable setup: dumbbells, bench and your band on the pull-up station. Every row is supported so your lower back stays out of it.", rows:[
-    ["Chest-supported dumbbell row","4 × 10 @ 50 lb dumbbells","Lie face down on the incline bench at about 30°, chest on the pad, feet on the floor. Row both dumbbells to your hips, squeeze your shoulder blades 1 sec, 3 sec down. Chest never leaves the pad","",S("chest supported incline dumbbell row form"),"A1"],
-    ["Band face pull + chin tuck","4 × 15, plus 1 single-arm set right","Band around the pull-up station at forehead height. Pull to your forehead, thumbs back, 2-sec squeeze, chin slides straight back. Posture","",S("band face pull form"),"A2"],
-    ["Single-arm dumbbell row on the bench","3 × 10 each arm, plus 1 extra set right @ 50–60 lb","Same-side hand and knee on the flat bench, back flat like a table. Pull the dumbbell to your hip, elbow close, 1-sec squeeze, 3 sec down. Right arm first. Builds lat width and evens out the right side","",S("single arm dumbbell row bench form"),"B1"],
-    ["Band straight-arm pulldown","3 × 15","Band high on the pull-up station, step back, arms straight. Sweep your hands down to your thighs, squeeze your lats 1 sec. Feel it under your armpits, not in your arms","",S("band straight arm pulldown lats"),"B2"]]},
+   {h:"Back", m:"10 min", note:"Superset A, 4 rounds (face pulls and pulldowns 3): heavy single-arm row, straight to face pulls, then straight-arm pulldowns, rest 60–90 sec. Right arm first.", rows:[
+    ["Single-arm dumbbell row on the bench","4 × 10 each arm, plus 1 extra set right @ 60 lb","Same-side hand and knee on the flat bench, back flat like a table. Pull the dumbbell to your hip, elbow close, 1-sec squeeze, 3 sec down. Right arm first. Builds lat width and evens out the right side","",S("single arm dumbbell row bench form"),"A1"],
+    ["Band face pull + chin tuck","3 × 15, plus 1 single-arm set right","Band around the pull-up station at forehead height. Pull to your forehead, thumbs back, 2-sec squeeze, chin slides straight back. Posture","",S("band face pull form"),"A2"],
+    ["Band straight-arm pulldown","3 × 15","Band high on the pull-up station, step back, arms straight. Sweep your hands down to your thighs, squeeze your lats 1 sec. Feel it under your armpits, not in your arms","",S("band straight arm pulldown lats"),"A3"]]},
    {h:"Biceps", m:"10 min", note:"Hammers and curls separate today. Both seated with your back on the bench to protect your lower back. Rest 60 sec between sets.", rows:[
     ["Seated hammer curl","3 × 10 each arm @ 35–40 lb","Bench upright, back flat on the pad. Palms facing each other, elbows pinned, no swinging, 3 sec down. Forearm + outer arm: thicker arms. All 3 × 10 clean? Add 5 lb","",S("seated hammer curl form")],
     ["Incline dumbbell curl","3 × 10 each arm @ 25–30 lb","Bench at about 45°, lie back, let your arms hang straight down behind your body. Palms up, curl without moving your elbows forward, squeeze at the top, 3 sec down. The stretch at the bottom builds the bicep peak","",S("incline dumbbell curl form")]]},
    {h:"Abs", m:"8 min", note:"Superset C, 3 rounds, rest 45 sec. All lower-back friendly: no swinging, no arching.", rows:[
     ["Reverse crunch on the bench","3 × 12 · bodyweight","Lie on the bench, hold it behind your head, knees bent. Curl your hips up off the bench toward your chest (roll your tailbone up), 3 sec down. Lower abs, and teaches the pelvis tilt for your leg raises",MINE,S("reverse crunch bench form"),"C1"],
     ["Weighted dead bug","3 × 8 each side @ 15–20 lb dumbbell","On your back, dumbbell held straight up over your chest with both hands. Lower one leg slowly toward the floor while your low back stays glued flat. Strong core that protects your back","",S("weighted dead bug dumbbell"),"C2"],
-    ["Side plank","3 × 30 sec each side · bodyweight","Elbow under your shoulder, body in a straight line, hips high. Obliques + core stability, easy on the lower back","",S("side plank form"),"C3"]]},
+    ["Band Pallof press","3 × 10 each side, 2-sec hold","Rotational core. Band around the pull-up station at chest height, stand sideways to it. Press your hands straight out and hold 2 sec without letting it twist you. Lower-back friendly","",S("band pallof press form"),"C3"]]},
    {h:"Cool-down", m:"2 min", rows:[
     ["Child's pose","45 sec","Knees wide, sit back toward your heels, arms long. Breathe into your lower back","",S("child's pose stretch")],
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
