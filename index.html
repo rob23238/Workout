@@ -231,7 +231,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-11-04g";
+const APP_VERSION = "2026-11-04h";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -300,32 +300,30 @@ const DAYS = [
     ["Child's pose","45 sec","Knees wide, sit back toward your heels, arms long. Breathe into your lower back","",S("child's pose stretch")],
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"wed", chip:"Wed", kicker:"Wednesday", title:"Functional: Explosion/Strength day + rotational core", time:"~45 min", stair:["40-min steady sweat","tonight"], night:"Night stretch (no push-ups tonight)",
+ {id:"wed", chip:"Wed", kicker:"Wednesday", title:"Functional: balance, explosive + rotational core", time:"~47 min", stair:["40-min steady sweat","tonight"], night:"Night stretch (no push-ups tonight)",
   blocks:[
-   {h:"Jump rope + warm-up", m:"5 min", rows:[
-    ["Jump rope, basic bounce","2 × 30 sec on / 30 sec off","Same as Tuesday","",S("jump rope basic bounce beginner")],
+   {h:"Jump rope + warm-up", m:"7 min", rows:[
+    ["Jump rope, basic bounce","3 × 30 sec on / 30 sec off","Same as Tuesday","",S("jump rope basic bounce beginner")],
     ["Leg swings, front-back + side-side","1 × 10 each way, each leg","Hold the rack",HAM,S("leg swings front back side")],
     ["Kneeling hip circles","1 × 6 each way, each side","Big slow circles",AH,"https://youtu.be/8Om5705EYxA"],
+    ["Glute bridge march","1 × 6 each side","Hips stay level",AH,"https://youtu.be/RvfMT6VOqxQ"],
     ["Band pull-aparts + chin tuck","1 × 15","Posture. Pull the band apart to your chest and at the same time slide your chin straight back (make a double chin). Undoes the hunch from phones and desks",HAM,S("band pull apart chin tuck posture")],
     ["Dead bug","1 × 8 each side","Posture. Low back pressed flat into the floor the whole time. Trains your abs to stop the pelvis tipping forward","",S("dead bug exercise form")]]},
-   {h:"Functional: Explosion/Strength day", m:"18 min", note:"Your functional training list. 2 sets each, rest 45–60 sec. Quality over speed: land soft, control every rep, weak leg first.", rows:[
-    ["Squat ISO holds","Set 1: 4 reps, 6-sec hold · Set 2: 6 reps, 3-sec hold","Sink into a squat and hold still at the bottom for the count, then stand. Chest tall, knees out over your toes, core braced",MINE,S("squat isometric hold reps")],
-    ["Slight squat plate press","2 × 8 @ 25–45 lb plate","Sit into a slight squat and hold it. Hold the plate at your chest and press it straight out until your arms lock, then pull it back. Legs stay locked in the squat, abs tight",MINE,S("quarter squat plate press out")],
-    ["Single-leg bend","2 × 7 each leg · bodyweight","On one leg, bend the knee slowly and come back up. Knee tracks over your toes, hips level. Hold the rack if you wobble",MINE,S("single leg knee bend exercise")],
-    ["Single-leg squat, 4 sec down + 4-sec hold","2 × 4 each leg · bodyweight","Lower for 4 seconds, hold 4 seconds at the bottom, stand up. Sit back to a bench if you need a target. Pistol builder",MINE,S("slow single leg squat to bench")],
-    ["Dumbbell hip extension to press","2 × 6 each leg @ 20–30 lb","Drive your hips through to full extension on one leg (knee up on the other side) and press the dumbbell overhead at the same time. Squeeze the glute, ribs down",MINE,S("single leg hip extension to dumbbell press")],
-    ["Band under pull-ups","2 × 5","As in your program. Smooth, full range, chest to the bar",MINE,S("band pull ups")],
-    ["Box jumps","2 × 6 · bodyweight","Box, bench or step. Jump up and land soft and quiet in a quarter squat, step down. Don't jump down",MINE,S("box jump form")],
-    ["Skiers","2 × 7 each leg · bodyweight","Bound side to side from one leg to the other, land soft and stick it for a beat before the next one",MINE,S("skier hops lateral bounds")],
-    ["Ankle work: first 4 exercises from your ankle video","1 round of each","Ankle stability, from your Explosion Day links",MINE,"https://youtu.be/dEcd2xGAuLI"]]},
+   {h:"Functional: Balance/Explosive day", m:"10 min", note:"A few good ones, Adonis style. Land soft, control every rep, weak leg first. Rest 30–45 sec.", rows:[
+    ["Elastic pops","2 × 15 each ankle · bodyweight","Springy bounces off the ball of the foot",AD,"https://youtube.com/shorts/1WcYTsVK8fM"],
+    ["Hip airplanes","3 × 5 each leg · bodyweight","Stand on one leg, hinge forward until your chest is close to parallel, arms out like wings. Slowly rotate your hips and chest open toward the ceiling, then back down and closed toward the floor. Standing leg stays still, 3 sec each way. Trains hip rotation, outer hip strength, glutes and single-leg balance in one move. Weak leg first. Hold a wall or the rack at first","",S("hip airplane exercise form")],
+    ["Jump squats holding a light dumbbell","3 × 5 @ 25–30 lb","Explode up, land soft and quiet. Heavier dumbbell when it gets easy",AD,"https://youtube.com/shorts/1ivnIpUqkRg"],
+    ["Skiers","2 × 6 each leg · bodyweight","Lateral power. Bound side to side from one leg to the other, land soft and stick it for a beat before the next one. From your Explosion Day list",MINE,"https://m.youtube.com/watch?v=61pcNAWAZFc"],
+    ["Ankle lifts, 3-sec hold","2 × 4 each ankle · bodyweight","Ankle stability. Up on one foot, hold 3 sec at the top, lower slowly",AD,"https://youtube.com/shorts/QPkmE4jvrxw"]]},
    {h:"Strength + rotational core", m:"10 min", note:"Supersets A and B, rest 90 sec after each round.", rows:[
     ["Smith Zercher squat","Bar × 8, 135 × 5, then 3 × 6 @ 175","Bar in the crook of your elbows (pad it with a towel), chest tall. Brace your abs and squeeze your glutes at the top so your lower back doesn't arch",HAM,S("smith machine zercher squat"),"A1"],
     ["Single-leg hip rotations","3 × 5 each leg · bodyweight","Rotational. On one leg, slight knee bend, hands on your hips. Rotate your hips and chest open away from the standing leg, then back closed across it, slow and controlled. From your Mobility Work sheet",MINE,"https://www.youtube.com/watch?v=73XPwD9VHLk","A2"],
     ["Kneeling dump trucks","3 × 8 each side · bodyweight","Outer hip + rotation. 2-sec hold at the top",AH,"https://youtu.be/FOfbDPBlgaQ","B1"],
     ["Goblet march with rotation","3 × 8 each side @ 30–40 lb dumbbell","Rotational core. Hug the dumbbell at your chest, drive one knee up and rotate your chest and the dumbbell toward that knee, then back to center. Core braced, slow and controlled",AC,S("standing knee drive with rotation core"),"B2"],
     ["Between sets: standing hip CARs","3 slow circles each way, each leg","Mobility during your rest, then back to work. Standing on one leg (hold the rack), draw the biggest, slowest circle you can with your knee: up, out, back, down. From your Mobility Work sheet",MINE,"https://www.youtube.com/shorts/1AcFl51wYuw"]]},
-   {h:"Pull-up volume", m:"8 min", guide:true, note:"Same rules as Friday: every rep from your back. Grip opposite to Friday, no vest. Superset D: each bodyweight set, then 25 incline push-ups.", rows:[
-    ["Bodyweight pull-ups","4 × 8 perfect · build to 4 × 10","Building to 10 perfect: only perfect reps count, so end the set at the first rep that isn't. Dead hang at the bottom, chest to the bar, 2 sec down. When all 4 sets of 8 are perfect, add 1 rep per set the next week until you hit 4 × 10. Rest 90 sec after the push-ups. You'll be tired from the functional block, which is why 8 comes first",LW,S("strict pull up form"),"D1"],
+   {h:"Pull-up volume", m:"12 min", guide:true, note:"Same rules as Friday: every rep from your back. Grip opposite to Friday, no vest. Superset D: each bodyweight set, then 25 incline push-ups.", rows:[
+    ["Explosive chest-to-bar pull-ups","3 × 6 · bodyweight","Pull as high and fast as you can, rest 90 sec. Muscle-up prep",LW,S("explosive chest to bar pull ups muscle up")],
+    ["Bodyweight pull-ups","4 × 8 perfect · build to 4 × 10","Building to 10 perfect: only perfect reps count, so end the set at the first rep that isn't. Dead hang at the bottom, chest to the bar, 2 sec down. When all 4 sets of 8 are perfect, add 1 rep per set the next week until you hit 4 × 10. Rest 90 sec after the push-ups. You'll be tired from the explosive sets, which is why 8 comes first",LW,S("strict pull up form"),"D1"],
     ["Incline push-ups","4 × 25 · bodyweight","Feet on the bench, right after each pull-up set. If 25 breaks, take 5 breaths and finish it","",S("feet elevated push up form"),"D2"],
     ["L-sit","3 × 5 sec full L-sit · build to 10 sec","Last thing in this block. Hands on two dumbbells or the floor, arms locked, push the floor away, legs straight out. Rest 60 sec",LW,S("l sit progression")]]},
    {h:"Cool-down", m:"2 min", rows:[
