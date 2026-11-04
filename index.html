@@ -231,7 +231,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-11-04k";
+const APP_VERSION = "2026-11-04l";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -304,7 +304,7 @@ const DAYS = [
   blocks:[
    {h:"Jump rope + warm-up", m:"7 min", rows:[
     ["Jump rope, basic bounce","3 × 30 sec on / 30 sec off","Same as Tuesday","",S("jump rope basic bounce beginner")],
-    ["Leg swings, front-back + side-side","1 × 10 each way, each leg","Hold the rack",HAM,S("leg swings front back side")],
+    ["Scapular pull-ups, 2-sec hold","1 × 8","Back prep. Hang with straight arms, crush the bar, pull your shoulders down away from your ears (the pool move) and hold 2 sec. Wakes your lats up so your pull-ups later come from your back",LW,S("scapular pull ups form")],
     ["Kneeling hip circles","1 × 6 each way, each side","Big slow circles",AH,"https://youtu.be/8Om5705EYxA"],
     ["Glute bridge march","1 × 6 each side","Hips stay level",AH,"https://youtu.be/RvfMT6VOqxQ"],
     ["Band pull-aparts + chin tuck","1 × 15","Posture. Pull the band apart to your chest and at the same time slide your chin straight back (make a double chin). Undoes the hunch from phones and desks",HAM,S("band pull apart chin tuck posture")],
@@ -315,22 +315,24 @@ const DAYS = [
     ["Jump squats holding a light dumbbell","3 × 5 @ 25–30 lb","Explode up, land soft and quiet. Heavier dumbbell when it gets easy",AD,"https://youtube.com/shorts/1ivnIpUqkRg"],
     ["Skiers","2 × 6 each leg · bodyweight","Lateral power. Bound side to side from one leg to the other, land soft and stick it for a beat before the next one. From your Explosion Day list",MINE,"https://m.youtube.com/watch?v=61pcNAWAZFc"],
     ["Ankle lifts, 3-sec hold","2 × 4 each ankle · bodyweight","Ankle stability. Up on one foot, hold 3 sec at the top, lower slowly",AD,"https://youtube.com/shorts/QPkmE4jvrxw"]]},
-   {h:"Strength + rotational core", m:"13 min", note:"Supersets A, B and C, rest 90 sec after each round.", rows:[
-    ["Smith Zercher squat","Bar × 8, 135 × 5, then 3 × 6 @ 175","Bar in the crook of your elbows (pad it with a towel), chest tall. Brace your abs and squeeze your glutes at the top so your lower back doesn't arch",HAM,S("smith machine zercher squat"),"A1"],
-    ["Single-leg hip rotations","3 × 5 each leg · bodyweight","Rotational. On one leg, slight knee bend, hands on your hips. Rotate your hips and chest open away from the standing leg, then back closed across it, slow and controlled. From your Mobility Work sheet",MINE,"https://www.youtube.com/watch?v=73XPwD9VHLk","A2"],
+   {h:"Strength + rotational core", m:"14 min", note:"Supersets A, B and C, rest 90 sec after each round.", rows:[
+    ["Smith Zercher squat","Bar × 8, 135 × 5, then 3 × 6 @ 185","Up from 175. Bar in the crook of your elbows (pad it with a towel), chest tall. Brace your abs and squeeze your glutes at the top so your lower back doesn't arch. All 3 × 6 clean? Next time 195",HAM,S("smith machine zercher squat"),"A1"],
+    ["Bottom of pistol squat, foot change","3 × 6 each side · bodyweight","Pistol + leg mobility for calisthenics. Sit into the bottom of a deep squat, then shift onto one leg and slide the other leg straight out in front, then switch. Stay low the whole time, hold the rack if you need to, small plate under your heels if your ankles are stiff. Video starts at 2:45",FMF,"https://www.youtube.com/watch?v=2qlVWNEdYqk&t=165s","A2"],
     ["Kneeling dump trucks","3 × 8 each side · bodyweight","Outer hip + rotation. 2-sec hold at the top",AH,"https://youtu.be/FOfbDPBlgaQ","B1"],
     ["Band woodchop, low to high","3 × 10 each side · band","Rotational core, no weights needed. Anchor the band low on the rack, stand side-on, feet wide. Pull it from your low hip up and across your body past the opposite shoulder, arms long, turning through your hips and chest and pivoting the back foot. Control it back slow. Harder band or step farther away when it's easy",AC,S("band low to high woodchop"),"B2"],
+    ["Cable rotational punch","3 × 8 each side @ 15–25 lb (cable)","Combat power. Cable at chest height behind you, handle in one hand, boxing stance. Drive off your back foot, turn your hips first, then punch straight out fast. Control it back slow. The power comes from your hips and core, not your arm: same rotation as a punch, a throw or a block","",S("cable rotational punch core power"),"B3"],
     ["Single-leg Romanian deadlift (one dumbbell)","3 × 6 each leg, build to 8 @ 40–50 lb","Hold one dumbbell in the hand opposite your standing leg. Soft knee, hinge at the hips, back flat, reach the dumbbell toward the floor until you feel your hamstring, then squeeze your glute to stand. Weak leg first. Hold a wall with your free hand if you wobble","",S("single leg romanian deadlift one dumbbell form"),"C1"],
     ["Copenhagen side plank (groin)","3 × 20 sec each side · bodyweight","Side plank with your top leg on the bench (inside of the knee on it to start, foot when it gets easy), bottom leg hanging free. Squeeze your top leg down into the bench, hips high, body in a straight line. Strengthens the groin and inner thighs plus obliques. Helps the middle split","",S("copenhagen side plank knee progression"),"C2"],
     ["Between sets: standing hip CARs","3 slow circles each way, each leg","Mobility during your rest, then back to work. Standing on one leg (hold the rack), draw the biggest, slowest circle you can with your knee: up, out, back, down. From your Mobility Work sheet",MINE,"https://www.youtube.com/shorts/1AcFl51wYuw"]]},
-   {h:"Pull-up volume", m:"12 min", guide:true, note:"Same rules as Friday: every rep from your back. Grip opposite to Friday, no vest. Superset D: each bodyweight set, then 25 incline push-ups.", rows:[
-    ["Explosive chest-to-bar pull-ups","3 × 6 · bodyweight","Pull as high and fast as you can, rest 90 sec. Muscle-up prep",LW,S("explosive chest to bar pull ups muscle up")],
-    ["Bodyweight pull-ups","4 × 8 perfect · build to 4 × 10","Building to 10 perfect: only perfect reps count, so end the set at the first rep that isn't. Dead hang at the bottom, chest to the bar, 2 sec down. When all 4 sets of 8 are perfect, add 1 rep per set the next week until you hit 4 × 10. Rest 90 sec after the push-ups. You'll be tired from the explosive sets, which is why 8 comes first",LW,S("strict pull up form"),"D1"],
+   {h:"Pull-up volume: back first", m:"13 min", guide:true, note:"Back is the #1 goal: every rep from your back. Crush the bar, pool move, rip your elbows to your back pockets. Grip opposite to Friday, no vest. Strict sets first while you're fresh, then the top hold, then explosive only if your form is still perfect. Superset D: each strict set, then 25 incline push-ups.", rows:[
+    ["Bodyweight pull-ups","4 × 8 perfect · build to 4 × 10","Building to 10 perfect: only perfect reps count, so end the set at the first rep that isn't. Dead hang at the bottom, chest to the bar, 2 sec down. When all 4 sets of 8 are perfect, add 1 rep per set the next week until you hit 4 × 10. Rest 90 sec after the push-ups",LW,S("strict pull up form"),"D1"],
     ["Incline push-ups","4 × 25 · bodyweight","Feet on the bench, right after each pull-up set. If 25 breaks, take 5 breaths and finish it","",S("feet elevated push up form"),"D2"],
+    ["Pull-up hold at the top","2 × max hold · bodyweight","LW style. Pull up and hold with your chin over the bar, neutral head. Crush the bar and keep your shoulders pulled down away from your ears the whole time: you should feel the sides of your back, not just your arms. Rest 90 sec",LW,S("pull up isometric hold top")],
+    ["Explosive chest-to-bar pull-ups","2 × 5 · bodyweight","Only if your form is still perfect, otherwise skip it today. Pull as high and fast as you can, still crushing the bar. Rest 90 sec. Muscle-up prep",LW,S("explosive chest to bar pull ups muscle up")],
     ["L-sit","3 × 5 sec full L-sit · build to 10 sec","Last thing in this block. Hands on two dumbbells or the floor, arms locked, push the floor away, legs straight out. Rest 60 sec",LW,S("l sit progression")]]},
-   {h:"Cool-down", m:"2 min", rows:[
-    ["Figure-4 stretch","45 sec each side","Outer hip. On your back, ankle over the other knee, pull the bottom leg in",FMF,S("figure 4 stretch lying")],
-    ["Seated hamstring V-stretch","30 sec","",HAM,S("seated v sit hamstring stretch")]]}
+   {h:"Hip finisher: 90/90 outer hips (Flow Motion)", m:"5 min", note:"This is the fix for your knees standing up when you sit cross-legged: your hips don't turn out (external rotation) yet. Stretching alone won't fix it; you have to get strong in the new range. Tighter side first and longer. Breathe through your nose and sink on every exhale.", rows:[
+    ["90/90 hip external rotation, PAILs + RAILs","60 sec hold, then 2 × (10 sec PAILs + 10 sec RAILs) each side","Sit in 90/90, chest tall over the front shin (hands behind you are fine). Hold 60 sec. PAILs: push the front knee and shin down into the floor as hard as you can for 10 sec. RAILs: right after, try to lift the front knee and shin up off the floor for 10 sec without leaning. Hard, and that's the point",FMF,"https://www.youtube.com/watch?v=JykbSjWBLbY&t=24s"],
+    ["90/90 rotations with hovers","2 × 3 each side, + 2 hovers","Sit in 90/90, switch both knees to the other side and back, hands off the floor if you can. Then lift the front foot and knee an inch off the floor and hold 3 sec (hover). Builds the strength to own the range",FMF,"https://www.youtube.com/watch?v=D0ZMMCkoDxQ"]]}
   ]},
  {id:"thu", chip:"Thu", kicker:"Thursday · lighter day", title:"Skills + core + arms", time:"~50 min", stair:["40-min relaxed","see StairMaster tab"], night:"Night stretch + 100 push-ups",
   blocks:[
