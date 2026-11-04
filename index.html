@@ -231,7 +231,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-11-04e";
+const APP_VERSION = "2026-11-04f";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -300,7 +300,7 @@ const DAYS = [
     ["Child's pose","45 sec","Knees wide, sit back toward your heels, arms long. Breathe into your lower back","",S("child's pose stretch")],
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"wed", chip:"Wed", kicker:"Wednesday", title:"Functional: balance, explosive + rotation", time:"~50 min", stair:["40-min steady sweat","tonight"], night:"Night stretch (no push-ups tonight)",
+ {id:"wed", chip:"Wed", kicker:"Wednesday", title:"Functional: Explosion/Strength day + rotational core", time:"~50 min", stair:["40-min steady sweat","tonight"], night:"Night stretch (no push-ups tonight)",
   blocks:[
    {h:"Jump rope + warm-up", m:"7 min", rows:[
     ["Jump rope, basic bounce","3 × 30 sec on / 30 sec off","Same as Tuesday","",S("jump rope basic bounce beginner")],
@@ -309,20 +309,21 @@ const DAYS = [
     ["Glute bridge march","1 × 6 each side","Hips stay level",AH,"https://youtu.be/RvfMT6VOqxQ"],
     ["Band pull-aparts + chin tuck","1 × 15","Posture. Pull the band apart to your chest and at the same time slide your chin straight back (make a double chin). Undoes the hunch from phones and desks",HAM,S("band pull apart chin tuck posture")],
     ["Dead bug","1 × 8 each side","Posture. Low back pressed flat into the floor the whole time. Trains your abs to stop the pelvis tipping forward","",S("dead bug exercise form")]]},
-   {h:"Functional: Balance/Explosive day", m:"10 min", note:"Rotational: every balance and jump move has a turn in it, all standing.", rows:[
-    ["Elastic pops","2 × 15 each ankle · bodyweight","Springy bounces off the ball of the foot",AD,"https://youtube.com/shorts/1WcYTsVK8fM"],
-    ["Hip airplanes","3 × 5 each leg · bodyweight","Stand on one leg, hinge forward until your chest is close to parallel, arms out like wings. Slowly rotate your hips and chest open toward the ceiling, then back down and closed toward the floor. Standing leg stays still, 3 sec each way. Trains hip rotation, outer hip strength, glutes and single-leg balance in one move. Weak leg first. Hold a wall or the rack at first","",S("hip airplane exercise form")],
-    ["Offset single-leg hold with rotation","2 × 5 each leg, each side @ 25–35 lb","Stand on one leg holding one dumbbell in one hand, arm straight down. Slowly rotate your chest toward the standing leg and back to center, 2 sec each way. Stay tall, hips square, don't lean toward the weight. Then switch hands. Works at home or the Y",AD,S("single leg offset dumbbell hold rotation balance")],
-    ["Rotational jump squats (90° turn)","3 × 6 (3 each way) @ 20–25 lb at your chest","Squat, explode up and turn 90° in the air, land soft facing the new direction, then jump back the other way. Hips, knees and feet turn together, land quiet and balanced before the next rep. Dumbbell hugged at your chest",AD,S("90 degree rotational jump squat")],
-    ["Tuck jumps","3 × 5 · bodyweight","Knees high",AD,"https://youtube.com/shorts/QC6O4WRwbyE"],
-    ["Ankle lifts, 3-sec hold","2 × 4 each ankle · bodyweight","Ankle stability. Up on one foot, hold 3 sec at the top, lower slowly",AD,"https://youtube.com/shorts/QPkmE4jvrxw"]]},
-   {h:"Strength", m:"18 min", note:"Supersets A, B and C, rest 90 sec–2 min after each round.", rows:[
+   {h:"Functional: Explosion/Strength day", m:"18 min", note:"Your functional training list. 2 sets each, rest 45–60 sec. Quality over speed: land soft, control every rep, weak leg first.", rows:[
+    ["Squat ISO holds","Set 1: 4 reps, 6-sec hold · Set 2: 6 reps, 3-sec hold","Sink into a squat and hold still at the bottom for the count, then stand. Chest tall, knees out over your toes, core braced",MINE,S("squat isometric hold reps")],
+    ["Slight squat plate press","2 × 8 @ 25–45 lb plate","Sit into a slight squat and hold it. Hold the plate at your chest and press it straight out until your arms lock, then pull it back. Legs stay locked in the squat, abs tight",MINE,S("quarter squat plate press out")],
+    ["Single-leg bend","2 × 7 each leg · bodyweight","On one leg, bend the knee slowly and come back up. Knee tracks over your toes, hips level. Hold the rack if you wobble",MINE,S("single leg knee bend exercise")],
+    ["Single-leg squat, 4 sec down + 4-sec hold","2 × 4 each leg · bodyweight","Lower for 4 seconds, hold 4 seconds at the bottom, stand up. Sit back to a bench if you need a target. Pistol builder",MINE,S("slow single leg squat to bench")],
+    ["Dumbbell hip extension to press","2 × 6 each leg @ 20–30 lb","Drive your hips through to full extension on one leg (knee up on the other side) and press the dumbbell overhead at the same time. Squeeze the glute, ribs down",MINE,S("single leg hip extension to dumbbell press")],
+    ["Band under pull-ups","2 × 5","As in your program. Smooth, full range, chest to the bar",MINE,S("band pull ups")],
+    ["Box jumps","2 × 6 · bodyweight","Box, bench or step. Jump up and land soft and quiet in a quarter squat, step down. Don't jump down",MINE,S("box jump form")],
+    ["Skiers","2 × 7 each leg · bodyweight","Bound side to side from one leg to the other, land soft and stick it for a beat before the next one",MINE,S("skier hops lateral bounds")],
+    ["Ankle work: first 4 exercises from your ankle video","1 round of each","Ankle stability, from your Explosion Day links",MINE,"https://youtu.be/dEcd2xGAuLI"]]},
+   {h:"Strength + rotational core", m:"10 min", note:"Supersets A and B, rest 90 sec after each round.", rows:[
     ["Smith Zercher squat","Bar × 8, 135 × 5, then 3 × 6 @ 175","Bar in the crook of your elbows (pad it with a towel), chest tall. Brace your abs and squeeze your glutes at the top so your lower back doesn't arch",HAM,S("smith machine zercher squat"),"A1"],
-    ["Single-leg hip rotations","3 × 5 each leg · bodyweight","Functional rotation, standing. On one leg, slight knee bend, hands on your hips. Rotate your hips and chest open away from the standing leg, then back closed across it, slow and controlled. Core braced, standing foot rooted. Right leg first. From your Mobility Work sheet",MINE,"https://www.youtube.com/watch?v=73XPwD9VHLk","A2"],
-    ["Single-leg Romanian deadlift (one dumbbell)","3 × 6 each leg, build to 8 @ 40–50 lb","No trap bar needed: hold one dumbbell in the hand opposite your standing leg. Soft knee, hinge at the hips, back flat, reach the dumbbell toward the floor until you feel your hamstring, then squeeze your glute to stand. Weak leg first. Hold a wall with your free hand if you wobble","",S("single leg romanian deadlift one dumbbell form"),"B1"],
-    ["Kneeling dump trucks","3 × 8 each side · bodyweight","Outer hip + rotation. Last week was easy: more reps, 2-sec hold at the top",AH,"https://youtu.be/FOfbDPBlgaQ","B2"],
-    ["Single-leg glute bridge (floor)","3 × 8 each leg @ 50 lb dumbbell","No bench needed: lie on the floor, dumbbell on your hips, drive up and squeeze 2 sec at the top. One leg at a time when it gets easy","",S("dumbbell glute bridge floor"),"C1"],
-    ["Goblet march with rotation","3 × 8 each side @ 30–40 lb dumbbell","Functional rotation, standing. Hug the dumbbell at your chest, drive one knee up and rotate your chest and the dumbbell toward that knee, then back to center. Stand tall on the down leg, core braced, slow and controlled",AC,S("standing knee drive with rotation core"),"C2"],
+    ["Single-leg hip rotations","3 × 5 each leg · bodyweight","Rotational. On one leg, slight knee bend, hands on your hips. Rotate your hips and chest open away from the standing leg, then back closed across it, slow and controlled. From your Mobility Work sheet",MINE,"https://www.youtube.com/watch?v=73XPwD9VHLk","A2"],
+    ["Kneeling dump trucks","3 × 8 each side · bodyweight","Outer hip + rotation. 2-sec hold at the top",AH,"https://youtu.be/FOfbDPBlgaQ","B1"],
+    ["Goblet march with rotation","3 × 8 each side @ 30–40 lb dumbbell","Rotational core. Hug the dumbbell at your chest, drive one knee up and rotate your chest and the dumbbell toward that knee, then back to center. Core braced, slow and controlled",AC,S("standing knee drive with rotation core"),"B2"],
     ["Between sets: standing hip CARs","3 slow circles each way, each leg","Mobility during your rest, then back to work. Standing on one leg (hold the rack), draw the biggest, slowest circle you can with your knee: up, out, back, down. From your Mobility Work sheet",MINE,"https://www.youtube.com/shorts/1AcFl51wYuw"]]},
    {h:"Pull-up volume", m:"12 min", guide:true, note:"Same rules as Friday: every rep from your back. Grip opposite to Friday, no vest. Superset D: each bodyweight set, then 25 incline push-ups.", rows:[
     ["Explosive chest-to-bar pull-ups","3 × 6 · bodyweight","Pull as high and fast as you can, rest 90 sec. Muscle-up prep",LW,S("explosive chest to bar pull ups muscle up")],
