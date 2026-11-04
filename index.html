@@ -231,7 +231,7 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:1px solid var(--li
 </div>
 <main class="wrap" id="app"></main>
 <script>
-const APP_VERSION = "2026-11-04b";
+const APP_VERSION = "2026-11-04c";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -283,7 +283,8 @@ const DAYS = [
     ["Incline push-ups","25 · bodyweight (3 of 4)","Straight from the bench, then rest 2 min","","","A2"],
     ["Set 4","240 × 5","","","","A1"],
     ["Incline push-ups","25 · bodyweight (4 of 4)","Straight from the bench, then rest 2 min","","","A2"],
-    ["Set 5","255 × 3","Top set: clean reps only, full rest before it. If your right shoulder rolls forward, stay at 250",HAM,""]]},
+    ["Set 5","255 × 3","Top set: clean reps only, full rest before it. If your right shoulder rolls forward, stay at 250",HAM,""],
+    ["Between sets: quadruped T-spine rotation","5 each side, slow","Mobility during your rest, then back to work. On hands and knees, hand behind your head, rotate the elbow down under you, then up to the ceiling. Eyes follow the elbow","",S("quadruped thoracic rotation")]]},
    {h:"Back", m:"10 min", note:"Superset A, 4 rounds (face pulls and pulldowns 3): heavy single-arm row, straight to face pulls, then straight-arm pulldowns, rest 60–90 sec. Right arm first.", rows:[
     ["Single-arm dumbbell row on the bench","4 × 10 each arm, plus 1 extra set right @ 60 lb","Same-side hand and knee on the flat bench, back flat like a table. Pull the dumbbell to your hip, elbow close, 1-sec squeeze, 3 sec down. Right arm first. Builds lat width and evens out the right side","",S("single arm dumbbell row bench form"),"A1"],
     ["Band face pull + chin tuck","3 × 15, plus 1 single-arm set right","Band around the pull-up station at forehead height. Pull to your forehead, thumbs back, 2-sec squeeze, chin slides straight back. Posture","",S("band face pull form"),"A2"],
@@ -313,14 +314,16 @@ const DAYS = [
     ["Hip airplanes","3 × 5 each leg · bodyweight","Stand on one leg, hinge forward until your chest is close to parallel, arms out like wings. Slowly rotate your hips and chest open toward the ceiling, then back down and closed toward the floor. Standing leg stays still, 3 sec each way. Trains hip rotation, outer hip strength, glutes and single-leg balance in one move. Weak leg first. Hold a wall or the rack at first","",S("hip airplane exercise form")],
     ["Offset dumbbell single-leg hold","2 × 15 sec each leg, each side @ 25–35 lb","Stand on one leg holding one dumbbell in one hand. Stay tall, don't lean toward the weight. Then switch hands. Works at home or the Y",AD,S("single leg offset dumbbell hold balance")],
     ["Jump squats holding a light dumbbell","3 × 5 @ 25–30 lb","Land soft (his med ball jumps). Last week was easy: heavier dumbbell",AD,"https://youtube.com/shorts/1ivnIpUqkRg"],
-    ["Tuck jumps","3 × 5 · bodyweight","Knees high",AD,"https://youtube.com/shorts/QC6O4WRwbyE"]]},
+    ["Tuck jumps","3 × 5 · bodyweight","Knees high",AD,"https://youtube.com/shorts/QC6O4WRwbyE"],
+    ["Ankle lifts, 3-sec hold","2 × 4 each ankle · bodyweight","Ankle stability. Up on one foot, hold 3 sec at the top, lower slowly",AD,"https://youtube.com/shorts/QPkmE4jvrxw"]]},
    {h:"Strength", m:"18 min", note:"Supersets A, B and C, rest 90 sec–2 min after each round.", rows:[
     ["Smith Zercher squat","Bar × 8, 135 × 5, then 3 × 6 @ 175","Bar in the crook of your elbows (pad it with a towel), chest tall. Brace your abs and squeeze your glutes at the top so your lower back doesn't arch",HAM,S("smith machine zercher squat"),"A1"],
-    ["Copenhagen plank","3 × 20 sec each side · bodyweight","Top leg on the bench, hips up: inner thigh + core","",S("copenhagen plank bench"),"A2"],
+    ["Alternating jack knife","3 × 8 each side · bodyweight","Rotational core. On your back, reach one hand to the opposite foot as both come up, twisting through your ribs. Low back stays down",AC,"https://www.youtube.com/watch?v=1ApD14Ug51E","A2"],
     ["Single-leg Romanian deadlift (one dumbbell)","3 × 6 each leg, build to 8 @ 40–50 lb","No trap bar needed: hold one dumbbell in the hand opposite your standing leg. Soft knee, hinge at the hips, back flat, reach the dumbbell toward the floor until you feel your hamstring, then squeeze your glute to stand. Weak leg first. Hold a wall with your free hand if you wobble","",S("single leg romanian deadlift one dumbbell form"),"B1"],
     ["Kneeling dump trucks","3 × 8 each side · bodyweight","Outer hip + rotation. Last week was easy: more reps, 2-sec hold at the top",AH,"https://youtu.be/FOfbDPBlgaQ","B2"],
     ["Single-leg glute bridge (floor)","3 × 8 each leg @ 50 lb dumbbell","No bench needed: lie on the floor, dumbbell on your hips, drive up and squeeze 2 sec at the top. One leg at a time when it gets easy","",S("dumbbell glute bridge floor"),"C1"],
-    ["Goblet march in place","3 × 45 sec @ 50 lb dumbbell","No room needed: hug the dumbbell tight to your chest, march in place driving your knees up, stay tall. Same real-world strength as the carry","",S("goblet march in place"),"C2"]]},
+    ["Goblet march with rotation","3 × 8 each side @ 30–40 lb dumbbell","Rotational core. Hug the dumbbell at your chest, drive one knee up and rotate your chest and the dumbbell toward that knee, then back to center. Stand tall, slow and controlled",AC,S("standing knee drive with rotation core"),"C2"],
+    ["Between sets: bent knee wipers","5 each way","Mobility during your rest, then back to work. Rotation + spine. On your back, arms out, knees bent together. Let them fall slowly to one side, then the other, shoulders flat. From his core program","",S("bent knee wipers")]]},
    {h:"Pull-up volume", m:"12 min", guide:true, note:"Same rules as Friday: every rep from your back. Grip opposite to Friday, no vest. Superset D: each bodyweight set, then 25 incline push-ups.", rows:[
     ["Explosive chest-to-bar pull-ups","3 × 6 · bodyweight","Pull as high and fast as you can, rest 90 sec. Muscle-up prep",LW,S("explosive chest to bar pull ups muscle up")],
     ["Bodyweight pull-ups","4 × 8 perfect · build to 4 × 10","Building to 10 perfect: only perfect reps count, so end the set at the first rep that isn't. Dead hang at the bottom, chest to the bar, 2 sec down. When all 4 sets of 8 are perfect, add 1 rep per set the next week until you hit 4 × 10. Rest 90 sec after the push-ups. You'll be tired from the explosive sets, which is why 8 comes first",LW,S("strict pull up form"),"D1"],
@@ -353,7 +356,8 @@ const DAYS = [
     ["Cable rope triceps pushdown","3 × 12 @ 40–50 lb (cable)","Elbows pinned to your sides, spread the rope at the bottom","",S("cable rope triceps pushdown form"),"C1"],
     ["Cross-body dumbbell hammer curl","3 × 12 each arm @ 30–35 lb","Curl across your body toward the opposite shoulder: forearm + outer arm","",S("cross body hammer curl"),"C2"],
     ["Plate pinch hold","3 × 30 sec @ two 10 lb plates each hand","Pinch two plates together, smooth sides out, fingers only. Builds the grip strength for levers and heavy pulls","",S("plate pinch grip hold"),"D1"],
-    ["Dead hang","3 × max hold · bodyweight","Squeeze the bar hard, shoulders down. Rest 60 sec","",S("dead hang grip strength"),"D2"]]},
+    ["Dead hang","3 × max hold · bodyweight","Squeeze the bar hard, shoulders down. Rest 60 sec","",S("dead hang grip strength"),"D2"],
+    ["Between sets: open book","4 each side","Mobility during your rest, then back to work. Lie on your side, knees bent, open the top arm across and follow it with your eyes","",S("side lying open book thoracic rotation")]]},
    {h:"Cool-down", m:"2 min", rows:[
     ["Doorway chest stretch","30 sec each side","Posture. Forearm on the door frame, step through","",S("doorway pec minor stretch")],
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
@@ -372,7 +376,8 @@ const DAYS = [
     ["Push-ups","4 × 20 · bodyweight","Body straight like a plank, chest to an inch off the floor. Feet on a bench if you have one nearby","",S("perfect push up form"),"A3"]]},
    {h:"Incline bench", m:"14 min", note:"Superset B, 4 rounds: incline set, straight to pulldowns, rest 2 min. Pulling matches pushing for your posture.", rows:[
     ["Incline bench press","Bar × 10, 135 × 5, then 4 × 8 @ 155","Bench at about 30°. Shoulder blades pinched, bar to your upper chest just under the collarbone, 2 sec down. Watch the right shoulder: keep it pinned back. All 4 sets clean? Next time 165",HAM,S("incline barbell bench press form 30 degree"),"B1"],
-    ["Lat pulldown","4 × 10 @ 140–160 lb","Shoulders down first, rip your elbows to your back pockets, bar to upper chest, 3 sec up","",S("lat pulldown form"),"B2"]]},
+    ["Lat pulldown","4 × 10 @ 140–160 lb","Shoulders down first, rip your elbows to your back pockets, bar to upper chest, 3 sec up","",S("lat pulldown form"),"B2"],
+    ["Between sets: quadruped T-spine rotation","5 each side, slow","Mobility during your rest, then back to work. On hands and knees, hand behind your head, rotate the elbow down under you, then up to the ceiling","",S("quadruped thoracic rotation")]]},
    {h:"Arms", m:"7 min", note:"Superset C, 3 rounds, rest 60 sec.", rows:[
     ["Hammer curl","3 × 10–12 @ 35–40 lb","Thumbs up, elbows pinned, no swinging, 3 sec down. Biceps + forearms","",S("dumbbell hammer curl form"),"C1"],
     ["Cable rope triceps pushdown","3 × 12 @ 50–60 lb (cable)","Elbows pinned, spread the rope at the bottom, 2 sec up","",S("cable rope triceps pushdown form"),"C2"]]},
@@ -396,7 +401,8 @@ const DAYS = [
    {h:"Legs", m:"10 min", note:"Superset L, 3 rounds, rest 90 sec. Brace your abs and squeeze your glutes on every squat.", rows:[
     ["Back squat (Smith or rack)","Bar × 10, 135 × 5, then 3 × 6 @ 215","Full depth you control, chest up, 3 sec down. Lower back still cranky? Stay at 185",HAM,S("barbell back squat form"),"L1"],
     ["Single-leg calf raise","3 × 12 each leg","Right leg first. On a step, all the way down for a stretch, all the way up, 1-sec squeeze at the top. Hold the wall",
-"",S("single leg calf raise step"),"L2"]]},
+"",S("single leg calf raise step"),"L2"],
+    ["Between sets: 90/90 hip switches","5 each side","Mobility during your rest, then back to work. Sit in 90/90, swing both knees to the other side, hands off the floor if you can. Hips + spine turning","",S("90 90 hip switch")]]},
    {h:"Calisthenics", m:"12 min", note:"Skills first while you're fresh. Rest 90 sec between sets. Stop each hold when your form breaks.", rows:[
     ["Wall handstand hold, chest to wall","3 × 40 sec · bodyweight","Second handstand day of the week, same level as Tuesday",LW,"https://www.tiktok.com/t/ZPLSuXqwY/"],
     ["Tuck front lever hold","4 × 10 sec · bodyweight","Hang, pull your shoulders down, pull your knees to your chest and lean back until your back is flat like a table. Straight arms. Front lever step 1",LW,S("tuck front lever tutorial")],
@@ -558,6 +564,7 @@ const REST_RULES = [
    Heavy compound 2 min · calisthenics 90 sec · accessories 60 sec · core 45 sec · drills 30 sec · warm-ups/mobility none.
    An explicit "rest N sec" in the how-to text wins. */
 function exRest(b, r){
+  if(/^Between sets/.test(r[0])) return 0;
   const base = REST_RULES.find(x=>x[0].test(b.h))[1];
   if(base===0) return 0;
   const m = String(r[2]||"").match(/rest (\d+) sec/i); if(m) return +m[1];
