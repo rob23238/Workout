@@ -14,11 +14,12 @@ Day by day. Big RPJ's personal training app, live at https://rob23238.github.io/
 
 Think of it like a gym binder with three sections:
 
-1. **`<style>`: the look.** Colors live at the top in `:root` (like `--accent` for the green). Change one color there and it changes everywhere.
+1. **`<style>`: the look.** Colors live at the top in `:root` (like `--accent` for the blue). Change one color there and it changes everywhere.
 2. **`DAYS`, `NIGHT`, `PLANS`: the program.** Each exercise is one line:
    `["Name", "Sets × reps", "How to do it", source, video link, superset tag]`
    Adding an exercise means adding one line to the right day.
-3. **The `render...` functions: the screens.** `renderDay`, `renderStair`, `renderAM` (morning StairMaster), `renderNight`, `renderIdeas` (feedback loop), `renderLog`. Each one builds the HTML for one tab.
+3. **Navigation.** The week strip on top picks the day (Train). The bottom tab bar has Train, Morning, Night, Stair and More (Calisthenics, Ideas, Copy data).
+4. **The `render...` functions: the screens.** `renderDay`, `renderStair`, `renderAM` (morning StairMaster), `renderNight`, `renderIdeas` (feedback loop), `renderLog`. Each one builds the HTML for one tab.
 
 Your checkmarks, logs, morning days and ideas save on your phone (browser storage), not on GitHub.
 
