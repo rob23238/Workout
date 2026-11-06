@@ -303,6 +303,74 @@ details .breath{background:var(--surface-2)}
 .pace .ct{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:600;min-height:20px}
 pre.sum{white-space:pre-wrap;background:var(--surface);border:0;border-radius:var(--r-md);padding:14px;font:14px/1.5 ui-monospace,Menlo,monospace;overflow-x:auto}
 
+
+/* ============================================================
+   FLOW: the day is one continuous timeline. A thin rail runs
+   top to bottom; every exercise is a node on it. Sections are
+   just quiet labels. Supersets are joined by a blue line.
+   The exercise you're on ("Now") opens up; the rest stay tight.
+   ============================================================ */
+.dayhead h2{font-size:34px;letter-spacing:-.04em}
+.spec{display:grid;grid-template-columns:repeat(3,1fr);margin-top:18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.spec div{padding:12px 0;display:flex;flex-direction:column;gap:0}
+.spec div+div{border-left:1px solid var(--line);padding-left:16px}
+.spec b{font:600 30px/1.05 var(--display);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.spec span{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.progress{margin-top:14px}
+.progress .bar{height:3px}
+
+section.block{position:relative;margin-top:0;padding-top:26px}
+section.block::before{content:"";position:absolute;left:14px;top:0;bottom:0;width:2px;background:var(--line)}
+section.block:first-of-type::before{top:34px}
+section.block:last-of-type::before{bottom:auto;height:calc(100% - 20px)}
+section.block > :not(.list){margin-left:46px}
+.block h3{position:relative;font:600 12px/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;justify-content:flex-start;gap:10px}
+.block h3::before{content:"";position:absolute;left:-37px;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:4px;transform:rotate(45deg);background:var(--bg);border:2px solid var(--line-strong);box-sizing:border-box}
+.block h3 small{font:500 12px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);opacity:.75}
+.block h3 small::before{content:"· "}
+.block .note{font-size:14px;margin:4px 0 6px}
+.tbar{margin:8px 0 2px}
+.list{position:relative;background:none!important;border-radius:0;overflow:visible;margin-top:4px}
+.row{position:relative;grid-template-columns:30px 1fr;gap:16px;padding:10px 0;border:0!important}
+.row input[type=checkbox]{position:relative;z-index:2;margin-top:2px!important;background-color:var(--bg)}
+.row.link::after{content:"";position:absolute;left:14px;top:42px;bottom:-12px;width:2px;background:var(--accent);z-index:1}
+.row.in-ss input[type=checkbox]:not(:checked){border-color:color-mix(in srgb,var(--accent) 55%,var(--line-strong))}
+.rowhead{all:unset;display:block;width:100%;cursor:pointer;padding:3px 0 2px}
+.rowhead:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:4px;border-radius:8px}
+.row .name{display:block;font-size:17px;font-weight:600;letter-spacing:-.02em;line-height:1.3}
+.row .dose{display:block;font-size:14.5px;font-weight:500;color:var(--muted);margin-top:1px}
+.sslbl{display:block;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:2px}
+.detail{display:none;padding:2px 0 6px}
+.row.open .detail,.row.focus:not(.shut) .detail{display:block;animation:fade .2s ease}
+.row .how{font-size:15px;margin-top:6px}
+.row .meta{margin-top:12px}
+.flow{margin-top:12px;font-size:13px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:8px}
+.flow::before{content:"";width:14px;height:2px;background:currentColor;border-radius:2px}
+.row.focus .t{background:var(--surface);border-radius:20px;padding:12px 16px 14px;margin:-4px 0 4px}
+.row.focus input[type=checkbox]{border-color:var(--accent);box-shadow:0 0 0 6px var(--accent-soft)}
+.row.focus .rowhead::before{content:"Now";display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent);border-radius:999px;padding:2px 9px;margin-bottom:6px}
+.row.focus .dose{color:var(--accent)}
+.row.is-done .name{color:var(--done);text-decoration:none}
+.row.is-done .dose{color:var(--done);text-decoration:none}
+.row:not(.focus):not(.open):not(.bare) .rowhead::after{content:"";position:absolute;right:4px;top:22px;width:7px;height:7px;border-right:2px solid var(--line-strong);border-bottom:2px solid var(--line-strong);transform:rotate(45deg)}
+.row:not(.focus):not(.open) .t{padding-right:22px}
+.src{background:none;padding:0;font-size:12px;color:var(--muted)}
+.lg{background:var(--surface-2)}
+.row:not(.focus) .lg{background:var(--surface)}
+.logbox input{background:var(--surface-2)}
+.row:not(.focus) .logbox input{background:var(--surface)}
+.tbtn svg{flex:0 0 auto}
+.tpair .ios{gap:5px;min-width:0;padding:8px 12px;font-size:13.5px;font-variant-numeric:tabular-nums;background:var(--surface-2);color:var(--ink)}
+.row:not(.focus) .tpair .ios,.tbar .tpair .ios{background:var(--surface)}
+.startpair .btn+.btn{display:grid;place-items:center}
+.after{margin-top:18px}
+section.block .field{margin-top:8px}
+.sheet-row.col{flex-direction:column;align-items:stretch;gap:8px}
+.sheet-help{margin:0;font-size:13.5px;color:var(--muted);line-height:1.45}
+.sheet-help b{color:var(--ink)}
+.sheet-line{display:flex;gap:8px}
+.sheet-line input{flex:1;min-width:0;font:500 16px var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:9px 14px}
+.sheet{max-height:92vh;overflow-y:auto}
 /* Page fade when switching tabs */
 #app{animation:fade .22s ease}
 @keyframes fade{from{opacity:.0;transform:translateY(4px)}to{opacity:1;transform:none}}
@@ -347,10 +415,13 @@ pre.sum{white-space:pre-wrap;background:var(--surface);border:0;border-radius:va
     <button type="button" class="tile" data-goto="ideas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg><span>Ideas<small>Save what you see</small></span></button>
   </div>
   <div class="sheet-row"><div><div class="lbl">Your data</div><div class="sync" id="sync">Saved on this phone</div></div><button type="button" class="pillbtn" id="copydata">Copy data</button></div>
+  <div class="sheet-row col"><div class="lbl">iPhone timer check</div>
+    <p class="sheet-help">Tap Test. Your Clock should start at exactly <b>2:00</b>. If it says 2 hours, open Shortcuts, edit <b>Start Timer</b>, and change <b>minutes</b> to <b>seconds</b> (the number should be Shortcut Input).</p>
+    <div class="sheet-line"><input id="scname" aria-label="Shortcut name" autocomplete="off" placeholder="Start Timer"><button type="button" class="pillbtn" id="iphonetest">Test 2:00</button></div></div>
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-06a";
+const APP_VERSION = "2026-11-06-flow";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -672,7 +743,7 @@ function restPlan(b){
     const t=r[5];
     if(!t) return {sec:exRest(b,r)};
     const idx=groups[t[0]], last=idx.reduce((a,j)=>(+b.rows[j][5].slice(1)>=+b.rows[a][5].slice(1)?j:a), idx[0]);
-    if(b.rows[i][5]!==b.rows[last][5]) return {sec:0, next:t[0]+(+t.slice(1)+1)};
+    if(b.rows[i][5]!==b.rows[last][5]){ const nt=t[0]+(+t.slice(1)+1), nx=b.rows.find(x=>x&&x[5]===nt); return {sec:0, next:nx?nx[0]:nt}; }
     return {sec:Math.max(...idx.map(j=>exRest(b,b.rows[j])))};
   });
 }
@@ -741,16 +812,30 @@ function wireLogs(id, rerender){
   app.querySelectorAll("input[data-log]").forEach(inp=>inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); add(inp.dataset.log,inp); } }));
   app.querySelectorAll("[data-rmlog]").forEach(b=>b.addEventListener("click",()=>{ const l=logList(d.logs[b.dataset.rmlog]); l.splice(+b.dataset.i,1); d.logs[b.dataset.rmlog]=l; save(id); const y=scrollY; rerender(); scrollTo(0,y); }));
 }
+/* Notes read as plain words: "Superset A, 3 rounds" becomes "Back to back, 3 rounds". */
+const flowNote = t => String(t).replace(/the 2 doesn't tire out what the 1 needs/g,"the second move doesn't tire out what the first one needs").replace(/\bSupersets? [A-Z](?:(?:, | and )[A-Z])*(?: \([^)]*\))?/g,"Back to back");
+const openRows = new Set();
 function rowHTML(prefix, key, r, d, loggable, rp){
   const on = !!(d.checks||{})[key], cid = `c-${prefix}-${key}`;
   const logv = logList((d.logs||{})[key]);
-  return `<div class="row${on?" is-done":""}"><input type="checkbox" id="${cid}" data-k="${key}"${on?" checked":""} aria-label="Done: ${esc(r[0])}"><div class="t"><label for="${cid}" style="cursor:pointer;display:block"><div class="name">${r[5]?`<span class="ss">${esc(r[5])}</span>`:""}${esc(r[0])}</div><div class="dose">${esc(r[1])}</div>${r[2]?`<div class="how">${esc(r[2])}</div>`:""}</label>${loggable?logHTML(prefix,key,logv):""}${(r[3]||r[4])?`<div class="meta">${r[3]?`<span class="src">${esc(r[3])}</span>`:""}${r[4]?`<a class="vid" href="${esc(r[4])}" target="_blank" rel="noopener">${r[4].includes("results?search")?"Find video":"Watch video"} ↗</a>`:""}</div>`:""}${rp&&rp.sec?`<div class="meta">${tpair("rest", rp.sec, "Rest "+fmt(rp.sec))}</div>`:rp&&rp.next?`<div class="meta"><span class="src" style="color:var(--warm)">No rest → straight to ${esc(rp.next)}</span></div>`:""}</div></div>`;
+  const lead = r[5] && /1$/.test(r[5]), link = rp && rp.next;
+  const media = (r[3]||r[4]) ? `<div class="meta">${r[4]?`<a class="vid" href="${esc(r[4])}" target="_blank" rel="noopener">${r[4].includes("results?search")?"Find video":"Watch video"}</a>`:""}${r[3]?`<span class="src">${esc(r[3])}</span>`:""}</div>` : "";
+  const rest = rp&&rp.sec ? `<div class="meta">${tpair("rest", rp.sec, "Rest "+fmt(rp.sec))}</div>` : link ? `<div class="flow">No rest. Straight into ${esc(rp.next)}</div>` : "";
+  const detail = `${r[2]?`<div class="how">${esc(r[2])}</div>`:""}${loggable?logHTML(prefix,key,logv):""}${media}${rest}`;
+  return `<div class="row${on?" is-done":""}${link?" link":""}${r[5]?" in-ss":""}${openRows.has(cid)?" open":""}${detail?"":" bare"}"><input type="checkbox" id="${cid}" data-k="${key}"${on?" checked":""} aria-label="Done: ${esc(r[0])}"><div class="t"><button type="button" class="rowhead" data-row="${cid}" aria-label="${esc(r[0])}, show details">${lead?`<span class="sslbl">Superset</span>`:""}<span class="name">${esc(r[0])}</span><span class="dose">${esc(r[1])}</span></button>${detail?`<div class="detail">${detail}</div>`:""}</div></div>`;
+}
+/* The first unchecked exercise is "now": it opens up and the rest stay compact. */
+function refocus(scroll){
+  const rows=[...app.querySelectorAll(".row")].filter(r=>r.querySelector("input[type=checkbox]"));
+  const prev=app.querySelector(".row.focus"); rows.forEach(r=>r.classList.remove("focus"));
+  const f=rows.find(r=>!r.classList.contains("is-done")); if(f) f.classList.add("focus");
+  if(scroll && f && f!==prev){ const y=f.getBoundingClientRect().top; if(y<90 || y>innerHeight*0.6) f.scrollIntoView({behavior:"smooth", block:"center"}); }
 }
 function wire(id, total){
   const d = docOf(id);
   const upd = ()=>{ const n=Object.values(d.checks||{}).filter(Boolean).length; const f=document.getElementById("barfill"); if(f){ f.style.width=(total?Math.min(100,n/total*100):0)+"%"; document.getElementById("count").textContent=n+" / "+total; } };
   app.querySelectorAll('.row input[type=checkbox]').forEach(cb=>cb.addEventListener("change",()=>{
-    d.checks = d.checks||{}; d.checks[cb.dataset.k]=cb.checked; cb.closest(".row").classList.toggle("is-done",cb.checked); upd(); save(id);
+    d.checks = d.checks||{}; d.checks[cb.dataset.k]=cb.checked; cb.closest(".row").classList.toggle("is-done",cb.checked); upd(); save(id); refocus(cb.checked);
   }));
   const cal=document.getElementById("cal"); if(cal) cal.addEventListener("input",()=>{ d.cal=cal.value; saveSoon(id); });
   app.querySelectorAll("[data-am]").forEach(b=>b.addEventListener("click",()=>{ d.am = d.am===b.dataset.am ? "" : b.dataset.am; app.querySelectorAll("[data-am]").forEach(x=>x.setAttribute("aria-pressed", String(x.dataset.am===d.am))); save(id); }));
@@ -764,17 +849,17 @@ function renderDay(day){
   const rowCount = day.blocks.reduce((a,b)=>a+b.rows.length,0);
   const plan = PLAN_BY_DAY[day.id], night = NIGHT_BY_DAY[day.id], K = keysFor(day.blocks);
   const valid = new Set(K.flat()); Object.keys(d.checks||{}).forEach(k=>{ if(!valid.has(k)) delete d.checks[k]; });
-  let h = `<div class="dayhead"><div class="kicker">${esc(day.kicker)} · Week 3</div><h2>${esc(day.title)}</h2><p>${esc(day.time)}</p>`;
-  if(rowCount){ const on = W.finish && W.dayId===day.id; h += on ? `<button class="btn startw" id="startw" type="button" style="margin-top:12px;width:100%">Workout running · finish by ${clock(new Date(W.finish))} · tap to end</button>` : `<div class="startpair"><button class="btn" id="startw" type="button">▶ Start · finish by ${clock(new Date(Date.now()+mins(day.time)*60000))}</button><button class="btn" id="startios" type="button" aria-label="iPhone finish alarm only">⏰</button></div>`; }
+  let h = `<div class="dayhead"><div class="kicker">${esc(day.kicker)} · Week 3</div><h2>${esc(day.title)}</h2>${rowCount?`<div class="spec"><div><b>${mins(day.time)||"–"}</b><span>min</span></div><div><b>${rowCount}</b><span>moves</span></div><div><b>${day.blocks.filter(b=>b.rows.length).length}</b><span>blocks</span></div></div>`:`<p>${esc(day.time)}</p>`}`;
+  if(rowCount){ const on = W.finish && W.dayId===day.id; h += on ? `<button class="btn startw" id="startw" type="button" style="margin-top:12px;width:100%">Workout running · finish by ${clock(new Date(W.finish))} · tap to end</button>` : `<div class="startpair"><button class="btn" id="startw" type="button">▶ Start · finish by ${clock(new Date(Date.now()+mins(day.time)*60000))}</button><button class="btn" id="startios" type="button" aria-label="iPhone finish alarm only">${IC_PHONE}</button></div>`; }
   if(rowCount) h += `<div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${rowCount}</b></div>`;
   h += `<div class="after"><div class="pill" style="background:var(--accent-soft)"><strong style="color:var(--accent)">Morning</strong><span>Open up + breathe · <a href="#morning" data-go="morning" style="color:var(--accent);font-weight:700">open</a></span></div><div class="pill"><strong>Tonight</strong><span>${night?"Night "+night.toUpperCase():"Rest night"}${PUSH_BY_DAY[day.id]?" + 100 push-ups":""} + breathing · <a href="#night" data-go="night" style="color:var(--warm);font-weight:700">open</a></span></div></div></div>`;
-  { const am=d.am||"", pl=plan&&PLANS[plan]; h += `<section class="block"><h3>StairMaster${pl?` <small>${esc(pl.h)}</small>`:""}</h3><div class="seg"><button type="button" data-am="went" aria-pressed="${am==="went"}">Went ✓</button><button type="button" data-am="skip" aria-pressed="${am==="skip"}">Didn't go</button></div><div class="field" style="margin-top:8px"><label for="cal">Calories</label><input id="cal" inputmode="numeric" placeholder="from the machine" value="${esc(d.cal||"")}"></div></section>`; }
+  if((plan&&PLANS[plan]) || d.am || d.cal){ const am=d.am||"", pl=plan&&PLANS[plan]; h += `<section class="block"><h3>StairMaster${pl?` <small>${esc(pl.h)}</small>`:""}</h3>${pl?`<p class="note">${esc(day.stair[1]?day.stair[1].charAt(0).toUpperCase()+day.stair[1].slice(1)+". ":"")}Plan and level timer are in the Stair tab.</p>`:""}<div class="seg"><button type="button" data-am="went" aria-pressed="${am==="went"}">Went ✓</button><button type="button" data-am="skip" aria-pressed="${am==="skip"}">Didn't go</button></div><div class="field" style="margin-top:8px"><label for="cal">Calories</label><input id="cal" inputmode="numeric" placeholder="from the machine" value="${esc(d.cal||"")}"></div></section>`; }
   day.blocks.forEach((b,bi)=>{
     const rpl = restPlan(b), bm = mins(b.m);
     h += `<section class="block"><h3>${esc(b.h)}${b.m?` <small>${esc(b.m)}</small>`:""}</h3>`;
     if(bm) h += `<div class="tbar">${tpair("block", bm*60, bm+":00 block", b.h)}</div>`;
     if(b.guide) h += `<details class="guide"><summary>How to pull with your back</summary>${PULL_GUIDE}</details>`;
-    h += b.note?`<p class="note">${esc(b.note)}</p>`:"";
+    h += b.note?`<p class="note">${esc(flowNote(b.note))}</p>`:"";
     if(b.rows.length) h += `<div class="list">` + b.rows.map((r,ri)=>rowHTML(day.id, K[bi][ri], r, d, !/warm-up|cool-down/i.test(b.h), rpl[ri])).join("") + `</div>`;
     h += `</section>`;
   });
@@ -919,7 +1004,9 @@ let finishShortcut = local.get("hy1-finish-shortcut") || "Stair Timer";
 function startWorkout(day, ios){ unlockAudio(); W.finish=Date.now()+mins(day.time)*60000; W.dayId=day.id; W.finishWarned=false; saveW(); keepAwake(); dockTick();
   if(ios) setTimeout(()=>{ location.href="shortcuts://run-shortcut?name="+encodeURIComponent(finishShortcut)+"&input=text&text="+encodeURIComponent(`${clock(new Date(W.finish))} · ${day.chip} workout done`); },150); }
 /* Two buttons per timer: 🔔 runs in the app, ⏰ also starts your iPhone Clock timer through the Start Timer shortcut. */
-function tpair(kind, sec, label, name){ const n=name?` data-name="${esc(name)}"`:""; return `<span class="tpair"><button class="tbtn${kind==="rest"?" rest":""}" type="button" data-t="${kind}" data-sec="${sec}"${n} aria-label="${esc(label)} in app">🔔 ${esc(label)}</button><button class="tbtn ios" type="button" data-t="${kind}" data-sec="${sec}"${n} data-ios="1" aria-label="${esc(label)}: iPhone timer only">⏰</button></span>`; }
+const IC_TIMER = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9.5 2.5h5"/></svg>`;
+const IC_PHONE = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="3"/><path d="M10.5 18.5h3"/></svg>`;
+function tpair(kind, sec, label, name){ const n=name?` data-name="${esc(name)}"`:""; return `<span class="tpair"><button class="tbtn${kind==="rest"?" rest":""}" type="button" data-t="${kind}" data-sec="${sec}"${n} aria-label="${esc(label)} in app">${IC_TIMER}${esc(label)}</button><button class="tbtn ios" type="button" data-t="${kind}" data-sec="${sec}"${n} data-ios="1" aria-label="${esc(label)}: iPhone timer, ${fmt(sec)}">${IC_PHONE}<span>${fmt(sec)}</span></button></span>`; }
 function wireTimers(){ app.querySelectorAll("[data-t]").forEach(b=>b.addEventListener("click",()=>{ const sec=+b.dataset.sec; if(b.dataset.ios){ phoneTimer(sec); return; } if(b.dataset.t==="rest") startRest(sec, false); else startBlock(b.dataset.name||"Block", sec, false); })); }
 function dockTick(){
   clearTimeout(dockRaf);
@@ -1156,7 +1243,7 @@ function render(id){
   if(id!=="stair" && tState.running){ /* keep timer running in background state */ }
   const day = DAYS.find(x=>x.id===id);
   if(day) renderDay(day); else if(id==="stair") renderStair(); else if(id==="night") renderNight(); else if(id==="morning") renderMorning(); else if(id==="am") renderAM(); else if(id==="cali") renderCali(); else if(id==="ideas") renderIdeas(); else renderDay(DAYS[0]);
-  app.style.animation="none"; void app.offsetWidth; app.style.animation="";
+  app.style.animation="none"; void app.offsetWidth; app.style.animation=""; refocus(false);
   app.querySelectorAll("[data-go]").forEach(a=>a.addEventListener("click",e=>{ e.preventDefault(); go(a.dataset.go); }));
 }
 function go(id){ render(id); window.scrollTo({top:0}); try{ history.replaceState(null,"","#"+id); }catch(e){} }
@@ -1166,6 +1253,15 @@ function go(id){ render(id); window.scrollTo({top:0}); try{ history.replaceState
     b.className="chip"+(d.id===t?" today":""); b.type="button"; b.setAttribute("role","tab"); b.dataset.id=d.id; b.setAttribute("aria-label", d.kicker.split(" ·")[0]);
     b.innerHTML=`<span class="wd">${esc(d.chip.slice(0,1))}</span><span class="dn">${i>=0?dates[i].getDate():esc(d.chip)}</span><span class="pip${rows?"":" rest"}"></span>`;
     b.addEventListener("click",()=>go(d.id)); tabsEl.appendChild(b); }); }
+/* Tap an exercise to open or close its details. Rows with nothing to show just check off. */
+app.addEventListener("click",e=>{ const h=e.target.closest(".rowhead"); if(!h) return; const row=h.closest(".row");
+  if(row.classList.contains("bare")){ const cb=row.querySelector("input[type=checkbox]"); cb.checked=!cb.checked; cb.dispatchEvent(new Event("change")); return; }
+  const open=!(row.classList.contains("open") || (row.classList.contains("focus") && !row.classList.contains("shut")));
+  row.classList.toggle("open",open); row.classList.toggle("shut",!open); if(open) openRows.add(h.dataset.row); else openRows.delete(h.dataset.row); });
+new MutationObserver(()=>refocus(false)).observe(app,{childList:true});
+/* iPhone timer test (More sheet) */
+document.getElementById("iphonetest")?.addEventListener("click",()=>phoneTimer(120));
+{ const sc=document.getElementById("scname"); if(sc){ sc.value=shortcutName; sc.addEventListener("input",()=>{ shortcutName=sc.value.trim()||"Start Timer"; local.set("hy1-shortcut",shortcutName); }); } }
 /* Bottom tab bar + More sheet */
 function openSheet(on){ sheet.classList.toggle("open",on); scrim.classList.toggle("open",on); sheet.setAttribute("aria-hidden",String(!on)); }
 tabbar.addEventListener("click",e=>{ const t=e.target.closest(".tab"); if(!t) return; const k=t.dataset.tab; if(k==="more"){ openSheet(true); return; } go(k==="train"?lastDay:k); });
