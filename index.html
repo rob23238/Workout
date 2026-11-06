@@ -379,6 +379,12 @@ section.block:first-of-type::before{top:46px}
 .block h3::before{width:14px;height:14px;margin-top:-7px;left:-38px;background:var(--accent);border:0}
 .block h3 small{font:700 12.5px var(--body);letter-spacing:.08em;color:var(--accent);opacity:1}
 .block .note{color:var(--muted)}
+/* Section titles bigger than the exercise names (17px) so blocks stand apart */
+.block h3{font:800 23px/1.2 var(--display);letter-spacing:-.025em;text-transform:none;color:var(--ink);margin-bottom:8px;align-items:center}
+.block h3::before{width:16px;height:16px;margin-top:-8px;left:-39px}
+.block h3 small{font:700 13px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+.block h3 small::before{content:""}
+.row .name{font-weight:600}
 /* Page fade when switching tabs */
 #app{animation:fade .22s ease}
 @keyframes fade{from{opacity:.0;transform:translateY(4px)}to{opacity:1;transform:none}}
@@ -430,7 +436,7 @@ section.block:first-of-type::before{top:46px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-06-bold";
+const APP_VERSION = "2026-11-06-bold2";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
