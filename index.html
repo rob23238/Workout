@@ -372,6 +372,13 @@ section.block .field{margin-top:8px}
 .sheet-line input{flex:1;min-width:0;font:500 16px var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:9px 14px}
 .sheet{max-height:92vh;overflow-y:auto}
 .finish{margin-right:auto;font:800 13px var(--display);letter-spacing:.32em;padding:5px 4px 5px 10px;border-radius:999px;color:var(--accent);background:var(--accent-soft)}
+/* Section titles: bolder, darker, more space above so blocks separate */
+section.block{padding-top:38px}
+section.block:first-of-type::before{top:46px}
+.block h3{font:800 15px/1.3 var(--body);letter-spacing:.1em;color:var(--ink);margin-bottom:6px}
+.block h3::before{width:14px;height:14px;margin-top:-7px;left:-38px;background:var(--accent);border:0}
+.block h3 small{font:700 12.5px var(--body);letter-spacing:.08em;color:var(--accent);opacity:1}
+.block .note{color:var(--muted)}
 /* Page fade when switching tabs */
 #app{animation:fade .22s ease}
 @keyframes fade{from{opacity:.0;transform:translateY(4px)}to{opacity:1;transform:none}}
@@ -423,7 +430,7 @@ section.block .field{margin-top:8px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-06-swap";
+const APP_VERSION = "2026-11-06-bold";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
