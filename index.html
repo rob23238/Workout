@@ -401,60 +401,37 @@ section.block:first-of-type::before{top:54px}
 .cue.rest{color:var(--warm);background:var(--warm-soft)}
 .cue.rest::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
 .row.is-done .cue{opacity:.45}
-/* ---------- Gear 5 palette: white, red, warm gray ---------- */
-:root[data-palette="gear5"]{--bg:#FFFFFF;--surface:#F4F2F1;--surface-2:#FFFFFF;--ink:#1B1B1F;--muted:#6B656A;--line:#E9E5E3;--line-strong:#CFC8C5;
-  --accent:#D3212D;--accent-ink:#FFFFFF;--accent-soft:#FDECEC;--warm:#9A6A00;--warm-soft:#FBF2D9;--done:#B4ADAA;--glass:rgba(255,255,255,.8)}
-@media (prefers-color-scheme: dark){:root[data-palette="gear5"]:not([data-theme="light"]){--bg:#111012;--surface:#1C1A1D;--surface-2:#252226;--ink:#F4F0EF;--muted:#A69EA3;--line:#2D292D;--line-strong:#463F44;
-  --accent:#FF4D57;--accent-ink:#1A0507;--accent-soft:#3A1519;--warm:#F2C14E;--warm-soft:#33290E;--done:#6F686D;--glass:rgba(17,16,18,.8)}}
-[data-palette="gear5"] .logo-mark{background:linear-gradient(135deg,#F0443F 0%,#D3212D 50%,#8E1220 100%)}
-[data-palette="gear5"] .hero-title .grad{background:linear-gradient(90deg,#D3212D,#F26B3A);-webkit-background-clip:text;background-clip:text}
-[data-palette="gear5"] .bar i{background:linear-gradient(90deg,#D3212D,#FF6B5E)}
-[data-palette="gear5"] .dock{background:#1B1B1F}
-.palette{display:flex;gap:6px;background:var(--bg);padding:4px;border-radius:999px}
-.palette button{border:0;background:none;border-radius:999px;padding:8px 14px;font:600 14px var(--body);color:var(--ink);cursor:pointer;display:flex;align-items:center;gap:6px}
-.palette button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
-.palette i{width:12px;height:12px;border-radius:50%;display:inline-block}
-/* ---------- Gear 5 feel: sun, clouds, rubber bounce ---------- */
-.g5sky{display:none}
-[data-palette="gear5"]{--lav:#8E7CF0;--gold:#F2B705}
-[data-palette="gear5"] .hero{position:relative;overflow:visible}
-[data-palette="gear5"] .hero > :not(.g5sky){position:relative;z-index:1}
-[data-palette="gear5"] .g5sky{display:block;position:absolute;inset:-6px 0 -10px 0;pointer-events:none;z-index:0;overflow:visible;clip-path:inset(-200px 0 -60px 0)}
-.g5sun{position:absolute;right:-30px;top:-4px;width:150px;height:150px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,214,90,.55) 0 34%,rgba(255,214,90,.18) 35% 55%,transparent 56%);
-  animation:g5spin 30s linear infinite}
-.g5sun::before{content:"";position:absolute;inset:-14px;border-radius:50%;border:3px dashed rgba(242,183,5,.55)}
-.g5cloud{position:absolute;fill:#fff;stroke:#E9E3F7;stroke-width:2;filter:drop-shadow(0 6px 10px rgba(142,124,240,.18))}
-.g5cloud.c1{width:96px;right:62px;top:104px;animation:g5drift 9s ease-in-out infinite}
-.g5cloud.c2{width:70px;right:4px;top:34px;animation:g5drift 12s ease-in-out infinite reverse}
-.g5cloud.c3{width:52px;left:58%;top:6px;opacity:.8;animation:g5drift 15s ease-in-out infinite}
-@keyframes g5spin{to{transform:rotate(360deg)}}
-@keyframes g5drift{0%,100%{transform:translateX(0)}50%{transform:translateX(-14px) translateY(-4px)}}
-[data-palette="gear5"] .hero-title .grad{background:linear-gradient(90deg,#D3212D 0%,#F26B3A 45%,#8E7CF0 100%);-webkit-background-clip:text;background-clip:text}
-[data-palette="gear5"] .finish{background:#D3212D;color:#fff;box-shadow:0 4px 14px rgba(211,33,45,.35)}
-[data-palette="gear5"] .logo-mark{background:#fff;color:#D3212D;box-shadow:inset 0 0 0 2.5px #D3212D,0 4px 12px rgba(211,33,45,.25)}
-/* the progress bar is a sunrise */
-[data-palette="gear5"] .bar{height:6px!important;background:var(--line)}
-[data-palette="gear5"] .bar i{background:linear-gradient(90deg,#D3212D,#F2B705,#8E7CF0);background-size:200% 100%;animation:g5shine 3s linear infinite}
+/* ---------- Gear 5 palette: white, lavender purple, soft gray (no red) ---------- */
+:root[data-palette="gear5"]{--bg:#FFFFFF;--surface:#F5F3FA;--surface-2:#FFFFFF;--ink:#1E1B2E;--muted:#6E6A80;--line:#EAE6F2;--line-strong:#CEC8DD;
+  --accent:#6E4CF5;--accent-ink:#FFFFFF;--accent-soft:#EFEBFF;--warm:#9A6A00;--warm-soft:#FBF2D9;--done:#B7B2C6;--glass:rgba(255,255,255,.8)}
+@media (prefers-color-scheme: dark){:root[data-palette="gear5"]:not([data-theme="light"]){--bg:#110F17;--surface:#1B1824;--surface-2:#242030;--ink:#F2EFFA;--muted:#A39DB8;--line:#2C283A;--line-strong:#433D55;
+  --accent:#A58BFF;--accent-ink:#120A2E;--accent-soft:#2A2145;--warm:#F2C14E;--warm-soft:#33290E;--done:#6A647C;--glass:rgba(17,15,23,.8)}}
+[data-palette="gear5"] .logo-mark{background:#fff;color:var(--accent);box-shadow:inset 0 0 0 2.5px var(--accent),0 4px 14px rgba(110,76,245,.25)}
+[data-palette="gear5"] .hero-title .grad{background:linear-gradient(90deg,#6E4CF5 0%,#9B7BFF 55%,#C9B8FF 100%);-webkit-background-clip:text;background-clip:text}
+[data-palette="gear5"] .finish{background:var(--accent);color:var(--accent-ink);box-shadow:0 4px 14px rgba(110,76,245,.3)}
+[data-palette="gear5"] .bar{height:6px!important}
+[data-palette="gear5"] .bar i{background:linear-gradient(90deg,#6E4CF5,#B79CFF,#E9E2FF,#B79CFF,#6E4CF5);background-size:200% 100%;animation:g5shine 3s linear infinite}
 @keyframes g5shine{to{background-position:-200% 0}}
-/* section markers become little suns */
-[data-palette="gear5"] .block h3::before{border-radius:50%;transform:none;background:var(--gold);box-shadow:0 0 0 4px rgba(242,183,5,.25),0 0 14px rgba(242,183,5,.6)}
+[data-palette="gear5"] .block h3::before{border-radius:50%;transform:none;background:#fff;border:3px solid var(--accent);box-shadow:0 0 0 5px var(--accent-soft)}
+[data-palette="gear5"] .dock{background:#1E1B2E}
+[data-palette="gear5"] .chip[aria-selected="true"] .dn{box-shadow:0 6px 16px rgba(110,76,245,.35)}
+[data-palette="gear5"] .row.focus .t{box-shadow:0 0 0 1.5px rgba(110,76,245,.3),0 10px 28px rgba(110,76,245,.14);animation:g5pop .45s cubic-bezier(.34,1.7,.5,1)}
+[data-palette="gear5"] .row.focus .rowhead::before{background:linear-gradient(90deg,#6E4CF5,#B79CFF)}
+[data-palette="gear5"] .row.link::after{background:linear-gradient(#6E4CF5,#C9B8FF)}
 /* rubber: everything you press squashes and bounces back */
 [data-palette="gear5"] .btn:active,[data-palette="gear5"] .tbtn:active,[data-palette="gear5"] .pillbtn:active,[data-palette="gear5"] .chip:active .dn{transform:scale(1.06,.9)}
 [data-palette="gear5"] .btn,[data-palette="gear5"] .tbtn,[data-palette="gear5"] .chip .dn{transition:transform .35s cubic-bezier(.34,1.9,.5,1)}
 [data-palette="gear5"] .row input[type=checkbox]:checked{animation:g5boing .5s cubic-bezier(.34,1.9,.5,1)}
-@keyframes g5boing{0%{transform:scale(.6)}60%{transform:scale(1.25,.85)}100%{transform:scale(1)}}
-[data-palette="gear5"] .row.focus .t{box-shadow:0 0 0 2px #fff,0 0 0 3px rgba(142,124,240,.35),0 10px 28px rgba(142,124,240,.18);animation:g5pop .45s cubic-bezier(.34,1.7,.5,1)}
-@keyframes g5pop{0%{transform:scale(.97)}100%{transform:scale(1)}}
-[data-palette="gear5"] .row.focus .rowhead::before{background:linear-gradient(90deg,#D3212D,#8E7CF0)}
 [data-palette="gear5"] .tab[aria-selected="true"] svg{animation:g5boing .5s cubic-bezier(.34,1.9,.5,1)}
-[data-palette="gear5"] .chip[aria-selected="true"] .dn{box-shadow:0 6px 16px rgba(211,33,45,.35)}
-[data-palette="gear5"] .row.link::after{background:linear-gradient(#D3212D,#8E7CF0)}
-@media (prefers-color-scheme: dark){[data-palette="gear5"]:not([data-theme="light"]) .g5cloud{fill:#2A2630;stroke:#3A3446}
-  [data-palette="gear5"]:not([data-theme="light"]) .logo-mark{background:#1C1A1D}
-  [data-palette="gear5"]:not([data-theme="light"]) .g5sun{opacity:.45}
-  [data-palette="gear5"]:not([data-theme="light"]) .row.focus .t{box-shadow:0 0 0 1px rgba(142,124,240,.4),0 10px 28px rgba(0,0,0,.3)}}
-@media (prefers-reduced-motion:reduce){.g5sun,.g5cloud,[data-palette="gear5"] .bar i{animation:none}}
+@keyframes g5boing{0%{transform:scale(.6)}60%{transform:scale(1.25,.85)}100%{transform:scale(1)}}
+@keyframes g5pop{0%{transform:scale(.97)}100%{transform:scale(1)}}
+@media (prefers-color-scheme: dark){[data-palette="gear5"]:not([data-theme="light"]) .logo-mark{background:#1B1824}
+  [data-palette="gear5"]:not([data-theme="light"]) .block h3::before{background:var(--bg)}}
+@media (prefers-reduced-motion:reduce){[data-palette="gear5"] .bar i{animation:none}}
+.palette{display:flex;gap:6px;background:var(--bg);padding:4px;border-radius:999px}
+.palette button{border:0;background:none;border-radius:999px;padding:8px 14px;font:600 14px var(--body);color:var(--ink);cursor:pointer;display:flex;align-items:center;gap:6px}
+.palette button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.palette i{width:12px;height:12px;border-radius:50%;display:inline-block}
 /* Page fade when switching tabs */
 #app{animation:fade .22s ease}
 @keyframes fade{from{opacity:.0;transform:translateY(4px)}to{opacity:1;transform:none}}
@@ -475,12 +452,6 @@ section.block:first-of-type::before{top:54px}
   </div>
 </header>
 <div class="hero" id="hero">
-  <div class="g5sky" aria-hidden="true">
-    <span class="g5sun"></span>
-    <svg class="g5cloud c1" viewBox="0 0 120 60"><path d="M20 50a16 16 0 0 1 4-31 22 22 0 0 1 40-8 18 18 0 0 1 30 10 15 15 0 0 1 6 29z"/></svg>
-    <svg class="g5cloud c2" viewBox="0 0 120 60"><path d="M20 50a16 16 0 0 1 4-31 22 22 0 0 1 40-8 18 18 0 0 1 30 10 15 15 0 0 1 6 29z"/></svg>
-    <svg class="g5cloud c3" viewBox="0 0 120 60"><path d="M20 50a16 16 0 0 1 4-31 22 22 0 0 1 40-8 18 18 0 0 1 30 10 15 15 0 0 1 6 29z"/></svg>
-  </div>
   <div class="eyebrow" id="hero-date">Day by day</div>
   <h1 class="hero-title" id="hero-greet">Day by day, <span class="grad">Big RPJ.</span></h1>
 </div>
@@ -506,14 +477,14 @@ section.block:first-of-type::before{top:54px}
     <button type="button" class="tile" data-goto="ideas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg><span>Ideas<small>Save what you see</small></span></button>
   </div>
   <div class="sheet-row"><div><div class="lbl">Your data</div><div class="sync" id="sync">Saved on this phone</div></div><button type="button" class="pillbtn" id="copydata">Copy data</button></div>
-  <div class="sheet-row"><div class="lbl">Color</div><div class="palette" id="palette"><button type="button" data-pal="blue"><i style="background:#0064E0"></i>Blue</button><button type="button" data-pal="gear5"><i style="background:#D3212D"></i>Gear 5</button></div></div>
+  <div class="sheet-row"><div class="lbl">Color</div><div class="palette" id="palette"><button type="button" data-pal="blue"><i style="background:#0064E0"></i>Blue</button><button type="button" data-pal="gear5"><i style="background:#6E4CF5"></i>Gear 5</button></div></div>
   <div class="sheet-row col"><div class="lbl">iPhone timer check</div>
     <p class="sheet-help">Tap Test. Your Clock should start at exactly <b>2:00</b>. If it says 2 hours, open Shortcuts, edit <b>Start Timer</b>, and change <b>minutes</b> to <b>seconds</b> (the number should be Shortcut Input).</p>
     <div class="sheet-line"><input id="scname" aria-label="Shortcut name" autocomplete="off" placeholder="Start Timer"><button type="button" class="pillbtn" id="iphonetest">Test 2:00</button></div></div>
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-07-gear5b";
+const APP_VERSION = "2026-11-07-gear5c";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
