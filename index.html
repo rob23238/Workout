@@ -444,12 +444,14 @@ section.block:first-of-type::before{top:54px}
   --panel:rgba(255,255,255,.05);--panel-line:rgba(255,255,255,.1);--panel-shadow:0 10px 30px rgba(0,0,0,.35);
   --prime:linear-gradient(180deg,#FFFFFF 0%,#D9DEE8 45%,#A9B1C1 100%);--prime-ink:#0A0A0D;--chrome:#E6EAF2}}
 /* the aura behind everything: this is what the glass shows through */
-[data-palette="mix"] body{background:
-  radial-gradient(70% 30% at 15% 5%,rgba(var(--aura),.14),transparent 75%),
-  radial-gradient(70% 30% at 85% 30%,rgba(var(--aura),.12),transparent 75%),
-  radial-gradient(70% 30% at 15% 60%,rgba(var(--aura),.12),transparent 75%),
-  radial-gradient(70% 30% at 85% 90%,rgba(var(--aura),.12),transparent 75%),
-  linear-gradient(180deg,rgba(var(--aura),.08),rgba(var(--aura),.05) 50%,rgba(var(--aura),.08)),var(--bg);background-attachment:fixed}
+[data-palette="mix"] body{background:var(--bg)}
+/* the aura lives on the words, not the background */
+[data-palette="mix"]{--glow:.32}
+@media (prefers-color-scheme: dark){[data-palette="mix"]:not([data-theme="light"]){--glow:.6}}
+[data-palette="mix"] :is(.hero-title,.dayhead h2,.block h3,.sheet h2,.timer .big){text-shadow:0 0 22px rgba(var(--aura),var(--glow)),0 0 3px rgba(var(--aura),calc(var(--glow) * .6))}
+[data-palette="mix"] .hero-title .grad,[data-palette="mix"] .spec b{text-shadow:none;filter:drop-shadow(0 0 12px rgba(var(--aura),var(--glow)))}
+[data-palette="mix"] .row.focus .name,[data-palette="mix"] .dock .main{text-shadow:0 0 14px rgba(var(--aura),var(--glow))}
+[data-palette="mix"] :is(.dayhead .kicker,.block h3 small,.row .dose,.sslbl){text-shadow:0 0 10px rgba(var(--aura),calc(var(--glow) * .7))}
 @media (prefers-color-scheme: dark){[data-palette="mix"]:not([data-theme="light"]) body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px;-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.35) 60%,rgba(0,0,0,.6));mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.35) 60%,rgba(0,0,0,.6))}}
 /* frosted glass panels */
 [data-palette="mix"] :is(.pill,.field,.seg,.timer,details.guide,details.setup,.sheet-row,.tile,.stat,.breath,.callout,.skill,.lvl,.list .idea,.tpair .ios,.iconbtn,.startpair .btn+.btn){background:var(--panel)!important;-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);box-shadow:inset 0 0 0 1px var(--panel-line),var(--panel-shadow)}
@@ -534,7 +536,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-07-ssb2";
+const APP_VERSION = "2026-11-07-ssb3";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
