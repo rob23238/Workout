@@ -434,24 +434,18 @@ section.block:first-of-type::before{top:54px}
 .palette i{width:12px;height:12px;border-radius:50%;display:inline-block}
 /* ---------- Mix: frosted glass, silver + black, Super Saiyan Blue aura undertone. Light + dark ---------- */
 :root[data-palette="mix"]{color-scheme:light;--aura:0,148,255;
-  --bg:#EDEFF3;--surface:rgba(255,255,255,.58);--surface-2:rgba(255,255,255,.85);--ink:#101218;--muted:#5A6070;--line:rgba(16,18,24,.08);--line-strong:#BFC5CF;
+  --bg:#EDEFF3;--surface:rgba(255,255,255,.58);--surface-2:rgba(255,255,255,.85);--ink:#0B1A2E;--muted:#4D6078;--line:rgba(16,18,24,.08);--line-strong:#BFC5CF;
   --accent:#0A6BD6;--accent-ink:#FFFFFF;--accent-soft:rgba(10,107,214,.09);--warm:#9A6A00;--warm-soft:rgba(242,183,5,.16);--done:#A7ACB6;--glass:rgba(237,239,243,.55);
   --panel:rgba(255,255,255,.52);--panel-line:rgba(255,255,255,.85);--panel-shadow:0 10px 30px rgba(16,18,24,.07);
-  --prime:linear-gradient(180deg,#2A2D36 0%,#0B0C10 100%);--prime-ink:#FFFFFF;--chrome:#101218}
+  --prime:linear-gradient(180deg,#22314A 0%,#0A1426 100%);--prime-ink:#F2F8FF;--chrome:#0B1A2E}
 @media (prefers-color-scheme: dark){:root[data-palette="mix"]:not([data-theme="light"]){color-scheme:dark;--aura:40,196,255;
-  --bg:#07080A;--surface:rgba(255,255,255,.05);--surface-2:rgba(255,255,255,.08);--ink:#F3F4F8;--muted:#9EA3B3;--line:rgba(255,255,255,.07);--line-strong:#3B3D46;
+  --bg:#07080A;--surface:rgba(255,255,255,.05);--surface-2:rgba(255,255,255,.08);--ink:#E8F4FF;--muted:#8FA5BC;--line:rgba(200,230,255,.08);--line-strong:#3B3D46;
   --accent:#6FD6FF;--accent-ink:#0A0A0D;--accent-soft:rgba(40,196,255,.12);--warm:#F2C14E;--warm-soft:rgba(242,193,78,.12);--done:#5E6070;--glass:rgba(7,8,10,.55);
   --panel:rgba(255,255,255,.05);--panel-line:rgba(255,255,255,.1);--panel-shadow:0 10px 30px rgba(0,0,0,.35);
-  --prime:linear-gradient(180deg,#FFFFFF 0%,#D9DEE8 45%,#A9B1C1 100%);--prime-ink:#0A0A0D;--chrome:#E6EAF2}}
+  --prime:linear-gradient(180deg,#FFFFFF 0%,#DCE9F6 45%,#A7BBD0 100%);--prime-ink:#0A1426;--chrome:#E1EEFA}}
 /* the aura behind everything: this is what the glass shows through */
 [data-palette="mix"] body{background:var(--bg)}
-/* the aura lives on the words, not the background */
-[data-palette="mix"]{--glow:.32}
-@media (prefers-color-scheme: dark){[data-palette="mix"]:not([data-theme="light"]){--glow:.6}}
-[data-palette="mix"] :is(.hero-title,.dayhead h2,.block h3,.sheet h2,.timer .big){text-shadow:0 0 22px rgba(var(--aura),var(--glow)),0 0 3px rgba(var(--aura),calc(var(--glow) * .6))}
-[data-palette="mix"] .hero-title .grad,[data-palette="mix"] .spec b{text-shadow:none;filter:drop-shadow(0 0 12px rgba(var(--aura),var(--glow)))}
-[data-palette="mix"] .row.focus .name,[data-palette="mix"] .dock .main{text-shadow:0 0 14px rgba(var(--aura),var(--glow))}
-[data-palette="mix"] :is(.dayhead .kicker,.block h3 small,.row .dose,.sslbl){text-shadow:0 0 10px rgba(var(--aura),calc(var(--glow) * .7))}
+/* the undertone lives in the text color itself: navy-black (light), icy white (dark) */
 @media (prefers-color-scheme: dark){[data-palette="mix"]:not([data-theme="light"]) body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px;-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.35) 60%,rgba(0,0,0,.6));mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.35) 60%,rgba(0,0,0,.6))}}
 /* frosted glass panels */
 [data-palette="mix"] :is(.pill,.field,.seg,.timer,details.guide,details.setup,.sheet-row,.tile,.stat,.breath,.callout,.skill,.lvl,.list .idea,.tpair .ios,.iconbtn,.startpair .btn+.btn){background:var(--panel)!important;-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);box-shadow:inset 0 0 0 1px var(--panel-line),var(--panel-shadow)}
@@ -536,7 +530,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-07-ssb3";
+const APP_VERSION = "2026-11-07-ssb4";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
