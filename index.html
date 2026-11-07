@@ -8,6 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Discipline">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
+<script>try{document.documentElement.dataset.palette=localStorage.getItem("hy1-palette")||"gear5";}catch(e){document.documentElement.dataset.palette="gear5";}</script>
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0B0E11" media="(prefers-color-scheme: dark)">
 <link rel="apple-touch-icon" href="icon-180.png">
@@ -400,6 +401,19 @@ section.block:first-of-type::before{top:54px}
 .cue.rest{color:var(--warm);background:var(--warm-soft)}
 .cue.rest::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
 .row.is-done .cue{opacity:.45}
+/* ---------- Gear 5 palette: white, red, warm gray ---------- */
+:root[data-palette="gear5"]{--bg:#FFFFFF;--surface:#F4F2F1;--surface-2:#FFFFFF;--ink:#1B1B1F;--muted:#6B656A;--line:#E9E5E3;--line-strong:#CFC8C5;
+  --accent:#D3212D;--accent-ink:#FFFFFF;--accent-soft:#FDECEC;--warm:#9A6A00;--warm-soft:#FBF2D9;--done:#B4ADAA;--glass:rgba(255,255,255,.8)}
+@media (prefers-color-scheme: dark){:root[data-palette="gear5"]:not([data-theme="light"]){--bg:#111012;--surface:#1C1A1D;--surface-2:#252226;--ink:#F4F0EF;--muted:#A69EA3;--line:#2D292D;--line-strong:#463F44;
+  --accent:#FF4D57;--accent-ink:#1A0507;--accent-soft:#3A1519;--warm:#F2C14E;--warm-soft:#33290E;--done:#6F686D;--glass:rgba(17,16,18,.8)}}
+[data-palette="gear5"] .logo-mark{background:linear-gradient(135deg,#F0443F 0%,#D3212D 50%,#8E1220 100%)}
+[data-palette="gear5"] .hero-title .grad{background:linear-gradient(90deg,#D3212D,#F26B3A);-webkit-background-clip:text;background-clip:text}
+[data-palette="gear5"] .bar i{background:linear-gradient(90deg,#D3212D,#FF6B5E)}
+[data-palette="gear5"] .dock{background:#1B1B1F}
+.palette{display:flex;gap:6px;background:var(--bg);padding:4px;border-radius:999px}
+.palette button{border:0;background:none;border-radius:999px;padding:8px 14px;font:600 14px var(--body);color:var(--ink);cursor:pointer;display:flex;align-items:center;gap:6px}
+.palette button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.palette i{width:12px;height:12px;border-radius:50%;display:inline-block}
 /* Page fade when switching tabs */
 #app{animation:fade .22s ease}
 @keyframes fade{from{opacity:.0;transform:translateY(4px)}to{opacity:1;transform:none}}
@@ -445,13 +459,14 @@ section.block:first-of-type::before{top:54px}
     <button type="button" class="tile" data-goto="ideas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg><span>Ideas<small>Save what you see</small></span></button>
   </div>
   <div class="sheet-row"><div><div class="lbl">Your data</div><div class="sync" id="sync">Saved on this phone</div></div><button type="button" class="pillbtn" id="copydata">Copy data</button></div>
+  <div class="sheet-row"><div class="lbl">Color</div><div class="palette" id="palette"><button type="button" data-pal="blue"><i style="background:#0064E0"></i>Blue</button><button type="button" data-pal="gear5"><i style="background:#D3212D"></i>Gear 5</button></div></div>
   <div class="sheet-row col"><div class="lbl">iPhone timer check</div>
     <p class="sheet-help">Tap Test. Your Clock should start at exactly <b>2:00</b>. If it says 2 hours, open Shortcuts, edit <b>Start Timer</b>, and change <b>minutes</b> to <b>seconds</b> (the number should be Shortcut Input).</p>
     <div class="sheet-line"><input id="scname" aria-label="Shortcut name" autocomplete="off" placeholder="Start Timer"><button type="button" class="pillbtn" id="iphonetest">Test 2:00</button></div></div>
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-07e";
+const APP_VERSION = "2026-11-07-gear5";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -1173,18 +1188,20 @@ const NOSE_CARDIO = `<div class="callout"><b>Nose training:</b> breathe only thr
 
 /* ---------- Morning routine ---------- */
 const MORNING_MOB = [
- ["Thoracic extension over a towel roll","10 slow reps · 1 min","Posture. Roll a towel tight (or use the bed edge), lie on it under your shoulder blades, hands behind your head. Breathe out and let your upper back arch over it, breathe in and come up. Opens the rounded upper back","",S("thoracic extension towel roll")],
- ["Doorway chest stretch","Right 2 × 30 sec · left 1 × 30 sec · 2 min","Posture. Forearm on the door frame, elbow at shoulder height, step through. Your right side is tighter, so it gets the extra set. Long exhales","",S("doorway pec minor stretch")],
- ["Side bend, right arm overhead","2 × 30 sec · 1 min","Posture. Stand tall, reach your right arm overhead and lean to the left. Opens the crunched right side. Breathe into your right ribs","",S("standing side bend stretch")],
- ["Prone Y-T raises","1 × 8 Y + 8 T · 1.5 min","Posture. Lie face down, thumbs up. Lift your arms in a Y, then a T, 2-sec hold each rep. Shoulder blades down and back. Builds the muscles that hold your shoulders back","",S("prone Y T raise lower trap")]];function renderMorning(){
+ ["Chin tuck + head lift","5 × 10-sec holds · 1.5 min","Forward head fix. Lie on your back, no pillow. Nod your chin straight down (make a double chin) without lifting, then lift your head one inch off the floor and hold 10 sec. Chin stays tucked the whole time; if your chin pokes up, you lost it. Trains the deep neck muscles that hold your head back over your shoulders","",S("supine chin tuck head lift deep neck flexor")],
+ ["Prone Y-T raises","1 × 8 Y + 8 T · 1.5 min","Posture. Lie face down, thumbs up. Lift your arms in a Y, then a T, 2-sec hold each rep. Shoulder blades down and back. The Y is the best-tested move there is for the lower traps, the muscles that pull your shoulders back and down","",S("prone Y T raise lower trap")],
+ ["Side-lying external rotation","Right 2 × 12 · left 1 × 12 · 1.5 min","Rounded right shoulder fix. Lie on your side, towel under the top elbow, elbow bent 90°. Rotate the forearm up toward the ceiling, 2-sec hold, 3 sec down. Use a water bottle or 5 lb. Works the lower traps and rear rotator cuff while keeping the upper traps (the shrug muscles) quiet","",S("side lying external rotation towel")],
+ ["Wall slide with lift-off","2 × 8 · 1.5 min","Serratus + lower traps. Forearms on the wall, pinkies touching it, a towel under each forearm. Slide up into a V while you push the wall away, then lift your hands 1 inch off the wall for 2 sec at the top. Ribs down, no low-back arch. Pulls your shoulder blades around and up, the opposite of a slouch","",S("wall slide lift off serratus lower trap")],
+ ["Corner pec minor stretch, arm high","Right 2 × 30 sec · left 1 × 30 sec · 1.5 min","Rounded shoulder fix. Forearm on the door frame or wall corner with your elbow above shoulder height (higher than a normal chest stretch), step through and turn slightly away. Feel it near the front of your shoulder, under the collarbone. Tight pec minor is what tips your shoulder forward","",S("doorway pec minor stretch elbow high")],
+ ["Right-side opener breathing","5 slow breaths · 1 min","Fixes the crunched right side. Lie on your LEFT side with a rolled towel or pillow under your left ribs. Reach your right arm long overhead. Breathe in through your nose into your right ribs and feel them spread, long exhale. The right side gets longer and your right shoulder sits back","",S("side lying lateral breathing rib expansion")]];;function renderMorning(){
   const wk=todayId(), weekend = wk==="sat"||wk==="sun", d=docOf("morning-"+wk);
   const breaths = ["sigh","belly","box"].concat(weekend?["skull"]:[]), core = ["sigh","belly"];
   const checks = [...MORNING_MOB.map(r=>["m-"+slug(r[0]),r]), ...breaths.map(b=>["m-"+b,[BREATHS[b].name+" done","","","",""]]), ["m-nose",["Nose unblock done","","","",""]], ["m-senses",["5–4–3–2–1 done","","","",""]], ["m-belief",["Said my belief out loud","","","",""]],
  ["Upper trap stretch, left ear to left shoulder","2 × 30 sec · 1 min","Posture. Sit tall, right hand under your thigh, gently tip your left ear toward your left shoulder. Releases the right side of your neck. Long exhales","",S("upper trap stretch")]];
-  let h = `<div class="dayhead"><div class="kicker">Morning · every day · ~10 min</div><h2>Wake up loose and clear</h2><p>Five posture moves to open your upper back, neck and right side, then breathe and set your mind before work. ${weekend?"It's the weekend, so skull shining breath is on today.":"Skull shining breath is saved for weekends."}</p>
-  <div class="tbar" style="margin-top:12px">${tpair("block", 600, "10:00 routine", "Morning routine")}</div>
+  let h = `<div class="dayhead"><div class="kicker">Morning · every day · ~12 min</div><h2>Wake up loose and clear</h2><p>Six posture moves for your head, rounded right shoulder and crunched right side, then breathe and set your mind before work. ${weekend?"It's the weekend, so skull shining breath is on today.":"Skull shining breath is saved for weekends."}</p>
+  <div class="tbar" style="margin-top:12px">${tpair("block", 720, "12:00 routine", "Morning routine")}</div>
   <div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${checks.length}</b></div></div>`;
-  h += `<section class="block"><h3>Posture <small>6.5 min</small></h3><div class="list">` + MORNING_MOB.map(r=>rowHTML("morning","m-"+slug(r[0]),r,d,false)).join("") + `</div></section>`;
+  h += `<section class="block"><h3>Posture <small>8.5 min</small></h3><div class="list">` + MORNING_MOB.map(r=>rowHTML("morning","m-"+slug(r[0]),r,d,false)).join("") + `</div></section>`;
   h += `<section class="block"><h3>Breathe <small>4 min</small></h3>` + core.map(b=>breathHTML(b,"m"+b)).join("") + `<details class="guide" style="border-width:1px;margin-top:10px"><summary>Optional (extra time only)</summary>${breaths.filter(b=>!core.includes(b)).map(b=>breathHTML(b,"m"+b)).join("")}${NOSE_HTML}</details></section>`;
   h += `<section class="block"><h3>Mindset <small>1 min</small></h3><div class="callout"><b>My belief:</b> "${esc(BELIEF)}"<div style="font-size:13px;font-weight:600;color:var(--accent);margin-top:4px">${esc(BELIEF_REF)}</div><div style="font:700 22px var(--display);letter-spacing:-.02em;margin-top:10px">Keep going 🦁🦍</div></div>${sensesHTML()}</section>`;
   h += `<section class="block"><h3>Check off</h3><div class="list">` + checks.slice(MORNING_MOB.length).map(([k,r])=>rowHTML("morning",k,r,d,false)).join("") + `</div></section>`;
@@ -1280,6 +1297,9 @@ app.addEventListener("click",e=>{ const h=e.target.closest(".rowhead"); if(!h) r
   const open=!(row.classList.contains("open") || (row.classList.contains("focus") && !row.classList.contains("shut")));
   row.classList.toggle("open",open); row.classList.toggle("shut",!open); if(open) openRows.add(h.dataset.row); else openRows.delete(h.dataset.row); });
 new MutationObserver(()=>refocus(false)).observe(app,{childList:true});
+/* Color theme switch: Blue or Gear 5 */
+{ const pal=document.getElementById("palette"); const setPal=v=>{ document.documentElement.dataset.palette=v; try{localStorage.setItem("hy1-palette",v);}catch(e){} pal.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.pal===v))); };
+  setPal(document.documentElement.dataset.palette||"gear5"); pal.addEventListener("click",e=>{ const b=e.target.closest("[data-pal]"); if(b) setPal(b.dataset.pal); }); }
 /* iPhone timer test (More sheet) */
 document.getElementById("iphonetest")?.addEventListener("click",()=>phoneTimer(120));
 { const sc=document.getElementById("scname"); if(sc){ sc.value=shortcutName; sc.addEventListener("input",()=>{ shortcutName=sc.value.trim()||"Start Timer"; local.set("hy1-shortcut",shortcutName); }); } }
