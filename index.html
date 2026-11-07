@@ -451,7 +451,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-07b";
+const APP_VERSION = "2026-11-07c";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -480,7 +480,19 @@ const PULL_GUIDE = `
 </ul>
 <div class="bad"><b>End the set when:</b> your shoulders shrug to your ears, you swing or kick, your biceps burn before your back, or you can't get back to straight arms.</div>
 <h4>Before each set</h4>
-<p>Hang, crush the bar, bend the bar, then do one pool move. If your lats tighten under your armpits, you're ready.</p>`;
+<p>Hang, crush the bar, bend the bar, then do one pool move. If your lats tighten under your armpits, you're ready.</p>
+<h4>7. Every rep starts from a dead hang</h4>
+<p>A rep only counts if it starts with your arms fully straight, from a still hang. No swinging, no kipping, no half reps at the bottom. Hang still, do the pool move, then pull until your chin is over the bar (chest to the bar is even better). Then go down slow until your arms are straight again. Starting each rep from a dead stop is harder, and that's the point: it's what makes 30 real reps count.</p>
+<h4>8. Breaking the plateau (goal: 30 dead-hang reps, then 50)</h4>
+<p>You can get about 20, but strict from a dead hang will probably be fewer, maybe 12–15. That dead-hang number is your real starting point, so find it first: Sunday's last pull-up set is your test. You stall when max sets are your only practice. A max set is a test, not training. You get better at pull-ups the same way you got better at catching passes: lots of clean reps, a little fresh every time, many times a week.</p>
+<ol>
+<li><b>Pull day sets:</b> stop 1–2 reps before failure. Use about two-thirds of your dead-hang max: if it's 12, do sets of 8 that all look perfect. Four clean sets of 8 = 32 good reps, more than one sloppy max set gives you.</li>
+<li><b>Grease the groove (home bar):</b> on days without pull-ups, do 5 easy sets of about a third of your max (4–6 reps), spread through the day, like every time you walk past the bar. Never close to failure. This teaches your body that pull-ups are easy.</li>
+<li><b>Slow negatives:</b> after your last set, jump to the top and take 5 seconds to lower down. Do 3. This builds strength for the hardest part, the bottom.</li>
+<li><b>Weight (when the vest is back):</b> 4–5 sets of 5 with the vest. Heavy sets of 5 make bodyweight reps feel light.</li>
+<li><b>Test every 2 weeks:</b> one all-out set from a dead hang, then log it. That number is how you know it's working.</li>
+</ol>
+<div class="big">Rough path: your dead-hang max goes up 2–3 reps a month. 20 strict by early 2027, 30 after that. 50 is elite and takes a year or more of steady work.</div>`;
 const SS = "Superset: do the 1 then the 2 back to back, rest, repeat for all rounds.";
 const DAYS = [
  {id:"mon", chip:"Mon", kicker:"Monday", title:"StairMaster only", time:"", stair:["30-min max burn","this morning"], night:"Night stretch + 100 push-ups",
@@ -553,7 +565,7 @@ const DAYS = [
     ["Between sets: standing hip CARs","3 slow circles each way, each leg","Mobility during your rest, then back to work. Standing on one leg (hold the rack), draw the biggest, slowest circle you can with your knee: up, out, back, down. From your Mobility Work sheet",MINE,"https://www.youtube.com/shorts/1AcFl51wYuw"]]},
    {h:"Incline bench", m:"14 min", note:"Superset B, 4 rounds: incline set, straight to pull-ups, rest 2 min. Pulling matches pushing for your posture.", rows:[
     ["Incline bench press","Bar × 10, 135 × 5, then 4 × 8 @ 155","Bench at about 30°. Shoulder blades pinched, bar to your upper chest just under the collarbone, 2 sec down. Watch the right shoulder: keep it pinned back. All 4 sets clean? Next time 165",HAM,S("incline barbell bench press form 30 degree"),"B1"],
-    ["Pull-ups","4 × 6–8 · bodyweight (last set max)","No lat pulldown at home, so pull-ups do the job. Crush the bar, shoulders down first (the pool move), elbows to your back pockets, 3 sec down",LW,S("strict pull up form"),"B2"],
+    ["Pull-ups","4 × 6–8 · bodyweight (last set max)","No lat pulldown at home, so pull-ups do the job. Every rep from a dead hang: arms straight, pool move, crush the bar, elbows to your back pockets, chin over, 3 sec down. Stop 1–2 reps short of failure",LW,S("strict pull up form"),"B2"],
     ["Between sets: quadruped T-spine rotation","5 each side, slow","Mobility during your rest, then back to work. On hands and knees, hand behind your head, rotate the elbow down under you, then up to the ceiling","",S("quadruped thoracic rotation")]]},
    {h:"Arms", m:"7 min", note:"Superset C, 3 rounds, rest 60 sec.", rows:[
     ["Hammer curl","3 × 10–12 @ 35–40 lb","Thumbs up, elbows pinned, no swinging, 3 sec down. Biceps + forearms","",S("dumbbell hammer curl form"),"C1"],
@@ -577,7 +589,7 @@ const DAYS = [
     ["L-sit","3 × max hold · bodyweight","Hands on the floor or parallettes, push down, lift your hips and legs. Use your L-sit level from the Calisthenics tab",LW,S("l sit progression beginner")]]},
    {h:"Back squat + pull-ups", m:"15 min", note:"Superset A, 4 rounds: squat, straight to pull-ups, rest 2 min. Legs and back don't compete, so you get both done in one block.", rows:[
     ["Back squat (rack or Smith)","Bar × 10, 135 × 5, then 3 × 6 @ 185–215","Brace your abs, squeeze your glutes at the top, 3 sec down. Lower back cranky? Stay at 185",HAM,S("barbell back squat form"),"A1"],
-    ["Pull-ups","4 × 6–8 · bodyweight (last set max)","No vest for now. Crush the bar, pool move, elbows to your back pockets, 3 sec down",LW,S("strict pull up form"),"A2"],
+    ["Pull-ups","4 × 6–8 · bodyweight (last set max)","No vest for now. Every rep from a dead hang: arms straight, pool move, crush the bar, chin over, 3 sec down. Last set is your max test: log it",LW,S("strict pull up form"),"A2"],
     ["Between sets: standing hip CARs","3 slow circles each way, each leg","Mobility during your rest. Hold the rack, draw the biggest, slowest circle you can with your knee",MINE,"https://www.youtube.com/shorts/1AcFl51wYuw"]]},
    {h:"Core: rotation + abs", m:"12 min", note:"Supersets A and B, 3 rounds, rest 60 sec. Pallof press teaches your core to resist twisting; woodchops teach it to make twisting: both are athletic core.", rows:[
     ["Cable Pallof press","3 × 10 each side @ 20–30 lb (cable)","Stand sideways to the cable, handle at your chest. Press it straight out and hold 2 sec. Don't let it pull you around",AC,S("cable pallof press form"),"A1"],
@@ -865,7 +877,7 @@ function renderDay(day){
     const rpl = restPlan(b), bm = mins(b.m);
     h += `<section class="block"><h3>${esc(b.h)}${b.m?` <small>${esc(b.m)}</small>`:""}</h3>`;
     if(bm) h += `<div class="tbar">${tpair("block", bm*60, bm+":00 block", b.h)}</div>`;
-    if(b.guide) h += `<details class="guide"><summary>How to pull with your back</summary>${PULL_GUIDE}</details>`;
+    if(b.guide || b.rows.some(r=>r && /pull-ups?\b/i.test(r[0]) && !/scapular/i.test(r[0]))) h += `<details class="guide"><summary>Pull-ups: how to do them + break the plateau</summary>${PULL_GUIDE}</details>`;
     h += b.note?`<p class="note">${esc(flowNote(b.note))}</p>`:"";
     if(b.rows.length) h += `<div class="list">` + b.rows.map((r,ri)=>rowHTML(day.id, K[bi][ri], r, d, !/warm-up|cool-down/i.test(b.h), rpl[ri])).join("") + `</div>`;
     h += `</section>`;
