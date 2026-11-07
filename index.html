@@ -394,6 +394,12 @@ section.block:first-of-type::before{top:46px}
 section.block{padding-top:44px}
 section.block:first-of-type::before{top:54px}
 .row .name{font-size:18px}
+/* Superset cues: blue = keep going, orange = rest now */
+.cue{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font:700 13px var(--body);border-radius:999px;padding:5px 12px}
+.cue.go{color:var(--accent);background:var(--accent-soft)}
+.cue.rest{color:var(--warm);background:var(--warm-soft)}
+.cue.rest::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.row.is-done .cue{opacity:.45}
 /* Page fade when switching tabs */
 #app{animation:fade .22s ease}
 @keyframes fade{from{opacity:.0;transform:translateY(4px)}to{opacity:1;transform:none}}
@@ -445,7 +451,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-07a";
+const APP_VERSION = "2026-11-07b";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -545,9 +551,9 @@ const DAYS = [
     ["Single-leg Romanian deadlift (one dumbbell)","3 × 6 each leg, build to 8 @ 40–50 lb","Hold one dumbbell in the hand opposite your standing leg. Soft knee, hinge at the hips, back flat, reach the dumbbell toward the floor until you feel your hamstring, then squeeze your glute to stand. Weak leg first. Hold a wall with your free hand if you wobble","",S("single leg romanian deadlift one dumbbell form"),"C1"],
     ["Copenhagen side plank (groin)","3 × 20 sec each side · bodyweight","Side plank with your top leg on the bench (inside of the knee on it to start, foot when it gets easy), bottom leg hanging free. Squeeze your top leg down into the bench, hips high, body in a straight line. Strengthens the groin and inner thighs plus obliques. Helps the middle split","",S("copenhagen side plank knee progression"),"C2"],
     ["Between sets: standing hip CARs","3 slow circles each way, each leg","Mobility during your rest, then back to work. Standing on one leg (hold the rack), draw the biggest, slowest circle you can with your knee: up, out, back, down. From your Mobility Work sheet",MINE,"https://www.youtube.com/shorts/1AcFl51wYuw"]]},
-   {h:"Incline bench", m:"14 min", note:"Superset B, 4 rounds: incline set, straight to pulldowns, rest 2 min. Pulling matches pushing for your posture.", rows:[
+   {h:"Incline bench", m:"14 min", note:"Superset B, 4 rounds: incline set, straight to pull-ups, rest 2 min. Pulling matches pushing for your posture.", rows:[
     ["Incline bench press","Bar × 10, 135 × 5, then 4 × 8 @ 155","Bench at about 30°. Shoulder blades pinched, bar to your upper chest just under the collarbone, 2 sec down. Watch the right shoulder: keep it pinned back. All 4 sets clean? Next time 165",HAM,S("incline barbell bench press form 30 degree"),"B1"],
-    ["Lat pulldown","4 × 10 @ 140–160 lb","Shoulders down first, rip your elbows to your back pockets, bar to upper chest, 3 sec up","",S("lat pulldown form"),"B2"],
+    ["Pull-ups","4 × 6–8 · bodyweight (last set max)","No lat pulldown at home, so pull-ups do the job. Crush the bar, shoulders down first (the pool move), elbows to your back pockets, 3 sec down",LW,S("strict pull up form"),"B2"],
     ["Between sets: quadruped T-spine rotation","5 each side, slow","Mobility during your rest, then back to work. On hands and knees, hand behind your head, rotate the elbow down under you, then up to the ceiling","",S("quadruped thoracic rotation")]]},
    {h:"Arms", m:"7 min", note:"Superset C, 3 rounds, rest 60 sec.", rows:[
     ["Hammer curl","3 × 10–12 @ 35–40 lb","Thumbs up, elbows pinned, no swinging, 3 sec down. Biceps + forearms","",S("dumbbell hammer curl form"),"C1"],
@@ -571,7 +577,7 @@ const DAYS = [
     ["L-sit","3 × max hold · bodyweight","Hands on the floor or parallettes, push down, lift your hips and legs. Use your L-sit level from the Calisthenics tab",LW,S("l sit progression beginner")]]},
    {h:"Back squat + pull-ups", m:"15 min", note:"Superset A, 4 rounds: squat, straight to pull-ups, rest 2 min. Legs and back don't compete, so you get both done in one block.", rows:[
     ["Back squat (rack or Smith)","Bar × 10, 135 × 5, then 3 × 6 @ 185–215","Brace your abs, squeeze your glutes at the top, 3 sec down. Lower back cranky? Stay at 185",HAM,S("barbell back squat form"),"A1"],
-    ["Weighted pull-ups","4 × 5 · 30 lb vest (last set max, no vest)","Crush the bar, pool move, elbows to your back pockets, 2 sec down",LW,S("weighted pull up form"),"A2"],
+    ["Pull-ups","4 × 6–8 · bodyweight (last set max)","No vest for now. Crush the bar, pool move, elbows to your back pockets, 3 sec down",LW,S("strict pull up form"),"A2"],
     ["Between sets: standing hip CARs","3 slow circles each way, each leg","Mobility during your rest. Hold the rack, draw the biggest, slowest circle you can with your knee",MINE,"https://www.youtube.com/shorts/1AcFl51wYuw"]]},
    {h:"Core: rotation + abs", m:"12 min", note:"Supersets A and B, 3 rounds, rest 60 sec. Pallof press teaches your core to resist twisting; woodchops teach it to make twisting: both are athletic core.", rows:[
     ["Cable Pallof press","3 × 10 each side @ 20–30 lb (cable)","Stand sideways to the cable, handle at your chest. Press it straight out and hold 2 sec. Don't let it pull you around",AC,S("cable pallof press form"),"A1"],
@@ -819,9 +825,11 @@ function rowHTML(prefix, key, r, d, loggable, rp){
   const logv = logList((d.logs||{})[key]);
   const lead = r[5] && /1$/.test(r[5]), link = rp && rp.next;
   const media = (r[3]||r[4]) ? `<div class="meta">${r[4]?`<a class="vid" href="${esc(r[4])}" target="_blank" rel="noopener">${r[4].includes("results?search")?"Find video":"Watch video"}</a>`:""}${r[3]?`<span class="src">${esc(r[3])}</span>`:""}</div>` : "";
-  const rest = rp&&rp.sec ? `<div class="meta">${tpair("rest", rp.sec, "Rest "+fmt(rp.sec))}</div>` : link ? `<div class="flow">No rest. Straight into ${esc(rp.next)}</div>` : "";
+  const ssEnd = r[5] && rp && rp.sec;
+  const rest = rp&&rp.sec ? `<div class="meta">${tpair("rest", rp.sec, (ssEnd?"Round done · Rest ":"Rest ")+fmt(rp.sec))}</div>` : link ? `<div class="flow">No rest. Straight into ${esc(rp.next)}</div>` : "";
+  const cue = link ? `<span class="cue go">No rest → straight into ${esc(rp.next)}</span>` : ssEnd ? `<span class="cue rest">Rest ${fmt(rp.sec)} now, then next round</span>` : "";
   const detail = `${r[2]?`<div class="how">${esc(r[2])}</div>`:""}${loggable?logHTML(prefix,key,logv):""}${media}${rest}`;
-  return `<div class="row${on?" is-done":""}${link?" link":""}${r[5]?" in-ss":""}${openRows.has(cid)?" open":""}${detail?"":" bare"}"><input type="checkbox" id="${cid}" data-k="${key}"${on?" checked":""} aria-label="Done: ${esc(r[0])}"><div class="t"><button type="button" class="rowhead" data-row="${cid}" aria-label="${esc(r[0])}, show details">${lead?`<span class="sslbl">Superset</span>`:""}<span class="name">${esc(r[0])}</span><span class="dose">${esc(r[1])}</span></button>${detail?`<div class="detail">${detail}</div>`:""}</div></div>`;
+  return `<div class="row${on?" is-done":""}${link?" link":""}${r[5]?" in-ss":""}${openRows.has(cid)?" open":""}${detail?"":" bare"}"><input type="checkbox" id="${cid}" data-k="${key}"${on?" checked":""} aria-label="Done: ${esc(r[0])}"><div class="t"><button type="button" class="rowhead" data-row="${cid}" aria-label="${esc(r[0])}, show details">${lead?`<span class="sslbl">Superset</span>`:""}<span class="name">${esc(r[0])}</span><span class="dose">${esc(r[1])}</span>${cue}</button>${detail?`<div class="detail">${detail}</div>`:""}</div></div>`;
 }
 /* The first unchecked exercise is "now": it opens up and the rest stay compact. */
 function refocus(scroll){
