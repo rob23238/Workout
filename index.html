@@ -414,6 +414,47 @@ section.block:first-of-type::before{top:54px}
 .palette button{border:0;background:none;border-radius:999px;padding:8px 14px;font:600 14px var(--body);color:var(--ink);cursor:pointer;display:flex;align-items:center;gap:6px}
 .palette button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
 .palette i{width:12px;height:12px;border-radius:50%;display:inline-block}
+/* ---------- Gear 5 feel: sun, clouds, rubber bounce ---------- */
+.g5sky{display:none}
+[data-palette="gear5"]{--lav:#8E7CF0;--gold:#F2B705}
+[data-palette="gear5"] .hero{position:relative;overflow:visible}
+[data-palette="gear5"] .hero > :not(.g5sky){position:relative;z-index:1}
+[data-palette="gear5"] .g5sky{display:block;position:absolute;inset:-6px 0 -10px 0;pointer-events:none;z-index:0;overflow:visible;clip-path:inset(-200px 0 -60px 0)}
+.g5sun{position:absolute;right:-30px;top:-4px;width:150px;height:150px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,214,90,.55) 0 34%,rgba(255,214,90,.18) 35% 55%,transparent 56%);
+  animation:g5spin 30s linear infinite}
+.g5sun::before{content:"";position:absolute;inset:-14px;border-radius:50%;border:3px dashed rgba(242,183,5,.55)}
+.g5cloud{position:absolute;fill:#fff;stroke:#E9E3F7;stroke-width:2;filter:drop-shadow(0 6px 10px rgba(142,124,240,.18))}
+.g5cloud.c1{width:96px;right:62px;top:104px;animation:g5drift 9s ease-in-out infinite}
+.g5cloud.c2{width:70px;right:4px;top:34px;animation:g5drift 12s ease-in-out infinite reverse}
+.g5cloud.c3{width:52px;left:58%;top:6px;opacity:.8;animation:g5drift 15s ease-in-out infinite}
+@keyframes g5spin{to{transform:rotate(360deg)}}
+@keyframes g5drift{0%,100%{transform:translateX(0)}50%{transform:translateX(-14px) translateY(-4px)}}
+[data-palette="gear5"] .hero-title .grad{background:linear-gradient(90deg,#D3212D 0%,#F26B3A 45%,#8E7CF0 100%);-webkit-background-clip:text;background-clip:text}
+[data-palette="gear5"] .finish{background:#D3212D;color:#fff;box-shadow:0 4px 14px rgba(211,33,45,.35)}
+[data-palette="gear5"] .logo-mark{background:#fff;color:#D3212D;box-shadow:inset 0 0 0 2.5px #D3212D,0 4px 12px rgba(211,33,45,.25)}
+/* the progress bar is a sunrise */
+[data-palette="gear5"] .bar{height:6px!important;background:var(--line)}
+[data-palette="gear5"] .bar i{background:linear-gradient(90deg,#D3212D,#F2B705,#8E7CF0);background-size:200% 100%;animation:g5shine 3s linear infinite}
+@keyframes g5shine{to{background-position:-200% 0}}
+/* section markers become little suns */
+[data-palette="gear5"] .block h3::before{border-radius:50%;transform:none;background:var(--gold);box-shadow:0 0 0 4px rgba(242,183,5,.25),0 0 14px rgba(242,183,5,.6)}
+/* rubber: everything you press squashes and bounces back */
+[data-palette="gear5"] .btn:active,[data-palette="gear5"] .tbtn:active,[data-palette="gear5"] .pillbtn:active,[data-palette="gear5"] .chip:active .dn{transform:scale(1.06,.9)}
+[data-palette="gear5"] .btn,[data-palette="gear5"] .tbtn,[data-palette="gear5"] .chip .dn{transition:transform .35s cubic-bezier(.34,1.9,.5,1)}
+[data-palette="gear5"] .row input[type=checkbox]:checked{animation:g5boing .5s cubic-bezier(.34,1.9,.5,1)}
+@keyframes g5boing{0%{transform:scale(.6)}60%{transform:scale(1.25,.85)}100%{transform:scale(1)}}
+[data-palette="gear5"] .row.focus .t{box-shadow:0 0 0 2px #fff,0 0 0 3px rgba(142,124,240,.35),0 10px 28px rgba(142,124,240,.18);animation:g5pop .45s cubic-bezier(.34,1.7,.5,1)}
+@keyframes g5pop{0%{transform:scale(.97)}100%{transform:scale(1)}}
+[data-palette="gear5"] .row.focus .rowhead::before{background:linear-gradient(90deg,#D3212D,#8E7CF0)}
+[data-palette="gear5"] .tab[aria-selected="true"] svg{animation:g5boing .5s cubic-bezier(.34,1.9,.5,1)}
+[data-palette="gear5"] .chip[aria-selected="true"] .dn{box-shadow:0 6px 16px rgba(211,33,45,.35)}
+[data-palette="gear5"] .row.link::after{background:linear-gradient(#D3212D,#8E7CF0)}
+@media (prefers-color-scheme: dark){[data-palette="gear5"]:not([data-theme="light"]) .g5cloud{fill:#2A2630;stroke:#3A3446}
+  [data-palette="gear5"]:not([data-theme="light"]) .logo-mark{background:#1C1A1D}
+  [data-palette="gear5"]:not([data-theme="light"]) .g5sun{opacity:.45}
+  [data-palette="gear5"]:not([data-theme="light"]) .row.focus .t{box-shadow:0 0 0 1px rgba(142,124,240,.4),0 10px 28px rgba(0,0,0,.3)}}
+@media (prefers-reduced-motion:reduce){.g5sun,.g5cloud,[data-palette="gear5"] .bar i{animation:none}}
 /* Page fade when switching tabs */
 #app{animation:fade .22s ease}
 @keyframes fade{from{opacity:.0;transform:translateY(4px)}to{opacity:1;transform:none}}
@@ -434,6 +475,12 @@ section.block:first-of-type::before{top:54px}
   </div>
 </header>
 <div class="hero" id="hero">
+  <div class="g5sky" aria-hidden="true">
+    <span class="g5sun"></span>
+    <svg class="g5cloud c1" viewBox="0 0 120 60"><path d="M20 50a16 16 0 0 1 4-31 22 22 0 0 1 40-8 18 18 0 0 1 30 10 15 15 0 0 1 6 29z"/></svg>
+    <svg class="g5cloud c2" viewBox="0 0 120 60"><path d="M20 50a16 16 0 0 1 4-31 22 22 0 0 1 40-8 18 18 0 0 1 30 10 15 15 0 0 1 6 29z"/></svg>
+    <svg class="g5cloud c3" viewBox="0 0 120 60"><path d="M20 50a16 16 0 0 1 4-31 22 22 0 0 1 40-8 18 18 0 0 1 30 10 15 15 0 0 1 6 29z"/></svg>
+  </div>
   <div class="eyebrow" id="hero-date">Day by day</div>
   <h1 class="hero-title" id="hero-greet">Day by day, <span class="grad">Big RPJ.</span></h1>
 </div>
@@ -466,7 +513,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-07-gear5";
+const APP_VERSION = "2026-11-07-gear5b";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
