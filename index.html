@@ -546,7 +546,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-08-apt";
+const APP_VERSION = "2026-11-08-pigeon";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -768,7 +768,7 @@ const SPARE_DAYS = [
     ["Kneeling hip flexor stretch","30 sec each leg","Hip flexors",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"]]},
    {h:"Hip strength + mobility", m:"22 min", note:"Tense-and-lift holds: hold the stretch, then 10 sec pushing into the floor, then 10 sec trying to lift out of the stretch.", rows:[
     ["90/90 hip internal rotation, tense-and-lift","2 min hold, then 3 × 10 sec each side","Turning the hip in",FMF,"https://www.youtube.com/watch?v=RqjzWBqXYSg"],
-    ["Active pigeon","60 sec each side","Outer hip, turning out",FMF,"https://www.youtube.com/watch?v=YrEJ4qobFAc"],
+    ["Pigeon pose, relaxed (no active pigeon)","60 sec each side","Outer hip, turning out. Relaxed only",FMF,S("pigeon pose pillow under hip beginner")],
     ["Hip abduction reps","3 × (10 straight leg + 5 bent leg) each side","Outer hip strength",FMF,"https://www.youtube.com/watch?v=C4bQSvhSGZA"],
     ["Cossack squats","3 × 10","Pick a depth you control",FMF,S("cossack squat form")],
     ["Banded hip thrust","2–3 × 15 + 10-sec hold at top","Glutes",FMF,"https://www.youtube.com/watch?v=TJLLyKcZDCM"],
@@ -789,7 +789,7 @@ const NIGHT = {
  a:{title:"Night A", focus:"Mon · Wed · Fri · Sun", days:"Mon · Wed · Fri · Sun", rows:[
   ["Couch stretch, arm overhead","60–90 sec each side, right side twice · 3 min","Long line. Back knee on a pillow against the wall or bed, front foot forward. Squeeze the back glute, tuck your tailbone, then reach the same-side arm overhead and lean away. Too much? Move the knee away from the wall. Opens the hip flexors and the whole front",FMF,S("couch stretch overhead reach")],
   ["90/90, lean + rotate","60 sec each side · 2 min","Change the angle. Sit in 90/90 (hands behind you is fine). Lean your chest over the front shin, then slowly turn toward it and away from it. Stay where it's tight and breathe out long",FMF,"https://www.youtube.com/watch?v=RqjzWBqXYSg"],
-  ["Figure-4 rocks","10 slow rocks + 5 breaths each side · 2 min","Rock + hold. On your back, ankle over the other knee. Gently rock the knees toward your chest and back, then hold the tightest spot for 5 long exhales. The easier version of pigeon",MINE,"https://www.youtube.com/watch?v=dbubmnXtZU0"],
+  ["Pigeon pose, relaxed","60 sec each side, right side twice · 3 min","Hold + breathe. Front shin across in front of you, foot flexed, back leg straight behind. Pillow under the front hip if it doesn't reach the floor. Start upright on your hands, then walk them forward and fold over the shin. Relaxed only: no pushing down or lifting the knee (that's active pigeon, skip it). Feel it in the outer hip, never the knee",MINE,S("pigeon pose pillow under hip beginner")],
   ["Half split, rocking","10 slow rocks + 60 sec hold each leg · 2 min","Rock + hold. Back knee down, front leg straight, toes up, hands on books. Rock your hips back and forward slowly, then hold and breathe. Soft knee is fine",FMF,S("half split hamstring stretch rocking")],
   ["Hip CARs, quadruped","3 slow circles each way, each side · 2 min","Own the range. On hands and knees, draw the biggest, slowest circle you can with your knee, squeezing the whole way. Teaches your body it's safe in the new range",MINE,"https://www.youtube.com/shorts/xKPhW_At_7w"],
   ["Side-lying open book","6 each side, 3-sec hold · 1.5 min","Spine + shoulders. Knees bent and down, open the top arm across to the other side, eyes follow your hand. Breathe out as you open","",S("side lying open book thoracic rotation")],
@@ -807,7 +807,7 @@ const NIGHT = {
 
 const CR = "Breathe in through your nose for 4, out slowly for 6–8. Sink a little deeper on every exhale. On holds, push into the stretch 5 sec, relax 5 sec, go a little further. Rock gently at the edge, change the angle to find new tight spots, and never force sharp pain. Do the tighter side first and longer.";
 const NIGHT_BY_DAY = {mon:"a",tue:"b",wed:"a",thu:"b",fri:"a",sat:"b",sun:"a"};
-const NIGHT_LEVELUP = {a:[["Couch stretch","Knee closer to the wall, then chest fully upright"],["90/90","No hands, sitting tall"],["Figure-4 rocks","Sit up and do them seated, then pigeon on the floor"],["Half split","Take away a book, then hands on the floor"],["Hip CARs","Pause 1 sec at each side, then light ankle weight"]], b:[["Frog","Knees wider, hips lower"],["Adductor rocks","Deeper rock, then hold at the back"],["Butterfly","Fold your chest toward your feet"],["Straddle","Straight knees, then elbows down"],["Cossack squats","No hands, then hold a 10–20 lb weight"]]};
+const NIGHT_LEVELUP = {a:[["Couch stretch","Knee closer to the wall, then chest fully upright"],["90/90","No hands, sitting tall"],["Pigeon","Take away the pillow, then fold all the way down onto your forearms"],["Half split","Take away a book, then hands on the floor"],["Hip CARs","Pause 1 sec at each side, then light ankle weight"]], b:[["Frog","Knees wider, hips lower"],["Adductor rocks","Deeper rock, then hold at the back"],["Butterfly","Fold your chest toward your feet"],["Straddle","Straight knees, then elbows down"],["Cossack squats","No hands, then hold a 10–20 lb weight"]]};
 const PUSH_BY_DAY = {mon:true,tue:false,wed:false,thu:true,fri:false,sat:false,sun:true};
 
 const ZONES = [["6","Easy, almost a warm-up","Warm-up and cool-down","#8597A8"],["7","Cruising, feel good","As long as you want","#4B9BFF"],["8","Starting to push it","Several minutes at a time","#0064E0"],["9","Getting there","10–15 min max","#D98A1F"],["10","Hard","1–2 min","#E0612B"],["15","Sprint","30 sec–1 min bursts only","#D12F2F"]];
