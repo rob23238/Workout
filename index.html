@@ -546,7 +546,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-07-mode";
+const APP_VERSION = "2026-11-07-notest";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -579,7 +579,7 @@ const PULL_GUIDE = `
 <h4>7. Every rep starts from a dead hang</h4>
 <p>A rep only counts if it starts with your arms fully straight, from a still hang. No swinging, no kipping, no half reps at the bottom. Hang still, do the pool move, then pull until your chin is over the bar (chest to the bar is even better). Then go down slow until your arms are straight again. Starting each rep from a dead stop is harder, and that's the point: it's what makes 30 real reps count.</p>
 <h4>8. Breaking the plateau (goal: 30 dead-hang reps, then 50)</h4>
-<p>You can get about 20, but strict from a dead hang will probably be fewer, you think about 15. That dead-hang number is your real starting point, so find it first: Saturday's pull-up test is your number. You stall when max sets are your only practice. A max set is a test, not training. You get better at pull-ups the same way you got better at catching passes: lots of clean reps, a little fresh every time, many times a week.</p>
+<p>You can get about 20, but strict from a dead hang will probably be fewer, you think about 15. That dead-hang number is your real starting point, so find it first: Your pull-up test is your number (we'll schedule it). You stall when max sets are your only practice. A max set is a test, not training. You get better at pull-ups the same way you got better at catching passes: lots of clean reps, a little fresh every time, many times a week.</p>
 <ol>
 <li><b>Pull day sets:</b> stop 1–2 reps before failure. Use about two-thirds of your dead-hang max: if it's 12, do sets of 8 that all look perfect. Four clean sets of 8 = 32 good reps, more than one sloppy max set gives you.</li>
 <li><b>Grease the groove (home bar):</b> on days without pull-ups, do 5 easy sets of about a third of your max (4–6 reps), spread through the day, like every time you walk past the bar. Never close to failure. This teaches your body that pull-ups are easy.</li>
@@ -639,7 +639,7 @@ const DAYS = [
   blocks:[
    {h:"This lift moved", m:"", note:"The Zercher squat is on Saturday, with incline bench and arms.", rows:[]}
   ]},
- {id:"sat", chip:"Sat", kicker:"Saturday · legs + push", title:"Zercher squat + incline + arms", time:"~50 min", stair:["40-min steady sweat","after you lift"], night:"Night stretch (no push-ups tonight, you benched)",
+ {id:"sat", chip:"Sat", kicker:"Saturday · legs + push", title:"Zercher squat + incline + arms", time:"~45 min", stair:["40-min steady sweat","after you lift"], night:"Night stretch (no push-ups tonight, you benched)",
   blocks:[
    {h:"Warm-up + posture", m:"7 min", rows:[
     ["Kneeling hip circles","1 × 6 each way, each side","Big slow circles",AH,"https://youtu.be/8Om5705EYxA"],
@@ -649,8 +649,6 @@ const DAYS = [
     ["Cable face pull, light","1 × 15, plus 1 × 12 right arm only","Posture. Pull to your forehead, thumbs back, 2-sec squeeze","",S("cable face pull form")],
     ["Scapular pull-ups, 2-sec hold","1 × 8","The pool move: shoulders down, arms straight",LW,S("scapular pull ups form")],
     ["Light incline press, warm-up","1 × 12 @ empty bar or light dumbbells","Light, smooth, wake the shoulders up","",S("incline dumbbell press form")]]},
-   {h:"Pull-up test", m:"3 min", note:"Right after the warm-up, while you're fresh. One all-out set, then rest 3 min before the Zercher.", rows:[
-    ["Pull-up max test, strict","1 set · max reps · bodyweight","From a dead hang every rep: arms straight, pool move, chin over the bar, 3 sec down. No swing, no kip, no half reps. The rep where your chin doesn't clear the bar doesn't count. Log your number",LW,S("strict pull up dead hang form")]]},
    {h:"Strength + rotational core", m:"14 min", note:"Supersets A, B and C, rest 90 sec after each round.", rows:[
     ["Smith Zercher squat","Bar × 8, 135 × 5, then 3 × 6 @ 185","Up from 175. Bar in the crook of your elbows (pad it with a towel), chest tall. Brace your abs and squeeze your glutes at the top so your lower back doesn't arch. All 3 × 6 clean? Next time 195",HAM,S("smith machine zercher squat"),"A1"],
     ["Bottom of pistol squat, foot change","3 × 6 each side · bodyweight","Pistol + leg mobility for calisthenics. Sit into the bottom of a deep squat, then shift onto one leg and slide the other leg straight out in front, then switch. Stay low the whole time, hold the rack if you need to, small plate under your heels if your ankles are stiff. Video starts at 2:45",FMF,"https://www.youtube.com/watch?v=2qlVWNEdYqk&t=165s","A2"],
@@ -662,7 +660,7 @@ const DAYS = [
     ["Between sets: standing hip CARs","3 slow circles each way, each leg","Mobility during your rest, then back to work. Standing on one leg (hold the rack), draw the biggest, slowest circle you can with your knee: up, out, back, down. From your Mobility Work sheet",MINE,"https://www.youtube.com/shorts/1AcFl51wYuw"]]},
    {h:"Incline bench", m:"14 min", note:"Superset B, 4 rounds: incline set, straight to pull-ups, rest 2 min. Pulling matches pushing for your posture.", rows:[
     ["Incline bench press","Bar × 10, 135 × 5, then 4 × 8 @ 155","Bench at about 30°. Shoulder blades pinched, bar to your upper chest just under the collarbone, 2 sec down. Watch the right shoulder: keep it pinned back. All 4 sets clean? Next time 165",HAM,S("incline barbell bench press form 30 degree"),"B1"],
-    ["Pull-ups","3 × 8–10 · bodyweight (after the test)","No lat pulldown at home, so pull-ups do the job. Every rep from a dead hang: arms straight, pool move, crush the bar, elbows to your back pockets, chin over, 3 sec down. Stop 1–2 reps short of failure",LW,S("strict pull up form"),"B2"],
+    ["Pull-ups","4 × 8–10 · bodyweight","No lat pulldown at home, so pull-ups do the job. Every rep from a dead hang: arms straight, pool move, crush the bar, elbows to your back pockets, chin over, 3 sec down. Stop 1–2 reps short of failure",LW,S("strict pull up form"),"B2"],
     ["Between sets: quadruped T-spine rotation","5 each side, slow","Mobility during your rest, then back to work. On hands and knees, hand behind your head, rotate the elbow down under you, then up to the ceiling","",S("quadruped thoracic rotation")]]},
    {h:"Arms", m:"7 min", note:"Superset C, 3 rounds, rest 60 sec.", rows:[
     ["Hammer curl","3 × 10–12 @ 35–40 lb","Thumbs up, elbows pinned, no swinging, 3 sec down. Biceps + forearms","",S("dumbbell hammer curl form"),"C1"],
