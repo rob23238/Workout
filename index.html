@@ -8,6 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Discipline">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("hy1-theme")||"dark";}catch(e){document.documentElement.dataset.theme="dark";}</script>
 <script>try{if(!localStorage.getItem("hy1-pal-v3")){localStorage.setItem("hy1-palette","mix");localStorage.setItem("hy1-pal-v3","1");}document.documentElement.dataset.palette=localStorage.getItem("hy1-palette")||"mix";}catch(e){document.documentElement.dataset.palette="mix";}</script>
 <meta name="theme-color" content="#07080A" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0B0E11" media="(prefers-color-scheme: dark)">
@@ -478,6 +479,20 @@ section.block:first-of-type::before{top:54px}
 [data-palette="mix"] .dock button[data-act="stop"]{background:linear-gradient(180deg,#FFFFFF,#C9D0DB);color:#0A0A0D}
 @keyframes g5pop{0%{transform:scale(.97)}100%{transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){[data-palette="mix"] .bar i{animation:none}}
+/* Light mode (Mix): Super Saiyan Blue tint, no glow */
+:root[data-theme="light"][data-palette="mix"] :is(.btn:not(.ghost):not(#startios),.finish,.chip[aria-selected="true"] .dn,.row.focus .rowhead::before,.pillbtn,.lgadd,.palette button[aria-pressed="true"],.mode button[aria-pressed="true"]){box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+:root[data-theme="light"][data-palette="mix"] .logo-mark{box-shadow:inset 0 0 0 2px var(--chrome)}
+:root[data-theme="light"][data-palette="mix"] .row.focus .t{box-shadow:inset 0 0 0 1px var(--panel-line),0 0 0 1.5px rgba(var(--aura),.35),var(--panel-shadow)}
+:root[data-theme="light"][data-palette="mix"] .row input[type=checkbox]:checked{box-shadow:none}
+:root[data-theme="light"][data-palette="mix"] .row.focus input[type=checkbox]{box-shadow:0 0 0 5px rgba(var(--aura),.12)}
+:root[data-theme="light"][data-palette="mix"] .block h3::before{box-shadow:none;border-color:var(--accent)}
+:root[data-theme="light"][data-palette="mix"] .bar i{box-shadow:none}
+:root[data-theme="light"][data-palette="mix"] .tab[aria-selected="true"] svg{filter:none}
+:root[data-theme="light"][data-palette="mix"] .dock{box-shadow:0 0 0 1px rgba(255,255,255,.12),0 14px 34px rgba(0,0,0,.3)}
+.mode{display:flex;gap:6px;background:var(--bg);padding:4px;border-radius:999px}
+.mode button{border:0;background:none;border-radius:999px;padding:8px 14px;font:600 14px var(--body);color:var(--ink);cursor:pointer}
+.mode button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+[data-palette="mix"] .mode button[aria-pressed="true"]{background:var(--prime);color:var(--prime-ink)}
 /* Page fade when switching tabs */
 #app{animation:fade .22s ease}
 @keyframes fade{from{opacity:.0;transform:translateY(4px)}to{opacity:1;transform:none}}
@@ -523,6 +538,7 @@ section.block:first-of-type::before{top:54px}
     <button type="button" class="tile" data-goto="ideas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg><span>Ideas<small>Save what you see</small></span></button>
   </div>
   <div class="sheet-row"><div><div class="lbl">Your data</div><div class="sync" id="sync">Saved on this phone</div></div><button type="button" class="pillbtn" id="copydata">Copy data</button></div>
+  <div class="sheet-row"><div class="lbl">Mode</div><div class="mode" id="mode"><button type="button" data-mode="dark">Dark</button><button type="button" data-mode="light">Light</button></div></div>
   <div class="sheet-row"><div class="lbl">Color</div><div class="palette" id="palette"><button type="button" data-pal="blue"><i style="background:#0064E0"></i>Blue</button><button type="button" data-pal="gear5"><i style="background:#6E4CF5"></i>Gear 5</button><button type="button" data-pal="mix"><i style="background:linear-gradient(135deg,#0B0C10 40%,#E6EBF2 50%,#1FB6FF)"></i>Mix</button></div></div>
   <div class="sheet-row col"><div class="lbl">iPhone timer check</div>
     <p class="sheet-help">Tap Test. Your Clock should start at exactly <b>2:00</b>. If it says 2 hours, open Shortcuts, edit <b>Start Timer</b>, and change <b>minutes</b> to <b>seconds</b> (the number should be Shortcut Input).</p>
@@ -530,7 +546,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-07-dark";
+const APP_VERSION = "2026-11-07-mode";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -1361,8 +1377,12 @@ app.addEventListener("click",e=>{ const h=e.target.closest(".rowhead"); if(!h) r
   const open=!(row.classList.contains("open") || (row.classList.contains("focus") && !row.classList.contains("shut")));
   row.classList.toggle("open",open); row.classList.toggle("shut",!open); if(open) openRows.add(h.dataset.row); else openRows.delete(h.dataset.row); });
 new MutationObserver(()=>refocus(false)).observe(app,{childList:true});
+/* Dark / Light switch (dark is the default) */
+{ const md=document.getElementById("mode"); const setMode=v=>{ document.documentElement.dataset.theme=v; try{localStorage.setItem("hy1-theme",v);}catch(e){} md.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.mode===v)));
+    document.querySelectorAll('meta[name="theme-color"]').forEach(m=>m.content = v==="dark" ? "#07080A" : "#EDEFF3"); };
+  setMode(document.documentElement.dataset.theme||"dark"); md.addEventListener("click",e=>{ const b=e.target.closest("[data-mode]"); if(b) setMode(b.dataset.mode); }); }
 /* Color theme switch: Blue or Gear 5 */
-{ const pal=document.getElementById("palette"); const setPal=v=>{ document.documentElement.dataset.palette=v; document.querySelectorAll('meta[name="theme-color"]').forEach(m=>m.content = v==="mix" ? "#07080A" : "#0B0E11"); try{localStorage.setItem("hy1-palette",v);}catch(e){} pal.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.pal===v))); };
+{ const pal=document.getElementById("palette"); const setPal=v=>{ document.documentElement.dataset.palette=v;  try{localStorage.setItem("hy1-palette",v);}catch(e){} pal.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.pal===v))); };
   setPal(document.documentElement.dataset.palette||"mix"); pal.addEventListener("click",e=>{ const b=e.target.closest("[data-pal]"); if(b) setPal(b.dataset.pal); }); }
 /* iPhone timer test (More sheet) */
 document.getElementById("iphonetest")?.addEventListener("click",()=>phoneTimer(120));
