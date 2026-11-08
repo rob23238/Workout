@@ -493,6 +493,7 @@ section.block:first-of-type::before{top:54px}
 .mode button{border:0;background:none;border-radius:999px;padding:8px 14px;font:600 14px var(--body);color:var(--ink);cursor:pointer}
 .mode button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
 [data-palette="mix"] .mode button[aria-pressed="true"]{background:var(--prime);color:var(--prime-ink)}
+.tip-dot{width:12px;height:12px;margin:8px 0 0 9px;border-radius:50%;background:var(--bg);border:2px solid var(--line-strong);position:relative;z-index:2}
 /* Page fade when switching tabs */
 #app{animation:fade .22s ease}
 @keyframes fade{from{opacity:.0;transform:translateY(4px)}to{opacity:1;transform:none}}
@@ -536,6 +537,7 @@ section.block:first-of-type::before{top:54px}
   <div class="sheet-grid">
     <button type="button" class="tile" data-goto="cali"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-6 4 3 4-7 4 4"/><path d="M4 4v16h16"/></svg><span>Calisthenics<small>Skill ladders</small></span></button>
     <button type="button" class="tile" data-goto="ideas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg><span>Ideas<small>Save what you see</small></span></button>
+    <button type="button" class="tile" data-goto="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Photos<small>Every 4 weeks</small></span></button>
   </div>
   <div class="sheet-row"><div><div class="lbl">Your data</div><div class="sync" id="sync">Saved on this phone</div></div><button type="button" class="pillbtn" id="copydata">Copy data</button></div>
   <div class="sheet-row"><div class="lbl">Mode</div><div class="mode" id="mode"><button type="button" data-mode="dark">Dark</button><button type="button" data-mode="light">Light</button></div></div>
@@ -546,7 +548,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-08-links2";
+const APP_VERSION = "2026-11-08-photos";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -698,11 +700,7 @@ const DAYS = [
     ["Cable crunch, heavy","3 × 12 @ 100–120 lb (cable)","2-sec squeeze at the bottom, hips still",MINE,S("cable crunch form"),"B2"]]},
    {h:"Cool-down", m:"2 min", rows:[
     ["Doorway chest stretch","30 sec each side","Posture. Forearm on the door frame, step through","",S("doorway pec minor stretch")],
-    ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]},
-   {h:"Progress photos", m:"every 4 weeks", note:"Next: Sun, Nov 22. Same spot, same light, phone on a timer at chest height, relaxed (not posing), looking straight ahead.", rows:[
-    ["Side photo, facing left","1 photo · relaxed","Stand how you normally stand. Don't pull your shoulders back","",""],
-    ["Side photo, facing right","1 photo · relaxed","Same spot and distance as the first","",""],
-    ["Front photo","1 photo · relaxed","Check: is one shoulder lower, one hip higher, or one hand further forward?","",""]]}
+    ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
   ]},
 ];
 /* Saved for later: exercises Big RPJ wants to add in the future. Not on any day yet. */
@@ -1306,6 +1304,37 @@ function renderMorning(){
   wireTimers();
 }
 
+/* ---------- Progress photos: every 4 weeks, same setup every time ---------- */
+const PHOTO_SHOTS = [
+ ["Front","Feet hip-width, arms relaxed at your sides, looking straight at the camera"],
+ ["Side, facing left","Turn left, arms relaxed, eyes straight ahead"],
+ ["Side, facing right","Same spot and distance as the left side"],
+ ["Back","Turn around, arms relaxed, feet the same as the front photo"],
+ ["Front, arms up","Arms straight overhead, palms forward, stand tall"]];
+const PHOTO_SETUP = [
+ ["Same spot","Same wall, same mark on the floor for your feet"],
+ ["Same light","Same time of day, same lights on. Morning before eating is the most consistent"],
+ ["Same phone height","Phone at chest height on a stand or shelf, 6–8 feet away, 3–10 sec timer"],
+ ["Same clothes","Same shorts, no shirt, every round"],
+ ["Relaxed","Stand how you normally stand. No posing, no pulling your shoulders back"]];
+function renderPhotos(){
+  const d = docOf("photos"); d.rounds = d.rounds || []; d.cur = d.cur || {};
+  const last = d.rounds.length ? new Date(d.rounds[d.rounds.length-1].date) : null;
+  const next = last ? new Date(last.getTime()+28*864e5) : new Date(2026,10,22);
+  const fmtD = x => x.toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"});
+  const done = PHOTO_SHOTS.filter(r=>d.cur[r[0]]).length;
+  let h = `<div class="dayhead"><div class="kicker">Every 4 weeks</div><h2>Progress photos</h2><div class="spec"><div><b>${d.rounds.length}</b><span>rounds</span></div><div><b>${next.toLocaleDateString(undefined,{month:"short",day:"numeric"})}</b><span>next</span></div><div><b>${done}/${PHOTO_SHOTS.length}</b><span>this round</span></div></div></div>`;
+  h += `<section class="block"><h3>Setup</h3><p class="note">Keep it identical every time so the only thing that changes is you.</p><div class="list">` + PHOTO_SETUP.map(r=>`<div class="row bare"><span class="tip-dot" aria-hidden="true"></span><div class="t"><div class="rowhead" style="cursor:default"><span class="name">${esc(r[0])}</span><span class="dose">${esc(r[1])}</span></div></div></div>`).join("") + `</div></section>`;
+  h += `<section class="block"><h3>The ${PHOTO_SHOTS.length} photos</h3><div class="list">` + PHOTO_SHOTS.map(r=>`<div class="row${d.cur[r[0]]?" is-done":""}"><input type="checkbox" data-shot="${esc(r[0])}"${d.cur[r[0]]?" checked":""} aria-label="Took: ${esc(r[0])}"><div class="t"><div class="rowhead" style="cursor:default"><span class="name">${esc(r[0])}</span><span class="dose">${esc(r[1])}</span></div></div></div>`).join("") + `</div>
+   <div class="field col" style="margin-top:12px"><label for="ph-note">Notes (optional)</label><textarea id="ph-note" placeholder="Anything you notice compared to last time">${esc(d.cur.note||"")}</textarea></div>
+   <button class="btn" type="button" id="ph-save" style="margin-top:12px"${done?"":" disabled"}>Save this round</button></section>`;
+  if(d.rounds.length) h += `<section class="block"><h3>History</h3><div class="list">` + d.rounds.slice().reverse().map(r=>`<div class="idea"><div class="top"><span class="where">${esc(fmtD(new Date(r.date)))}</span><span class="when">${r.shots} photos</span></div>${r.note?`<p>${esc(r.note)}</p>`:""}</div>`).join("") + `</div><p class="note" style="margin-top:10px">Compare side by side in your Photos app: same pose, one round apart.</p></section>`;
+  app.innerHTML = h;
+  app.querySelectorAll("[data-shot]").forEach(cb=>cb.addEventListener("change",()=>{ d.cur[cb.dataset.shot]=cb.checked; save("photos"); renderPhotos(); }));
+  app.querySelector("#ph-note").addEventListener("input",e=>{ d.cur.note=e.target.value; save("photos"); });
+  app.querySelector("#ph-save").addEventListener("click",()=>{ d.rounds.push({date:new Date().toISOString(), shots:PHOTO_SHOTS.filter(r=>d.cur[r[0]]).length, note:d.cur.note||""}); d.cur={}; save("photos"); renderPhotos(); window.scrollTo({top:0}); });
+}
+
 /* ---------- Ideas: things you see (TikTok, IG, the gym) to add next week ---------- */
 const WHERE = ["Any day","Mon","Tue","Wed","Thu","Fri","Sat","Sun","Night","StairMaster"];
 function renderIdeas(){
@@ -1364,7 +1393,7 @@ function renderAM(){
 
 
 /* ---------- tabs ---------- */
-const TABS = [...DAYS.map(d=>({id:d.id, chip:d.chip})), {id:"morning",chip:"Morning"}, {id:"night",chip:"Night"}, {id:"stair",chip:"Stair"}, {id:"cali",chip:"Calisthenics"}, {id:"ideas",chip:"Ideas"}];
+const TABS = [...DAYS.map(d=>({id:d.id, chip:d.chip})), {id:"morning",chip:"Morning"}, {id:"night",chip:"Night"}, {id:"stair",chip:"Stair"}, {id:"cali",chip:"Calisthenics"}, {id:"ideas",chip:"Ideas"}, {id:"photos",chip:"Photos"}];
 function todayId(){ return ["sun","mon","tue","wed","thu","fri","sat"][new Date().getDay()]; }
 let lastDay = todayId();
 const tabbar = document.getElementById("tabbar"), sheet = document.getElementById("sheet"), scrim = document.getElementById("scrim");
@@ -1377,7 +1406,7 @@ function render(id){
   [...tabbar.children].forEach(t=>t.setAttribute("aria-selected", String(t.dataset.tab===tabFor(id))));
   if(id!=="stair" && tState.running){ /* keep timer running in background state */ }
   const day = DAYS.find(x=>x.id===id);
-  if(day) renderDay(day); else if(id==="stair") renderStair(); else if(id==="night") renderNight(); else if(id==="morning") renderMorning(); else if(id==="am") renderAM(); else if(id==="cali") renderCali(); else if(id==="ideas") renderIdeas(); else renderDay(DAYS[0]);
+  if(day) renderDay(day); else if(id==="stair") renderStair(); else if(id==="night") renderNight(); else if(id==="morning") renderMorning(); else if(id==="am") renderAM(); else if(id==="cali") renderCali(); else if(id==="ideas") renderIdeas(); else if(id==="photos") renderPhotos(); else renderDay(DAYS[0]);
   app.style.animation="none"; void app.offsetWidth; app.style.animation=""; refocus(false);
   app.querySelectorAll("[data-go]").forEach(a=>a.addEventListener("click",e=>{ e.preventDefault(); go(a.dataset.go); }));
 }
