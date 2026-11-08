@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Discipline">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <script>try{if(!localStorage.getItem("hy1-pal-v3")){localStorage.setItem("hy1-palette","mix");localStorage.setItem("hy1-pal-v3","1");}document.documentElement.dataset.palette=localStorage.getItem("hy1-palette")||"mix";}catch(e){document.documentElement.dataset.palette="mix";}</script>
-<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#07080A" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0B0E11" media="(prefers-color-scheme: dark)">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" href="icon-180.png">
@@ -45,9 +45,9 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display",Inter,system-ui,sans-serif;
   --body:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,system-ui,"Segoe UI",sans-serif;
   --navh:64px;
-  color-scheme:light;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+@media all /* always dark */{:root:not([data-theme="light"]){
   --bg:#0B0E11; --surface:#171B20; --surface-2:#1F252B; --ink:#E9EDF1; --muted:#9AA6B2; --line:#262D34; --line-strong:#3A434C;
   --accent:#4B9BFF; --accent-ink:#06111F; --accent-soft:#132338; --warm:#FF9A5C; --warm-soft:#2E1C12; --done:#5B6672;
   --glass:rgba(11,14,17,.78); --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3); color-scheme:dark}}
@@ -404,7 +404,7 @@ section.block:first-of-type::before{top:54px}
 /* ---------- Gear 5 palette: white, lavender purple, soft gray (no red) ---------- */
 :root[data-palette="gear5"]{--bg:#FFFFFF;--surface:#F5F3FA;--surface-2:#FFFFFF;--ink:#1E1B2E;--muted:#6E6A80;--line:#EAE6F2;--line-strong:#CEC8DD;
   --accent:#6E4CF5;--accent-ink:#FFFFFF;--accent-soft:#EFEBFF;--warm:#9A6A00;--warm-soft:#FBF2D9;--done:#B7B2C6;--glass:rgba(255,255,255,.8)}
-@media (prefers-color-scheme: dark){:root[data-palette="gear5"]:not([data-theme="light"]){--bg:#110F17;--surface:#1B1824;--surface-2:#242030;--ink:#F2EFFA;--muted:#A39DB8;--line:#2C283A;--line-strong:#433D55;
+@media all /* always dark */{:root[data-palette="gear5"]:not([data-theme="light"]){--bg:#110F17;--surface:#1B1824;--surface-2:#242030;--ink:#F2EFFA;--muted:#A39DB8;--line:#2C283A;--line-strong:#433D55;
   --accent:#A58BFF;--accent-ink:#120A2E;--accent-soft:#2A2145;--warm:#F2C14E;--warm-soft:#33290E;--done:#6A647C;--glass:rgba(17,15,23,.8)}}
 [data-palette="gear5"] .logo-mark{background:#fff;color:var(--accent);box-shadow:inset 0 0 0 2.5px var(--accent),0 4px 14px rgba(110,76,245,.25)}
 [data-palette="gear5"] .hero-title .grad{background:linear-gradient(90deg,#6E4CF5 0%,#9B7BFF 55%,#C9B8FF 100%);-webkit-background-clip:text;background-clip:text}
@@ -425,7 +425,7 @@ section.block:first-of-type::before{top:54px}
 :is([data-palette="gear5"],[data-palette="mix"]) .tab[aria-selected="true"] svg{animation:g5boing .5s cubic-bezier(.34,1.9,.5,1)}
 @keyframes g5boing{0%{transform:scale(.6)}60%{transform:scale(1.25,.85)}100%{transform:scale(1)}}
 @keyframes g5pop{0%{transform:scale(.97)}100%{transform:scale(1)}}
-@media (prefers-color-scheme: dark){[data-palette="gear5"]:not([data-theme="light"]) .logo-mark{background:#1B1824}
+@media all /* always dark */{[data-palette="gear5"]:not([data-theme="light"]) .logo-mark{background:#1B1824}
   [data-palette="gear5"]:not([data-theme="light"]) .block h3::before{background:var(--bg)}}
 @media (prefers-reduced-motion:reduce){[data-palette="gear5"] .bar i{animation:none}}
 .palette{display:flex;gap:6px;background:var(--bg);padding:4px;border-radius:999px}
@@ -433,12 +433,12 @@ section.block:first-of-type::before{top:54px}
 .palette button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
 .palette i{width:12px;height:12px;border-radius:50%;display:inline-block}
 /* ---------- Mix: frosted glass, silver + black, Super Saiyan Blue aura undertone. Light + dark ---------- */
-:root[data-palette="mix"]{color-scheme:light;--aura:0,148,255;
+:root[data-palette="mix"]{color-scheme:dark;--aura:0,148,255;
   --bg:#EDEFF3;--surface:rgba(255,255,255,.58);--surface-2:rgba(255,255,255,.85);--ink:#0B1A2E;--muted:#4D6078;--line:rgba(16,18,24,.08);--line-strong:#BFC5CF;
   --accent:#0A6BD6;--accent-ink:#FFFFFF;--accent-soft:rgba(10,107,214,.09);--warm:#9A6A00;--warm-soft:rgba(242,183,5,.16);--done:#A7ACB6;--glass:rgba(237,239,243,.55);
   --panel:rgba(255,255,255,.52);--panel-line:rgba(255,255,255,.85);--panel-shadow:0 10px 30px rgba(16,18,24,.07);
   --prime:linear-gradient(180deg,#22314A 0%,#0A1426 100%);--prime-ink:#F2F8FF;--chrome:#0B1A2E}
-@media (prefers-color-scheme: dark){:root[data-palette="mix"]:not([data-theme="light"]){color-scheme:dark;--aura:40,196,255;
+@media all /* always dark */{:root[data-palette="mix"]:not([data-theme="light"]){color-scheme:dark;--aura:40,196,255;
   --bg:#07080A;--surface:rgba(255,255,255,.05);--surface-2:rgba(255,255,255,.08);--ink:#E8F4FF;--muted:#8FA5BC;--line:rgba(200,230,255,.08);--line-strong:#3B3D46;
   --accent:#6FD6FF;--accent-ink:#0A0A0D;--accent-soft:rgba(40,196,255,.12);--warm:#F2C14E;--warm-soft:rgba(242,193,78,.12);--done:#5E6070;--glass:rgba(7,8,10,.55);
   --panel:rgba(255,255,255,.05);--panel-line:rgba(255,255,255,.1);--panel-shadow:0 10px 30px rgba(0,0,0,.35);
@@ -446,7 +446,7 @@ section.block:first-of-type::before{top:54px}
 /* the aura behind everything: this is what the glass shows through */
 [data-palette="mix"] body{background:var(--bg)}
 /* the undertone lives in the text color itself: navy-black (light), icy white (dark) */
-@media (prefers-color-scheme: dark){[data-palette="mix"]:not([data-theme="light"]) body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px;-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.35) 60%,rgba(0,0,0,.6));mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.35) 60%,rgba(0,0,0,.6))}}
+@media all /* always dark */{[data-palette="mix"]:not([data-theme="light"]) body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px;-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.35) 60%,rgba(0,0,0,.6));mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.35) 60%,rgba(0,0,0,.6))}}
 /* frosted glass panels */
 [data-palette="mix"] :is(.pill,.field,.seg,.timer,details.guide,details.setup,.sheet-row,.tile,.stat,.breath,.callout,.skill,.lvl,.list .idea,.tpair .ios,.iconbtn,.startpair .btn+.btn){background:var(--panel)!important;-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);box-shadow:inset 0 0 0 1px var(--panel-line),var(--panel-shadow)}
 [data-palette="mix"] .row.focus .t{background:var(--panel);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);box-shadow:inset 0 0 0 1px var(--panel-line),0 0 0 1px rgba(var(--aura),.18),0 12px 34px rgba(var(--aura),.14);animation:g5pop .45s cubic-bezier(.34,1.7,.5,1)}
@@ -464,7 +464,7 @@ section.block:first-of-type::before{top:54px}
 [data-palette="mix"] .spec b{background:linear-gradient(180deg,var(--ink),var(--muted));-webkit-background-clip:text;background-clip:text;color:transparent}
 [data-palette="mix"] .row input[type=checkbox]{background-color:var(--surface-2);border-color:var(--line-strong)}
 [data-palette="mix"] .row input[type=checkbox]:checked{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/16px no-repeat,var(--prime);border-color:transparent;box-shadow:0 0 12px rgba(var(--aura),.4)}
-@media (prefers-color-scheme: dark){[data-palette="mix"]:not([data-theme="light"]) .row input[type=checkbox]:checked{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230A0A0D' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/16px no-repeat,var(--prime)}}
+@media all /* always dark */{[data-palette="mix"]:not([data-theme="light"]) .row input[type=checkbox]:checked{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230A0A0D' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/16px no-repeat,var(--prime)}}
 [data-palette="mix"] .row.focus input[type=checkbox]{border-color:var(--accent);box-shadow:0 0 0 6px rgba(var(--aura),.12),0 0 14px rgba(var(--aura),.4)}
 [data-palette="mix"] .block h3::before{border-radius:50%;transform:none;background:var(--bg);border:2.5px solid var(--chrome);box-shadow:0 0 12px rgba(var(--aura),.5)}
 [data-palette="mix"] section.block::before{background:linear-gradient(var(--line-strong),rgba(var(--aura),.35),var(--line-strong));opacity:.7}
@@ -530,7 +530,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-07-ssb4";
+const APP_VERSION = "2026-11-07-dark";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -1362,7 +1362,7 @@ app.addEventListener("click",e=>{ const h=e.target.closest(".rowhead"); if(!h) r
   row.classList.toggle("open",open); row.classList.toggle("shut",!open); if(open) openRows.add(h.dataset.row); else openRows.delete(h.dataset.row); });
 new MutationObserver(()=>refocus(false)).observe(app,{childList:true});
 /* Color theme switch: Blue or Gear 5 */
-{ const pal=document.getElementById("palette"); const setPal=v=>{ document.documentElement.dataset.palette=v; document.querySelectorAll('meta[name="theme-color"]').forEach(m=>m.content = v==="mix" ? (m.media.includes("dark")?"#07080A":"#EDEFF3") : (m.media.includes("dark")?"#0B0E11":"#FFFFFF")); try{localStorage.setItem("hy1-palette",v);}catch(e){} pal.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.pal===v))); };
+{ const pal=document.getElementById("palette"); const setPal=v=>{ document.documentElement.dataset.palette=v; document.querySelectorAll('meta[name="theme-color"]').forEach(m=>m.content = v==="mix" ? "#07080A" : "#0B0E11"); try{localStorage.setItem("hy1-palette",v);}catch(e){} pal.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.pal===v))); };
   setPal(document.documentElement.dataset.palette||"mix"); pal.addEventListener("click",e=>{ const b=e.target.closest("[data-pal]"); if(b) setPal(b.dataset.pal); }); }
 /* iPhone timer test (More sheet) */
 document.getElementById("iphonetest")?.addEventListener("click",()=>phoneTimer(120));
