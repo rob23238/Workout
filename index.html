@@ -8,7 +8,20 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Discipline">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<script>try{document.documentElement.dataset.theme=localStorage.getItem("hy1-theme")||"dark";}catch(e){document.documentElement.dataset.theme="dark";}</script>
+<script>
+/* Mode: Auto = light while the sun is up in Greensboro, dark after sunset. Dark/Light = stay that way. */
+function hySunUp(d){ d=d||new Date(); const lat=36.07, lng=-79.79, r=Math.PI/180;
+  const N=Math.round((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())-Date.UTC(d.getFullYear(),0,0))/864e5);
+  const g=2*Math.PI/365*(N-1);
+  const eq=229.18*(0.000075+0.001868*Math.cos(g)-0.032077*Math.sin(g)-0.014615*Math.cos(2*g)-0.040849*Math.sin(2*g));
+  const dec=0.006918-0.399912*Math.cos(g)+0.070257*Math.sin(g)-0.006758*Math.cos(2*g)+0.000907*Math.sin(2*g)-0.002697*Math.cos(3*g)+0.00148*Math.sin(3*g);
+  const ha=Math.acos(Math.cos(90.833*r)/(Math.cos(lat*r)*Math.cos(dec))-Math.tan(lat*r)*Math.tan(dec))/r;
+  const rise=720-4*(lng+ha)-eq, set=720-4*(lng-ha)-eq, now=d.getUTCHours()*60+d.getUTCMinutes();
+  return ((now-rise)%1440+1440)%1440 < set-rise; }
+function hyModePref(){ try{ return localStorage.getItem("hy1-mode")||"auto"; }catch(e){ return "auto"; } }
+function hyThemeNow(){ const p=hyModePref(); return p==="auto" ? (hySunUp()?"light":"dark") : p; }
+document.documentElement.dataset.theme=hyThemeNow();
+</script>
 <script>try{if(!localStorage.getItem("hy1-pal-v3")){localStorage.setItem("hy1-palette","mix");localStorage.setItem("hy1-pal-v3","1");}document.documentElement.dataset.palette=localStorage.getItem("hy1-palette")||"mix";}catch(e){document.documentElement.dataset.palette="mix";}</script>
 <meta name="theme-color" content="#07080A" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0B0E11" media="(prefers-color-scheme: dark)">
@@ -498,6 +511,20 @@ section.block:first-of-type::before{top:54px}
 #app{animation:fade .22s ease}
 @keyframes fade{from{opacity:.0;transform:translateY(4px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.bar i,.sheet,.scrim{transition:none}#app{animation:none}}
+/* ---------- Touch glow: only what you touch lights up, then it fades ---------- */
+[data-palette="gear5"]{--aura:110,76,245}
+[data-palette="mix"] .row.focus .t,:root[data-theme="light"][data-palette="mix"] .row.focus .t{box-shadow:inset 0 0 0 1px var(--panel-line),var(--panel-shadow)}
+[data-palette="mix"] :is(.btn:not(.ghost):not(#startios),.finish,.chip[aria-selected="true"] .dn,.row.focus .rowhead::before,.pillbtn,.lgadd,.palette button[aria-pressed="true"]){box-shadow:0 0 0 1px rgba(255,255,255,.18) inset}
+[data-palette="mix"] .row.focus input[type=checkbox],:root[data-theme="light"][data-palette="mix"] .row.focus input[type=checkbox]{box-shadow:0 0 0 5px var(--accent-soft)}
+[data-palette="mix"] .tab[aria-selected="true"] svg{filter:none}
+.tglow{transition:box-shadow .08s ease,filter .08s ease!important;box-shadow:0 0 0 1.5px rgba(var(--aura,0,148,255),.5),0 0 18px rgba(var(--aura,0,148,255),.4)!important}
+.tglow-out{transition:box-shadow .6s ease,filter .6s ease!important}
+.tab.tglow,.chip.tglow{box-shadow:none!important}
+.tab.tglow svg,.chip.tglow .dn{filter:drop-shadow(0 0 7px rgba(var(--aura,0,148,255),.7))}
+.logo-name{white-space:nowrap}
+.databtns{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.ghostpill{background:transparent!important;color:var(--ink)!important;box-shadow:inset 0 0 0 1.5px var(--line-strong)!important}
+@media (max-width:400px){.logo{font-size:15px;gap:8px}.appbar-in{padding:0 14px;gap:8px}.finish{letter-spacing:.2em;font-size:12px}}
 </style>
 </head>
 <body>
@@ -505,7 +532,7 @@ section.block:first-of-type::before{top:54px}
   <div class="appbar-in">
     <a class="logo" href="#" id="home" aria-label="Discipline &amp; Consistency, go to today">
       <span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 9v6M7 7v10M17 7v10M20 9v6M7 12h10"/></svg></span>
-      <span>Discipline</span>
+      <span class="logo-name">Discipline &amp; Consistency</span>
     </a>
     <span class="finish" aria-label="Finish">FINISH</span>
     <button type="button" class="iconbtn" id="morebtn" aria-label="More">
@@ -539,8 +566,8 @@ section.block:first-of-type::before{top:54px}
     <button type="button" class="tile" data-goto="ideas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg><span>Ideas<small>Save what you see</small></span></button>
     <button type="button" class="tile" data-goto="photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Photos<small>Every 4 weeks</small></span></button>
   </div>
-  <div class="sheet-row"><div><div class="lbl">Your data</div><div class="sync" id="sync">Saved on this phone</div></div><button type="button" class="pillbtn" id="copydata">Copy data</button></div>
-  <div class="sheet-row"><div class="lbl">Mode</div><div class="mode" id="mode"><button type="button" data-mode="dark">Dark</button><button type="button" data-mode="light">Light</button></div></div>
+  <div class="sheet-row"><div><div class="lbl">Your data</div><div class="sync" id="sync">Saved on this phone</div><div class="sync">Backup on · past weeks kept</div></div><div class="databtns"><button type="button" class="pillbtn" id="copydata">Copy this week</button><button type="button" class="pillbtn ghostpill" id="backupfile">Backup file</button></div></div>
+  <div class="sheet-row"><div class="lbl">Mode</div><div class="mode" id="mode"><button type="button" data-mode="auto">Auto</button><button type="button" data-mode="dark">Dark</button><button type="button" data-mode="light">Light</button></div></div>
   <div class="sheet-row"><div class="lbl">Color</div><div class="palette" id="palette"><button type="button" data-pal="blue"><i style="background:#0064E0"></i>Blue</button><button type="button" data-pal="gear5"><i style="background:#6E4CF5"></i>Gear 5</button><button type="button" data-pal="mix"><i style="background:linear-gradient(135deg,#0B0C10 40%,#E6EBF2 50%,#1FB6FF)"></i>Mix</button></div></div>
   <div class="sheet-row col"><div class="lbl">iPhone timer check</div>
     <p class="sheet-help">Tap Test. Your Clock should start at exactly <b>2:00</b>. If it says 2 hours, open Shortcuts, edit <b>Start Timer</b>, and change <b>minutes</b> to <b>seconds</b> (the number should be Shortcut Input).</p>
@@ -548,7 +575,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-08-hams";
+const APP_VERSION = "2026-11-10-titles-glow-auto-backup";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -592,18 +619,18 @@ const PULL_GUIDE = `
 <div class="big">Rough path: your dead-hang max goes up 2–3 reps a month. 20 strict by early 2027, 30 after that. 50 is elite and takes a year or more of steady work.</div>`;
 const SS = "Superset: do the 1 then the 2 back to back, rest, repeat for all rounds.";
 const DAYS = [
- {id:"mon", chip:"Mon", kicker:"Monday", title:"StairMaster only", time:"", stair:["30-min max burn","this morning"], night:"Night stretch + 100 push-ups",
+ {id:"mon", chip:"Mon", kicker:"Monday", title:"Conditioning", time:"", stair:["30-min max burn","this morning"], night:"Night stretch + 100 push-ups",
   blocks:[
-   {h:"Today", m:"", note:"StairMaster this morning (30-min max burn), no lift. Then your night stretch and 100 push-ups.", rows:[]}
+   {h:"Today's Session", m:"", note:"StairMaster this morning (30-min max burn), no lift. Then your night stretch and 100 push-ups.", rows:[]}
   ]},
- {id:"tue", chip:"Tue", kicker:"Tuesday", title:"Bench + back + biceps + abs", time:"~45 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with bench)",
+ {id:"tue", chip:"Tue", kicker:"Tuesday", title:"Chest · Back · Biceps · Core", time:"~45 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with bench)",
   blocks:[
-   {h:"Warm-up", m:"4 min", note:"Lower back is aching: everything today keeps it supported or still. Sharp pain? Stop that move.", rows:[
+   {h:"Warm-Up", m:"4 min", note:"Lower back is aching: everything today keeps it supported or still. Sharp pain? Stop that move.", rows:[
     ["Wall slides","1 × 10","Posture. Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
     ["Band pull-aparts + chin tuck","2 × 15, then 1 × 12 right arm only","Posture. Squeeze your shoulder blades and slide your chin straight back. Extra set for the more rounded right shoulder",HAM,S("band pull apart chin tuck posture")],
     ["Scapular pull-ups, 2-sec hold","1 × 8","Hang with straight arms, pull your shoulders down away from your ears (the pool move)",LW,S("scapular pull ups form")],
     ["Dead bug","1 × 8 each side","Low back pressed flat into the floor the whole time. Wakes up your abs for later","",S("dead bug exercise form")]]},
-   {h:"Bench pyramid + 100 push-ups", m:"15 min", note:"Warm up: bar × 10, 135 × 5. Watch your right shoulder at the bottom: if it rolls forward, lower the weight and keep both shoulder blades pinned. Superset A: each bench set, straight into 25 incline push-ups (no vest), then rest 2 min. 100 push-ups total. Set 5 is your top set: do it fresh, no push-ups after.", rows:[
+   {h:"Bench Press Pyramid", m:"15 min", note:"Warm up: bar × 10, 135 × 5. Watch your right shoulder at the bottom: if it rolls forward, lower the weight and keep both shoulder blades pinned. Superset A: each bench set, straight into 25 incline push-ups (no vest), then rest 2 min. 100 push-ups total. Set 5 is your top set: do it fresh, no push-ups after.", rows:[
     ["Set 1","195 × 10","","",S("smith machine bench press form"),"A1"],
     ["Incline push-ups","25 · bodyweight (1 of 4)","If 25 breaks, take 5 breaths and finish it","",S("feet elevated push up form"),"A2"],
     ["Set 2","210 × 8","","","","A1"],
@@ -621,29 +648,29 @@ const DAYS = [
    {h:"Biceps", m:"10 min", note:"Hammers and curls separate today. Both seated with your back on the bench to protect your lower back. Rest 60 sec between sets.", rows:[
     ["Seated hammer curl","3 × 10 each arm @ 35–40 lb","Bench upright, back flat on the pad. Palms facing each other, elbows pinned, no swinging, 3 sec down. Forearm + outer arm: thicker arms. All 3 × 10 clean? Add 5 lb","",S("seated hammer curl form")],
     ["Incline dumbbell curl","3 × 10 each arm @ 25–30 lb","Bench at about 45°, lie back, let your arms hang straight down behind your body. Palms up, curl without moving your elbows forward, squeeze at the top, 3 sec down. The stretch at the bottom builds the bicep peak","",S("incline dumbbell curl form")]]},
-   {h:"Abs", m:"8 min", note:"Superset C, 3 rounds, rest 45 sec. All lower-back friendly: no swinging, no arching.", rows:[
+   {h:"Core", m:"8 min", note:"Superset C, 3 rounds, rest 45 sec. All lower-back friendly: no swinging, no arching.", rows:[
     ["Reverse crunch on the bench","3 × 12 · bodyweight","Lie on the bench, hold it behind your head, knees bent. Curl your hips up off the bench toward your chest (roll your tailbone up), 3 sec down. Lower abs, and teaches the pelvis tilt for your leg raises",MINE,S("reverse crunch bench form"),"C1"],
     ["Weighted dead bug","3 × 8 each side @ 15–20 lb dumbbell","On your back, dumbbell held straight up over your chest with both hands. Lower one leg slowly toward the floor while your low back stays glued flat. Strong core that protects your back","",S("weighted dead bug dumbbell"),"C2"],
     ["Band Pallof press","3 × 10 each side, 2-sec hold","Rotational core. Band around the pull-up station at chest height, stand sideways to it. Press your hands straight out and hold 2 sec without letting it twist you. Lower-back friendly","",S("band pallof press form"),"C3"]]},
-   {h:"Cool-down", m:"2 min", rows:[
+   {h:"Cool-Down", m:"2 min", rows:[
     ["Child's pose","45 sec","Knees wide, sit back toward your heels, arms long. Breathe into your lower back","",S("child's pose stretch")],
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"wed", chip:"Wed", kicker:"Wednesday", title:"Moved to Saturday", time:"", stair:["",""], night:"Night stretch",
+ {id:"wed", chip:"Wed", kicker:"Wednesday", title:"Session Moved", time:"", stair:["",""], night:"Night stretch",
   blocks:[
-   {h:"This lift moved", m:"", note:"The Zercher squat and rotational core are on Saturday this week.", rows:[]}
+   {h:"Moved to Saturday", m:"", note:"The Zercher squat and rotational core are on Saturday this week.", rows:[]}
   ]},
- {id:"thu", chip:"Thu", kicker:"Thursday", title:"StairMaster day ✓", time:"", stair:["35-min climb","done"], night:"Night stretch + 100 push-ups",
+ {id:"thu", chip:"Thu", kicker:"Thursday", title:"Conditioning ✓", time:"", stair:["35-min climb","done"], night:"Night stretch + 100 push-ups",
   blocks:[
-   {h:"Done", m:"", note:"You did the StairMaster. Skills, shoulders and arms moved to Sunday.", rows:[]}
+   {h:"Complete", m:"", note:"You did the StairMaster. Skills, shoulders and arms moved to Sunday.", rows:[]}
   ]},
- {id:"fri", chip:"Fri", kicker:"Friday", title:"Moved to Saturday", time:"", stair:["",""], night:"Night stretch",
+ {id:"fri", chip:"Fri", kicker:"Friday", title:"Session Moved", time:"", stair:["",""], night:"Night stretch",
   blocks:[
-   {h:"This lift moved", m:"", note:"The Zercher squat is on Saturday, with incline bench and arms.", rows:[]}
+   {h:"Moved to Saturday", m:"", note:"The Zercher squat is on Saturday, with incline bench and arms.", rows:[]}
   ]},
- {id:"sat", chip:"Sat", kicker:"Saturday · legs + push", title:"Zercher squat + incline + arms", time:"~45 min", stair:["40-min steady sweat","after you lift"], night:"Night stretch (no push-ups tonight, you benched)",
+ {id:"sat", chip:"Sat", kicker:"Saturday · Legs + Push", title:"Lower Body · Chest · Arms", time:"~45 min", stair:["40-min steady sweat","after you lift"], night:"Night stretch (no push-ups tonight, you benched)",
   blocks:[
-   {h:"Warm-up + posture", m:"7 min", rows:[
+   {h:"Warm-Up + Posture", m:"7 min", rows:[
     ["Kneeling hip circles","1 × 6 each way, each side","Big slow circles",AH,"https://youtu.be/8Om5705EYxA"],
     ["Glute bridge march","1 × 6 each side","Hips stay level",AH,"https://youtu.be/RvfMT6VOqxQ"],
     ["Wall slides","1 × 10","Posture. Back, head and arms flat on the wall, chin tucked, slide up into a Y and down","",S("wall slides shoulder mobility")],
@@ -651,7 +678,7 @@ const DAYS = [
     ["Cable face pull, light","1 × 15, plus 1 × 12 right arm only","Posture. Pull to your forehead, thumbs back, 2-sec squeeze","",S("cable face pull form")],
     ["Scapular pull-ups, 2-sec hold","1 × 8","The pool move: shoulders down, arms straight",LW,S("scapular pull ups form")],
     ["Light incline press, warm-up","1 × 12 @ empty bar or light dumbbells","Light, smooth, wake the shoulders up","",S("incline dumbbell press form")]]},
-   {h:"Strength + rotational core", m:"14 min", note:"Supersets A, B and C, rest 90 sec after each round.", rows:[
+   {h:"Strength + Rotation", m:"14 min", note:"Supersets A, B and C, rest 90 sec after each round.", rows:[
     ["Smith Zercher squat","Bar × 8, 135 × 5, then 3 × 6 @ 185","Up from 175. Bar in the crook of your elbows (pad it with a towel), chest tall. Brace your abs and squeeze your glutes at the top so your lower back doesn't arch. All 3 × 6 clean? Next time 195",HAM,S("smith machine zercher squat"),"A1"],
     ["Bottom of pistol squat, foot change","3 × 6 each side · bodyweight","Pistol + leg mobility for calisthenics. Sit into the bottom of a deep squat, then shift onto one leg and slide the other leg straight out in front, then switch. Stay low the whole time, hold the rack if you need to, small plate under your heels if your ankles are stiff. Video starts at 2:45",FMF,"https://www.youtube.com/watch?v=2qlVWNEdYqk&t=165s","A2"],
     ["Kneeling dump trucks","3 × 8 each side · bodyweight","Outer hip + rotation. 2-sec hold at the top",AH,"https://youtu.be/FOfbDPBlgaQ","B1"],
@@ -660,19 +687,19 @@ const DAYS = [
     ["Single-leg Romanian deadlift (one dumbbell)","3 × 6 each leg, build to 8 @ 40–50 lb","Hold one dumbbell in the hand opposite your standing leg. Soft knee, hinge at the hips, back flat, reach the dumbbell toward the floor until you feel your hamstring, then squeeze your glute to stand. Weak leg first. Hold a wall with your free hand if you wobble","",S("single leg romanian deadlift one dumbbell form"),"C1"],
     ["Copenhagen side plank (groin)","3 × 20 sec each side · bodyweight","Side plank with your top leg on the bench (inside of the knee on it to start, foot when it gets easy), bottom leg hanging free. Squeeze your top leg down into the bench, hips high, body in a straight line. Strengthens the groin and inner thighs plus obliques. Helps the middle split","",S("copenhagen side plank knee progression"),"C2"],
     ["Between sets: standing hip CARs","3 slow circles each way, each leg","Mobility during your rest, then back to work. Standing on one leg (hold the rack), draw the biggest, slowest circle you can with your knee: up, out, back, down. From your Mobility Work sheet",MINE,"https://www.youtube.com/shorts/1AcFl51wYuw"]]},
-   {h:"Incline bench", m:"14 min", note:"Superset B, 4 rounds: incline set, straight to pull-ups, rest 2 min. Pulling matches pushing for your posture.", rows:[
+   {h:"Incline Bench Press", m:"14 min", note:"Superset B, 4 rounds: incline set, straight to pull-ups, rest 2 min. Pulling matches pushing for your posture.", rows:[
     ["Incline bench press","Bar × 10, 135 × 5, then 4 × 8 @ 155","Bench at about 30°. Shoulder blades pinched, bar to your upper chest just under the collarbone, 2 sec down. Watch the right shoulder: keep it pinned back. All 4 sets clean? Next time 165",HAM,S("incline barbell bench press form 30 degree"),"B1"],
     ["Pull-ups","4 × 8–10 · bodyweight","No lat pulldown at home, so pull-ups do the job. Every rep from a dead hang: arms straight, pool move, crush the bar, elbows to your back pockets, chin over, 3 sec down. Stop 1–2 reps short of failure",LW,S("strict pull up form"),"B2"],
     ["Between sets: quadruped T-spine rotation","5 each side, slow","Mobility during your rest, then back to work. On hands and knees, hand behind your head, rotate the elbow down under you, then up to the ceiling","",S("quadruped thoracic rotation")]]},
    {h:"Arms", m:"7 min", note:"Superset C, 3 rounds, rest 60 sec.", rows:[
     ["Hammer curl","3 × 10–12 @ 35–40 lb","Thumbs up, elbows pinned, no swinging, 3 sec down. Biceps + forearms","",S("dumbbell hammer curl form"),"C1"],
     ["Cable rope triceps pushdown","3 × 12 @ 50–60 lb (cable)","Elbows pinned, spread the rope at the bottom, 2 sec up","",S("cable rope triceps pushdown form"),"C2"]]},
-   {h:"Cool-down", m:"2 min", rows:[
+   {h:"Cool-Down", m:"2 min", rows:[
     ["Doorway chest stretch","Right 2 × 30 sec · left 1 × 30 sec","Posture. Forearm on the door frame, step through","",S("doorway pec minor stretch")]]}
   ]},
- {id:"sun", chip:"Sun", kicker:"Sunday · upper (legs are sore)", title:"Pull-ups + shoulders + arms + skills", time:"~60 min", stair:["35-min climb","optional today: easy level 6–7 only if your legs feel OK"], night:"Night stretch + 100 push-ups",
+ {id:"sun", chip:"Sun", kicker:"Sunday · Upper Body", title:"Back · Shoulders · Arms · Skills", time:"~60 min", stair:["35-min climb","optional today: easy level 6–7 only if your legs feel OK"], night:"Night stretch + 100 push-ups",
   blocks:[
-   {h:"Warm-up", m:"8 min", rows:[
+   {h:"Warm-Up", m:"8 min", rows:[
     ["Half-kneeling hip flexor stretch, tucked","1 × 30 sec each side","Tuck your tailbone and squeeze the back glute first, then shift forward a little. Pelvic tilt fix before you squat",MINE,S("half kneeling hip flexor stretch posterior pelvic tilt")],
     ["Wall slides","1 × 10","Posture. Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
     ["Band pull-aparts + chin tuck","1 × 15","Posture. Pull the band apart and slide your chin straight back",HAM,S("band pull apart chin tuck posture")],
@@ -680,28 +707,28 @@ const DAYS = [
     ["Standing pike, rocking","10 slow rocks + 30 sec hold","Hamstrings for the L-sit. Feet together, soft knees, hang forward. Rock your weight to your toes and back to your heels, then straighten the knees and hold. Let your head hang",MINE,S("standing pike hamstring stretch rocking")],
     ["Seated pike pulses","2 × 10 + 20 sec hold","Legs straight together, toes pulled back, sit tall. Reach for your toes and pulse 10 times, then hold. Belly toward your thighs, not your head to your knees",MINE,S("seated pike pulses hamstring flexibility")],
     ["Wrist rocks on the floor","1 × 10 each way","Gets wrists ready for handstands","",S("wrist warm up handstand")]]},
-   {h:"Calisthenics", m:"12 min", note:"Skills first while you're fresh. Rest 90 sec between sets. Stop each hold when your form breaks.", rows:[
+   {h:"Calisthenics Skills", m:"12 min", note:"Skills first while you're fresh. Rest 90 sec between sets. Stop each hold when your form breaks.", rows:[
     ["Wall handstand hold, chest to wall","3 × 40 sec · bodyweight","Chest to the wall, body straight, push the floor away",LW,"https://www.tiktok.com/t/ZPLSuXqwY/"],
     ["Tuck front lever hold","4 × 10 sec · bodyweight","Hang, pull your shoulders down, pull your knees to your chest and lean back until your back is flat like a table. Straight arms. Front lever step 1",LW,S("tuck front lever tutorial")],
     ["German hang","3 × 15 sec · bodyweight","From a hang, tuck and roll your legs through your arms until you're hanging behind you. Gentle: opens your shoulders for the back lever. Come out slowly",LW,S("german hang skin the cat beginner")],
     ["Pike compression lifts","3 × 8 · bodyweight","Sit with legs straight together, hands flat on the floor beside your knees. Lift both heels off the floor and hold 2 sec, lower slowly. Trains straight-leg strength for the L-sit while your hamstrings lengthen",MINE,S("pike compression lifts L sit")],
     ["L-sit","3 × max hold · bodyweight","Hands on the floor or parallettes, push down, lift your hips and legs. Use your L-sit level from the Calisthenics tab",LW,S("l sit progression beginner")]]},
-   {h:"Pull-ups + shoulders", m:"14 min", note:"Superset A, 4 rounds: pull-ups, straight to shoulder press, rest 2 min. Pull and push don't compete, so both stay strong.", rows:[
+   {h:"Pull-Ups + Shoulders", m:"14 min", note:"Superset A, 4 rounds: pull-ups, straight to shoulder press, rest 2 min. Pull and push don't compete, so both stay strong.", rows:[
     ["Pull-ups","4 × 8–10 · bodyweight","Every rep from a dead hang: arms straight, pool move, crush the bar, chin over, 3 sec down. Stop 1–2 reps short of failure",LW,S("strict pull up form"),"A1"],
     ["Seated dumbbell shoulder press","4 × 8 @ 50 lb dumbbells","Ribs down, don't lean back, press slightly in front of your head",HAM,S("seated dumbbell shoulder press form"),"A2"],
     ["Cable face pull","3 × 15 @ 30–40 lb (cable), plus 1 single-arm set right","Pull to your forehead, thumbs back, 2-sec squeeze: posture and the right shoulder","",S("cable face pull form")]]},
-   {h:"Arms + grip", m:"12 min", note:"Supersets C and D, 3 rounds, rest 60 sec.", rows:[
+   {h:"Arms + Grip", m:"12 min", note:"Supersets C and D, 3 rounds, rest 60 sec.", rows:[
     ["Cable rope triceps pushdown","3 × 12 @ 40–50 lb (cable)","Elbows pinned to your sides, spread the rope at the bottom","",S("cable rope triceps pushdown form"),"C1"],
     ["Cross-body dumbbell hammer curl","3 × 12 each arm @ 30–35 lb","Curl across your body toward the opposite shoulder: forearm + outer arm","",S("cross body hammer curl"),"C2"],
     ["Plate pinch hold","3 × 30 sec @ two 10 lb plates each hand","Pinch two plates together, smooth sides out, fingers only. Builds the grip strength for levers and heavy pulls","",S("plate pinch grip hold"),"D1"],
     ["Dead hang","3 × max hold · bodyweight","Squeeze the bar hard, shoulders down. Rest 60 sec","",S("dead hang grip strength"),"D2"],
     ["Between sets: open book","4 each side","Mobility during your rest, then back to work. Lie on your side, knees bent, open the top arm across and follow it with your eyes","",S("side lying open book thoracic rotation")]]},
-   {h:"Core: rotation + abs", m:"12 min", note:"Supersets A and B, 3 rounds, rest 60 sec. Pallof press teaches your core to resist twisting; woodchops teach it to make twisting: both are athletic core.", rows:[
+   {h:"Core + Rotation", m:"12 min", note:"Supersets A and B, 3 rounds, rest 60 sec. Pallof press teaches your core to resist twisting; woodchops teach it to make twisting: both are athletic core.", rows:[
     ["Cable Pallof press","3 × 10 each side @ 20–30 lb (cable)","Stand sideways to the cable, handle at your chest. Press it straight out and hold 2 sec. Don't let it pull you around",AC,S("cable pallof press form"),"A1"],
     ["Cable woodchop, high to low","3 × 10 each side @ 20–30 lb (cable)","Cable high, pull it down across your body to the opposite hip. Turn from your hips and core, arms stay long",AC,S("cable woodchop high to low form"),"A2"],
     ["Hanging leg raise, full range","3 × 5 · bodyweight","Hang, crush the bar, shoulders down (the pool move). Brace your abs like you're about to get punched. First curl your pelvis up, like rolling your tailbone toward your belly button, then lift your legs. Breathe out on the way up, 3 sec down, and stop before your legs swing back. If you swing, pause 1 sec at the bottom",MINE,S("hanging leg raise full range no swing"),"B1"],
     ["Cable crunch, heavy","3 × 12 @ 100–120 lb (cable)","2-sec squeeze at the bottom, hips still",MINE,S("cable crunch form"),"B2"]]},
-   {h:"Cool-down", m:"2 min", rows:[
+   {h:"Cool-Down", m:"2 min", rows:[
     ["Doorway chest stretch","30 sec each side","Posture. Forearm on the door frame, step through","",S("doorway pec minor stretch")],
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
   ]},
@@ -712,14 +739,14 @@ const SAVED_EXERCISES = [
 ];
 /* Not on the schedule this week; kept for next week. */
 const SPARE_DAYS = [
- {id:"sat", chip:"Sat", kicker:"Saturday · next week", title:"Legs A: explosive + squat", time:"~45 min", stair:["35-min intervals","after leg day"], night:"Night stretch + 100 push-ups",
+ {id:"sat", chip:"Sat", kicker:"Saturday · Next Week", title:"Lower Body A · Power + Squat", time:"~45 min", stair:["35-min intervals","after leg day"], night:"Night stretch + 100 push-ups",
   blocks:[
-   {h:"Jump rope + warm-up", m:"6 min", rows:[
+   {h:"Jump Rope + Warm-Up", m:"6 min", rows:[
     ["Jump rope, basic bounce","3 × 30 sec on / 30 sec off","Light on the balls of your feet, small hops","",S("jump rope basic bounce beginner")],
     ["Tibialis raise","1 × 20","Back to the wall, lift your toes, pause top and bottom","",S("tibialis raise wall knees over toes")],
     ["Banded lateral walks","2 × 8 each way","Band above the knees, stay low",AD,"https://youtube.com/shorts/GMo4gT2e-Dc"],
     ["Band pull-aparts + chin tuck","1 × 15","Posture. Pull the band apart to your chest and at the same time slide your chin straight back (make a double chin). Undoes the hunch from phones and desks",HAM,S("band pull apart chin tuck posture")]]},
-   {h:"Functional: jump primer", m:"10 min", note:"Getting your body used to jumping again. Ankles first, then small jumps. About 70% effort, quiet landings, knees over your toes. Weak leg first. If anything pinches, skip that drill today.", rows:[
+   {h:"Functional · Jump Primer", m:"10 min", note:"Getting your body used to jumping again. Ankles first, then small jumps. About 70% effort, quiet landings, knees over your toes. Weak leg first. If anything pinches, skip that drill today.", rows:[
     ["Lateral ankle pops","3 × 10 each ankle · bodyweight","Quick and springy, small bounces off the ball of the foot",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
     ["Lateral plate hops","3 × 10 sec · bodyweight","Small side-to-side hops over a plate on the floor",AD,"https://youtube.com/shorts/XomC_FIU_E0"],
     ["Lateral bounds, stick the landing","3 × 4 each side · bodyweight","Jump sideways off one leg, land on the other and hold 2 sec. Short jumps this week; distance comes later",AD,"https://youtube.com/shorts/00tM64YTOTE"]]},
@@ -729,30 +756,30 @@ const SPARE_DAYS = [
     ["Barbell jump squat","3 × 5 @ bar (45 lb)","Bar on your back, quarter squat, jump, land soft and reset each rep",AD,S("barbell jump squat form")],
     ["Pistol squat to a box","3 × 5 each side · bodyweight","Sit down slowly on one leg until you touch a bench or box, stand back up, no hands. Lower the box as you get stronger. A small plate under your heel helps depth",LW,S("box pistol squat progression"),"B2"],
     ["Dumbbell walking lunge","3 × 10 each leg @ 40–50 lb each hand","40–50 lb dumbbells, front foot stays flat",HAM,"https://youtube.com/shorts/JMkDwe0Wki4"]]},
-   {h:"Glutes + hips", m:"6 min", note:"Superset C, 3 rounds. No equipment needed.", rows:[
+   {h:"Glutes + Hips", m:"6 min", note:"Superset C, 3 rounds. No equipment needed.", rows:[
     ["Single-leg glute bridge risers","3 × 7 each side · bodyweight","Glutes",AH,"https://youtu.be/pTDQ5tJRhC8","C1"],
     ["Side-lying hip abduction","3 × (10 straight leg + 5 bent leg) each side · bodyweight","Lie on your side, lift the top leg slightly behind you: outer hip strength",FMF,"https://www.youtube.com/watch?v=C4bQSvhSGZA","C2"]]},
-   {h:"Cool-down", m:"2 min", rows:[
+   {h:"Cool-Down", m:"2 min", rows:[
     ["Half-kneeling hip flexor stretch","30 sec each side","Squeeze the back glute",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"],
     ["Seated hamstring V-stretch","30 sec","Legs wide, walk your hands forward",HAM,S("seated v sit hamstring stretch")]]}
   ]},
- {id:"sat", chip:"Sat", kicker:"Saturday · lighter day", title:"Stability + abs A + hips", time:"~45 min", stair:["40-min fat burn","two short level 9 pushes"], night:"Night stretch + 100 push-ups",
+ {id:"sat", chip:"Sat", kicker:"Saturday · Light Day", title:"Stability · Core A · Hips", time:"~45 min", stair:["40-min fat burn","two short level 9 pushes"], night:"Night stretch + 100 push-ups",
   blocks:[
-   {h:"Functional: Stability day", m:"12 min", note:"Stability day: strength in the hips, knees and ankles, and evening out your legs.", rows:[
+   {h:"Functional · Stability", m:"12 min", note:"Stability day: strength in the hips, knees and ankles, and evening out your legs.", rows:[
     ["Banded lateral walks","3 × 3","Stay low",AD,"https://youtube.com/shorts/GMo4gT2e-Dc"],
     ["Single-leg hold (isometric), 6 sec","3 × 6 each leg","Quarter squat on one leg, weak leg first, no or light weight",AD,"https://youtube.com/shorts/sSXrGCaWzy0"],
     ["Plate overhead","2 × 5 each leg","Core stability on one leg",AD,"https://youtube.com/shorts/08PQOpJ6t5w"],
     ["Slight squat plate press, 3-sec hold","2 × 5 each leg","Balance",AD,"https://youtube.com/shorts/A6edtaVdf4M"],
     ["Single-leg bench squats","2 × 8 each leg","No weight, sit back to the bench",AD,"https://youtu.be/sXDycqjLbiI"],
     ["Ankle lifts, 3-sec hold","2 × 4","Ankle strength",AD,"https://youtube.com/shorts/QPkmE4jvrxw"]]},
-   {h:"Abs A: lower abs + dragon flag", m:"14 min", note:"Supersets A and B, rest 60–90 sec after each round. Hanging leg raises: shoulders down, pelvis curls up first, 3 sec down, 1-sec pause at the bottom.", rows:[
+   {h:"Core A · Lower Abs + Dragon Flag", m:"14 min", note:"Supersets A and B, rest 60–90 sec after each round. Hanging leg raises: shoulders down, pelvis curls up first, 3 sec down, 1-sec pause at the bottom.", rows:[
     ["Hanging leg raise, full range","4 × 5","Perfect reps only",MINE,S("hanging leg raise full range no swing"),"A1"],
     ["Cable crunch, heavy","4 × 10","2-sec squeeze at the bottom, hips still",MINE,S("cable crunch form"),"A2"],
     ["Candlestick leg lifts on the bench","3 × 5","Dragon flag step 2: grip the bench behind your head, lift your hips to vertical, lower slowly","",S("candlestick leg lift dragon flag progression"),"B1"],
     ["V-ups","3 × 8","Hands and feet meet, lower slowly",AC,"https://www.youtube.com/watch?v=7UVgs18Y1P4","B2"],
     ["One-leg tucked dragon flag negatives","3 × 3","Dragon flag step 3: lower in 5 sec, rest 60 sec","",S("tucked dragon flag negative")],
     ["Jack knife, slow","2 × 10","Hands and feet meet over your hips",AC,"https://www.youtube.com/watch?v=CWOZyf8kaH0"]]},
-   {h:"Hip session A", m:"20 min", rows:[
+   {h:"Hip Session A", m:"20 min", rows:[
     ["Banded hip mobilization, in and out","15 each side","Loosen the joint first",WD,S("banded hip mobilization internal external rotation")],
     ["Doggies, 3-sec hold","2 × 5 each side","Outer hip",AH,"https://youtu.be/lwxlCzVtjWk"],
     ["Sitting leg lifts in and out, 3-sec hold","2 × 5 each side","Hip flexors",AH,"https://youtu.be/TSUPBX45krA"],
@@ -764,14 +791,14 @@ const SPARE_DAYS = [
     ["Hip airplanes, assisted","10 in and out, 5-sec holds","Hold the rack",WD,S("hip airplane exercise")],
     ["L hip stretch","2 × 4 each way","Outer hip + hip flexor",AH,"https://youtu.be/Nt_c2GZ27YQ"]]}
   ]},
- {id:"mon", chip:"Mon", kicker:"Monday · optional", title:"Flow Motion Fitness hips + abs B", time:"~40 min", stair:["40-min fat burn","two short level 9 pushes"], night:"Night stretch + 100 push-ups",
+ {id:"mon", chip:"Mon", kicker:"Monday · Optional", title:"Hips · Core B", time:"~40 min", stair:["40-min fat burn","two short level 9 pushes"], night:"Night stretch + 100 push-ups",
   blocks:[
-   {h:"Warm-up", m:"8 min", rows:[
+   {h:"Warm-Up", m:"8 min", rows:[
     ["Quadruped hip controlled circles","2 × 4 (forward + back = 1)","Full circle, back still",FMF,"https://www.youtube.com/watch?v=rqLtUosOs0U"],
     ["Crab walks","3 × 6 each direction","Outer hip",FMF,"https://www.youtube.com/watch?v=67-poqNRFdY"],
     ["Psoas march, 5-sec pause","3 × 4–10","Hip flexor strength",FMF,S("psoas march exercise")],
     ["Kneeling hip flexor stretch","30 sec each leg","Hip flexors",FMF,"https://www.youtube.com/watch?v=JTvF34XZ-Cc"]]},
-   {h:"Hip strength + mobility", m:"22 min", note:"Tense-and-lift holds: hold the stretch, then 10 sec pushing into the floor, then 10 sec trying to lift out of the stretch.", rows:[
+   {h:"Hip Strength + Mobility", m:"22 min", note:"Tense-and-lift holds: hold the stretch, then 10 sec pushing into the floor, then 10 sec trying to lift out of the stretch.", rows:[
     ["90/90 hip internal rotation, tense-and-lift","2 min hold, then 3 × 10 sec each side","Turning the hip in",FMF,"https://www.youtube.com/watch?v=RqjzWBqXYSg"],
     ["Pigeon pose, relaxed (no active pigeon)","60 sec each side","Outer hip, turning out. Relaxed only",FMF,S("pigeon pose pillow under hip beginner")],
     ["Hip abduction reps","3 × (10 straight leg + 5 bent leg) each side","Outer hip strength",FMF,"https://www.youtube.com/watch?v=C4bQSvhSGZA"],
@@ -780,7 +807,7 @@ const SPARE_DAYS = [
     ["Ankle tense-and-lift","2 min hold, then 3 × 10 sec","Ankles",FMF,"https://www.youtube.com/watch?v=c_-LTvg8uhY"],
     ["Frog stretch, sitting back","2 min","Inner thigh + hips",FMF,S("frog stretch rock back")],
     ["Seated glute stretch","1 min each side","Outer hip",FMF,"https://www.youtube.com/watch?v=NoxR58Z-1Zw"]]},
-   {h:"Abs B: stability + definition", m:"12 min", note:"Supersets A and B, then the last two straight.", rows:[
+   {h:"Core B · Stability", m:"12 min", note:"Supersets A and B, then the last two straight.", rows:[
     ["Hollow hold","3 × 30 sec","Low back pressed down; bend knees if needed. Dragon flag step 1",FMF,S("hollow body hold progression"),"A1"],
     ["Cable Pallof press","3 × 10 each side","Press out, don't let it twist you","",S("pallof press cable"),"A2"],
     ["Stir the pot","3 × 5 circles each way","Forearms on a stability ball, or plank saws; hips still",WD,S("stir the pot exercise stability ball"),"B1"],
@@ -869,7 +896,33 @@ const restFor = b => { const r = REST_RULES.find(x=>x[0].test(b.h)); return {sec
 const mins = t => { const m = String(t||"").match(/(\d+)/); return m ? +m[1] : 0; };
 /* ---------- storage: db when available, this phone otherwise ---------- */
 const cache = {};
-const local = { get(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}, set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}} };
+/* ---------- Keep your data safe ----------
+   1. Asks the phone not to clear this app's storage.
+   2. Every save is also copied into a second store on the phone (IndexedDB). If the main storage
+      is ever wiped, the app puts everything back from that copy.
+   3. When a new week starts (Monday), last week's data is filed into an archive (last 12 weeks),
+      so a weekly reset never loses anything.
+   4. More → Copy this week (paste to Claude) or Backup file (save everything to your Files). */
+const HYDB = {
+  open(){ return new Promise((res,rej)=>{ const r=indexedDB.open("hy1-backup",1); r.onupgradeneeded=()=>r.result.createObjectStore("kv"); r.onsuccess=()=>res(r.result); r.onerror=()=>rej(r.error); }); },
+  async put(v){ const db=await this.open(); return new Promise((res,rej)=>{ const t=db.transaction("kv","readwrite"); t.objectStore("kv").put(v,"all"); t.oncomplete=()=>res(); t.onerror=()=>rej(t.error); }); },
+  async get(){ const db=await this.open(); return new Promise((res,rej)=>{ const q=db.transaction("kv").objectStore("kv").get("all"); q.onsuccess=()=>res(q.result); q.onerror=()=>rej(q.error); }); } };
+function rawData(){ const out={}; try{ for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(k && k.startsWith("hy1-")) out[k]=localStorage.getItem(k); } }catch(e){} return out; }
+function allData(){ const out={}, raw=rawData(); Object.keys(raw).forEach(k=>{ try{ out[k]=JSON.parse(raw[k]); }catch(e){ out[k]=raw[k]; } }); return out; }
+let backupTimer=0;
+function backupSoon(){ clearTimeout(backupTimer); backupTimer=setTimeout(()=>{ HYDB.put({savedAt:Date.now(), data:rawData()}).catch(()=>{}); }, 1200); }
+const PREF_KEYS=/^hy1-(mode|theme|palette|pal-v3|upd)$/;
+(async function restoreIfWiped(){
+  try{ navigator.storage && navigator.storage.persist && navigator.storage.persist(); }catch(e){}
+  const has=Object.keys(rawData()).some(k=>!PREF_KEYS.test(k));
+  if(has){ backupSoon(); return; }
+  try{ const b=await HYDB.get(); if(b && b.data && Object.keys(b.data).some(k=>!PREF_KEYS.test(k))){ Object.entries(b.data).forEach(([k,v])=>{ try{ localStorage.setItem(k,v); }catch(e){} }); location.reload(); } }catch(e){}
+})();
+const local = { get(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}, set(k,v){try{localStorage.setItem(k,JSON.stringify(v)); backupSoon();}catch(e){}} };
+function weekKey(d){ d=d||new Date(); const m=new Date(d.getFullYear(),d.getMonth(),d.getDate()-((d.getDay()+6)%7)); return m.getFullYear()+"-"+String(m.getMonth()+1).padStart(2,"0")+"-"+String(m.getDate()).padStart(2,"0"); }
+function weekLabel(k){ const [y,mo,da]=k.split("-").map(Number); return "Week of "+new Date(y,mo-1,da).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}); }
+function archiveWeek(label){ const data=allData(); Object.keys(data).forEach(k=>{ if(k==="hy1-archive"||PREF_KEYS.test(k)) delete data[k]; }); const a=local.get("hy1-archive")||{}; a[label]={savedAt:new Date().toISOString(), data}; const ks=Object.keys(a).sort(); while(ks.length>12) delete a[ks.shift()]; local.set("hy1-archive",a); }
+(function weekRoll(){ const wk=weekKey(), last=local.get("hy1-week"); if(last && last!==wk) archiveWeek(last); local.set("hy1-week",wk); })();
 let db = null, current = null;
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,48);
 function keysFor(blocks){ const seen={}; return blocks.map(b=>b.rows.map(r=>{ let k=slug(r[0]); if(seen[k]) k+="-"+(++seen[k]); else seen[k]=1; return k; })); }
@@ -908,10 +961,16 @@ function saveSoon(id){ clearTimeout(saveTimer[id]); saveTimer[id] = setTimeout((
 (function hero(){ try{ const d=new Date(), h=d.getHours(); const day=d.toLocaleDateString("en-US",{weekday:"long"}), md=d.toLocaleDateString("en-US",{month:"short",day:"numeric"}); const el=document.getElementById("hero-date"); if(el) el.textContent=`${day} · ${md} · Week 3`; const g=document.getElementById("hero-greet"); if(g) g.innerHTML=(h<12?"Good morning":h<17?"Good afternoon":"Good evening")+',<br><span class="grad">Big RPJ.</span>'; }catch(e){} })();
 function setSync(t){ const el=document.getElementById("sync"); if(el) el.textContent=t; }
 document.getElementById("copydata")?.addEventListener("click", async()=>{
-  const out={}; try{ for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(k && k.startsWith("hy1-")) out[k]=JSON.parse(localStorage.getItem(k)); } }catch(e){}
-  const txt="My workout app data:\n"+JSON.stringify(out);
-  try{ await navigator.clipboard.writeText(txt); alert("Copied. Paste it into the chat."); }
+  const out=allData(); Object.keys(out).forEach(k=>{ if(k==="hy1-archive"||PREF_KEYS.test(k)) delete out[k]; });
+  const txt="My workout app data · "+weekLabel(weekKey())+" (copied "+new Date().toLocaleString("en-US")+"):\n"+JSON.stringify(out);
+  try{ await navigator.clipboard.writeText(txt); alert("Copied this week. Paste it into the chat."); }
   catch(e){ window.prompt("Copy this and paste it into the chat:", txt); }
+});
+document.getElementById("backupfile")?.addEventListener("click", async()=>{
+  const name="discipline-backup-"+new Date().toISOString().slice(0,10)+".json";
+  const file=new File([JSON.stringify({app:"Discipline & Consistency", savedAt:new Date().toISOString(), data:allData()},null,1)], name, {type:"application/json"});
+  try{ if(navigator.canShare && navigator.canShare({files:[file]})){ await navigator.share({files:[file], title:name}); return; } }catch(e){ if(e && e.name==="AbortError") return; }
+  const a=document.createElement("a"); a.href=URL.createObjectURL(file); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },1000);
 });
 
 const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -1427,9 +1486,12 @@ app.addEventListener("click",e=>{ const h=e.target.closest(".rowhead"); if(!h) r
   row.classList.toggle("open",open); row.classList.toggle("shut",!open); if(open) openRows.add(h.dataset.row); else openRows.delete(h.dataset.row); });
 new MutationObserver(()=>refocus(false)).observe(app,{childList:true});
 /* Dark / Light switch (dark is the default) */
-{ const md=document.getElementById("mode"); const setMode=v=>{ document.documentElement.dataset.theme=v; try{localStorage.setItem("hy1-theme",v);}catch(e){} md.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.mode===v)));
-    document.querySelectorAll('meta[name="theme-color"]').forEach(m=>m.content = v==="dark" ? "#07080A" : "#EDEFF3"); };
-  setMode(document.documentElement.dataset.theme||"dark"); md.addEventListener("click",e=>{ const b=e.target.closest("[data-mode]"); if(b) setMode(b.dataset.mode); }); }
+{ const md=document.getElementById("mode");
+  const apply=()=>{ const t=hyThemeNow(); if(document.documentElement.dataset.theme!==t) document.documentElement.dataset.theme=t;
+    document.querySelectorAll('meta[name="theme-color"]').forEach(m=>m.content = t==="dark" ? "#07080A" : "#EDEFF3"); };
+  const setMode=v=>{ try{localStorage.setItem("hy1-mode",v);}catch(e){} md.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.mode===v))); apply(); };
+  setMode(hyModePref()); md.addEventListener("click",e=>{ const b=e.target.closest("[data-mode]"); if(b) setMode(b.dataset.mode); });
+  setInterval(apply, 60000); document.addEventListener("visibilitychange",()=>{ if(!document.hidden) apply(); }); }
 /* Color theme switch: Blue or Gear 5 */
 { const pal=document.getElementById("palette"); const setPal=v=>{ document.documentElement.dataset.palette=v;  try{localStorage.setItem("hy1-palette",v);}catch(e){} pal.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.pal===v))); };
   setPal(document.documentElement.dataset.palette||"mix"); pal.addEventListener("click",e=>{ const b=e.target.closest("[data-pal]"); if(b) setPal(b.dataset.pal); }); }
@@ -1450,7 +1512,7 @@ go(start);
 dockTick();
 
 /* ---------- November lock-in: clear day/morning/night checkmarks + logs once (Nov 1, 2026) ---------- */
-(function freshStart(){ const tag="2026-11-01"; if(local.get("hy1-fresh")===tag) return; if(new Date() < new Date(2026,10,1)) return;
+(function freshStart(){ const tag="2026-11-01"; if(local.get("hy1-fresh")===tag) return; if(new Date() < new Date(2026,10,1)) return; archiveWeek("before reset "+tag);
   ["mon","tue","wed","thu","fri","sat","sun"].forEach(w=>{ ["", "night-", "morning-"].forEach(pre=>{ const id=pre+w, d=docOf(id); d.checks={}; d.logs={}; d.cal=""; d.am=""; d.push=false; delete d.legacyNight; save(id); }); });
   stopAll(); local.set("hy1-fresh",tag); if(DAYS.some(d=>d.id===current)) render(current); })();
 (function markMondayWent(){ const tag="2026-10-26-mon"; if(local.get("hy1-monwent")===tag) return; if(new Date() < new Date(2026,9,26)) return; const d=docOf("mon"); if(!d.am){ d.am="went"; save("mon"); } local.set("hy1-monwent",tag); })();
@@ -1472,6 +1534,13 @@ async function checkUpdate(){
 }
 checkUpdate();
 document.addEventListener("visibilitychange",()=>{ if(!document.hidden) checkUpdate(); });
+
+/* ---------- touch glow: whatever you touch lights up softly, then fades ---------- */
+(function(){ const SEL="button,a,label,input,select,textarea,.chip,.tab,.rowhead,.tile"; let cur=null, t0=0;
+  const off=()=>{ if(!cur) return; const el=cur; cur=null; setTimeout(()=>{ el.classList.add("tglow-out"); el.classList.remove("tglow"); setTimeout(()=>el.classList.remove("tglow-out"),650); }, Math.max(0,220-(Date.now()-t0))); };
+  document.addEventListener("pointerdown",e=>{ let el=e.target.closest(SEL); if(!el) return; if(el.classList.contains("rowhead")) el=el.closest(".t")||el; off(); cur=el; t0=Date.now(); el.classList.remove("tglow-out"); el.classList.add("tglow"); },{passive:true});
+  ["pointerup","pointercancel"].forEach(ev=>document.addEventListener(ev,off,{passive:true}));
+})();
 
 /* ---------- light up account sync when available ---------- */
 (async()=>{
