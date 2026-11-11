@@ -575,7 +575,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-10-titles-glow-auto-backup";
+const APP_VERSION = "2026-11-11-clean-slate-wed";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -619,56 +619,27 @@ const PULL_GUIDE = `
 <div class="big">Rough path: your dead-hang max goes up 2–3 reps a month. 20 strict by early 2027, 30 after that. 50 is elite and takes a year or more of steady work.</div>`;
 const SS = "Superset: do the 1 then the 2 back to back, rest, repeat for all rounds.";
 const DAYS = [
- {id:"mon", chip:"Mon", kicker:"Monday", title:"Conditioning", time:"", stair:["30-min max burn","this morning"], night:"Night stretch + 100 push-ups",
+ {id:"mon", chip:"Mon", kicker:"Monday", title:"Conditioning ✓", time:"", stair:["30-min max burn","done"], night:"Night stretch + 100 push-ups",
   blocks:[
-   {h:"Today's Session", m:"", note:"StairMaster this morning (30-min max burn), no lift. Then your night stretch and 100 push-ups.", rows:[]}
+   {h:"Today's Session", m:"", note:"You did the StairMaster. Done.", rows:[]}
   ]},
- {id:"tue", chip:"Tue", kicker:"Tuesday", title:"Chest · Back · Biceps · Core", time:"~45 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with bench)",
+ {id:"tue", chip:"Tue", kicker:"Tuesday", title:"Break Day", time:"", stair:["",""], night:"Night stretch",
   blocks:[
-   {h:"Warm-Up", m:"4 min", note:"Lower back is aching: everything today keeps it supported or still. Sharp pain? Stop that move.", rows:[
-    ["Wall slides","1 × 10","Posture. Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
-    ["Band pull-aparts + chin tuck","2 × 15, then 1 × 12 right arm only","Posture. Squeeze your shoulder blades and slide your chin straight back. Extra set for the more rounded right shoulder",HAM,S("band pull apart chin tuck posture")],
-    ["Scapular pull-ups, 2-sec hold","1 × 8","Hang with straight arms, pull your shoulders down away from your ears (the pool move)",LW,S("scapular pull ups form")],
-    ["Dead bug","1 × 8 each side","Low back pressed flat into the floor the whole time. Wakes up your abs for later","",S("dead bug exercise form")]]},
-   {h:"Bench Press Pyramid", m:"15 min", note:"Warm up: bar × 10, 135 × 5. Watch your right shoulder at the bottom: if it rolls forward, lower the weight and keep both shoulder blades pinned. Superset A: each bench set, straight into 25 incline push-ups (no vest), then rest 2 min. 100 push-ups total. Set 5 is your top set: do it fresh, no push-ups after.", rows:[
-    ["Set 1","195 × 10","","",S("smith machine bench press form"),"A1"],
-    ["Incline push-ups","25 · bodyweight (1 of 4)","If 25 breaks, take 5 breaths and finish it","",S("feet elevated push up form"),"A2"],
-    ["Set 2","210 × 8","","","","A1"],
-    ["Incline push-ups","25 · bodyweight (2 of 4)","Straight from the bench, then rest 2 min","","","A2"],
-    ["Set 3","230 × 6","","","","A1"],
-    ["Incline push-ups","25 · bodyweight (3 of 4)","Straight from the bench, then rest 2 min","","","A2"],
-    ["Set 4","240 × 5","","","","A1"],
-    ["Incline push-ups","25 · bodyweight (4 of 4)","Straight from the bench, then rest 2 min","","","A2"],
-    ["Set 5","255 × 3","Top set: clean reps only, full rest before it. If your right shoulder rolls forward, stay at 250",HAM,""],
-    ["Between sets: quadruped T-spine rotation","5 each side, slow","Mobility during your rest, then back to work. On hands and knees, hand behind your head, rotate the elbow down under you, then up to the ceiling. Eyes follow the elbow","",S("quadruped thoracic rotation")]]},
-   {h:"Back", m:"10 min", note:"Superset A, 4 rounds (face pulls and pulldowns 3): heavy single-arm row, straight to face pulls, then straight-arm pulldowns, rest 60–90 sec. Right arm first.", rows:[
-    ["Single-arm dumbbell row on the bench","4 × 10 each arm, plus 1 extra set right @ 60 lb","Same-side hand and knee on the flat bench, back flat like a table. Pull the dumbbell to your hip, elbow close, 1-sec squeeze, 3 sec down. Right arm first. Builds lat width and evens out the right side","",S("single arm dumbbell row bench form"),"A1"],
-    ["Band face pull + chin tuck","3 × 15, plus 1 single-arm set right","Band around the pull-up station at forehead height. Pull to your forehead, thumbs back, 2-sec squeeze, chin slides straight back. Posture","",S("band face pull form"),"A2"],
-    ["Band straight-arm pulldown","3 × 15","Band high on the pull-up station, step back, arms straight. Sweep your hands down to your thighs, squeeze your lats 1 sec. Feel it under your armpits, not in your arms","",S("band straight arm pulldown lats"),"A3"]]},
-   {h:"Biceps", m:"10 min", note:"Hammers and curls separate today. Both seated with your back on the bench to protect your lower back. Rest 60 sec between sets.", rows:[
-    ["Seated hammer curl","3 × 10 each arm @ 35–40 lb","Bench upright, back flat on the pad. Palms facing each other, elbows pinned, no swinging, 3 sec down. Forearm + outer arm: thicker arms. All 3 × 10 clean? Add 5 lb","",S("seated hammer curl form")],
-    ["Incline dumbbell curl","3 × 10 each arm @ 25–30 lb","Bench at about 45°, lie back, let your arms hang straight down behind your body. Palms up, curl without moving your elbows forward, squeeze at the top, 3 sec down. The stretch at the bottom builds the bicep peak","",S("incline dumbbell curl form")]]},
-   {h:"Core", m:"8 min", note:"Superset C, 3 rounds, rest 45 sec. All lower-back friendly: no swinging, no arching.", rows:[
-    ["Reverse crunch on the bench","3 × 12 · bodyweight","Lie on the bench, hold it behind your head, knees bent. Curl your hips up off the bench toward your chest (roll your tailbone up), 3 sec down. Lower abs, and teaches the pelvis tilt for your leg raises",MINE,S("reverse crunch bench form"),"C1"],
-    ["Weighted dead bug","3 × 8 each side @ 15–20 lb dumbbell","On your back, dumbbell held straight up over your chest with both hands. Lower one leg slowly toward the floor while your low back stays glued flat. Strong core that protects your back","",S("weighted dead bug dumbbell"),"C2"],
-    ["Band Pallof press","3 × 10 each side, 2-sec hold","Rotational core. Band around the pull-up station at chest height, stand sideways to it. Press your hands straight out and hold 2 sec without letting it twist you. Lower-back friendly","",S("band pallof press form"),"C3"]]},
-   {h:"Cool-Down", m:"2 min", rows:[
-    ["Child's pose","45 sec","Knees wide, sit back toward your heels, arms long. Breathe into your lower back","",S("child's pose stretch")],
-    ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
+   {h:"Rest", m:"", note:"Planned break day. Clean slate starts Wednesday.", rows:[]}
   ]},
- {id:"wed", chip:"Wed", kicker:"Wednesday", title:"Session Moved", time:"", stair:["",""], night:"Night stretch",
+ {id:"wed", chip:"Wed", kicker:"Wednesday · Clean Slate", title:"StairMaster", time:"", stair:["35-min climb","6:00 tonight"], night:"Night stretch + 100 push-ups",
   blocks:[
-   {h:"Moved to Saturday", m:"", note:"The Zercher squat and rotational core are on Saturday this week.", rows:[]}
+   {h:"Today's Session", m:"", note:"Day one of the clean slate. StairMaster at 6:00 (35-min climb), no lift. Then your night stretch and 100 push-ups.", rows:[]}
   ]},
- {id:"thu", chip:"Thu", kicker:"Thursday", title:"Conditioning ✓", time:"", stair:["35-min climb","done"], night:"Night stretch + 100 push-ups",
+ {id:"thu", chip:"Thu", kicker:"Thursday", title:"StairMaster", time:"", stair:["30-min max burn","see StairMaster tab"], night:"Night stretch + 100 push-ups",
   blocks:[
-   {h:"Complete", m:"", note:"You did the StairMaster. Skills, shoulders and arms moved to Sunday.", rows:[]}
+   {h:"Today's Session", m:"", note:"StairMaster only (30-min max burn), no lift. Then your night stretch and 100 push-ups.", rows:[]}
   ]},
- {id:"fri", chip:"Fri", kicker:"Friday", title:"Session Moved", time:"", stair:["",""], night:"Night stretch",
+ {id:"fri", chip:"Fri", kicker:"Friday", title:"StairMaster", time:"", stair:["35-min climb","see StairMaster tab"], night:"Night stretch + 100 push-ups",
   blocks:[
-   {h:"Moved to Saturday", m:"", note:"The Zercher squat is on Saturday, with incline bench and arms.", rows:[]}
+   {h:"Today's Session", m:"", note:"StairMaster only (35-min climb), no lift. Then your night stretch and 100 push-ups. Saturday you lift.", rows:[]}
   ]},
- {id:"sat", chip:"Sat", kicker:"Saturday · Legs + Push", title:"Lower Body · Chest · Arms", time:"~45 min", stair:["40-min steady sweat","after you lift"], night:"Night stretch (no push-ups tonight, you benched)",
+ {id:"sat", chip:"Sat", kicker:"Saturday · Legs + Push", title:"Lower Body · Chest · Arms", time:"~45 min", stair:["40-min steady sweat","optional, later in the day"], night:"Night stretch (no push-ups tonight, you benched)",
   blocks:[
    {h:"Warm-Up + Posture", m:"7 min", rows:[
     ["Kneeling hip circles","1 × 6 each way, each side","Big slow circles",AH,"https://youtu.be/8Om5705EYxA"],
@@ -739,6 +710,39 @@ const SAVED_EXERCISES = [
 ];
 /* Not on the schedule this week; kept for next week. */
 const SPARE_DAYS = [
+ {id:"tue", chip:"Tue", kicker:"Tuesday · Saved (missed Nov 10)", title:"Chest · Back · Biceps · Core", time:"~45 min", stair:["30-min intervals","see StairMaster tab"], night:"Night stretch (no push-ups tonight, you did 100 with bench)",
+  blocks:[
+   {h:"Warm-Up", m:"4 min", note:"Lower back is aching: everything today keeps it supported or still. Sharp pain? Stop that move.", rows:[
+    ["Wall slides","1 × 10","Posture. Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
+    ["Band pull-aparts + chin tuck","2 × 15, then 1 × 12 right arm only","Posture. Squeeze your shoulder blades and slide your chin straight back. Extra set for the more rounded right shoulder",HAM,S("band pull apart chin tuck posture")],
+    ["Scapular pull-ups, 2-sec hold","1 × 8","Hang with straight arms, pull your shoulders down away from your ears (the pool move)",LW,S("scapular pull ups form")],
+    ["Dead bug","1 × 8 each side","Low back pressed flat into the floor the whole time. Wakes up your abs for later","",S("dead bug exercise form")]]},
+   {h:"Bench Press Pyramid", m:"15 min", note:"Warm up: bar × 10, 135 × 5. Watch your right shoulder at the bottom: if it rolls forward, lower the weight and keep both shoulder blades pinned. Superset A: each bench set, straight into 25 incline push-ups (no vest), then rest 2 min. 100 push-ups total. Set 5 is your top set: do it fresh, no push-ups after.", rows:[
+    ["Set 1","195 × 10","","",S("smith machine bench press form"),"A1"],
+    ["Incline push-ups","25 · bodyweight (1 of 4)","If 25 breaks, take 5 breaths and finish it","",S("feet elevated push up form"),"A2"],
+    ["Set 2","210 × 8","","","","A1"],
+    ["Incline push-ups","25 · bodyweight (2 of 4)","Straight from the bench, then rest 2 min","","","A2"],
+    ["Set 3","230 × 6","","","","A1"],
+    ["Incline push-ups","25 · bodyweight (3 of 4)","Straight from the bench, then rest 2 min","","","A2"],
+    ["Set 4","240 × 5","","","","A1"],
+    ["Incline push-ups","25 · bodyweight (4 of 4)","Straight from the bench, then rest 2 min","","","A2"],
+    ["Set 5","255 × 3","Top set: clean reps only, full rest before it. If your right shoulder rolls forward, stay at 250",HAM,""],
+    ["Between sets: quadruped T-spine rotation","5 each side, slow","Mobility during your rest, then back to work. On hands and knees, hand behind your head, rotate the elbow down under you, then up to the ceiling. Eyes follow the elbow","",S("quadruped thoracic rotation")]]},
+   {h:"Back", m:"10 min", note:"Superset A, 4 rounds (face pulls and pulldowns 3): heavy single-arm row, straight to face pulls, then straight-arm pulldowns, rest 60–90 sec. Right arm first.", rows:[
+    ["Single-arm dumbbell row on the bench","4 × 10 each arm, plus 1 extra set right @ 60 lb","Same-side hand and knee on the flat bench, back flat like a table. Pull the dumbbell to your hip, elbow close, 1-sec squeeze, 3 sec down. Right arm first. Builds lat width and evens out the right side","",S("single arm dumbbell row bench form"),"A1"],
+    ["Band face pull + chin tuck","3 × 15, plus 1 single-arm set right","Band around the pull-up station at forehead height. Pull to your forehead, thumbs back, 2-sec squeeze, chin slides straight back. Posture","",S("band face pull form"),"A2"],
+    ["Band straight-arm pulldown","3 × 15","Band high on the pull-up station, step back, arms straight. Sweep your hands down to your thighs, squeeze your lats 1 sec. Feel it under your armpits, not in your arms","",S("band straight arm pulldown lats"),"A3"]]},
+   {h:"Biceps", m:"10 min", note:"Hammers and curls separate today. Both seated with your back on the bench to protect your lower back. Rest 60 sec between sets.", rows:[
+    ["Seated hammer curl","3 × 10 each arm @ 35–40 lb","Bench upright, back flat on the pad. Palms facing each other, elbows pinned, no swinging, 3 sec down. Forearm + outer arm: thicker arms. All 3 × 10 clean? Add 5 lb","",S("seated hammer curl form")],
+    ["Incline dumbbell curl","3 × 10 each arm @ 25–30 lb","Bench at about 45°, lie back, let your arms hang straight down behind your body. Palms up, curl without moving your elbows forward, squeeze at the top, 3 sec down. The stretch at the bottom builds the bicep peak","",S("incline dumbbell curl form")]]},
+   {h:"Core", m:"8 min", note:"Superset C, 3 rounds, rest 45 sec. All lower-back friendly: no swinging, no arching.", rows:[
+    ["Reverse crunch on the bench","3 × 12 · bodyweight","Lie on the bench, hold it behind your head, knees bent. Curl your hips up off the bench toward your chest (roll your tailbone up), 3 sec down. Lower abs, and teaches the pelvis tilt for your leg raises",MINE,S("reverse crunch bench form"),"C1"],
+    ["Weighted dead bug","3 × 8 each side @ 15–20 lb dumbbell","On your back, dumbbell held straight up over your chest with both hands. Lower one leg slowly toward the floor while your low back stays glued flat. Strong core that protects your back","",S("weighted dead bug dumbbell"),"C2"],
+    ["Band Pallof press","3 × 10 each side, 2-sec hold","Rotational core. Band around the pull-up station at chest height, stand sideways to it. Press your hands straight out and hold 2 sec without letting it twist you. Lower-back friendly","",S("band pallof press form"),"C3"]]},
+   {h:"Cool-Down", m:"2 min", rows:[
+    ["Child's pose","45 sec","Knees wide, sit back toward your heels, arms long. Breathe into your lower back","",S("child's pose stretch")],
+    ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
+  ]},
  {id:"sat", chip:"Sat", kicker:"Saturday · Next Week", title:"Lower Body A · Power + Squat", time:"~45 min", stair:["35-min intervals","after leg day"], night:"Night stretch + 100 push-ups",
   blocks:[
    {h:"Jump Rope + Warm-Up", m:"6 min", rows:[
@@ -840,17 +844,17 @@ const NIGHT = {
 const CR = "Breathe in through your nose for 4, out slowly for 6–8. Sink a little deeper on every exhale. On holds, push into the stretch 5 sec, relax 5 sec, go a little further. Rock gently at the edge, change the angle to find new tight spots, and never force sharp pain. Do the tighter side first and longer.";
 const NIGHT_BY_DAY = {mon:"a",tue:"b",wed:"a",thu:"b",fri:"a",sat:"b",sun:"a"};
 const NIGHT_LEVELUP = {a:[["Couch stretch","Knee closer to the wall, then chest fully upright"],["90/90","No hands, sitting tall"],["Pigeon","Take away the pillow, then fold all the way down onto your forearms"],["Half split","Take away a book, then hands on the floor"],["Hip CARs","Pause 1 sec at each side, then light ankle weight"]], b:[["Frog","Knees wider, hips lower"],["Adductor rocks","Deeper rock, then hold at the back"],["Butterfly","Fold your chest toward your feet"],["Straddle","Straight knees, then elbows down"],["Cossack squats","No hands, then hold a 10–20 lb weight"]]};
-const PUSH_BY_DAY = {mon:true,tue:false,wed:false,thu:true,fri:false,sat:false,sun:false};
+const PUSH_BY_DAY = {mon:true,tue:false,wed:true,thu:true,fri:true,sat:false,sun:false};
 
 const ZONES = [["6","Easy, almost a warm-up","Warm-up and cool-down","#8597A8"],["7","Cruising, feel good","As long as you want","#4B9BFF"],["8","Starting to push it","Several minutes at a time","#0064E0"],["9","Getting there","10–15 min max","#D98A1F"],["10","Hard","1–2 min","#E0612B"],["15","Sprint","30 sec–1 min bursts only","#D12F2F"]];
 const COLOR = Object.fromEntries(ZONES.map(z=>[z[0],z[3]]));
 const rounds = (n, segs) => Array.from({length:n}, ()=>segs).flat();
 const PLANS = {
- p40:{h:"40-min steady sweat", when:"Saturday, after you lift (keep it relaxed)", desc:"Relaxed but real work. Long steady stretches at level 7–8, no hard pushes. You can breathe through your nose most of it, and the length is what burns the calories.", segs:[[5,6],[10,7],[8,8],[4,7],[7,8],[4,7],[2,6]]},
- p35:{h:"35-min climb", when:"Thursday + Sunday", desc:"Your old 40 without the level 6 cool-down at the end: long level 7–8 stretches with two short level 9 pushes. Finish with 2 easy minutes at level 7.", segs:[[5,6],[8,7],[6,8],[2,9],[4,7],[6,8],[2,9],[2,7]]},
- p30:{h:"30-min max burn", when:"Monday morning", desc:"Most calories in 30 minutes. 5 rounds of 2 min level 9, 1 min level 10, 1 min level 8 to recover. Hard but short: intervals pack more work into less time.", segs:[[3,6],[2,7],[2,8],...rounds(5,[[2,9],[1,10],[1,8]]),[3,6]]}
+ p40:{h:"40-min steady sweat", when:"Saturday, optional, later in the day (keep it relaxed)", desc:"Relaxed but real work. Long steady stretches at level 7–8, no hard pushes. You can breathe through your nose most of it, and the length is what burns the calories.", segs:[[5,6],[10,7],[8,8],[4,7],[7,8],[4,7],[2,6]]},
+ p35:{h:"35-min climb", when:"Wednesday, Friday + Sunday", desc:"Your old 40 without the level 6 cool-down at the end: long level 7–8 stretches with two short level 9 pushes. Finish with 2 easy minutes at level 7.", segs:[[5,6],[8,7],[6,8],[2,9],[4,7],[6,8],[2,9],[2,7]]},
+ p30:{h:"30-min max burn", when:"Monday + Thursday", desc:"Most calories in 30 minutes. 5 rounds of 2 min level 9, 1 min level 10, 1 min level 8 to recover. Hard but short: intervals pack more work into less time.", segs:[[3,6],[2,7],[2,8],...rounds(5,[[2,9],[1,10],[1,8]]),[3,6]]}
 };
-const PLAN_BY_DAY = {mon:"p30",tue:null,wed:null,thu:"p35",fri:null,sat:"p40",sun:"p35"};
+const PLAN_BY_DAY = {mon:"p30",tue:null,wed:"p35",thu:"p30",fri:"p35",sat:"p40",sun:"p35"};
 const LOGGABLE = /pull-ups|Smith|jump squat|walking lunge|bent-over row|curl|Romanian|Hanging leg raise, full|Cable crunch|dips|shoulder press|skull crusher|^Set \d/i;
 
 
