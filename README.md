@@ -28,3 +28,7 @@ Your checkmarks, logs, morning days and ideas save on your phone (browser storag
 1. Train with the app all week; save ideas in the **Ideas** tab whenever you see something.
 2. At the end of the week: **Log → Copy log**, paste it to Claude.
 3. Claude builds the next week and pushes it here. Your icon picks it up next time you open it.
+
+## Updates
+
+At the bottom of `index.html` is `APP_BUILD`. Every time the app changes, bump it (for example `2026-11-13.1` → `2026-11-13.2`). When the phone opens the app, it checks GitHub for a different `APP_BUILD` and shows a **New workout available · Update** bar.
