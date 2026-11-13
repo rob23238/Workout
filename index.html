@@ -660,7 +660,11 @@ const DAYS = [
     ["Child's pose","45 sec","Knees wide, sit back toward your heels, arms long. Breathe into your lower back","",S("child's pose stretch")],
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"thu", chip:"Thu", kicker:"Thursday · Legs + Pull", title:"Pull-Ups · Legs · Hips · Core", time:"~45 min", stair:["30-min max burn","after you lift or later today"], night:"Night stretch + 100 push-ups",
+ {id:"thu", chip:"Thu", kicker:"Thursday", title:"StairMaster", time:"", stair:["35-min climb","see StairMaster tab"], night:"Night stretch + 100 push-ups",
+  blocks:[
+   {h:"Today's Session", m:"", note:"StairMaster only (35-min climb), no lift. Then your night stretch and 100 push-ups. Friday you lift.", rows:[]}
+  ]},
+ {id:"fri", chip:"Fri", kicker:"Friday · Legs + Pull", title:"Pull-Ups · Legs · Hips · Core", time:"~45 min", stair:["30-min max burn","after you lift or later today"], night:"Night stretch + 100 push-ups",
   blocks:[
    {h:"Set Up First", m:"1 min", note:"Load the Smith bar, put a 40 lb dumbbell by the bench, anchor the band low, set the cable at chest height. No walking around mid-workout. Timer on every rest.", rows:[]},
    {h:"Jump Rope + Warm-Up", m:"6 min", note:"Jump rope 3 × 30 sec. In each 30-sec rest, do the next warm-up move. Nose breathing on the rope.", rows:[
@@ -691,10 +695,6 @@ const DAYS = [
    {h:"Cool-Down", m:"2 min", rows:[
     ["Pigeon","45 sec each side","Relaxed pigeon, breathe into the outer hip",MINE,S("pigeon pose outer hip stretch")],
     ["Seated hamstring V-stretch","30 sec","Legs wide, walk your hands forward",HAM,S("seated v sit hamstring stretch")]]}
-  ]},
- {id:"fri", chip:"Fri", kicker:"Friday", title:"StairMaster", time:"", stair:["35-min climb","see StairMaster tab"], night:"Night stretch + 100 push-ups",
-  blocks:[
-   {h:"Today's Session", m:"", note:"StairMaster only (35-min climb), no lift. Then your night stretch and 100 push-ups. Saturday you lift.", rows:[]}
   ]},
  {id:"sat", chip:"Sat", kicker:"Saturday · Push", title:"Incline Chest · Posture · Arms", time:"~30 min", stair:["40-min steady sweat","optional, later in the day"], night:"Night stretch (no push-ups tonight, you benched)",
   blocks:[
@@ -1305,7 +1305,7 @@ function renderCali(){
   app.querySelectorAll("[data-sk]").forEach(cb=>cb.addEventListener("change",()=>{ d.done[cb.dataset.sk]=cb.checked; save("cali"); const y=scrollY; renderCali(); scrollTo(0,y); }));
   app.querySelectorAll("[data-best]").forEach(inp=>inp.addEventListener("input",()=>{ d.best[inp.dataset.best]=inp.value; saveSoon("cali"); }));
 }
-const SKILLS_BY_DAY = {mon:[],tue:["Lower abs"],wed:[],thu:["Pistol squat","Pull-ups → 50"],fri:[],sat:[],sun:["Front lever","L-sit","Handstand push-up","Lower abs","Pull-ups → 50"]};
+const SKILLS_BY_DAY = {mon:[],tue:["Lower abs"],wed:[],thu:[],fri:["Pistol squat","Pull-ups → 50"],sat:[],sun:["Front lever","L-sit","Handstand push-up","Lower abs","Pull-ups → 50"]};
 
 /* ---------- Breathing + mindset (used in Morning and Night) ---------- */
 const BREATHS = {
