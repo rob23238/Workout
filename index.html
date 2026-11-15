@@ -734,10 +734,9 @@ const DAYS = [
    {h:"Calisthenics Skills", m:"14 min", note:"Three skills only, so you master them. Stop every set when your form breaks. Handstand first, then Superset B: pike push-ups straight into the L-sit, rest 90 sec.", rows:[
     ["Wall handstand hold, chest to wall","4 × 30–40 sec · bodyweight","Walk your feet up the wall until your chest faces it. Hands shoulder-width, arms locked, push the floor away so your shoulders reach your ears, squeeze your glutes and point your toes. Body in one straight line. Rest 60 sec. All 4 at 40 sec? Next week go for 45–60",LW,"https://www.tiktok.com/t/ZPLSuXqwY/"],
     ["Pike push-ups","3 × 6–8 · bodyweight","Hands on the floor, hips high so your body is an upside-down V. Bend your elbows and lower the top of your head toward a spot just in front of your hands, then press back up. Elbows angle back, not flared out. All 3 × 8 clean? Put your feet on the bench next time. Handstand push-up step 2",LW,S("pike push up form"),"B1"],
-    ["L-sit","3 × max hold · bodyweight","Hands on the floor or parallettes next to your hips, arms locked, push down hard so your shoulders drop. Lift your hips, then your legs. Straight legs if you can; one leg bent or both knees tucked if they drop. Use your level from the Calisthenics tab",LW,S("l sit progression beginner"),"B2"],
-    ["Pike compression lifts","2 × 8 · bodyweight","Sit with legs straight together, hands flat beside your knees. Lift both heels off the floor and hold 2 sec. The straight-leg strength the L-sit needs",MINE,S("pike compression lifts L sit")]]},
+    ["L-sit, straight legs","3 × max hold (aim 10–20 sec) · bodyweight","Hands on the floor or parallettes next to your hips, arms locked, push down hard so your shoulders drop. Lift your hips, then lock both legs straight out in front, toes pointed, at hip height. Stop the hold when your legs drop or your knees bend",LW,S("l sit tutorial straight legs"),"B2"],
    {h:"Squat + Pull-Ups", m:"12 min", note:"Superset C, 4 rounds: squat set, straight to pull-ups, rest 90 sec. Legs and back don't compete, so both stay strong. Leg day 2 of 2 this week: technique squats, not a max day.", rows:[
-    ["Smith back squat","135 × 5, then 3 × 5 @ 185","Bar on your upper back, feet shoulder-width, brace your abs. Sit down between your heels as deep as you can control, chest up, knees track over your toes, drive up through the whole foot. 3 sec down, smooth up. All 3 × 5 clean and easy? Next week 195",HAM,S("smith machine back squat form"),"C1"],
+    ["Smith back squat","135 × 5, 185 × 3, then 3 × 5 @ 215","Bar on your upper back, feet shoulder-width, brace your abs. Sit down between your heels as deep as you can control, chest up, knees track over your toes, drive up through the whole foot. 3 sec down, smooth up. All 3 × 5 clean and easy? Next week 225",HAM,S("smith machine back squat form"),"C1"],
     ["Pull-ups","4 × 8 · bodyweight","Pull-up day 2 of 2. Every rep from a dead hang: arms straight, pool move, crush the bar, chin over, 3 sec down. Stop 1–2 reps short of failure",LW,S("strict pull up form"),"C2"]]},
    {h:"Arms + Posture", m:"7 min", note:"Superset D, 3 rounds, rest 45 sec.", rows:[
     ["Cable rope triceps pushdown","3 × 12 @ 40–50 lb (cable)","Elbows pinned to your sides, spread the rope at the bottom","",S("cable rope triceps pushdown form"),"D1"],
@@ -1585,7 +1584,7 @@ document.addEventListener("visibilitychange",()=>{ if(!document.hidden) checkUpd
   <button type="button" id="upd-go" style="border:0;border-radius:10px;padding:8px 14px;font:700 14px system-ui,-apple-system,sans-serif;background:#fff;color:#111">Update</button>
 </div>
 <script>
-const APP_BUILD = "2026-11-15.1";
+const APP_BUILD = "2026-11-15.2";
 (function(){
   const bar = document.getElementById("upd");
   let newer = null, checking = false;
