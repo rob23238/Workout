@@ -575,7 +575,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-17-tue-incline";
+const APP_VERSION = "2026-11-17-tue-incline-home";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -623,29 +623,29 @@ const DAYS = [
   blocks:[
    {h:"Today's Session", m:"", note:"You did the StairMaster. Done.", rows:[]}
   ]},
- {id:"tue", chip:"Tue", kicker:"Tuesday · Incline Day", title:"Incline · Dips · Pull-Ups · Arms · Abs", time:"~35 min", stair:["40-min steady sweat","optional, after you lift"], night:"Night stretch (no push-ups tonight, you did them here)",
+ {id:"tue", chip:"Tue", kicker:"Tuesday · Incline Day", title:"Incline · Pull-Ups · Arms · Core", time:"~45 min", stair:["40-min steady sweat","optional, after you lift"], night:"Night stretch (no push-ups tonight, you did them here)",
   blocks:[
-   {h:"Warm-Up + Posture", m:"5 min", note:"Swapped in from Saturday: Saturday is your real barbell bench test, so the incline goes today. Timer on every rest. Curls and hanging leg raises are extra: only if you have time at the end.", rows:[
+   {h:"Warm-Up + Posture", m:"5 min", note:"Swapped in from Saturday: Saturday is your real barbell bench test, so the incline goes today. Home gym today (no dip bar). Timer on every rest, mobility between sets.", rows:[
     ["Wall slides","1 × 10","Posture. Back, head and arms flat on the wall, chin tucked, slide up into a Y and down","",S("wall slides shoulder mobility")],
     ["Band pull-aparts + chin tuck","1 × 15, then 1 × 12 right arm","Posture. Squeeze your shoulder blades, slide your chin straight back",HAM,S("band pull apart chin tuck posture")],
     ["Scapular pull-ups, 2-sec hold","1 × 8","The pool move: shoulders down, arms straight",LW,S("scapular pull ups form")],
-    ["Wrist + elbow circles","10 each way","Gets wrists and elbows ready for dips","",S("wrist elbow warm up dips")]]},
+    ["Wrist + elbow circles","10 each way","Gets wrists and elbows ready to press and curl","",S("wrist elbow warm up dips")]]},
    {h:"Incline Bench Press", m:"12 min", note:"Superset A, 4 rounds: incline set, straight to incline push-ups, rest 90 sec. Open books during the rest.", rows:[
     ["Incline bench press","Bar × 10, 135 × 5, then 4 × 8 @ 155–165","Bench at about 30°. Shoulder blades pinched, bar to your upper chest just under the collarbone, 2 sec down. Last time all 4 sets clean at 155? Use 165. Watch the right shoulder: keep it pinned back",HAM,S("incline barbell bench press form 30 degree"),"A1"],
     ["Incline push-ups (feet on the bench)","4 × 15–20 · bodyweight","Straight from the bench press. Feet on the bench, hands on the floor, body straight like a plank, chest to the floor. If a set breaks, take 5 breaths and finish it. Handstand push-up step 1",LW,S("feet elevated push up form"),"A2"],
     ["Between sets: open book","4 each side","Mobility during your rest. Lie on your side, knees bent, open the top arm across and follow it with your eyes","",S("side lying open book thoracic rotation")]]},
-   {h:"Dips + Pull-Ups", m:"8 min", note:"Superset B, 3 rounds: dips straight into pull-ups, then T-spine rotations, rest 60 sec. Pull-ups are lighter today because you pull Friday and Sunday too: crisp reps, nowhere near failure.", rows:[
-    ["Dips","3 × 10–12 · bodyweight","Smith bar at hip height at home (straight-bar dip) or the dip bars at the YMCA. Lean slightly forward, elbows back, go down until your shoulders are just below your elbows, press up and lock out. Muscle-up half #2",LW,S("straight bar dip form"),"B1"],
-    ["Pull-ups","3 × 5–6 · bodyweight","Every rep from a dead hang: arms straight, pool move, crush the bar, chin over, 3 sec down. Easy, perfect reps only, so Sunday's pull-ups stay strong",LW,S("strict pull up form"),"B2"],
+   {h:"Pull-Ups + Cable Fly", m:"8 min", note:"Superset B, 3 rounds: pull-ups straight into cable flys, then T-spine rotations, rest 60 sec. Pull-ups are lighter today: crisp reps, nowhere near failure.", rows:[
+    ["Pull-ups","3 × 5–6 · bodyweight","Every rep from a dead hang: arms straight, pool move, crush the bar, chin over, 3 sec down. Easy, perfect reps only",LW,S("strict pull up form"),"B1"],
+    ["Cable chest fly","3 × 12 @ 25–35 lb each side (cable)","Handles at chest height, step forward, slight bend in the elbows. Hug a big tree: bring your hands together in front of your chest, 2-sec squeeze, 3 sec back. Chest stretches open, shoulders stay down","",S("standing cable chest fly form"),"B2"],
     ["Then: quadruped T-spine rotation","5 each side, slow","Thoracic mobility before you rest. On hands and knees, hand behind your head, rotate the elbow down under you, then up to the ceiling. Eyes follow the elbow","",S("quadruped thoracic rotation"),"B3"]]},
-   {h:"Triceps", m:"4 min", note:"Rest 45 sec.", rows:[
-    ["Cable rope triceps pushdown","3 × 12 @ 50–60 lb (cable)","Elbows pinned to your sides, spread the rope at the bottom, 2 sec up","",S("cable rope triceps pushdown form")]]},
-   {h:"Abs", m:"7 min", note:"Superset C, 3 rounds, rest 60 sec.", rows:[
-    ["Dragon flag negatives","3 × 3–5 · bodyweight","Lie on the bench, grab behind your head. Lift your body straight up onto your upper back, then lower in 5 sec, body straight, only your shoulders touching the bench. Hips bend or back arches? Tuck one leg to make it easier",MINE,S("dragon flag negative progression"),"C1"],
-    ["Cable crunch, heavy","3 × 12 @ 100–120 lb (cable)","Kneel facing the cable, rope by your ears. Crunch your ribs toward your hips, 2-sec squeeze, hips still",MINE,S("cable crunch form"),"C2"]]},
-   {h:"Extra (if you have time)", m:"+6 min", note:"Only after everything above is done.", rows:[
-    ["Hammer curl","3 × 10–12 @ 35–40 lb","Thumbs up, elbows pinned, no swinging, 3 sec down. Biceps + forearms","",S("dumbbell hammer curl form")],
-    ["Hanging leg raise, full range","2 × 5 · bodyweight","Shoulders down, curl your pelvis up first, 3 sec down, no swinging",MINE,S("hanging leg raise full range no swing")]]},
+   {h:"Arms", m:"7 min", note:"Superset C, 3 rounds: triceps straight into curls, rest 45 sec.", rows:[
+    ["Cable rope triceps pushdown","3 × 12 @ 50–60 lb (cable)","Elbows pinned to your sides, spread the rope at the bottom, 2 sec up","",S("cable rope triceps pushdown form"),"C1"],
+    ["Seated incline dumbbell curl","3 × 10–12 @ 30–35 lb","Bench at about 45°, sit back, arms hanging straight down behind your body. Palms up, curl without letting your elbows drift forward, 3 sec down to a full stretch. The long stretch is what builds the biceps peak","",S("seated incline dumbbell curl form"),"C2"]]},
+   {h:"Core + Rotation", m:"9 min", note:"Superset D, 3 rounds: leg raises, cable crunches, woodchops, then 90/90 switches for your hips, rest 60 sec.", rows:[
+    ["Hanging leg raise, full range","3 × 5–6 · bodyweight","Shoulders down, curl your pelvis up first, 3 sec down, no swinging",MINE,S("hanging leg raise full range no swing"),"D1"],
+    ["Cable crunch, heavy","3 × 12 @ 100–120 lb (cable)","Kneel facing the cable, rope by your ears. Crunch your ribs toward your hips, 2-sec squeeze, hips still",MINE,S("cable crunch form"),"D2"],
+    ["Cable woodchop, high to low","3 × 10 each side @ 20–30 lb (cable)","Rotational core. Cable high, pull it down across your body to the opposite hip. Turn from your hips and core, arms stay long, control it back. Same rotation as a punch or a throw",AC,S("cable woodchop high to low form"),"D3"],
+    ["Then: 90/90 switches","3 each side","Hip mobility before you rest. Sit in 90/90, switch both knees to the other side and back, chest tall, hands off the floor if you can",FMF,"https://www.youtube.com/watch?v=D0ZMMCkoDxQ","D4"]]},
    {h:"Cool-Down", m:"1 min", rows:[
     ["Doorway chest stretch","Right 2 × 30 sec · left 1 × 30 sec","Posture. Forearm on the door frame, step through","",S("doorway pec minor stretch")]]}
   ]},
