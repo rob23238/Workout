@@ -575,7 +575,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-17-tue-db-row";
+const APP_VERSION = "2026-11-17-tue-finisher";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -623,7 +623,7 @@ const DAYS = [
   blocks:[
    {h:"Today's Session", m:"", note:"You did the StairMaster. Done.", rows:[]}
   ]},
- {id:"tue", chip:"Tue", kicker:"Tuesday · Incline Day", title:"Incline · Pull-Ups · Arms · Core · Back", time:"~44 min", stair:["40-min steady sweat","optional, after you lift"], night:"Night stretch (no push-ups tonight, you did them here)",
+ {id:"tue", chip:"Tue", kicker:"Tuesday · Incline Day", title:"Incline · Pull-Ups · Core · Cable Finisher", time:"~45 min", stair:["40-min steady sweat","optional, after you lift"], night:"Night stretch (no push-ups tonight, you did them here)",
   blocks:[
    {h:"Warm-Up + Posture", m:"5 min", note:"Swapped in from Saturday: Saturday is your real barbell bench test, so the incline goes today. Home gym today (no dip bar). Timer on every rest, mobility between sets.", rows:[
     ["Wall slides","1 × 10","Posture. Back, head and arms flat on the wall, chin tucked, slide up into a Y and down","",S("wall slides shoulder mobility")],
@@ -634,22 +634,20 @@ const DAYS = [
     ["Incline bench press","Bar × 10, 135 × 5, then 4 × 8 @ 155–165","Bench at about 30°. Shoulder blades pinched, bar to your upper chest just under the collarbone, 2 sec down. Last time all 4 sets clean at 155? Use 165. Watch the right shoulder: keep it pinned back",HAM,S("incline barbell bench press form 30 degree"),"A1"],
     ["Incline push-ups (feet on the bench)","4 × 25 · bodyweight","Straight from the bench press. Feet on the bench, hands on the floor, body straight like a plank, chest to the floor. If a set breaks, take 5 breaths and finish it. Handstand push-up step 1",LW,S("feet elevated push up form"),"A2"],
     ["Between sets: open book","4 each side","Mobility during your rest. Lie on your side, knees bent, open the top arm across and follow it with your eyes","",S("side lying open book thoracic rotation")]]},
-   {h:"Pull-Ups + Curls", m:"9 min", note:"Superset B, 3 rounds: pull-ups straight into seated incline curls, then T-spine rotations, rest 60 sec. Back and biceps together. Cable fly is optional: add it after the curls only if you have time. Pull-ups are lighter today: crisp reps, nowhere near failure.", rows:[
+   {h:"Pull-Ups + Curls", m:"9 min", note:"Superset B, 3 rounds: pull-ups straight into seated incline curls, then T-spine rotations, rest 60 sec. Back and biceps together. Pull-ups are lighter today: crisp reps, nowhere near failure.", rows:[
     ["Pull-ups","3 × 5–6 · bodyweight","Every rep from a dead hang: arms straight, pool move, crush the bar, chin over, 3 sec down. Easy, perfect reps only",LW,S("strict pull up form"),"B1"],
     ["Seated incline dumbbell curl","3 × 10–12 @ 30–35 lb","Straight from the pull-ups. Bench at about 45°, sit back, arms hanging straight down behind your body. Palms up, curl without letting your elbows drift forward, 3 sec down to a full stretch. The long stretch is what builds the biceps peak","",S("seated incline dumbbell curl form"),"B2"],
-    ["Optional: cable chest fly","3 × 12 @ 25–35 lb each side (cable)","Only if you have time. Handles at chest height, step forward, slight bend in the elbows. Hug a big tree: bring your hands together in front of your chest, 2-sec squeeze, 3 sec back. Chest stretches open, shoulders stay down","",S("standing cable chest fly form"),"B3"],
-    ["Then: quadruped T-spine rotation","5 each side, slow","Thoracic mobility before you rest. On hands and knees, hand behind your head, rotate the elbow down under you, then up to the ceiling. Eyes follow the elbow","",S("quadruped thoracic rotation"),"B4"]]},
-   {h:"Triceps", m:"4 min", note:"Rest 45 sec. Biceps were done with the pull-ups.", rows:[
-    ["Cable rope triceps pushdown","3 × 12 @ 50–60 lb (cable)","Elbows pinned to your sides, spread the rope at the bottom, 2 sec up","",S("cable rope triceps pushdown form")]]},
+    ["Then: quadruped T-spine rotation","5 each side, slow","Thoracic mobility before you rest. On hands and knees, hand behind your head, rotate the elbow down under you, then up to the ceiling. Eyes follow the elbow","",S("quadruped thoracic rotation"),"B3"]]},
    {h:"Core + Rotation", m:"9 min", note:"Superset D, 3 rounds: leg raises, cable crunches, woodchops, then 90/90 switches for your hips, rest 60 sec.", rows:[
     ["Hanging leg raise, full range","3 × 5–6 · bodyweight","Shoulders down, curl your pelvis up first, 3 sec down, no swinging",MINE,S("hanging leg raise full range no swing"),"D1"],
     ["Cable crunch, heavy","3 × 12 @ 100–120 lb (cable)","Kneel facing the cable, rope by your ears. Crunch your ribs toward your hips, 2-sec squeeze, hips still",MINE,S("cable crunch form"),"D2"],
     ["Cable woodchop, high to low","3 × 10 each side @ 20–30 lb (cable)","Rotational core. Cable high, pull it down across your body to the opposite hip. Turn from your hips and core, arms stay long, control it back. Same rotation as a punch or a throw",AC,S("cable woodchop high to low form"),"D3"],
     ["Then: 90/90 switches","3 each side","Hip mobility before you rest. Sit in 90/90, switch both knees to the other side and back, chest tall, hands off the floor if you can",FMF,"https://www.youtube.com/watch?v=D0ZMMCkoDxQ","D4"]]},
-   {h:"Back", m:"8 min", note:"Last block. Superset R, 3 rounds: dumbbell rows (both arms) straight into straight-arm pulldowns, then a dead hang, rest 75 sec. Back is the #1 goal: pull with your elbows and squeeze your shoulder blades, not your arms.", rows:[
-    ["Single-arm dumbbell row","3 × 10–12 each arm @ 50 lb","One knee and hand on the bench, flat back, other foot on the floor. Pull the dumbbell to your hip (not your chest), elbow driving back toward your back pocket, 2-sec squeeze at the top, 3 sec down to a full stretch. 50 lb too easy? Add a 2-sec pause at the top and slow the way down",HAM,S("single arm dumbbell row form lats"),"R1"],
-    ["Cable straight-arm pulldown","3 × 12 @ 40–60 lb (cable)","Rope or bar up high, step back, slight hinge, arms straight. Push the rope down to your thighs in an arc using only your lats (the pool move), 2-sec squeeze at the bottom. This teaches your back to drive your pull-ups",LW,S("cable straight arm pulldown form"),"R2"],
-    ["Then: dead hang","1 × 20–30 sec","Spine decompression before you rest. Hang loose from the bar and breathe through your nose","",S("dead hang decompression spine"),"R3"]]},
+   {h:"Finisher: Chest · Back · Triceps", m:"9 min", note:"Last block, cables. Superset F, 3 rounds: fly, straight-arm pulldown, rope pushdown, rest 60 sec. Dead hang once at the end.", rows:[
+    ["Cable chest fly","3 × 12 @ 25–35 lb each side (cable)","Handles at chest height, step forward, slight bend in the elbows. Hug a big tree: hands together in front of your chest, 2-sec squeeze, 3 sec back","",S("standing cable chest fly form"),"F1"],
+    ["Cable straight-arm pulldown","3 × 12 @ 40–60 lb (cable)","Back. Rope or bar up high, step back, slight hinge, arms straight. Push the rope down to your thighs in an arc using only your lats (the pool move), 2-sec squeeze. This teaches your back to drive your pull-ups",LW,S("cable straight arm pulldown form"),"F2"],
+    ["Cable rope triceps pushdown","3 × 12 @ 50–60 lb (cable)","Elbows pinned to your sides, spread the rope at the bottom, 2 sec up","",S("cable rope triceps pushdown form"),"F3"],
+    ["Dead hang","1 × 20–30 sec","Spine decompression to finish. Hang loose from the bar and breathe through your nose","",S("dead hang decompression spine")]]},
    {h:"Cool-Down", m:"1 min", rows:[
     ["Doorway chest stretch","Right 2 × 30 sec · left 1 × 30 sec","Posture. Forearm on the door frame, step through","",S("doorway pec minor stretch")]]}
   ]},
@@ -1604,13 +1602,13 @@ document.addEventListener("visibilitychange",()=>{ if(!document.hidden) checkUpd
 </script>
 
 <!-- Update check: when a newer version is on GitHub, show a bar to load it with one tap.
-     Bump APP_BUILD every time the app changes. -->
+     It compares APP_VERSION, so bumping APP_VERSION is all a change needs. -->
 <div id="upd" role="status" hidden style="position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:9999;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:var(--accent);color:var(--accent-ink,#fff);box-shadow:var(--shadow,0 8px 24px rgba(0,0,0,.25));font:600 15px/1.3 system-ui,-apple-system,sans-serif">
   <span style="flex:1">New workout available</span>
   <button type="button" id="upd-go" style="border:0;border-radius:10px;padding:8px 14px;font:700 14px system-ui,-apple-system,sans-serif;background:#fff;color:#111">Update</button>
 </div>
 <script>
-const APP_BUILD = "2026-11-15.3";
+const APP_BUILD = APP_VERSION; /* one version number: every change shows the Update button */
 (function(){
   const bar = document.getElementById("upd");
   let newer = null, checking = false;
@@ -1618,7 +1616,7 @@ const APP_BUILD = "2026-11-15.3";
     if(checking) return; checking = true;
     try{
       const r = await fetch(location.pathname + "?check=" + Date.now(), {cache:"no-store"});
-      const m = (await r.text()).match(/const APP_BUILD = "([^"]+)"/);
+      const m = (await r.text()).match(/const APP_VERSION = "([^"]+)"/);
       if(m && m[1] !== APP_BUILD){ newer = m[1]; bar.hidden = false; bar.style.display = "flex"; }
     }catch(e){}
     checking = false;
