@@ -575,7 +575,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-17-tue-finisher";
+const APP_VERSION = "2026-11-19-thu-vertical";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -684,9 +684,34 @@ const DAYS = [
     ["Child's pose","45 sec","Knees wide, sit back toward your heels, arms long. Breathe into your lower back","",S("child's pose stretch")],
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"thu", chip:"Thu", kicker:"Thursday", title:"StairMaster", time:"", stair:["35-min climb","see StairMaster tab"], night:"Night stretch + 100 push-ups",
+ {id:"thu", chip:"Thu", kicker:"Thursday · Lower Body", title:"Vertical Jump · Squat · Single-Leg · Calves", time:"~45 min", stair:["30-min max burn","optional, later today: legs come first"], night:"Night stretch + 100 push-ups",
   blocks:[
-   {h:"Today's Session", m:"", note:"StairMaster only (35-min climb), no lift. Then your night stretch and 100 push-ups. Friday you lift.", rows:[]}
+   {h:"Set Up First", m:"1 min", note:"Goal today: jump higher, so you can dunk. Jumps come first while you're fresh: a tired jump teaches your body to jump low. Load the Smith bar at 135, set a box or the bench by the rack, two dumbbells by the bench. Timer on every rest, mobility between sets.", rows:[]},
+   {h:"Warm-Up", m:"6 min", note:"Jump rope 3 × 30 sec. In each 30-sec rest, do the next move. Nose breathing on the rope.", rows:[
+    ["Jump rope, round 1","30 sec · light bounce","Light on the balls of your feet, small hops, lips together","",S("jump rope basic bounce beginner")],
+    ["Tibialis raise","1 × 15","During rope rest 1. Back to the wall, lift your toes, pause top and bottom. Shins absorb your landings","",S("tibialis raise wall knees over toes")],
+    ["Jump rope, round 2","30 sec · quicker","","",""],
+    ["Knee-over-toe ankle rocks","1 × 10 each side","During rope rest 2. Half-kneeling, front heel flat, drive the knee forward past your toes and back. Stiff ankles steal inches from your jump",FMF,"https://www.youtube.com/watch?v=8dioRJlX_L8"],
+    ["Jump rope, round 3","30 sec · quick, then 5 big hops","","",""],
+    ["Half-kneeling hip flexor stretch, tucked","30 sec each side","During rope rest 3. Tuck your tailbone, squeeze the back glute, shift forward a little. Tight hip flexors cut your hip drive (and cause the pelvic tilt)",MINE,S("half kneeling hip flexor stretch posterior pelvic tilt")]]},
+   {h:"Vertical Jump", m:"8 min", note:"Every jump is max effort, max height. Quality over quantity: few reps, full rest. Land soft and quiet, knees out over your toes, then step down off the box (don't jump down).", rows:[
+    ["Pogo hops","2 × 15 · bodyweight","Stiff ankles, straight-ish knees, bounce off the balls of your feet as fast and high as you can, like the ground is hot. Builds the spring in your ankles and calves. Rest 45 sec",AD,S("pogo hops plyometric ankle stiffness")],
+    ["Box jump, step down","4 × 3 · bodyweight","Arms swing back hard, then throw them up as you jump. Land soft on top in a quarter squat, stand tall, step down. Box or bench as high as you can land on cleanly, not as high as you can scramble onto. Rest 75 sec",AD,S("box jump form arm swing land soft")],
+    ["Between sets: deep squat hold","20 sec","Sit all the way down, heels flat, elbows push your knees out. Ankle + hip mobility for the jump","",S("deep squat hold mobility heels down")]]},
+   {h:"Strength · Squat + Jump", m:"12 min", note:"Contrast pairs: a heavy squat set, then straight into 3 jumps. The heavy set wakes up more muscle, so the jumps right after are higher. This is how athletes build a vertical. Superset A, rest 2 min after the jumps.", rows:[
+    ["Smith back squat","135 × 5, 185 × 3, then 3 × 5 @ 215","Bar on your upper back, feet shoulder-width, brace your abs. Sit down between your heels as deep as you can control, chest up, knees over your toes. Control down, then drive up FAST, like you're trying to jump with the bar. All 3 × 5 fast and clean? Next time 225",HAM,S("smith machine back squat form"),"A1"],
+    ["Squat jumps","3 × 3 · bodyweight","Right after the squat (within 15 sec). Hands behind your head or arms swinging, dip to a quarter squat and explode as high as you can. Land soft, reset, repeat",AD,S("squat jump vertical explosive form"),"A2"],
+    ["Between sets: half-kneeling hip flexor stretch","20 sec each side","Tuck your tailbone and squeeze the back glute. Opens your hips so they can fully extend when you jump",MINE,S("half kneeling hip flexor stretch")]]},
+   {h:"Single-Leg + Glutes", m:"11 min", note:"Dunks take off one leg or two: you need both strong and even. Superset B, 3 rounds: split squats (both legs), then hip thrusts, then 90/90 switches, rest 75 sec. Start with your weaker leg.", rows:[
+    ["Bulgarian split squat","3 × 6–8 each leg @ 40–50 lb dumbbells","Back foot on the bench, front foot far enough forward that your knee tracks over your toes. Drop straight down until the back knee almost touches, 2 sec down, drive up through the whole front foot. Bonus: stretches the back leg's hip flexor every rep",HAM,S("bulgarian split squat form dumbbell"),"B1"],
+    ["Smith hip thrust","3 × 8 @ 135–185 · 2-sec squeeze","Upper back on the bench, bar across your hips (pad it). Drive your hips up until your body is flat like a table, chin tucked, squeeze your glutes hard for 2 sec. Glutes are the biggest engine in your jump. Rest 75 sec",HAM,S("smith machine hip thrust form"),"B2"],
+    ["Between sets: 90/90 switches","3 each side","Hip mobility. Sit in 90/90, switch both knees to the other side and back, chest tall, hands off the floor if you can",FMF,"https://www.youtube.com/watch?v=D0ZMMCkoDxQ","B3"]]},
+   {h:"Calves + Ankles", m:"5 min", note:"Your calves and Achilles are the last push off the floor. Superset C, 3 rounds, rest 45 sec.", rows:[
+    ["Single-leg calf raise off a step","3 × 10 each leg · 2-sec pause at the bottom","Ball of your foot on a step or plate, hold the rack for balance. Drop your heel all the way down and hold 2 sec (stretch), then rise as high as you can, 1 sec at the top. Too easy? Hold a dumbbell. Rest 45 sec",LW,S("elevated single leg calf raise form"),"C1"],
+    ["Between sets: deep squat hold","20 sec","Heels flat, elbows push your knees out, chest up","",S("deep squat hold mobility heels down"),"C2"]]},
+   {h:"Cool-Down", m:"2 min", rows:[
+    ["Couch stretch","45 sec each side","Back knee against the wall or bench, front foot forward, squeeze the back glute and stand tall. Hip flexors + quads after all the jumping and squatting",MINE,S("couch stretch hip flexor")],
+    ["Pigeon","45 sec each side","Relaxed pigeon, chest tall, breathe into the outer hip",FMF,S("pigeon stretch form")]]}
   ]},
  {id:"fri", chip:"Fri", kicker:"Friday · Legs + Pull", title:"Pull-Ups · Legs · Hips · Core", time:"~45 min", stair:["30-min max burn","after you lift or later today"], night:"Night stretch + 100 push-ups",
   blocks:[
