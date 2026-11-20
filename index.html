@@ -575,7 +575,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-19-thu-zercher";
+const APP_VERSION = "2026-11-20-fri-jump-primer";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -684,7 +684,11 @@ const DAYS = [
     ["Child's pose","45 sec","Knees wide, sit back toward your heels, arms long. Breathe into your lower back","",S("child's pose stretch")],
     ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
   ]},
- {id:"thu", chip:"Thu", kicker:"Thursday · Lower Body", title:"Vertical Jump · Zercher Squat · Single-Leg · Calves", time:"~45 min", stair:["30-min max burn","optional, later today: legs come first"], night:"Night stretch + 100 push-ups",
+ {id:"thu", chip:"Thu", kicker:"Thursday", title:"Rest Day ✓", time:"", stair:["35-min climb","optional, only if you feel like it"], night:"Night stretch",
+  blocks:[
+   {h:"Today's Session", m:"", note:"Off day. Rest and recover: legs are Friday, bench Saturday, legs again Sunday. Night stretch only.", rows:[]}
+  ]},
+ {id:"fri", chip:"Fri", kicker:"Friday · Lower Body", title:"Vertical Jump · Zercher Squat · Single-Leg · Calves", time:"~47 min", stair:["30-min max burn","optional, later today: legs come first"], night:"Night stretch + 100 push-ups",
   blocks:[
    {h:"Set Up First", m:"1 min", note:"Goal today: jump higher, so you can dunk. Jumps come first while you're fresh: a tired jump teaches your body to jump low. Load the Smith bar at 135 (towel for your elbows), set a box or the bench by the rack, two dumbbells by the bench. Timer on every rest, mobility between sets.", rows:[]},
    {h:"Warm-Up", m:"6 min", note:"Jump rope 3 × 30 sec. In each 30-sec rest, do the next move. Nose breathing on the rope.", rows:[
@@ -702,75 +706,51 @@ const DAYS = [
     ["Smith Zercher squat","Bar × 8, 135 × 5, then 3 × 6 @ 185","Your lift-anybody squat. Bar in the crook of your elbows (pad it with a towel), chest tall, elbows up. Brace your abs, sit down between your heels, then drive up FAST, like you're trying to jump with the bar. Squeeze your glutes at the top so your lower back doesn't arch. All 3 × 6 fast and clean? Next time 195",HAM,S("smith machine zercher squat"),"A1"],
     ["Squat jumps","3 × 3 · bodyweight","Right after the squat (within 15 sec). Hands behind your head or arms swinging, dip to a quarter squat and explode as high as you can. Land soft, reset, repeat",AD,S("squat jump vertical explosive form"),"A2"],
     ["Between sets: half-kneeling hip flexor stretch","20 sec each side","Tuck your tailbone and squeeze the back glute. Opens your hips so they can fully extend when you jump",MINE,S("half kneeling hip flexor stretch")]]},
-   {h:"Single-Leg + Glutes", m:"11 min", note:"Dunks take off one leg or two: you need both strong and even. Superset B, 3 rounds: split squats (both legs), then hip thrusts, then 90/90 switches, rest 75 sec. Start with your weaker leg.", rows:[
+   {h:"Single-Leg + Glutes", m:"12 min", note:"Dunks take off one leg or two: you need both strong and even. Superset B, 3 rounds: split squats (both legs), then single-leg hip thrusts (both legs), then 90/90 switches, rest 75 sec. Start with your weaker leg.", rows:[
     ["Bulgarian split squat","3 × 6–8 each leg @ 40–50 lb dumbbells","Back foot on the bench, front foot far enough forward that your knee tracks over your toes. Drop straight down until the back knee almost touches, 2 sec down, drive up through the whole front foot. Bonus: stretches the back leg's hip flexor every rep",HAM,S("bulgarian split squat form dumbbell"),"B1"],
-    ["Smith hip thrust","3 × 8 @ 135–185 · 2-sec squeeze","Upper back on the bench, bar across your hips (pad it). Drive your hips up until your body is flat like a table, chin tucked, squeeze your glutes hard for 2 sec. Glutes are the biggest engine in your jump. Rest 75 sec",HAM,S("smith machine hip thrust form"),"B2"],
+    ["Single-leg hip thrust","3 × 10 each leg · bodyweight (dumbbell on your hip if easy)","Upper back on the bench, one foot flat, other knee pulled up to your chest. Drive through the heel until your hips are level and flat like a table, chin tucked, squeeze the glute 2 sec. One leg at a time = jump power AND even legs. Hips must stay level, no twisting. Rest 75 sec",HAM,S("single leg hip thrust bench form"),"B2"],
     ["Between sets: 90/90 switches","3 each side","Hip mobility. Sit in 90/90, switch both knees to the other side and back, chest tall, hands off the floor if you can",FMF,"https://www.youtube.com/watch?v=D0ZMMCkoDxQ","B3"]]},
-   {h:"Calves + Ankles", m:"5 min", note:"Your calves and Achilles are the last push off the floor. Superset C, 3 rounds, rest 45 sec.", rows:[
+   {h:"Calves + Ankles · Jump Primer", m:"7 min", note:"Your calves and Achilles are the last push off the floor. Quick, springy ankle pops first (Functional Training), then superset C: calf raises + deep squat hold, 3 rounds, rest 45 sec.", rows:[
+    ["Lateral ankle pops","2 × 10 each ankle · bodyweight","Quick and springy, small bounces off the ball of the foot, side to side. Barely bend your knee: the bounce comes from your ankle. This is the spring in your takeoff. Rest 30 sec",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
+    ["Lateral plate hops","2 × 10 sec · bodyweight","Small, fast side-to-side hops over a plate on the floor, both feet. As fast as you can while staying light and quiet. Rest 30 sec",AD,"https://youtube.com/shorts/XomC_FIU_E0"],
     ["Single-leg calf raise off a step","3 × 10 each leg · 2-sec pause at the bottom","Ball of your foot on a step or plate, hold the rack for balance. Drop your heel all the way down and hold 2 sec (stretch), then rise as high as you can, 1 sec at the top. Too easy? Hold a dumbbell. Rest 45 sec",LW,S("elevated single leg calf raise form"),"C1"],
     ["Between sets: deep squat hold","20 sec","Heels flat, elbows push your knees out, chest up","",S("deep squat hold mobility heels down"),"C2"]]},
    {h:"Cool-Down", m:"2 min", rows:[
     ["Couch stretch","45 sec each side","Back knee against the wall or bench, front foot forward, squeeze the back glute and stand tall. Hip flexors + quads after all the jumping and squatting",MINE,S("couch stretch hip flexor")],
     ["Pigeon","45 sec each side","Relaxed pigeon, chest tall, breathe into the outer hip",FMF,S("pigeon stretch form")]]}
   ]},
- {id:"fri", chip:"Fri", kicker:"Friday · Legs + Pull", title:"Pull-Ups · Legs · Hips · Core", time:"~45 min", stair:["30-min max burn","after you lift or later today"], night:"Night stretch + 100 push-ups",
+ {id:"sat", chip:"Sat", kicker:"Saturday · Bench Day", title:"Bench Press · Back · Biceps · Core", time:"~45 min", stair:["35-min climb","optional, after you lift"], night:"Night stretch (no push-ups tonight, you did 100 with bench)",
   blocks:[
-   {h:"Set Up First", m:"1 min", note:"Load the Smith bar, put a 40 lb dumbbell by the bench, anchor the band low, set the cable at chest height. No walking around mid-workout. Timer on every rest.", rows:[]},
-   {h:"Jump Rope + Warm-Up", m:"6 min", note:"Jump rope 3 × 30 sec. In each 30-sec rest, do the next warm-up move. Nose breathing on the rope.", rows:[
-    ["Jump rope, round 1","30 sec · light bounce","Light on the balls of your feet, small hops, lips together","",S("jump rope basic bounce beginner")],
-    ["Tibialis raise","1 × 15","During rope rest 1. Back to the wall, lift your toes, pause top and bottom","",S("tibialis raise wall knees over toes")],
-    ["Jump rope, round 2","30 sec · light bounce","","",""],
-    ["Glute bridge march","1 × 6 each side","During rope rest 2. Hips stay level",AH,"https://youtu.be/RvfMT6VOqxQ"],
-    ["Jump rope, round 3","30 sec · light bounce","","",""],
-    ["Wall slides","1 × 10","During rope rest 3. Posture. Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
-    ["Half-kneeling hip flexor stretch, tucked","30 sec each side","Pelvic tilt fix. Tuck your tailbone and squeeze the back glute first, then shift forward a little",MINE,S("half kneeling hip flexor stretch posterior pelvic tilt")]]},
-   {h:"Jump Primer", m:"5 min", note:"Easing back into jumping. About 70% effort, quiet landings, knees over your toes. Weak leg first.", rows:[
-    ["Lateral ankle pops","2 × 10 each ankle · bodyweight","Quick and springy, small bounces off the ball of the foot",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
-    ["Lateral bounds, stick the landing","2 × 4 each side · bodyweight","Jump sideways off one leg, land on the other and hold 2 sec",AD,"https://youtube.com/shorts/00tM64YTOTE"]]},
-   {h:"Pull-Ups", m:"6 min", note:"Pull-up day 1 of 2 (Sunday is day 2). Done fresh, before legs. Rest 90 sec, hamstring floss during the rest.", rows:[
-    ["Pull-ups","4 × 8 · bodyweight","Every rep from a dead hang: arms straight, pool move, crush the bar, elbows to your back pockets, chin over, 3 sec down. Stop 1–2 reps short of failure",LW,S("strict pull up form")],
-    ["Between sets: hamstring floss","8 each leg","Mobility during your rest. On your back, hold behind your thigh with the leg pointed up. Straighten the knee and pull your toes back, then bend. Slow, never forced",MINE,S("lying hamstring floss mobility")]]},
-   {h:"Squat + Pistol Progression", m:"14 min", note:"Superset A, 3 rounds, rest 90 sec. Pistol step 1 this week: to a bench. All 5 reps clean and even on both legs? Next week: lower box → full pistol holding the rack → full pistol → pistol with a light dumbbell. Weaker leg gets 1 extra set of 3.", rows:[
-    ["Pistol prep: bottom-of-pistol foot change","1 × 6 each side · bodyweight","Before your squat warm-up sets. Sit into a deep squat, shift onto one leg and slide the other straight out, then switch. Hold the rack if needed. Video starts at 2:45",FMF,"https://www.youtube.com/watch?v=2qlVWNEdYqk&t=165s"],
-    ["Smith Zercher squat","Bar × 8, 135 × 5, then 3 × 6 @ 185","Bar in the crook of your elbows (pad it with a towel), chest tall. Brace your abs and squeeze your glutes at the top so your lower back doesn't arch. All 3 × 6 clean? Next time 195",HAM,S("smith machine zercher squat"),"A1"],
-    ["Pistol squat to a box","3 × 5 each leg · bodyweight","Stand on one leg in front of the bench, other leg straight out. 3 sec down until you touch, stand up with no hands. Small plate under your heel if your ankle stops you. Weak leg first",LW,S("box pistol squat progression"),"A2"],
-    ["Between sets 1: standing hip CARs","3 slow circles each way, each leg","At the rack. Stand on one leg and hold the rack. Lift the other knee up in front, swing it out to the side, back behind you, then down: the biggest, slowest circle you can. Only the leg moves, your body stays still",MINE,"https://www.youtube.com/shorts/1AcFl51wYuw"],
-    ["Between sets 2: standing straight-leg raise","5 each leg, 2-sec hold","Still at the rack. Stand tall, one hand on the rack. Keep one leg locked straight, toes pulled back toward you, and lift it straight out in front of you as high as it goes, like a slow kick. No swinging and no hands helping. Hold 2 sec at the top, lower slowly. It's hamstring flexibility you can actually use, which is what the L-sit needs",MINE,S("standing active straight leg raise hamstring flexibility")]]},
-   {h:"Hamstrings + Groin", m:"8 min", note:"Superset B, 3 rounds, rest 60 sec.", rows:[
-    ["Single-leg Romanian deadlift (one dumbbell)","3 × 6–8 each leg @ 40 lb · 3 sec down, 1-sec pause","Dumbbell in the hand opposite your standing leg. Soft knee, hinge, back flat, 3 sec down to a hamstring stretch, pause 1 sec, squeeze your glute to stand. Weak leg first. Hold a wall if you wobble","",S("single leg romanian deadlift one dumbbell form"),"B1"],
-    ["Copenhagen side plank (groin)","3 × 20 sec each side · bodyweight","Top leg on the bench (inside of the knee), bottom leg free. Squeeze down into the bench, hips high. Helps the middle split","",S("copenhagen side plank knee progression"),"B2"]]},
-   {h:"Rotational Core", m:"6 min", note:"Superset C, 3 rounds, rest 45 sec.", rows:[
-    ["Band woodchop, low to high","3 × 10 each side · band","Band anchored low, stand side-on, feet wide. Pull from your low hip up past the opposite shoulder, arms long, turn through hips and chest, pivot the back foot. Control it back slow",AC,S("band low to high woodchop"),"C1"],
-    ["Cable rotational punch","3 × 8 each side @ 15–25 lb (cable)","Cable at chest height behind you, boxing stance. Drive off your back foot, hips turn first, punch straight out fast, control it back slow","",S("cable rotational punch core power"),"C2"]]},
+   {h:"Warm-Up", m:"4 min", note:"Lower back is aching: everything today keeps it supported or still. Sharp pain? Stop that move.", rows:[
+    ["Wall slides","1 × 10","Posture. Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
+    ["Band pull-aparts + chin tuck","2 × 15, then 1 × 12 right arm only","Posture. Squeeze your shoulder blades and slide your chin straight back. Extra set for the more rounded right shoulder",HAM,S("band pull apart chin tuck posture")],
+    ["Scapular pull-ups, 2-sec hold","1 × 8","Hang with straight arms, pull your shoulders down away from your ears (the pool move)",LW,S("scapular pull ups form")],
+    ["Dead bug","1 × 8 each side","Low back pressed flat into the floor the whole time. Wakes up your abs for later","",S("dead bug exercise form")]]},
+   {h:"Bench Press Pyramid", m:"15 min", note:"Warm up: bar × 10, 135 × 5. Watch your right shoulder at the bottom: if it rolls forward, lower the weight and keep both shoulder blades pinned. Superset A: each bench set, straight into 25 incline push-ups (no vest), then rest 2 min. 100 push-ups total. Set 5 is your top set: do it fresh, no push-ups after.", rows:[
+    ["Set 1","200 × 10","","",S("smith machine bench press form"),"A1"],
+    ["Incline push-ups","25 · bodyweight (1 of 4)","If 25 breaks, take 5 breaths and finish it","",S("feet elevated push up form"),"A2"],
+    ["Set 2","215 × 8","","","","A1"],
+    ["Incline push-ups","25 · bodyweight (2 of 4)","Straight from the bench, then rest 2 min","","","A2"],
+    ["Set 3","235 × 6","","","","A1"],
+    ["Incline push-ups","25 · bodyweight (3 of 4)","Straight from the bench, then rest 2 min","","","A2"],
+    ["Set 4","245 × 5","","","","A1"],
+    ["Incline push-ups","25 · bodyweight (4 of 4)","Straight from the bench, then rest 2 min","","","A2"],
+    ["Set 5","260 × 3","Top set: clean reps only, full rest before it. If your right shoulder rolls forward or 245 felt slow, stay at 255",HAM,""],
+    ["Between sets: quadruped T-spine rotation","5 each side, slow","Mobility during your rest, then back to work. On hands and knees, hand behind your head, rotate the elbow down under you, then up to the ceiling. Eyes follow the elbow","",S("quadruped thoracic rotation")]]},
+   {h:"Back", m:"10 min", note:"Superset A, 4 rounds (face pulls and pulldowns 3): heavy barbell row, straight to face pulls, then straight-arm pulldowns, rest 60–90 sec.", rows:[
+    ["Barbell bent-over row","4 × 8 · start at 135 lb, add 10 lb when all 8 are clean","Free barbell, not the Smith. Hinge at the hips until your chest is about 45°, back flat, knees soft. Pull the bar to your belly button, elbows back close to your sides, squeeze at the top, then lower under control (about 1–2 sec). Build up to a 1-sec squeeze and 3 sec down over the next few weeks. No jerking or standing up to move the weight. Watch the right side: both elbows should finish at the same time","",S("barbell bent over row form"),"A1"],
+    ["Band face pull + chin tuck","3 × 15, plus 1 single-arm set right","Band around the pull-up station at forehead height. Pull to your forehead, thumbs back, 2-sec squeeze, chin slides straight back. Posture","",S("band face pull form"),"A2"],
+    ["Band straight-arm pulldown","3 × 15","Band high on the pull-up station, step back, arms straight. Sweep your hands down to your thighs, squeeze your lats 1 sec. Feel it under your armpits, not in your arms","",S("band straight arm pulldown lats"),"A3"]]},
+   {h:"Biceps", m:"10 min", note:"Hammers and curls separate today. Both seated with your back on the bench to protect your lower back. Rest 60 sec between sets.", rows:[
+    ["Seated hammer curl","3 × 10 each arm @ 35–40 lb","Bench upright, back flat on the pad. Palms facing each other, elbows pinned, no swinging, 3 sec down. Forearm + outer arm: thicker arms. All 3 × 10 clean? Add 5 lb","",S("seated hammer curl form")],
+    ["Incline dumbbell curl","3 × 10 each arm @ 25–30 lb","Bench at about 45°, lie back, let your arms hang straight down behind your body. Palms up, curl without moving your elbows forward, squeeze at the top, 3 sec down. The stretch at the bottom builds the bicep peak","",S("incline dumbbell curl form")]]},
+   {h:"Core", m:"8 min", note:"Superset C, 3 rounds, rest 45 sec. All lower-back friendly: no swinging, no arching.", rows:[
+    ["Hanging leg raise, full range","3 × 5 · bodyweight","Hang, crush the bar, shoulders down (the pool move). Brace your abs like you're about to get punched. First curl your pelvis up, like rolling your tailbone toward your belly button, then lift your legs. Breathe out on the way up, 3 sec down, and stop before your legs swing back. If you swing, pause 1 sec at the bottom",MINE,S("hanging leg raise full range no swing"),"C1"],
+    ["Cable crunch, heavy","3 × 12 @ 100–120 lb (cable)","Kneel facing the cable, rope by your ears. Crunch your ribs down toward your hips, 2-sec squeeze at the bottom, hips still. Your abs do the work, not your arms",MINE,S("cable crunch form"),"C2"],
+    ["Band Pallof press","3 × 10 each side, 2-sec hold","Rotational core. Band around the pull-up station at chest height, stand sideways to it. Press your hands straight out and hold 2 sec without letting it twist you. Lower-back friendly","",S("band pallof press form"),"C3"]]},
    {h:"Cool-Down", m:"2 min", rows:[
-    ["Pigeon","45 sec each side","Relaxed pigeon, breathe into the outer hip",MINE,S("pigeon pose outer hip stretch")],
-    ["Seated hamstring V-stretch","30 sec","Legs wide, walk your hands forward",HAM,S("seated v sit hamstring stretch")]]}
-  ]},
- {id:"sat", chip:"Sat", kicker:"Saturday · Push", title:"Incline · Dips · Pull-Ups · Arms · Abs", time:"~35 min", stair:["40-min steady sweat","optional, later in the day"], night:"Night stretch (no push-ups tonight, you did them here)",
-  blocks:[
-   {h:"Warm-Up + Posture", m:"5 min", note:"Timer on every rest. Curls and hanging leg raises are extra: only if you have time at the end.", rows:[
-    ["Wall slides","1 × 10","Posture. Back, head and arms flat on the wall, chin tucked, slide up into a Y and down","",S("wall slides shoulder mobility")],
-    ["Band pull-aparts + chin tuck","1 × 15, then 1 × 12 right arm","Posture. Squeeze your shoulder blades, slide your chin straight back",HAM,S("band pull apart chin tuck posture")],
-    ["Scapular pull-ups, 2-sec hold","1 × 8","The pool move: shoulders down, arms straight",LW,S("scapular pull ups form")],
-    ["Wrist + elbow circles","10 each way","Gets wrists and elbows ready for dips","",S("wrist elbow warm up dips")]]},
-   {h:"Incline Bench Press", m:"12 min", note:"Superset A, 4 rounds: incline set, straight to incline push-ups, rest 90 sec. Open books during the rest.", rows:[
-    ["Incline bench press","Bar × 10, 135 × 5, then 4 × 8 @ 155–165","Bench at about 30°. Shoulder blades pinched, bar to your upper chest just under the collarbone, 2 sec down. Last time all 4 sets clean at 155? Use 165. Watch the right shoulder: keep it pinned back",HAM,S("incline barbell bench press form 30 degree"),"A1"],
-    ["Incline push-ups (feet on the bench)","4 × 15–20 · bodyweight","Straight from the bench press. Feet on the bench, hands on the floor, body straight like a plank, chest to the floor. If a set breaks, take 5 breaths and finish it. Handstand push-up step 1",LW,S("feet elevated push up form"),"A2"],
-    ["Between sets: open book","4 each side","Mobility during your rest. Lie on your side, knees bent, open the top arm across and follow it with your eyes","",S("side lying open book thoracic rotation")]]},
-   {h:"Dips + Pull-Ups", m:"8 min", note:"Superset B, 3 rounds: dips straight into pull-ups, then T-spine rotations, rest 60 sec. Pull-ups are lighter today because you pull Friday and Sunday too: crisp reps, nowhere near failure.", rows:[
-    ["Dips","3 × 10–12 · bodyweight","Smith bar at hip height at home (straight-bar dip) or the dip bars at the YMCA. Lean slightly forward, elbows back, go down until your shoulders are just below your elbows, press up and lock out. Muscle-up half #2",LW,S("straight bar dip form"),"B1"],
-    ["Pull-ups","3 × 5–6 · bodyweight","Every rep from a dead hang: arms straight, pool move, crush the bar, chin over, 3 sec down. Easy, perfect reps only, so Sunday's pull-ups stay strong",LW,S("strict pull up form"),"B2"],
-    ["Then: quadruped T-spine rotation","5 each side, slow","Thoracic mobility before you rest. On hands and knees, hand behind your head, rotate the elbow down under you, then up to the ceiling. Eyes follow the elbow","",S("quadruped thoracic rotation"),"B3"]]},
-   {h:"Triceps", m:"4 min", note:"Rest 45 sec.", rows:[
-    ["Cable rope triceps pushdown","3 × 12 @ 50–60 lb (cable)","Elbows pinned to your sides, spread the rope at the bottom, 2 sec up","",S("cable rope triceps pushdown form")]]},
-   {h:"Abs", m:"7 min", note:"Superset C, 3 rounds, rest 60 sec.", rows:[
-    ["Dragon flag negatives","3 × 3–5 · bodyweight","Lie on the bench, grab behind your head. Lift your body straight up onto your upper back, then lower in 5 sec, body straight, only your shoulders touching the bench. Hips bend or back arches? Tuck one leg to make it easier",MINE,S("dragon flag negative progression"),"C1"],
-    ["Cable crunch, heavy","3 × 12 @ 100–120 lb (cable)","Kneel facing the cable, rope by your ears. Crunch your ribs toward your hips, 2-sec squeeze, hips still",MINE,S("cable crunch form"),"C2"]]},
-   {h:"Extra (if you have time)", m:"+6 min", note:"Only after everything above is done.", rows:[
-    ["Hammer curl","3 × 10–12 @ 35–40 lb","Thumbs up, elbows pinned, no swinging, 3 sec down. Biceps + forearms","",S("dumbbell hammer curl form")],
-    ["Hanging leg raise, full range","2 × 5 · bodyweight","Shoulders down, curl your pelvis up first, 3 sec down, no swinging",MINE,S("hanging leg raise full range no swing")]]},
-   {h:"Cool-Down", m:"1 min", rows:[
-    ["Doorway chest stretch","Right 2 × 30 sec · left 1 × 30 sec","Posture. Forearm on the door frame, step through","",S("doorway pec minor stretch")]]}
+    ["Child's pose","45 sec","Knees wide, sit back toward your heels, arms long. Breathe into your lower back","",S("child's pose stretch")],
+    ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
   ]},
  {id:"sun", chip:"Sun", kicker:"Sunday · Skills + Squat", title:"Handstand · L-Sit · Pike · Squat · Pull-Ups", time:"~45 min", stair:["35-min climb","optional today: easy level 6–7 only if your legs feel OK"], night:"Night stretch + 100 push-ups",
   blocks:[
