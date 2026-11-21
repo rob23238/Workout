@@ -575,7 +575,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-20-fri-depth-drops";
+const APP_VERSION = "2026-11-20-fri-rot-core";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -710,11 +710,11 @@ const DAYS = [
    {h:"Glutes", m:"6 min", note:"Superset B, 3 rounds: single-leg hip thrusts (both legs), then 90/90 switches, rest 75 sec. Start with your weaker leg.", rows:[
     ["Single-leg hip thrust","3 × 10 each leg · bodyweight (dumbbell on your hip if easy)","Upper back on the bench, one foot flat, other knee pulled up to your chest. Drive through the heel until your hips are level and flat like a table, chin tucked, squeeze the glute 2 sec. One leg at a time = jump power AND even legs. Hips must stay level, no twisting. Rest 75 sec",HAM,S("single leg hip thrust bench form"),"B1"],
     ["Between sets: 90/90 switches","3 each side","Hip mobility. Sit in 90/90, switch both knees to the other side and back, chest tall, hands off the floor if you can",FMF,"https://www.youtube.com/watch?v=D0ZMMCkoDxQ","B2"]]},
-   {h:"Calves + Ankles · Jump Primer", m:"7 min", note:"Your calves and Achilles are the last push off the floor. Quick, springy ankle pops first (Functional Training), then superset C: calf raises + Copenhagen side plank, 3 rounds, rest 45 sec.", rows:[
-    ["Lateral ankle pops","2 × 10 each ankle · bodyweight","Quick and springy, small bounces off the ball of the foot, side to side. Barely bend your knee: the bounce comes from your ankle. This is the spring in your takeoff. Rest 30 sec",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
-    ["Lateral plate hops","2 × 10 sec · bodyweight","Small, fast side-to-side hops over a plate on the floor, both feet. As fast as you can while staying light and quiet. Rest 30 sec",AD,"https://youtube.com/shorts/XomC_FIU_E0"],
-    ["Single-leg calf raise off a step","3 × 10 each leg · 2-sec pause at the bottom","Ball of your foot on a step or plate, hold the rack for balance. Drop your heel all the way down and hold 2 sec (stretch), then rise as high as you can, 1 sec at the top. Too easy? Hold a dumbbell. Rest 45 sec",LW,S("elevated single leg calf raise form"),"C1"],
-    ["Copenhagen side plank (groin)","3 × 20 sec each side · bodyweight","Side plank with your top leg on the bench (knee on the bench is the easier version), bottom leg hanging. Lift your hips in one straight line and hold. Strengthens your groin: protects it when you jump and land, and helps your middle split",AD,S("copenhagen plank progression"),"C2"]]},
+   {h:"After StairMaster · Calves + Rotational Core", m:"9 min", note:"Do this after your StairMaster. Your legs did a lot of jumping today, so no more jumps: calves, then rotational core for sports and boxing. Superset C, 3 rounds, rest 45 sec.", rows:[
+    ["Single-leg calf raise off a step","3 × 10 each leg · 2-sec pause at the bottom","Ball of your foot on a step or plate, hold the rack for balance. Drop your heel all the way down and hold 2 sec (stretch), then rise as high as you can, 1 sec at the top. Too easy? Hold a dumbbell.",LW,S("elevated single leg calf raise form"),"C1"],
+    ["Cable woodchop, high to low","3 × 10 each side @ 20–30 lb (cable)","Cable high, pull it down across your body to the opposite hip. Turn from your hips and core, arms stay long, control it back. Same rotation as a throw or a hook",AC,S("cable woodchop high to low form"),"C2"],
+    ["Cable rotational punch","3 × 8 each side @ 15–25 lb (cable)","Cable at chest height behind you, boxing stance. Drive off your back foot, turn your hips first, then punch straight out fast. Control it back slow. Power comes from your hips and core, not your arm",AC,S("cable rotational punch core power"),"C3"],
+    ["Copenhagen side plank (groin)","3 × 20 sec each side · bodyweight","Side plank with your top leg on the bench (knee on the bench is the easier version), bottom leg hanging. Lift your hips in one straight line and hold. Strengthens your groin: protects it when you jump and land, and helps your middle split",AD,S("copenhagen plank progression"),"C4"]]},
    {h:"Cool-Down", m:"2 min", rows:[
     ["Couch stretch","45 sec each side","Back knee against the wall or bench, front foot forward, squeeze the back glute and stand tall. Hip flexors + quads after all the jumping and squatting",MINE,S("couch stretch hip flexor")],
     ["Pigeon","45 sec each side","Relaxed pigeon, chest tall, breathe into the outer hip",FMF,S("pigeon stretch form")]]}
@@ -782,6 +782,8 @@ const DAYS = [
 ];
 /* Saved for later: exercises Big RPJ wants to add in the future. Not on any day yet. */
 const SAVED_EXERCISES = [
+ ["Lateral ankle pops","2 × 10 each ankle · bodyweight","Functional Training jump primer (saved for the next leg day). Quick and springy, small bounces off the ball of the foot, side to side. The bounce comes from your ankle",AD,"https://youtube.com/shorts/KlBF-L7wmhE"],
+ ["Lateral plate hops","2 × 10 sec · bodyweight","Functional Training jump primer (saved for the next leg day). Small, fast side-to-side hops over a plate, both feet, light and quiet",AD,"https://youtube.com/shorts/XomC_FIU_E0"],
  ["Plank kettlebell pull-through","3 × 8 each side","High plank, kettlebell (or dumbbell) just outside one hand. Reach under with the opposite hand and drag it across to the other side. Hips stay level and still: anti-rotation core","",S("plank kettlebell pull through form")]
 ];
 /* Not on the schedule this week; kept for next week. */
