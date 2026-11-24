@@ -575,7 +575,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-21-sat-lat-pulldown";
+const APP_VERSION = "2026-11-24-legs-arms-faith";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -623,66 +623,62 @@ const DAYS = [
   blocks:[
    {h:"Today's Session", m:"", note:"You did the StairMaster. Done.", rows:[]}
   ]},
- {id:"tue", chip:"Tue", kicker:"Tuesday · Incline Day", title:"Incline · Pull-Ups · Core · Cable Finisher", time:"~45 min", stair:["40-min steady sweat","optional, after you lift"], night:"Night stretch (no push-ups tonight, you did them here)",
+ {id:"tue", chip:"Tue", kicker:"Tuesday · Lower Body", title:"Squat · Hamstrings · Single-Leg · Calves", time:"~40 min", stair:["40-min steady sweat","done this morning"], night:"Night stretch + 100 push-ups",
   blocks:[
-   {h:"Warm-Up + Posture", m:"5 min", note:"Swapped in from Saturday: Saturday is your real barbell bench test, so the incline goes today. Home gym today (no dip bar). Timer on every rest, mobility between sets.", rows:[
-    ["Wall slides","1 × 10","Posture. Back, head and arms flat on the wall, chin tucked, slide up into a Y and down","",S("wall slides shoulder mobility")],
-    ["Band pull-aparts + chin tuck","1 × 15, then 1 × 12 right arm","Posture. Squeeze your shoulder blades, slide your chin straight back",HAM,S("band pull apart chin tuck posture")],
-    ["Scapular pull-ups, 2-sec hold","1 × 8","The pool move: shoulders down, arms straight",LW,S("scapular pull ups form")],
-    ["Wrist + elbow circles","10 each way","Gets wrists and elbows ready to press and curl","",S("wrist elbow warm up dips")]]},
-   {h:"Incline Bench Press", m:"12 min", note:"Superset A, 4 rounds: incline set, straight to incline push-ups, rest 90 sec. Open books during the rest.", rows:[
-    ["Incline bench press","Bar × 10, 135 × 5, then 4 × 8 @ 155–165","Bench at about 30°. Shoulder blades pinched, bar to your upper chest just under the collarbone, 2 sec down. Last time all 4 sets clean at 155? Use 165. Watch the right shoulder: keep it pinned back",HAM,S("incline barbell bench press form 30 degree"),"A1"],
-    ["Incline push-ups (feet on the bench)","4 × 25 · bodyweight","Straight from the bench press. Feet on the bench, hands on the floor, body straight like a plank, chest to the floor. If a set breaks, take 5 breaths and finish it. Handstand push-up step 1",LW,S("feet elevated push up form"),"A2"],
-    ["Between sets: open book","4 each side","Mobility during your rest. Lie on your side, knees bent, open the top arm across and follow it with your eyes","",S("side lying open book thoracic rotation")]]},
-   {h:"Pull-Ups + Curls", m:"9 min", note:"Superset B, 3 rounds: pull-ups straight into seated incline curls, then T-spine rotations, rest 60 sec. Back and biceps together. Pull-ups are lighter today: crisp reps, nowhere near failure.", rows:[
-    ["Pull-ups","3 × 5–6 · bodyweight","Every rep from a dead hang: arms straight, pool move, crush the bar, chin over, 3 sec down. Easy, perfect reps only",LW,S("strict pull up form"),"B1"],
-    ["Seated incline dumbbell curl","3 × 10–12 @ 30–35 lb","Straight from the pull-ups. Bench at about 45°, sit back, arms hanging straight down behind your body. Palms up, curl without letting your elbows drift forward, 3 sec down to a full stretch. The long stretch is what builds the biceps peak","",S("seated incline dumbbell curl form"),"B2"],
-    ["Then: quadruped T-spine rotation","5 each side, slow","Thoracic mobility before you rest. On hands and knees, hand behind your head, rotate the elbow down under you, then up to the ceiling. Eyes follow the elbow","",S("quadruped thoracic rotation"),"B3"]]},
-   {h:"Core + Rotation", m:"9 min", note:"Superset D, 3 rounds: leg raises, cable crunches, woodchops, then 90/90 switches for your hips, rest 60 sec.", rows:[
-    ["Hanging leg raise, full range","3 × 5–6 · bodyweight","Shoulders down, curl your pelvis up first, 3 sec down, no swinging",MINE,S("hanging leg raise full range no swing"),"D1"],
-    ["Cable crunch, heavy","3 × 12 @ 100–120 lb (cable)","Kneel facing the cable, rope by your ears. Crunch your ribs toward your hips, 2-sec squeeze, hips still",MINE,S("cable crunch form"),"D2"],
-    ["Cable woodchop, high to low","3 × 10 each side @ 20–30 lb (cable)","Rotational core. Cable high, pull it down across your body to the opposite hip. Turn from your hips and core, arms stay long, control it back. Same rotation as a punch or a throw",AC,S("cable woodchop high to low form"),"D3"],
-    ["Then: 90/90 switches","3 each side","Hip mobility before you rest. Sit in 90/90, switch both knees to the other side and back, chest tall, hands off the floor if you can",FMF,"https://www.youtube.com/watch?v=D0ZMMCkoDxQ","D4"]]},
-   {h:"Finisher: Chest · Back · Triceps", m:"9 min", note:"Last block, cables. Superset F, 3 rounds: fly, straight-arm pulldown, rope pushdown, rest 60 sec. Dead hang once at the end.", rows:[
-    ["Cable chest fly","3 × 12 @ 25–35 lb each side (cable)","Handles at chest height, step forward, slight bend in the elbows. Hug a big tree: hands together in front of your chest, 2-sec squeeze, 3 sec back","",S("standing cable chest fly form"),"F1"],
-    ["Cable straight-arm pulldown","3 × 12 @ 40–60 lb (cable)","Back. Rope or bar up high, step back, slight hinge, arms straight. Push the rope down to your thighs in an arc using only your lats (the pool move), 2-sec squeeze. This teaches your back to drive your pull-ups",LW,S("cable straight arm pulldown form"),"F2"],
-    ["Cable rope triceps pushdown","3 × 12 @ 50–60 lb (cable)","Elbows pinned to your sides, spread the rope at the bottom, 2 sec up","",S("cable rope triceps pushdown form"),"F3"],
-    ["Dead hang","1 × 20–30 sec","Spine decompression to finish. Hang loose from the bar and breathe through your nose","",S("dead hang decompression spine")]]},
-   {h:"Cool-Down", m:"1 min", rows:[
-    ["Doorway chest stretch","Right 2 × 30 sec · left 1 × 30 sec","Posture. Forearm on the door frame, step through","",S("doorway pec minor stretch")]]}
-  ]},
- {id:"wed", chip:"Wed", kicker:"Wednesday · Clean Slate", title:"Bench Press · Back · Biceps · Core", time:"~45 min", stair:["35-min climb","optional, after you lift"], night:"Night stretch (no push-ups tonight, you did 100 with bench)",
-  blocks:[
-   {h:"Warm-Up", m:"4 min", note:"Lower back is aching: everything today keeps it supported or still. Sharp pain? Stop that move.", rows:[
-    ["Wall slides","1 × 10","Posture. Back, head and arms flat on the wall, slide up into a Y and down","",S("wall slides shoulder mobility")],
-    ["Band pull-aparts + chin tuck","2 × 15, then 1 × 12 right arm only","Posture. Squeeze your shoulder blades and slide your chin straight back. Extra set for the more rounded right shoulder",HAM,S("band pull apart chin tuck posture")],
-    ["Scapular pull-ups, 2-sec hold","1 × 8","Hang with straight arms, pull your shoulders down away from your ears (the pool move)",LW,S("scapular pull ups form")],
-    ["Dead bug","1 × 8 each side","Low back pressed flat into the floor the whole time. Wakes up your abs for later","",S("dead bug exercise form")]]},
-   {h:"Bench Press Pyramid", m:"15 min", note:"Warm up: bar × 10, 135 × 5. Watch your right shoulder at the bottom: if it rolls forward, lower the weight and keep both shoulder blades pinned. Superset A: each bench set, straight into 25 incline push-ups (no vest), then rest 2 min. 100 push-ups total. Set 5 is your top set: do it fresh, no push-ups after.", rows:[
-    ["Set 1","200 × 10","","",S("smith machine bench press form"),"A1"],
-    ["Incline push-ups","25 · bodyweight (1 of 4)","If 25 breaks, take 5 breaths and finish it","",S("feet elevated push up form"),"A2"],
-    ["Set 2","215 × 8","","","","A1"],
-    ["Incline push-ups","25 · bodyweight (2 of 4)","Straight from the bench, then rest 2 min","","","A2"],
-    ["Set 3","235 × 6","","","","A1"],
-    ["Incline push-ups","25 · bodyweight (3 of 4)","Straight from the bench, then rest 2 min","","","A2"],
-    ["Set 4","245 × 5","","","","A1"],
-    ["Incline push-ups","25 · bodyweight (4 of 4)","Straight from the bench, then rest 2 min","","","A2"],
-    ["Set 5","260 × 3","Top set: clean reps only, full rest before it. If your right shoulder rolls forward or 245 felt slow, stay at 255",HAM,""],
-    ["Between sets: quadruped T-spine rotation","5 each side, slow","Mobility during your rest, then back to work. On hands and knees, hand behind your head, rotate the elbow down under you, then up to the ceiling. Eyes follow the elbow","",S("quadruped thoracic rotation")]]},
-   {h:"Back", m:"10 min", note:"Superset A, 4 rounds (face pulls and pulldowns 3): heavy barbell row, straight to face pulls, then straight-arm pulldowns, rest 60–90 sec.", rows:[
-    ["Barbell bent-over row","4 × 8 · start at 135 lb, add 10 lb when all 8 are clean","Free barbell, not the Smith. Hinge at the hips until your chest is about 45°, back flat, knees soft. Pull the bar to your belly button, elbows back close to your sides, squeeze at the top, then lower under control (about 1–2 sec). Build up to a 1-sec squeeze and 3 sec down over the next few weeks. No jerking or standing up to move the weight. Watch the right side: both elbows should finish at the same time","",S("barbell bent over row form"),"A1"],
-    ["Band face pull + chin tuck","3 × 15, plus 1 single-arm set right","Band around the pull-up station at forehead height. Pull to your forehead, thumbs back, 2-sec squeeze, chin slides straight back. Posture","",S("band face pull form"),"A2"],
-    ["Band straight-arm pulldown","3 × 15","Band high on the pull-up station, step back, arms straight. Sweep your hands down to your thighs, squeeze your lats 1 sec. Feel it under your armpits, not in your arms","",S("band straight arm pulldown lats"),"A3"]]},
-   {h:"Biceps", m:"10 min", note:"Hammers and curls separate today. Both seated with your back on the bench to protect your lower back. Rest 60 sec between sets.", rows:[
-    ["Seated hammer curl","3 × 10 each arm @ 35–40 lb","Bench upright, back flat on the pad. Palms facing each other, elbows pinned, no swinging, 3 sec down. Forearm + outer arm: thicker arms. All 3 × 10 clean? Add 5 lb","",S("seated hammer curl form")],
-    ["Incline dumbbell curl","3 × 10 each arm @ 25–30 lb","Bench at about 45°, lie back, let your arms hang straight down behind your body. Palms up, curl without moving your elbows forward, squeeze at the top, 3 sec down. The stretch at the bottom builds the bicep peak","",S("incline dumbbell curl form")]]},
-   {h:"Core", m:"8 min", note:"Superset C, 3 rounds, rest 45 sec. All lower-back friendly: no swinging, no arching.", rows:[
-    ["Hanging leg raise, full range","3 × 5 · bodyweight","Hang, crush the bar, shoulders down (the pool move). Brace your abs like you're about to get punched. First curl your pelvis up, like rolling your tailbone toward your belly button, then lift your legs. Breathe out on the way up, 3 sec down, and stop before your legs swing back. If you swing, pause 1 sec at the bottom",MINE,S("hanging leg raise full range no swing"),"C1"],
-    ["Cable crunch, heavy","3 × 12 @ 100–120 lb (cable)","Kneel facing the cable, rope by your ears. Crunch your ribs down toward your hips, 2-sec squeeze at the bottom, hips still. Your abs do the work, not your arms",MINE,S("cable crunch form"),"C2"],
-    ["Band Pallof press","3 × 10 each side, 2-sec hold","Rotational core. Band around the pull-up station at chest height, stand sideways to it. Press your hands straight out and hold 2 sec without letting it twist you. Lower-back friendly","",S("band pallof press form"),"C3"]]},
+   {h:"Set Up First", m:"1 min", note:"Quick and efficient: 40 minutes, in and out. You did StairMaster this morning, so the warm-up is short. Load the Smith bar at 135, two dumbbells by the bench. Mobility between every set. Drink water with electrolytes before you start.", rows:[]},
+   {h:"Warm-Up", m:"5 min", rows:[
+    ["Jump rope","2 × 30 sec · light bounce","Light on the balls of your feet, lips together, nose breathing","",S("jump rope basic bounce beginner")],
+    ["Tibialis raise","1 × 15","Back to the wall, lift your toes, pause top and bottom. Shins absorb your landings","",S("tibialis raise wall knees over toes")],
+    ["Knee-over-toe ankle rocks","1 × 10 each side","Half-kneeling, front heel flat, drive the knee forward past your toes and back. Stiff ankles cost you depth and jump height",FMF,"https://www.youtube.com/watch?v=8dioRJlX_L8"],
+    ["Half-kneeling hip flexor stretch, tucked","30 sec each side","Tuck your tailbone, squeeze the back glute, shift forward a little. Fixes the pelvic tilt and opens your hips for the squat",MINE,S("half kneeling hip flexor stretch posterior pelvic tilt")]]},
+   {h:"Vertical Jump", m:"5 min", note:"Dunk work. Every jump is max effort with full rest, and land soft and quiet.", rows:[
+    ["Pogo hops","2 × 15 · bodyweight","Stiff ankles, straight-ish knees, bounce off the balls of your feet fast and high. Builds the spring in your ankles. Rest 45 sec",AD,S("pogo hops plyometric ankle stiffness")],
+    ["Jump and reach","3 × 3 · bodyweight","Stand under something high (wall, door frame, rim). Dip, swing your arms back hard, then throw them up and touch as high as you can. Tape your best touch and try to beat it. Rest 60 sec",AD,S("vertical jump and reach technique arm swing")],
+    ["Between sets: deep squat hold","20 sec","Sit all the way down, heels flat, elbows push your knees out. Ankles + hips","",S("deep squat hold mobility heels down")]]},
+   {h:"Strength · Squat", m:"12 min", note:"Superset A: squat, then 90/90 switches during the rest. Rest 2 min.", rows:[
+    ["Smith back squat","135 × 5, 185 × 3, then 3 × 5 @ 215–225","Bar on your upper back, feet shoulder-width, brace your abs. Sit down between your heels as deep as you can control, chest up, knees over your toes. Control down, drive up FAST. All 3 × 5 fast and clean at 215? Use 225 next time",HAM,S("smith machine back squat form"),"A1"],
+    ["Between sets: 90/90 switches","3 each side","Sit in 90/90, switch both knees to the other side and back, chest tall, hands off the floor if you can. Outer hips + hip rotation",FMF,"https://www.youtube.com/watch?v=D0ZMMCkoDxQ","A2"]]},
+   {h:"Hamstrings + Single-Leg", m:"10 min", note:"Superset B, 3 rounds: single-leg RDLs (both legs), reverse lunges (both legs), then the couch stretch, rest 75 sec. Weaker leg first. Hamstrings get you to the L-sit; single-leg work evens your legs out.", rows:[
+    ["Single-leg dumbbell RDL","3 × 8 each leg @ 40–50 lb","Dumbbell in the opposite hand, soft knee. Hinge at the hip and reach the dumbbell toward the floor as your back leg rises, flat back, hips square (don't open up). 3 sec down, feel the hamstring stretch, squeeze your glute to stand",HAM,S("single leg dumbbell romanian deadlift form"),"B1"],
+    ["Dumbbell reverse lunge","3 × 8 each leg @ 40–50 lb","Step back, drop the back knee almost to the floor, front shin vertical, drive up through the front heel. Torso slightly forward for more glute. Rest 75 sec",FMF,S("dumbbell reverse lunge form glutes"),"B2"],
+    ["Between sets: couch stretch","20 sec each side","Back knee against the bench or wall, front foot forward, squeeze the back glute. Hip flexors + quads for the pelvic tilt","",S("couch stretch hip flexor"),"B3"]]},
+   {h:"Calves + Groin", m:"5 min", note:"Superset C, 2 rounds, rest 45 sec.", rows:[
+    ["Single-leg calf raise off a step","2 × 12 each leg · 2-sec pause at the bottom","Ball of your foot on a step or plate, hold the rack. Drop your heel all the way down and hold 2 sec, then rise as high as you can",LW,S("elevated single leg calf raise form"),"C1"],
+    ["Copenhagen side plank (groin)","2 × 20 sec each side","Top leg on the bench (knee on the bench is easier), lift your hips in a straight line. Groin strength for jumping and your middle split. Rest 45 sec",AD,S("copenhagen plank progression"),"C2"]]},
    {h:"Cool-Down", m:"2 min", rows:[
-    ["Child's pose","45 sec","Knees wide, sit back toward your heels, arms long. Breathe into your lower back","",S("child's pose stretch")],
-    ["Lat stretch with a stick + shoulder rotations","30 sec each side","",HAM,S("dowel lat stretch shoulder")]]}
+    ["Pigeon","45 sec each side","Relaxed pigeon, chest tall, breathe into the outer hip",FMF,S("pigeon stretch form")],
+    ["Seated hamstring stretch","30 sec","Legs straight, flat back, reach for your toes. Breathe out and sink a little more each time","",S("seated hamstring stretch flat back")]]}
+  ]},
+ {id:"wed", chip:"Wed", kicker:"Wednesday · Arms", title:"Chin-Ups · Biceps · Triceps · Grip · Core", time:"~45 min", stair:["35-min climb","optional, after you lift"], night:"Night stretch (no push-ups tonight, you did them here)",
+  blocks:[
+   {h:"Set Up First", m:"1 min", note:"Arms day, with chin-ups first so your back still gets work. Two dumbbells by the bench, rope on the cable. Mobility between every set.", rows:[]},
+   {h:"Warm-Up + Posture", m:"5 min", rows:[
+    ["Band pull-aparts + chin tuck","1 × 15","Pull the band apart to your chest and at the same time slide your chin straight back. Posture",HAM,S("band pull apart chin tuck posture")],
+    ["Wall slides","1 × 8","Forearms on the wall, slide up into a V while you push the wall away. Ribs down","",S("wall slide lift off serratus lower trap")],
+    ["Scapular pull-ups, 2-sec hold","1 × 8","Hang, crush the bar, pull your shoulders down (the pool move), hold 2 sec. Wakes up your lats",LW,S("scapular pull ups form")],
+    ["Wrist + elbow circles","10 each way","Gets wrists and elbows ready to curl and press","",S("wrist elbow warm up circles")]]},
+   {h:"Chin-Ups + Push-Ups", m:"9 min", note:"Superset A, 3 rounds: chin-ups, straight into incline push-ups, then open books, rest 90 sec.", rows:[
+    ["Chin-ups (palms toward you)","3 × 6–8 · bodyweight","Dead hang, crush the bar, shoulders down first, then pull your chest to the bar, 3 sec down. Biceps and back together. Stop the set while every rep is still perfect",LW,S("strict chin up form"),"A1"],
+    ["Incline push-ups (feet on the bench)","3 × 25 · bodyweight","Straight from the chin-ups. Body straight like a plank, chest to the floor. If a set breaks, take 5 breaths and finish it",LW,S("feet elevated push up form"),"A2"],
+    ["Between sets: side-lying open book","5 each side","T-spine + chest mobility. Knees bent and stacked, open the top arm across, eyes follow your hand. Breathe out as you open. Rest 90 sec",MINE,S("side lying open book thoracic rotation"),"A3"]]},
+   {h:"Biceps + Triceps", m:"9 min", note:"Superset B, 3 rounds: incline curls, overhead triceps, then the hip flexor stretch, rest 60 sec.", rows:[
+    ["Seated incline dumbbell curl","3 × 10–12 @ 30–35 lb","Bench at about 45°, arms hanging straight down behind your body. Palms up, curl without your elbows drifting forward, 3 sec down to a full stretch. The stretch builds the biceps peak",HAM,S("seated incline dumbbell curl form"),"B1"],
+    ["Cable overhead triceps extension","3 × 12 @ 40–50 lb (rope)","Face away from the cable, rope behind your head, elbows pointing forward by your ears. Straighten your arms overhead, 2 sec back to a deep stretch. Hits the long head, the biggest part of the triceps",HAM,S("cable overhead triceps extension rope form"),"B2"],
+    ["Between sets: half-kneeling hip flexor stretch","20 sec each side","Tuck your tailbone, squeeze the back glute. Pelvic tilt fix while your arms rest",MINE,S("half kneeling hip flexor stretch"),"B3"]]},
+   {h:"Forearms + Triceps", m:"8 min", note:"Superset C, 3 rounds: hammer curls, rope pushdowns, then thread the needle, rest 60 sec.", rows:[
+    ["Seated hammer curl","3 × 10 @ 40–50 lb","Palms facing each other, elbows pinned. Squeeze the handle hard, 3 sec down. Builds forearms and the arm's thickness",HAM,S("seated hammer curl form"),"C1"],
+    ["Cable rope triceps pushdown","3 × 12 @ 50–60 lb","Elbows pinned to your sides, spread the rope at the bottom, 2 sec up","",S("cable rope triceps pushdown form"),"C2"],
+    ["Between sets: thread the needle","4 each side","On hands and knees, slide one arm under your body and rotate, then open it to the ceiling. Upper back mobility","",S("thread the needle thoracic mobility"),"C3"]]},
+   {h:"Grip", m:"4 min", note:"Rest 60 sec between carries.", rows:[
+    ["Farmer carry, heavy","3 × 40 sec @ 50 lb each hand","Stand tall, shoulders down and back, crush the handles, walk slow and smooth. Grip, forearms, traps and core. Grip strength is how you hold on to a person or the bar",HAM,S("farmer carry form dumbbell")],
+    ["Dead hang","1 × max","Finish your grip. Hang loose, breathe through your nose. Decompresses your spine too","",S("dead hang decompression spine")]]},
+   {h:"Core", m:"7 min", note:"Superset D, 3 rounds: leg raises, cable crunches, woodchops, rest 60 sec.", rows:[
+    ["Hanging leg raise, full range","3 × 5–6 · bodyweight","Shoulders down, curl your pelvis up first, 3 sec down, no swinging",MINE,S("hanging leg raise full range no swing"),"D1"],
+    ["Cable crunch, heavy","3 × 12 @ 100–120 lb","Kneel facing the cable, rope by your ears. Crunch your ribs toward your hips, 2-sec squeeze",MINE,S("cable crunch form"),"D2"],
+    ["Cable woodchop, high to low","3 × 10 each side @ 20–30 lb","Rotational core. Pull it down across your body to the opposite hip, turn from your hips, arms long. Same rotation as a throw or a hook. Rest 60 sec",AC,S("cable woodchop high to low form"),"D3"]]},
+   {h:"Cool-Down", m:"2 min", rows:[
+    ["Doorway chest stretch","30 sec each side","Forearm on the door frame at shoulder height, step through. Opens the chest after push-ups and curls","",S("doorway chest stretch")],
+    ["Forearm stretch, both ways","20 sec each","Arm straight, pull the fingers back, then pull the back of the hand down. Your forearms worked hard today","",S("wrist flexor extensor stretch")]]}
   ]},
  {id:"thu", chip:"Thu", kicker:"Thursday", title:"Rest Day ✓", time:"", stair:["35-min climb","optional, only if you feel like it"], night:"Night stretch",
   blocks:[
@@ -1120,7 +1116,7 @@ function renderNight(){
     h += `<details class="guide" style="border-width:1px"><summary>Level up (when a move feels easy for 2 weeks)</summary><ul>${NIGHT_LEVELUP[sel].map(x=>`<li><b>${esc(x[0])}:</b> ${esc(x[1])}</li>`).join("")}</ul></details>`;
   }
   if(PUSH_BY_DAY[wk]) h += `<section class="block"><h3>100 push-ups</h3><p class="note">4 × 25 incline push-ups with clean form, no vest. Feet up on the edge of the bed, hands on the floor. <a class="vid" href="${S("feet elevated push up form")}" target="_blank" rel="noopener">Find video ↗</a></p><div class="field"><input type="checkbox" id="pu" style="flex:0 0 auto;width:24px;height:24px;accent-color:var(--accent)"${d.push?" checked":""}><label for="pu">Done tonight</label></div></section>`;
-  h += `<section class="block"><h3>Wind down <small>lying down · 4 min</small></h3><p class="note">After your stretching (and push-ups), lie down, open your chest, then let your body slow down.</p>${breathHTML("chest","nchest")}${breathHTML("box","nbox")}<details class="guide" style="border-width:1px;margin-top:10px"><summary>Optional (extra time only)</summary>${breathHTML("imt","nimt")}${breathHTML("dirga","ndirga")}${breathHTML("croc","ncroc")}${breathHTML("b478","n478")}</details><div class="callout"><b>Relax.</b></div>${sensesHTML()}<div class="list" style="margin-top:10px">${[["w-chest",["Open-chest breathing done","","","",""]],["w-box",["Box breathing done","","","",""]],["w-478",["4-7-8 breathing done","","","",""]],["w-ground",["Relax","","","",""]]].map(([k,r])=>rowHTML("night",k,r,d,false)).join("")}</div></section>`;
+  h += `<section class="block"><h3>Wind Down <small>lying down · 4 min</small></h3><p class="note">After stretching (and push-ups), lie down: open your chest, then slow everything down.</p>${breathHTML("chest","nchest")}${breathHTML("box","nbox")}<div class="list" style="margin-top:10px">${[["w-chest",["Open-chest breathing done","","","",""]],["w-box",["Box breathing done","","","",""]]].map(([k,r])=>rowHTML("night",k,r,d,false)).join("")}</div></section>`;
   h += `<div class="callout"><b>Knee safety:</b> keep your foot flexed in pigeon and the seated glute stretch. Feel it in the hip; knee pain means come out.</div>`;
   h += `<section class="block"><h3>Sunday check</h3><p class="note">Sit in 90/90 each way and note if you can sit tall without your hands, and how pigeon feels on each side. Easier each week means it's working.</p><div class="field"><label for="gaps">Notes</label><input id="gaps" placeholder="e.g. 90/90 L ok, R needs hands · pigeon R tighter" value="${esc((docOf("checks").gaps)||"")}"></div></section>`;
   app.innerHTML = h;
@@ -1357,7 +1353,6 @@ const BREATHS = {
 };
 const BELIEF = "For God has not given us a spirit of fear, but of power and of love and of a sound mind.";
 const BELIEF_REF = "2 Timothy 1:7";
-const SENSES = [["5","Things you can see","Your phone, a wall, your shoes, a light, a chair"],["4","Things you can feel","Shirt on your skin, feet on the floor, air on your face, your hands"],["3","Things you can hear","AC humming, cars, voices, your own breathing"],["2","Things you can smell","Soap, air, food. Even \"nothing\" counts: just notice it"],["1","Thing you can taste","What's in your mouth right now, or take a sip of water"]];
 let pacer = null;
 function chime(){ try{ unlockAudio(); const o=actx.createOscillator(), g=actx.createGain(); o.type="sine"; o.frequency.value=660; o.connect(g); g.connect(actx.destination); const t=actx.currentTime; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.18,t+0.03); g.gain.exponentialRampToValueAtTime(0.0001,t+0.9); o.start(t); o.stop(t+0.95); }catch(e){} }
 function breathHTML(id, key){
@@ -1380,7 +1375,6 @@ function runPacer(id, key){
   tick();
 }
 function wirePacers(){ app.querySelectorAll("[data-pace]").forEach(btn=>btn.addEventListener("click",()=>{ if(pacer && pacer.key===btn.dataset.pkey) stopPacer(); else runPacer(btn.dataset.pace, btn.dataset.pkey); })); }
-function sensesHTML(){ return `<details class="guide" style="border-width:1px"><summary>5–4–3–2–1</summary>${SENSES.map(s=>`<p><b style="font-family:var(--display);font-size:20px;color:var(--accent)">${s[0]}</b> <b>${esc(s[1])}</b><br><span style="color:var(--muted)">${esc(s[2])}</span></p>`).join("")}</details>`; }
 
 /* ---------- Nose breathing: retrain from mouth breathing ---------- */
 const NOSE_HTML = `<div class="breath"><div class="bh"><b>Nose unblock</b><span>3–5 rounds</span></div><p><b style="color:var(--ink)">How to:</b> Breathe out normally, then pinch your nose shut. Walk around holding your breath until you feel a strong need to breathe. Let go and breathe in slowly through your nose only. Take 30–60 sec of calm nose breathing, then repeat.</p><p style="margin:4px 0 8px"><a class="vid" href="${S("nose unblocking breathing exercise")}" target="_blank" rel="noopener">Watch on YouTube ↗</a></p><p class="warnline">Stop if you feel dizzy.</p></div>
@@ -1402,15 +1396,18 @@ const MORNING_HIPS = [
  ["Dead bug, full exhale","2 × 6 each side · 1.5 min","On your back, arms up, knees over hips. Head stays down on the floor, relaxed, chin slightly tucked (a small nod), eyes on the ceiling; don't lift your head or crunch your neck. Press your low back into the floor and keep it there. Breathe out fully as you lower the opposite arm and leg slowly, then return. If your back lifts off the floor, shorten the reach. Trains your abs to hold the pelvis level","",S("dead bug exhale low back flat")]];
 function renderMorning(){
   const wk=todayId(), weekend = wk==="sat"||wk==="sun", d=docOf("morning-"+wk);
-  const breaths = ["dirga","imt","lungside","uddi","chest","croc","box"].concat(weekend?["skull"]:[]), core = ["dirga","imt"];
-  const checks = [...MORNING_MOB.map(r=>["m-"+slug(r[0]),r]), ...MORNING_HIPS.map(r=>["m-"+slug(r[0]),r]), ...breaths.map(b=>["m-"+b,[BREATHS[b].name+" done","","","",""]]), ["m-nose",["Nose unblock done","","","",""]], ["m-senses",["5–4–3–2–1 done","","","",""]], ["m-belief",["Said my belief out loud","","","",""]]];
-  let h = `<div class="dayhead"><div class="kicker">Morning · every day · ~18 min</div><h2>Wake up loose and clear</h2><p>Six posture moves for your head, right shoulder and right side, three for your hips, then deep breathing and set your mind before work. ${weekend?"It's the weekend, so skull shining breath is on today.":"Skull shining breath is saved for weekends."}</p>
-  <div class="tbar" style="margin-top:12px">${tpair("block", 1080, "18:00 routine", "Morning routine")}</div>
+  const breaths = ["dirga"].concat(weekend?["skull"]:[]), core = breaths;
+  const checks = [...MORNING_MOB.map(r=>["m-"+slug(r[0]),r]), ...MORNING_HIPS.map(r=>["m-"+slug(r[0]),r]), ...breaths.map(b=>["m-"+b,[BREATHS[b].name+" done","","","",""]]), ["m-belief",["Said my belief out loud","","","",""]]];
+  const faith = [["m-up",["Up on time, out of bed","No snooze. Feet on the floor","","",""]],["m-bible",["Read the Bible","Start the day with the Word","","",""]],["m-notes",["Read my notes","Your goals and notes for today","","",""]]];
+  checks.unshift(...faith);
+  let h = `<div class="dayhead"><div class="kicker">Morning · every day · ~17 min + Bible</div><h2>Wake up loose and clear</h2><p>Get up, read the Bible and your notes. Then posture for your head, right shoulder and hips, one deep breath drill, and your belief before work. ${weekend?"It's the weekend, so skull shining breath is on too.":""}</p>
+  <div class="tbar" style="margin-top:12px">${tpair("block", 1020, "17:00 routine", "Morning routine")}</div>
   <div class="progress"><div class="bar"><i id="barfill"></i></div><b id="count">0 / ${checks.length}</b></div></div>`;
+  h += `<section class="block"><h3>Wake Up · Bible · Notes</h3><p class="note">First thing, before your phone.</p><div class="list">` + faith.map(([k,r])=>rowHTML("morning",k,r,d,false)).join("") + `</div></section>`;
   h += `<section class="block"><h3>Posture <small>13.5 min</small></h3><div class="list">` + MORNING_MOB.concat(MORNING_HIPS).map(r=>rowHTML("morning","m-"+slug(r[0]),r,d,false)).join("") + `</div></section>`;
-  h += `<section class="block"><h3>Breathe deep: diaphragm + chest <small>5.5 min</small></h3>` + core.map(b=>breathHTML(b,"m"+b)).join("") + `<details class="guide" style="border-width:1px;margin-top:10px"><summary>Optional (extra time only)</summary>${breaths.filter(b=>!core.includes(b)).map(b=>breathHTML(b,"m"+b)).join("")}${NOSE_HTML}</details></section>`;
-  h += `<section class="block"><h3>Mindset <small>1 min</small></h3><div class="callout"><b>My belief:</b> "${esc(BELIEF)}"<div style="font-size:13px;font-weight:600;color:var(--accent);margin-top:4px">${esc(BELIEF_REF)}</div><div style="font:700 22px var(--display);letter-spacing:-.02em;margin-top:10px">Keep going 🦁🦍</div></div>${sensesHTML()}</section>`;
-  h += `<section class="block"><h3>Check off</h3><div class="list">` + checks.slice(MORNING_MOB.length+MORNING_HIPS.length).map(([k,r])=>rowHTML("morning",k,r,d,false)).join("") + `</div></section>`;
+  h += `<section class="block"><h3>Breathe <small>${weekend?"4 min":"2 min"}</small></h3><p class="note">One drill: deep diaphragm breath that opens your ribs and chest. Nose in, all day.</p>` + core.map(b=>breathHTML(b,"m"+b)).join("") + `</section>`;
+  h += `<section class="block"><h3>Mindset <small>1 min</small></h3><div class="callout"><b>My belief:</b> "${esc(BELIEF)}"<div style="font-size:13px;font-weight:600;color:var(--accent);margin-top:4px">${esc(BELIEF_REF)}</div><div style="font:700 22px var(--display);letter-spacing:-.02em;margin-top:10px">Keep going 🦁🦍</div></div></section>`;
+  h += `<section class="block"><h3>Check off</h3><div class="list">` + checks.slice(faith.length+MORNING_MOB.length+MORNING_HIPS.length).map(([k,r])=>rowHTML("morning",k,r,d,false)).join("") + `</div></section>`;
   app.innerHTML = h; wire("morning-"+wk, checks.length); wirePacers();
   wireTimers();
 }
