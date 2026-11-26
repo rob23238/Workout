@@ -575,7 +575,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-26-stair-40-climb";
+const APP_VERSION = "2026-11-26-stair-40-climb-3min9";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -890,7 +890,7 @@ const rounds = (n, segs) => Array.from({length:n}, ()=>segs).flat();
 const PLANS = {
  p40:{h:"40-min steady sweat", b:"40 easy", when:"Saturday, optional, later in the day (keep it relaxed)", desc:"Relaxed but real work. Long steady stretches at level 7–8, no hard pushes. You can breathe through your nose most of it, and the length is what burns the calories.", segs:[[5,6],[10,7],[8,8],[4,7],[7,8],[4,7],[2,6]]},
  p35:{h:"35-min climb", when:"Wednesday, Friday + Sunday", desc:"Your old 40 without the level 6 cool-down at the end: long level 7–8 stretches with two short level 9 pushes. Finish with 2 easy minutes at level 7.", segs:[[5,6],[8,7],[6,8],[2,9],[4,7],[6,8],[2,9],[2,7]]},
- p40c:{h:"40-min climb", b:"40 climb", when:"Thanksgiving weekend: Thursday, Friday + Sunday", desc:"Your 35-min climb stretched to 40 at the same intensity: long level 7–8 stretches with two short level 9 pushes, then 5 minutes at level 7 to finish. Same effort, 5 more minutes, about 50–60 more calories.", segs:[[5,6],[8,7],[7,8],[2,9],[4,7],[7,8],[2,9],[5,7]]},
+ p40c:{h:"40-min climb", b:"40 climb", when:"Thanksgiving weekend: Thursday, Friday + Sunday", desc:"Your 35-min climb stretched to 40 at the same intensity: level 7–8 stretches with two 3-minute level 9 pushes, then 5 minutes at level 7 to finish. A little harder than the 35, about 60–70 more calories.", segs:[[5,6],[8,7],[6,8],[3,9],[4,7],[6,8],[3,9],[5,7]]},
  p30:{h:"30-min max burn", when:"Monday + Thursday", desc:"Most calories in 30 minutes. 5 rounds of 2 min level 9, 1 min level 10, 1 min level 8 to recover. Hard but short: intervals pack more work into less time.", segs:[[3,6],[2,7],[2,8],...rounds(5,[[2,9],[1,10],[1,8]]),[3,6]]}
 };
 const PLAN_BY_DAY = {mon:"p30",tue:null,wed:"p35",thu:"p40c",fri:"p40c",sat:"p40",sun:"p40c"};
