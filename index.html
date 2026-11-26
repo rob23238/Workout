@@ -575,7 +575,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-26-stair-40-climb-v3";
+const APP_VERSION = "2026-11-26-thu-legs-pullups";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -677,9 +677,35 @@ const DAYS = [
     ["Doorway chest stretch","30 sec each side","Forearm on the door frame at shoulder height, step through. Opens the chest after push-ups and curls","",S("doorway chest stretch")],
     ["Forearm stretch, both ways","20 sec each","Arm straight, pull the fingers back, then pull the back of the hand down. Your forearms worked hard today","",S("wrist flexor extensor stretch")]]}
   ]},
- {id:"thu", chip:"Thu", kicker:"Thursday", title:"Rest Day ✓", time:"", stair:["35-min climb","optional, only if you feel like it"], night:"Night stretch",
+ {id:"thu", chip:"Thu", kicker:"Thursday · Lower Body + Pull-Ups", title:"Squat · Pull-Ups · Hamstrings · Single-Leg · Calves", time:"~48 min", stair:["40-min climb","Thanksgiving extra, after you lift"], night:"Night stretch + 100 push-ups",
   blocks:[
-   {h:"Today's Session", m:"", note:"Off day. Rest and recover: legs are Friday, bench Saturday, legs again Sunday. Night stretch only.", rows:[]}
+   {h:"Set Up First", m:"1 min", note:"Tuesday's leg day, made up today, with pull-ups added. Legs first, pull-ups while your legs rest, then back to single-leg work. Load the Smith bar at 135, two dumbbells by the bench. Mobility between every set. Drink water with electrolytes before you start.", rows:[]},
+   {h:"Warm-Up", m:"5 min", rows:[
+    ["Jump rope","2 × 30 sec · light bounce","Light on the balls of your feet, lips together, nose breathing","",S("jump rope basic bounce beginner")],
+    ["Tibialis raise","1 × 15","Back to the wall, lift your toes, pause top and bottom. Shins absorb your landings","",S("tibialis raise wall knees over toes")],
+    ["Knee-over-toe ankle rocks","1 × 10 each side","Half-kneeling, front heel flat, drive the knee forward past your toes and back. Stiff ankles cost you depth and jump height",FMF,"https://www.youtube.com/watch?v=8dioRJlX_L8"],
+    ["Half-kneeling hip flexor stretch, tucked","30 sec each side","Tuck your tailbone, squeeze the back glute, shift forward a little. Fixes the pelvic tilt and opens your hips for the squat",MINE,S("half kneeling hip flexor stretch posterior pelvic tilt")]]},
+   {h:"Vertical Jump", m:"5 min", note:"Dunk work. Every jump is max effort with full rest, and land soft and quiet.", rows:[
+    ["Pogo hops","2 × 15 · bodyweight","Stiff ankles, straight-ish knees, bounce off the balls of your feet fast and high. Builds the spring in your ankles. Rest 45 sec",AD,S("pogo hops plyometric ankle stiffness")],
+    ["Jump and reach","3 × 3 · bodyweight","Stand under something high (wall, door frame, rim). Dip, swing your arms back hard, then throw them up and touch as high as you can. Tape your best touch and try to beat it. Rest 60 sec",AD,S("vertical jump and reach technique arm swing")],
+    ["Between sets: deep squat hold","20 sec","Sit all the way down, heels flat, elbows push your knees out. Ankles + hips","",S("deep squat hold mobility heels down")]]},
+   {h:"Strength · Squat", m:"12 min", note:"Superset A: squat, then 90/90 switches during the rest. Rest 2 min.", rows:[
+    ["Smith back squat","135 × 5, 185 × 3, then 3 × 5 @ 215–225","Bar on your upper back, feet shoulder-width, brace your abs. Sit down between your heels as deep as you can control, chest up, knees over your toes. Control down, drive up FAST. All 3 × 5 fast and clean at 215? Use 225 next time",HAM,S("smith machine back squat form"),"A1"],
+    ["Between sets: 90/90 switches","3 each side","Sit in 90/90, switch both knees to the other side and back, chest tall, hands off the floor if you can. Outer hips + hip rotation",FMF,"https://www.youtube.com/watch?v=D0ZMMCkoDxQ","A2"]]},
+   {h:"Pull-Up Volume", m:"9 min", guide:true, note:"Plateau breaker: 4 full sets, every one strict. Every rep from your back: dead hang, pool move, crush the bar, chest to the bar, 2 sec down. Your legs rest while you pull. Rest 90 sec.", rows:[
+    ["Bodyweight pull-ups","4 × 8 perfect · build to 4 × 10","Only perfect reps count: end the set at the first rep that isn't. When all 4 sets of 8 are perfect, add 1 rep per set the next week until you hit 4 × 10",LW,S("strict pull up form"),"P1"],
+    ["Between sets: thread the needle","4 each side","On hands and knees, slide one arm under your body and rotate, then open it to the ceiling. Upper back mobility","",S("thread the needle thoracic mobility"),"P2"],
+    ["Finish: dead hang","1 × max","After your last set. Hang loose, crush the bar, breathe through your nose. Grip, and it decompresses your spine after squats","",S("dead hang decompression spine")]]},
+   {h:"Hamstrings + Single-Leg", m:"10 min", note:"Superset B, 3 rounds: single-leg RDLs (both legs), reverse lunges (both legs), then the couch stretch, rest 75 sec. Weaker leg first. Hamstrings get you to the L-sit; single-leg work evens your legs out.", rows:[
+    ["Single-leg dumbbell RDL","3 × 8 each leg @ 40–50 lb","Dumbbell in the opposite hand, soft knee. Hinge at the hip and reach the dumbbell toward the floor as your back leg rises, flat back, hips square (don't open up). 3 sec down, feel the hamstring stretch, squeeze your glute to stand",HAM,S("single leg dumbbell romanian deadlift form"),"B1"],
+    ["Dumbbell reverse lunge","3 × 8 each leg @ 40–50 lb","Step back, drop the back knee almost to the floor, front shin vertical, drive up through the front heel. Torso slightly forward for more glute. Rest 75 sec",FMF,S("dumbbell reverse lunge form glutes"),"B2"],
+    ["Between sets: couch stretch","20 sec each side","Back knee against the bench or wall, front foot forward, squeeze the back glute. Hip flexors + quads for the pelvic tilt","",S("couch stretch hip flexor"),"B3"]]},
+   {h:"Calves + Groin", m:"5 min", note:"Superset C, 2 rounds, rest 45 sec.", rows:[
+    ["Single-leg calf raise off a step","2 × 12 each leg · 2-sec pause at the bottom","Ball of your foot on a step or plate, hold the rack. Drop your heel all the way down and hold 2 sec, then rise as high as you can",LW,S("elevated single leg calf raise form"),"C1"],
+    ["Copenhagen side plank (groin)","2 × 20 sec each side","Top leg on the bench (knee on the bench is easier), lift your hips in a straight line. Groin strength for jumping and your middle split. Rest 45 sec",AD,S("copenhagen plank progression"),"C2"]]},
+   {h:"Cool-Down", m:"2 min", rows:[
+    ["Pigeon","45 sec each side","Relaxed pigeon, chest tall, breathe into the outer hip",FMF,S("pigeon stretch form")],
+    ["Seated hamstring stretch","30 sec","Legs straight, flat back, reach for your toes. Breathe out and sink a little more each time","",S("seated hamstring stretch flat back")]]}
   ]},
  {id:"fri", chip:"Fri", kicker:"Friday · Lower Body", title:"Vertical Jump · Zercher Squat · Single-Leg · Calves", time:"~47 min", stair:["30-min max burn","optional, later today: legs come first"], night:"Night stretch + 100 push-ups",
   blocks:[
