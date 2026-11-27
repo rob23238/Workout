@@ -575,7 +575,7 @@ section.block:first-of-type::before{top:54px}
   <p class="sheet-quote">“The will must be stronger than the skill.”<cite>Muhammad Ali</cite></p>
 </div>
 <script>
-const APP_VERSION = "2026-11-27-fri-ymca-bench";
+const APP_VERSION = "2026-11-27-fri-home-pyramid";
 const S = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 const AD = "Functional Training", AH = "Functional Training · Hips", AC = "Functional Training · Core", FMF = "Flow Motion Fitness", HAM = "Hampton football", LW = "LW Calisthenics", MINE = "Your routine", WD = "Your hip Word doc";
 const PULL_GUIDE = `
@@ -702,29 +702,36 @@ const DAYS = [
     ["Pigeon","45 sec each side","Relaxed pigeon, chest tall, breathe into the outer hip",FMF,S("pigeon stretch form")],
     ["Doorway chest stretch","30 sec","Forearm on the door frame, step through. Opens the chest and shoulders after handstands","",S("doorway chest stretch")]]}
   ]},
- {id:"fri", chip:"Fri", kicker:"Friday · YMCA", title:"Bench · Squat · Hamstrings · Biceps · Abs", time:"~45 min", stair:["40-min climb","Thanksgiving extra, after you lift"], night:"Night stretch (no push-ups tonight, you did 100 with bench)",
+ {id:"fri", chip:"Fri", kicker:"Friday · Home Gym", title:"Bench Pyramid · Squat · Biceps · Abs", time:"~47 min", stair:["40-min climb","Thanksgiving extra, after you lift"], night:"Night stretch (no push-ups tonight, you did 100 with bench)",
   blocks:[
-   {h:"Set Up First", m:"1 min", note:"YMCA day. Bench first while you're fresh. Water with electrolytes before you start, StairMaster after, no sauna first. Set the safety arms (or get a spot) for the 275 set. Mobility between every set.", rows:[]},
+   {h:"Set Up First", m:"1 min", note:"Home gym: Smith machine for bench and squats, stoppers set. Bench first while you're fresh. Water with electrolytes before you start, StairMaster after. Mobility between every set.", rows:[]},
    {h:"Warm-Up + Posture", m:"5 min", rows:[
     ["Band pull-aparts + chin tuck","1 × 15","Pull the band apart to your chest and at the same time slide your chin straight back. Posture",HAM,S("band pull apart chin tuck posture")],
     ["Wall slides","1 × 8","Forearms on the wall, slide up into a V while you push the wall away. Ribs down","",S("wall slide lift off serratus lower trap")],
     ["Scapular pull-ups, 2-sec hold","1 × 8","Hang, crush the bar, pull your shoulders down (the pool move), hold 2 sec. Wakes up your lats",LW,S("scapular pull ups form")],
     ["Wrist + elbow circles","10 each way","Gets wrists and elbows ready to bench and curl","",S("wrist elbow warm up circles")]]},
-   {h:"Bench Press", m:"14 min", note:"Warm up: bar × 10, 135 × 8, 185 × 5, 225 × 2. Then superset A, 4 rounds: a bench set, straight into 25 incline push-ups, then the world's greatest stretch, rest 2–3 min. Same grip every set (finger on the ring marks).", rows:[
-    ["Bench press","245 × 5, 275 × 3, 245 × 5, 225 × 8","Shoulder blades pinched and down, feet flat and slightly in front of your knees, push through your heels. 2 sec down to mid-chest, press up fast. The 275 × 3 is today's target: rack it if a rep stalls, no grinding alone. All 3 clean? Next week 275 × 4",HAM,S("bench press form arch leg drive"),"A1"],
-    ["Incline push-ups (feet on the bench)","4 × 25 · bodyweight","Straight from the bench. Body straight like a plank, chest to the floor. If a set breaks, take 5 breaths and finish it",LW,S("feet elevated push up form"),"A2"],
-    ["Between sets: world's greatest stretch","2 each side","Deep lunge, inside elbow down by your front foot, rotate and reach to the ceiling, then straighten the front leg. Hips, hamstrings and T-spine",AD,S("world's greatest stretch how to"),"A3"]]},
+   {h:"Bench Press Pyramid", m:"15 min", note:"Home gym, Smith machine: set the stoppers just below your chest. Warm up: bar × 10, 135 × 5. Watch your right shoulder at the bottom: if it rolls forward, lower the weight and keep both shoulder blades pinned. Superset A: each bench set, straight into 25 incline push-ups (no vest), then rest 2 min. 100 push-ups total. Set 5 is your top set: do it fresh, no push-ups after.", rows:[
+    ["Set 1","200 × 10","","",S("smith machine bench press form"),"A1"],
+    ["Incline push-ups","25 · bodyweight (1 of 4)","If 25 breaks, take 5 breaths and finish it","",S("feet elevated push up form"),"A2"],
+    ["Set 2","215 × 8","","","","A1"],
+    ["Incline push-ups","25 · bodyweight (2 of 4)","Straight from the bench, then rest 2 min","","","A2"],
+    ["Set 3","235 × 6","","","","A1"],
+    ["Incline push-ups","25 · bodyweight (3 of 4)","Straight from the bench, then rest 2 min","","","A2"],
+    ["Set 4","245 × 5","","","","A1"],
+    ["Incline push-ups","25 · bodyweight (4 of 4)","Straight from the bench, then rest 2 min","","","A2"],
+    ["Set 5","260 × 3","Top set: clean reps only, full rest before it. If your right shoulder rolls forward or 245 felt slow, stay at 255",HAM,""],
+    ["Between sets: prone around the world","5 slow reps","Shoulder mobility during your rest. Lie face down, arms by your sides, palms up, hands lifted off the floor. Keeping your hands off the floor, sweep them out wide and around until they meet overhead, then reverse back to your lower back. Thumbs turn up as your arms pass your shoulders. Slow and controlled: if a spot pinches, make the circle smaller. Too easy? Hold 1–2.5 lb plates","",S("prone around the world shoulder mobility")]]},
    {h:"Strength · Squat (speed day)", m:"9 min", note:"Light and fast day: you squatted heavy yesterday. Let the bar decide. Rest 2 min, 90/90 switches during the rest.", rows:[
-    ["Back squat, speed check","135 × 5, 185 × 3, then 3 × 5 @ 195–205 if 185 flies","185 moves FAST? Do 3 × 5 at 195–205, every rep fast, 2–3 reps left in the tank. 185 feels slow or heavy? Stop squatting and do Bulgarian split squats, 3 × 8 each leg, instead. Sit between your heels, chest up, drive up fast",HAM,S("back squat form"),"B1"],
+    ["Smith back squat, speed check","135 × 5, 185 × 3, then 3 × 5 @ 195–205 if 185 flies","185 moves FAST? Do 3 × 5 at 195–205, every rep fast, 2–3 reps left in the tank. 185 feels slow or heavy? Stop squatting and do Bulgarian split squats, 3 × 8 each leg, instead. Sit between your heels, chest up, drive up fast",HAM,S("back squat form"),"B1"],
     ["Between sets: 90/90 switches","3 each side","Sit in 90/90, switch both knees to the other side and back, chest tall. Outer hips + hip rotation",FMF,"https://www.youtube.com/watch?v=D0ZMMCkoDxQ","B2"]]},
-   {h:"Hamstrings + Biceps", m:"9 min", note:"Superset C, 3 rounds: hamstring curls, hammer-to-curls, then the seated pike stretch, rest 60 sec. YMCA machine for the hamstrings you can't hit at home.", rows:[
-    ["Hamstring curl machine (lying or seated)","3 × 10–12","Hips pressed into the pad, curl your heels toward your butt, 1-sec squeeze, 3 sec down to a full stretch. Hamstrings for the L-sit, sprinting and protecting your knees",HAM,S("lying hamstring curl machine form"),"C1"],
+   {h:"Hamstrings + Biceps", m:"9 min", note:"Superset C, 3 rounds: single-leg RDLs (both legs), hammer-to-curls, then the seated pike stretch, rest 60 sec.", rows:[
+    ["Single-leg dumbbell RDL","3 × 8 each leg @ 40–50 lb","Dumbbell in the opposite hand, soft knee. Hinge at the hip and reach the dumbbell toward the floor as your back leg rises, flat back, hips square. 3 sec down, feel the hamstring, squeeze your glute to stand. Hamstrings for the L-sit, and evens out your legs",HAM,S("single leg dumbbell romanian deadlift form"),"C1"],
     ["Standing hammer-to-curl","3 × 8 each arm @ 30–40 lb","Start palms facing each other (hammer). Curl halfway, then turn your palm up as you finish and squeeze at the top. Turn back to hammer on the way down, 3 sec. Elbows pinned, no swinging",HAM,S("hammer curl to supination curl dumbbell"),"C2"],
     ["Between sets: seated pike stretch","20 sec","Legs straight, flat back, fold forward from the hips. Hamstrings for the L-sit","",S("seated pike stretch flat back"),"C3"]]},
-   {h:"Abs", m:"6 min", note:"Superset D, 3 rounds, rest 60 sec.", rows:[
-    ["Hanging leg raise, full range","3 × 5–6 · bodyweight","Shoulders down, curl your pelvis up first, 3 sec down, no swinging",MINE,S("hanging leg raise full range no swing"),"D1"],
-    ["Cable crunch, heavy","3 × 12 @ 100–120 lb","Kneel facing the cable, rope by your ears. Crunch your ribs toward your hips, 2-sec squeeze",MINE,S("cable crunch form"),"D2"],
-    ["Seated heel lifts (L-sit builder)","3 × 8 · 2-sec hold","Legs straight on the floor, hands by your knees, lift both heels 1–2 inches and hold 2 sec. Squeeze your quads. Builds the hip flexor strength your L-sit needs. Rest 60 sec",LW,S("seated pike compression leg lifts l sit"),"D3"]]},
+   {h:"Abs", m:"5 min", note:"Superset D, 2 rounds, rest 60 sec.", rows:[
+    ["Hanging leg raise, full range","2 × 5–6 · bodyweight","Shoulders down, curl your pelvis up first, 3 sec down, no swinging",MINE,S("hanging leg raise full range no swing"),"D1"],
+    ["Cable crunch, heavy","2 × 12 @ 100–120 lb","Kneel facing the cable, rope by your ears. Crunch your ribs toward your hips, 2-sec squeeze",MINE,S("cable crunch form"),"D2"],
+    ["Seated heel lifts (L-sit builder)","2 × 8 · 2-sec hold","Legs straight on the floor, hands by your knees, lift both heels 1–2 inches and hold 2 sec. Squeeze your quads. Builds the hip flexor strength your L-sit needs. Rest 60 sec",LW,S("seated pike compression leg lifts l sit"),"D3"]]},
    {h:"Cool-Down", m:"2 min", rows:[
     ["Doorway chest stretch","30 sec each side","Forearm on the door frame at shoulder height, step through. Opens the chest after bench","",S("doorway chest stretch")],
     ["Couch stretch","30 sec each side","Back knee against the wall or bench, squeeze the back glute. Hip flexors after squats","",S("couch stretch hip flexor")]]}
